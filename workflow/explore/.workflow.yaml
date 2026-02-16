@@ -1,0 +1,30 @@
+version: 2
+type: status-workflow
+name: Workflow
+description: Dungeon-centric workflow for organizing work
+directories:
+    .:
+        description: Active work in progress
+        order: 1
+        transition_opts:
+            - dungeon
+    dungeon:
+        description: All non-active statuses
+        order: 2
+        nested: true
+        children:
+            archived:
+                description: Preserved but no longer active
+                order: 3
+            completed:
+                description: Successfully finished work
+                order: 2
+            ready:
+                description: Ready to work on
+                order: 1
+            someday:
+                description: Maybe later, low priority
+                order: 4
+default_status: .
+track_history: true
+history_file: .workflow-history.jsonl
