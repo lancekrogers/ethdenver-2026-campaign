@@ -1,0 +1,416 @@
+{
+  "version": "1.0.0",
+  "created": "2026-02-16T12:53:55.041396-07:00",
+  "updated": "2026-02-16T12:53:55.041396-07:00",
+  "source": {},
+  "files": {
+    "CLI_REFERENCE.md": {
+      "hash": "4c9202df245e075a4bba63bdb50917ed262206fd6bd5bd72979214a4a37db790",
+      "size": 10243,
+      "modified": "2026-02-16T12:53:54.651155586-07:00",
+      "original": true
+    },
+    "COLLABORATIVE_PLANNING_GUIDE.md": {
+      "hash": "e6632ed089bb7c90e11cc0835d3c5341e113dbdc97b87658739bf949165def15",
+      "size": 8893,
+      "modified": "2026-02-16T12:53:54.656387259-07:00",
+      "original": true
+    },
+    "FESTIVAL_SOFTWARE_PROJECT_MANAGEMENT.md": {
+      "hash": "0dea61748b8678aa4c2dabb2415eea8bac1295a6791d5e4ab27c194014ffcc93",
+      "size": 37617,
+      "modified": "2026-02-16T12:53:54.660400847-07:00",
+      "original": true
+    },
+    "GOAL_ORIENTED_PLANNING.md": {
+      "hash": "19815771219dc014288917876b956bcc6581e483e813dbf1f42e02f7e435999d",
+      "size": 8967,
+      "modified": "2026-02-16T12:53:54.666675856-07:00",
+      "original": true
+    },
+    "PHASE_PATTERNS.md": {
+      "hash": "3a937f5d3442f47fea4c5f754a2062f6468344524cd0a9134936aeb0293f0da4",
+      "size": 17383,
+      "modified": "2026-02-16T12:53:54.671301445-07:00",
+      "original": true
+    },
+    "PROJECT_MANAGEMENT_SYSTEM.md": {
+      "hash": "9d7e202f99711bf0bfc47999044689c224b321cd8b716a83127d852052aa88c1",
+      "size": 11249,
+      "modified": "2026-02-16T12:53:54.6754037-07:00",
+      "original": true
+    },
+    "QUALITY_GATES_REFERENCE.md": {
+      "hash": "e3562d95103f9439a1b16f75b00a0429903897c7298fb87c2b7f2dd0036377d0",
+      "size": 12771,
+      "modified": "2026-02-16T12:53:54.679519164-07:00",
+      "original": true
+    },
+    "README.md": {
+      "hash": "a33852e066841d8342676635c1383ee312ce8cfd64aea5464a38a58ae94a0775",
+      "size": 17830,
+      "modified": "2026-02-16T12:53:54.684279253-07:00",
+      "original": true
+    },
+    "REQUIREMENTS_TO_SEQUENCES_GUIDE.md": {
+      "hash": "6d4a0efbb7dc7208e5804341aa4eeb45f05757a68b194b0e234c286662e51ec5",
+      "size": 9786,
+      "modified": "2026-02-16T12:53:54.688558384-07:00",
+      "original": true
+    },
+    "SEQUENCE_DESIGN_GUIDE.md": {
+      "hash": "599ea2bc2594d4d5ddc96510aa9dc41b478e5d349b1145b02484b738095e81dd",
+      "size": 10258,
+      "modified": "2026-02-16T12:53:54.693477515-07:00",
+      "original": true
+    },
+    "VALIDATION_CHECKLIST.md": {
+      "hash": "9eccb898d98d78b855cd06facaacf58034c0e998f5115140c42798c501170ba3",
+      "size": 8607,
+      "modified": "2026-02-16T12:53:54.69853548-07:00",
+      "original": true
+    },
+    "agents/INDEX.md": {
+      "hash": "29103655f6656bd67584d3bc79d0d907213239b2c9f797c89bdd0f058505d137",
+      "size": 9585,
+      "modified": "2026-02-16T12:53:54.708451576-07:00",
+      "original": true
+    },
+    "agents/festival_methodology_manager.md": {
+      "hash": "685fb405469a56688433839402fededde6bcdd2b356f28fef2f8afef3d28b858",
+      "size": 14105,
+      "modified": "2026-02-16T12:53:54.713320041-07:00",
+      "original": true
+    },
+    "agents/festival_planning_agent.md": {
+      "hash": "e3543fd4a2e70f44a05a4f07c74ab34be2d921dfe3b7b28199f807108bd7ead6",
+      "size": 12566,
+      "modified": "2026-02-16T12:53:54.717512088-07:00",
+      "original": true
+    },
+    "agents/festival_review_agent.md": {
+      "hash": "bb7f3917b85825e1979213620bd046ab6451edb8ff2a469443541d419b572484",
+      "size": 10514,
+      "modified": "2026-02-16T12:53:54.722230302-07:00",
+      "original": true
+    },
+    "examples/FESTIVAL_TODO_EXAMPLE.md": {
+      "hash": "f0bae6ce4508bc668e61bdaccedf41245ef8a734787dbd789211acb832782efe",
+      "size": 12988,
+      "modified": "2026-02-16T12:53:54.726444057-07:00",
+      "original": true
+    },
+    "examples/INDEX.md": {
+      "hash": "b6802fc95a603dc1602b353e922ee95c139dbfa5f962c033d64358b484ccafff",
+      "size": 8338,
+      "modified": "2026-02-16T12:53:54.731272355-07:00",
+      "original": true
+    },
+    "examples/PHASE_GOAL_EXAMPLE.md": {
+      "hash": "da5212874411dc8ef037f60fb46e52e28e28835e9e7dacc6796eaa6fa561114b",
+      "size": 6084,
+      "modified": "2026-02-16T12:53:54.735690194-07:00",
+      "original": true
+    },
+    "examples/SEQUENCE_GOAL_EXAMPLE.md": {
+      "hash": "6d2e5cafc4c021d60c994cebb125f27d6804c90bd9ab249d2b0eb992b927b479",
+      "size": 6596,
+      "modified": "2026-02-16T12:53:54.740371159-07:00",
+      "original": true
+    },
+    "examples/TASK_EXAMPLES.md": {
+      "hash": "6e845cf9eea36b04cee4565a10b4d08480d36a5dd2e6931931ac7d0fe1e1ae4a",
+      "size": 22494,
+      "modified": "2026-02-16T12:53:54.744561164-07:00",
+      "original": true
+    },
+    "extensions/README.md": {
+      "hash": "f1f330a920b4204a6eced3e13e80975f6fa2b51f41fbbd01c62e0c20bc6d23b5",
+      "size": 6579,
+      "modified": "2026-02-16T12:53:54.749397795-07:00",
+      "original": true
+    },
+    "extensions/interface-planning/extension.md": {
+      "hash": "279e66513ac41eb03fcfbf6e31d0a567c4e7bb76213353e2f6d41b3731869546",
+      "size": 8626,
+      "modified": "2026-02-16T12:53:54.753468967-07:00",
+      "original": true
+    },
+    "extensions/interface-planning/templates/COMMON_INTERFACES_TEMPLATE.md": {
+      "hash": "4b9b2efb1a8332c8e97c4df762ebc3a809d81e9ed95e5a31a94a04f2155399ca",
+      "size": 18821,
+      "modified": "2026-02-16T12:53:54.758560182-07:00",
+      "original": true
+    },
+    "extensions/orchestration/ORCHESTRATION_GUIDE.md": {
+      "hash": "15830442d46b6ae31161b677ae3cba241d04bbdd78c7f2e3c14681dd77af43d1",
+      "size": 11824,
+      "modified": "2026-02-16T12:53:54.76347798-07:00",
+      "original": true
+    },
+    "extensions/orchestration/README.md": {
+      "hash": "eda8687cbd027b208e00f8d31853155b3243f8cde438be1cfe64feeae8145db1",
+      "size": 6086,
+      "modified": "2026-02-16T12:53:54.768297944-07:00",
+      "original": true
+    },
+    "extensions/orchestration/examples/blockchain-verification-example.md": {
+      "hash": "699abf90efd9a2da9689a52e38a20c04c2b6e88e215f97c50484e2dfc32b1efc",
+      "size": 15901,
+      "modified": "2026-02-16T12:53:54.772422367-07:00",
+      "original": true
+    },
+    "extensions/orchestration/patterns/AGENT_ARCHETYPES.md": {
+      "hash": "ba0ec88fa6c16712798851192d4a2dc2eb51f2ef9740ef05a189cabb47d8f449",
+      "size": 20619,
+      "modified": "2026-02-16T12:53:54.776584205-07:00",
+      "original": true
+    },
+    "extensions/orchestration/patterns/COMMON_PATTERNS.md": {
+      "hash": "de63cf4dee33108eb757d04571bd4815b1ba38ae596a73137d55a7d0fc291e89",
+      "size": 14496,
+      "modified": "2026-02-16T12:53:54.781437461-07:00",
+      "original": true
+    },
+    "extensions/orchestration/templates/AGENT_TEMPLATE.md": {
+      "hash": "0fb1b70b52efa8d07499d56732d43ba0dd1f14f1d8984493947bf9239255e429",
+      "size": 8854,
+      "modified": "2026-02-16T12:53:54.78549355-07:00",
+      "original": true
+    },
+    "extensions/orchestration/templates/ORCHESTRATION_PLAN_TEMPLATE.md": {
+      "hash": "e3d453991df977506ea2a09d4a747e301b15f098ef3912822419f80a146e8d2a",
+      "size": 13708,
+      "modified": "2026-02-16T12:53:54.790671598-07:00",
+      "original": true
+    },
+    "festival_types.yaml": {
+      "hash": "ac50a5085386c3881159c7a68e70a973a228f0e5e8ac8c8535bc8c8b9c446e46",
+      "size": 2149,
+      "modified": "2026-02-16T12:53:54.795468813-07:00",
+      "original": true
+    },
+    "templates/festival/CONFIG.yaml": {
+      "hash": "5f1d228a5b3bbf4ee9481d678874f6ee15bf151140a9e5cb836c7a2456654442",
+      "size": 1748,
+      "modified": "2026-02-16T12:53:54.800970195-07:00",
+      "original": true
+    },
+    "templates/festival/GOAL.md": {
+      "hash": "f13a780ae544195646ef84056bed3ae90aea1fe05d500367a0b3327b69d2a2e7",
+      "size": 1212,
+      "modified": "2026-02-16T12:53:54.805470784-07:00",
+      "original": true
+    },
+    "templates/festival/OVERVIEW.md": {
+      "hash": "69fd0dcc014253203267b66623abdf5474a5823f1616373f13856a691acf8d3e",
+      "size": 1230,
+      "modified": "2026-02-16T12:53:54.810456207-07:00",
+      "original": true
+    },
+    "templates/festival/QUICKSTART.md": {
+      "hash": "5e293e66af8d09fbe7983733d41468b88e9e6bc33ca0fd789bc4623c52a15f49",
+      "size": 4443,
+      "modified": "2026-02-16T12:53:54.814513462-07:00",
+      "original": true
+    },
+    "templates/festival/RULES.md": {
+      "hash": "b15ecd57ac00bb52574fd532978fc353be5f5e5355a783f5c7067cf0b1a29c9f",
+      "size": 6519,
+      "modified": "2026-02-16T12:53:54.819567219-07:00",
+      "original": true
+    },
+    "templates/festival/TODO.md": {
+      "hash": "72202e2402d3062be1231e75fbbe650606ca2b4aeb00afa3c341597386d03e0c",
+      "size": 1134,
+      "modified": "2026-02-16T12:53:54.824489808-07:00",
+      "original": true
+    },
+    "templates/festival/TODO.yaml": {
+      "hash": "ef41bc32fcafdfe12cc30e7129fe1357e87b310cba5d0ff35829ecdd525f02e8",
+      "size": 15683,
+      "modified": "2026-02-16T12:53:54.829720732-07:00",
+      "original": true
+    },
+    "templates/phases/implementation/GOAL.md": {
+      "hash": "f09986d28f6332afd10a9e8ebc59e84f016208655a4350b895498ef1be9985b0",
+      "size": 1944,
+      "modified": "2026-02-16T12:53:54.834450113-07:00",
+      "original": true
+    },
+    "templates/phases/implementation/gates/QUALITY_GATE_FEST_COMMIT.md": {
+      "hash": "05df075d346190c4289fe999dfe7f0120e6619592312b3cee8aa8bc8645a4ab4",
+      "size": 3545,
+      "modified": "2026-02-16T12:53:54.838564326-07:00",
+      "original": true
+    },
+    "templates/phases/implementation/gates/QUALITY_GATE_ITERATE.md": {
+      "hash": "6b6011c93a45f53ae2fa8e35350e9b4f47e259efd2909f91952825009256f071",
+      "size": 2504,
+      "modified": "2026-02-16T12:53:54.843266249-07:00",
+      "original": true
+    },
+    "templates/phases/implementation/gates/QUALITY_GATE_REVIEW.md": {
+      "hash": "7fd0a1339a4352333dc7102058a37d0a7cce1026d780ef6c27878fa1ed82ed10",
+      "size": 2806,
+      "modified": "2026-02-16T12:53:54.847423213-07:00",
+      "original": true
+    },
+    "templates/phases/implementation/gates/QUALITY_GATE_TESTING.md": {
+      "hash": "064043525329207b07e49ade9fd2d8cdc7c7258fa2f41372ecba894486461c74",
+      "size": 2539,
+      "modified": "2026-02-16T12:53:54.852368386-07:00",
+      "original": true
+    },
+    "templates/phases/ingest/GOAL.md": {
+      "hash": "a62ffac0edbc8a1f89ee2378f2b037d69ec99c617209032beb9e03bfc1f0e158",
+      "size": 2123,
+      "modified": "2026-02-16T12:53:54.856474099-07:00",
+      "original": true
+    },
+    "templates/phases/ingest/WORKFLOW.md": {
+      "hash": "dc84e88e179e663c5306932a78aac88ed2686faa214891fb250d9fdd98bb1b04",
+      "size": 2749,
+      "modified": "2026-02-16T12:53:54.860429063-07:00",
+      "original": true
+    },
+    "templates/phases/ingest/input_specs/README.md": {
+      "hash": "a79c27d8c51f514d02390c3369348a911b9bd51a15c57bdb40757810c418095d",
+      "size": 638,
+      "modified": "2026-02-16T12:53:54.864523151-07:00",
+      "original": true
+    },
+    "templates/phases/ingest/output_specs/README.md": {
+      "hash": "af1a289a1ba65e3ef6a631341a9677efe62cc50076ed078f0802d0c2415692f4",
+      "size": 608,
+      "modified": "2026-02-16T12:53:54.869406658-07:00",
+      "original": true
+    },
+    "templates/phases/non_coding_action/GOAL.md": {
+      "hash": "fc3779aed338718115c8cdde22c86cbd092d52aed424dd913b086b5ccaa82938",
+      "size": 1719,
+      "modified": "2026-02-16T12:53:54.874848748-07:00",
+      "original": true
+    },
+    "templates/phases/planning/GOAL.md": {
+      "hash": "d480ed9ed129cbd092c1f95e8ed058173a57c75371055b5c7f3fd1c69f9a727b",
+      "size": 1682,
+      "modified": "2026-02-16T12:53:54.879756879-07:00",
+      "original": true
+    },
+    "templates/phases/planning/WORKFLOW.md": {
+      "hash": "78fba9402dd9225ab12edcfea50ab3fe4816e665f9e842b4e98eb419d3b526be",
+      "size": 5664,
+      "modified": "2026-02-16T12:53:54.885039345-07:00",
+      "original": true
+    },
+    "templates/phases/planning/decisions/INDEX.md": {
+      "hash": "dea6164e8a4c566e989a917cb6961ca09c8e242cdda068270dff62996e2b23e5",
+      "size": 807,
+      "modified": "2026-02-16T12:53:54.890020768-07:00",
+      "original": true
+    },
+    "templates/phases/planning/inputs/README.md": {
+      "hash": "1a29cc41b90a518e9756713d3cf409e98829e4079f64f4687c74957690d56ea9",
+      "size": 742,
+      "modified": "2026-02-16T12:53:54.894985982-07:00",
+      "original": true
+    },
+    "templates/phases/planning/plan/README.md": {
+      "hash": "fb4001007307a2a733db928e2dcf0f7a17d82fba63a5e0ad063ba60e57e6ec6f",
+      "size": 1654,
+      "modified": "2026-02-16T12:53:54.899949614-07:00",
+      "original": true
+    },
+    "templates/phases/research/GOAL.md": {
+      "hash": "f2a371430b2d38db7e537e618748195e3d1fa99bcf5b943aa4aa1a19c0b7d3c4",
+      "size": 1627,
+      "modified": "2026-02-16T12:53:54.905389246-07:00",
+      "original": true
+    },
+    "templates/phases/research/WORKFLOW.md": {
+      "hash": "f0518370d4e601ee237f9a05372fb99a6470280afa9eb2a8b0f76fad62ca1a0a",
+      "size": 2358,
+      "modified": "2026-02-16T12:53:54.910815753-07:00",
+      "original": true
+    },
+    "templates/phases/research/analysis.md": {
+      "hash": "6531ad3321713799428c6f02ee99cf162f173b00f20b5f1384eee788a33676f7",
+      "size": 5280,
+      "modified": "2026-02-16T12:53:54.915809426-07:00",
+      "original": true
+    },
+    "templates/phases/research/comparison.md": {
+      "hash": "4c3a45564f722e07343cfa6f206fb5e2fc68224386bae58d6697771134c7d7b9",
+      "size": 5936,
+      "modified": "2026-02-16T12:53:54.920879849-07:00",
+      "original": true
+    },
+    "templates/phases/research/findings/INDEX.md": {
+      "hash": "12d8ade31ef28112687385b57eed93bd080ab36bb6f0749e31f3a9ce4f6a0492",
+      "size": 775,
+      "modified": "2026-02-16T12:53:54.92588198-07:00",
+      "original": true
+    },
+    "templates/phases/research/investigation.md": {
+      "hash": "52b4574c31bbcb57151361a012915e8a6c75ec1af20f49ae410846ee079cb584",
+      "size": 4129,
+      "modified": "2026-02-16T12:53:54.93119107-07:00",
+      "original": true
+    },
+    "templates/phases/research/sources/INDEX.md": {
+      "hash": "ffe9cfb89ff6e1353f05d2d2c04675a1e1004397ee430f154b4075eb2afab98d",
+      "size": 850,
+      "modified": "2026-02-16T12:53:54.936126577-07:00",
+      "original": true
+    },
+    "templates/phases/research/specification.md": {
+      "hash": "f33e7fd94ce3ba0ed2378d7c795e567c1ac889940c961b8fc28201e3bd1c85a1",
+      "size": 5725,
+      "modified": "2026-02-16T12:53:54.941198042-07:00",
+      "original": true
+    },
+    "templates/phases/review/GOAL.md": {
+      "hash": "e57ecea75981d2e790608d37da7be7dfc1945378e28b6d82f69e1825ffb32761",
+      "size": 1640,
+      "modified": "2026-02-16T12:53:54.946185048-07:00",
+      "original": true
+    },
+    "templates/sequences/GOAL.md": {
+      "hash": "e87bdeca3464245d9bf590abb35bddb0ff990e72eb36991d6d184a461760ef24",
+      "size": 3167,
+      "modified": "2026-02-16T12:53:54.951315846-07:00",
+      "original": true
+    },
+    "templates/sequences/GOAL_MINIMAL.md": {
+      "hash": "c60c6c5e05da426cf25dad7913b185b653bddd49fe5a9b5d3bf0b986e06d896b",
+      "size": 883,
+      "modified": "2026-02-16T12:53:54.955832936-07:00",
+      "original": true
+    },
+    "templates/sequences/SEQUENCE.md": {
+      "hash": "01b44b8f93c7939907763042149ca38bc0629e0c5553f409294c3a8eed479530",
+      "size": 2203,
+      "modified": "2026-02-16T12:53:54.960699858-07:00",
+      "original": true
+    },
+    "templates/tasks/TASK.md": {
+      "hash": "ffa102a8ace9a773d69c17848442170c92c8faec70203719688f11d26127adb9",
+      "size": 846,
+      "modified": "2026-02-16T12:53:54.965891407-07:00",
+      "original": true
+    },
+    "templates/utility/CONTEXT.md": {
+      "hash": "af28844e11ed766b2334d618679360e3fadfeadfde4528004e3ef076d3ca173a",
+      "size": 7074,
+      "modified": "2026-02-16T12:53:54.97108083-07:00",
+      "original": true
+    },
+    "templates/utility/INDEX.md": {
+      "hash": "49be496b4f515124fd69c1e6edd542e0a77e9914ddbe3784bec63bedb39677d2",
+      "size": 12693,
+      "modified": "2026-02-16T12:53:54.975899461-07:00",
+      "original": true
+    }
+  }
+}
