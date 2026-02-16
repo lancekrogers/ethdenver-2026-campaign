@@ -8,7 +8,7 @@ An autonomous agent economy orchestrated by the obey daemon, settling on Hedera,
 
 **We do NOT use OpenClaw.** We forfeit Hedera Track 1 ($10k) and use obey daemon agents throughout. Every component of the system is Obedience Corp infrastructure. The demo isn't "we used someone else's framework and added a blockchain." It's "this is our system, running live, doing real work across multiple chains."
 
-This costs $10k in potential bounty. It gains authenticity, a coherent narrative, and maximum exposure for Obedience Corp.
+Once obey agents work end-to-end, we add OpenClaw as a second agent runtime (see `06-openclaw-extension.md`). This recovers Track 1 AND proves the daemon is runtime-agnostic. No work is forfeited — OpenClaw is purely additive.
 
 ## Remaining Bounty Targets
 
@@ -22,7 +22,8 @@ This costs $10k in potential bounty. It gains authenticity, a coherent narrative
 | **0G** | Track 4: Dev Tooling | $4,000 (1 winner) | fest/camp templates for 0G projects |
 | **Base** | Self-Sustaining Agent | $3,000+ | DeFi agent with ERC-8004 + x402 + ERC-8021 |
 | **Competition** | Future Llama | TBD | Frontier AI: hierarchical multi-chain agent orchestration |
-| | | **$36k-$41k** | |
+| **Hedera** | Track 1: Killer App | $10,000 (1 winner) | OpenClaw extension after obey agents work (see 06-openclaw-extension.md) |
+| | | **$46k-$51k** | |
 
 ## What the Project IS
 

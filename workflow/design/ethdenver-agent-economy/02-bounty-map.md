@@ -265,10 +265,12 @@ Target: Revenue > 2x Costs (demonstrable on dashboard)
 | 3 | 0G Track 2 | Inference Agent on 0G Compute | $7,000 | **P1** |
 | 4 | 0G Track 3 | Agent iNFT (ERC-7857) | $7,000 | **P1** |
 | 5 | Base | Self-sustaining DeFi Agent | $3,000 | **P1** |
-| 6 | 0G Track 4 | fest/camp templates | $4,000 | **P2** |
-| 7 | Hedera Track 2 | Automation contracts | $5,000 | **P2** |
-| 8 | Future Llama | Full project | TBD | **P2** |
+| 6 | **Hedera Track 1** | **OpenClaw extension (see 06-openclaw-extension.md)** | **$10,000** | **P1+** |
+| 7 | 0G Track 4 | fest/camp templates | $4,000 | **P2** |
+| 8 | Hedera Track 2 | Automation contracts | $5,000 | **P2** |
+| 9 | Future Llama | Full project | TBD | **P2** |
 
 **P0**: Must be rock-solid. These are our best shots.
 **P1**: Important, build in parallel with P0.
+**P1+**: Build immediately after obey agents work. Additive — no existing work changes.
 **P2**: Nice to have. Build if time permits.
