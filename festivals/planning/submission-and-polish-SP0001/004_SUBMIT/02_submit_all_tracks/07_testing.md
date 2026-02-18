@@ -30,7 +30,7 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+Manual verification: all submission forms complete
 
 **Verify:**
 
@@ -40,7 +40,7 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+Verify all submitted links are accessible
 
 **Verify:**
 
@@ -58,9 +58,9 @@ Walk through each requirement from the sequence:
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: N/A (submissions) for new code
 
-[REPLACE: Run your project's coverage command]
+N/A (submissions)
 
 ## Error Handling Verification
 

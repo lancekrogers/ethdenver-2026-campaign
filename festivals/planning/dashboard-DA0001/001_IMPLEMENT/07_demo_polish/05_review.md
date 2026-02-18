@@ -6,79 +6,40 @@ fest_parent: 07_demo_polish
 fest_order: 5
 fest_status: pending
 fest_gate_type: review
-fest_created: 2026-02-18T14:21:00.581866-07:00
+fest_created: 2026-02-18T14:21:00-07:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 05 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
-Review all code changes in this sequence for quality, correctness, and adherence to project standards.
+Final code review of all integration code: dashboard layout, mock data providers, main page wiring, and global styles.
 
 ## Review Checklist
 
-### Code Quality
+- [ ] DashboardLayout is clean and well-structured
+- [ ] Mock data generators produce realistic data
+- [ ] Mock vs live toggle is clean (no scattered if/else)
+- [ ] Panel components decoupled from data sources (receive data via props)
+- [ ] ESLint passes: `cd $(fgo) && npx eslint src/ --max-warnings 0`
+- [ ] TypeScript strict mode: `cd $(fgo) && npx tsc --noEmit`
+- [ ] No console.log in production code
+- [ ] No secrets in committed code, .env.local gitignored
+- [ ] Read-only constraint verified across all components and connectors
+- [ ] All five panels render in the layout
+- [ ] All data types used, all hooks wired
 
-- [ ] Code is readable and well-organized
-- [ ] Functions/methods are focused (single responsibility)
-- [ ] No unnecessary complexity
-- [ ] Naming is clear and consistent
-- [ ] Comments explain "why" not "what"
+## Files to Review
 
-### Architecture & Design
-
-- [ ] Changes align with project architecture
-- [ ] No unnecessary coupling introduced
-- [ ] Dependencies are appropriate
-- [ ] Interfaces are clean and focused
-- [ ] No code duplication
-
-### Standards Compliance
-
-[REPLACE: Run your project's lint command]
-
-- [ ] Linting passes without warnings
-- [ ] Formatting is consistent
-- [ ] Project conventions are followed
-
-### Error Handling
-
-- [ ] Errors are handled appropriately
-- [ ] Error messages are helpful
-- [ ] No panic/crash scenarios
-- [ ] Resources are properly cleaned up
-
-### Security Considerations
-
-- [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
-
-### Performance
-
-- [ ] No obvious performance issues
-- [ ] Queries are efficient
-- [ ] No memory leaks
-- [ ] Appropriate caching used
-
-### Testing
-
-- [ ] Tests are meaningful
-- [ ] Edge cases covered
-- [ ] Test data is appropriate
-- [ ] Mocks used correctly
-
-## Review Process
-
-1. **Read the sequence goal** - Understand what was being built
-2. **Review file by file** - Check each modified file
-3. **Run the code** - Verify functionality works
-4. **Document findings** - Note issues and suggestions
+1. `src/components/DashboardLayout.tsx`
+2. `src/app/page.tsx`
+3. `src/app/globals.css`
+4. `src/lib/data/mock.ts`
+5. `src/hooks/useMockData.ts`
+6. `.env.example`
 
 ## Findings
 
@@ -90,23 +51,10 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 1. [ ] [Suggestion and rationale]
 
-### Positive Observations
-
-- [Note good patterns or practices observed]
-
 ## Definition of Done
 
-- [ ] All files reviewed
-- [ ] Linting passes
-- [ ] No critical issues remaining
-- [ ] Suggestions documented
-- [ ] Knowledge shared with team (if applicable)
+- [ ] All files reviewed, ESLint and TypeScript pass, no critical issues, read-only verified
 
 ## Review Summary
 
-**Reviewer:** [Name/Agent]
-**Date:** [Date]
-**Verdict:** [ ] Approved / [ ] Needs Changes
-
-**Notes:**
-[Summary of the review and any outstanding concerns]
+**Reviewer:** [Name/Agent] | **Verdict:** [ ] Approved / [ ] Needs Changes

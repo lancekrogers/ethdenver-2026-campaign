@@ -26,8 +26,8 @@ fest_tracking: true
 |----------|---------|-----------|
 | 01_e2e_testing | agent-coordinator | Run full economy cycle on testnet, test failure recovery, validate profitability |
 | 02_hedera_track3_package | agent-coordinator | Polish README, write architecture docs, prepare demo notes for Hedera Track 3 |
-| 03_0g_track2_package | agent-inference | Polish README, gather compute metrics for 0G Track 2 |
-| 04_0g_track3_package | agent-inference | Create iNFT showcase documentation and demo notes for 0G Track 3 |
+| 03_zerog_track2_package | agent-inference | Polish README, gather compute metrics for 0G Track 2 |
+| 04_zerog_track3_package | agent-inference | Create iNFT showcase documentation and demo notes for 0G Track 3 |
 | 05_base_package | agent-defi | Polish README, create P&L proof document for Base bounty |
 | 06_hedera_track4_package | hiero-plugin | Polish README, finalize PR for Hedera Track 4 |
 | 07_deploy | agent-coordinator | Deploy all agents to testnet, deploy dashboard to hosting |

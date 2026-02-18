@@ -38,7 +38,9 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+npm run lint
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent

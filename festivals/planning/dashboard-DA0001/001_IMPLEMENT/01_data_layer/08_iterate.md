@@ -12,11 +12,11 @@ fest_tracking: true
 
 # Task: Review Results and Iterate
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Code Review | **Autonomy:** medium
+**Task Number:** 08 | **Parallel Group:** None | **Dependencies:** Code Review | **Autonomy:** medium
 
 ## Objective
 
-Address all findings from code review and testing, iterate until the sequence meets quality standards.
+Address all findings from code review and testing, iterate until the data layer sequence meets quality standards. The data layer is the foundation for every panel -- issues found here propagate to all downstream sequences.
 
 ## Review Findings to Address
 
@@ -45,8 +45,9 @@ Address all findings from code review and testing, iterate until the sequence me
 
 **Verification:**
 
-- [ ] Tests re-run and pass
-- [ ] Linting passes
+- [ ] Tests re-run and pass: `cd $(fgo) && npm test`
+- [ ] Linting passes: `cd $(fgo) && npx eslint src/lib/data/ src/hooks/`
+- [ ] TypeScript compiles: `cd $(fgo) && npx tsc --noEmit`
 - [ ] Changes reviewed
 
 ### Round 2 (if needed)
@@ -59,6 +60,7 @@ Address all findings from code review and testing, iterate until the sequence me
 
 - [ ] Tests re-run and pass
 - [ ] Linting passes
+- [ ] TypeScript compiles
 - [ ] Changes reviewed
 
 ## Final Verification
@@ -67,13 +69,18 @@ After all iterations:
 
 - [ ] All critical findings addressed
 - [ ] All tests pass
-- [ ] Linting passes
+- [ ] ESLint passes with zero warnings
+- [ ] TypeScript compiles with zero errors
 - [ ] Code review approved
-- [ ] Sequence objectives met
+- [ ] Sequence objectives met:
+  - [ ] types.ts covers all data shapes
+  - [ ] WebSocket connector with auto-reconnect
+  - [ ] gRPC connector with env-var toggle
+  - [ ] Mirror node client with polling
+  - [ ] All three React hooks working
+  - [ ] Read-only constraint maintained
 
 ## Lessons Learned
-
-Document patterns or issues to avoid in future sequences:
 
 ### What Went Well
 
@@ -94,7 +101,7 @@ Document patterns or issues to avoid in future sequences:
 - [ ] Linting passes
 - [ ] Code review approval received
 - [ ] Lessons learned documented
-- [ ] Ready to proceed to next sequence
+- [ ] Ready to proceed to next sequence (02_festival_view)
 
 ## Sign-Off
 
@@ -112,4 +119,4 @@ Document patterns or issues to avoid in future sequences:
 ---
 
 **Next Steps:**
-[Identify what follows - next sequence, phase completion, etc.]
+Proceed to sequence 02_festival_view to build the Festival Progress panel using the data hooks created in this sequence.

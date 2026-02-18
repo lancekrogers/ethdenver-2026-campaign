@@ -30,7 +30,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+./scripts/verify-deploy.sh
+```
 
 **Verify:**
 
@@ -40,7 +42,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+curl -sf https://dashboard-url/api/health && echo "Dashboard OK"
+```
 
 **Verify:**
 
@@ -58,9 +62,9 @@ Walk through each requirement from the sequence:
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: N/A (deployment scripts) for new code
 
-[REPLACE: Run your project's coverage command]
+N/A (deployment scripts)
 
 ## Error Handling Verification
 

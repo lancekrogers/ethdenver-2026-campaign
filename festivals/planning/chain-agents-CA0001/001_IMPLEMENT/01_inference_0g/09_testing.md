@@ -30,7 +30,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+go test ./... -v -count=1
+```
 
 **Verify:**
 
@@ -40,7 +42,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+go test ./... -v -run Integration -count=1
+```
 
 **Verify:**
 
@@ -58,9 +62,11 @@ Walk through each requirement from the sequence:
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 70% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+go test ./... -coverprofile=coverage.out && go tool cover -func=coverage.out
+```
 
 ## Error Handling Verification
 

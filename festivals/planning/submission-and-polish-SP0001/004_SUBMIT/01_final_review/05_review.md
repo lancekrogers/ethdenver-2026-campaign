@@ -38,7 +38,9 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+go vet ./... && staticcheck ./... && cd projects/hiero-plugin && npm run lint && cd ../dashboard && npx eslint . && npx tsc --noEmit
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent

@@ -6,86 +6,60 @@ fest_parent: 06_inference_metrics
 fest_order: 3
 fest_status: pending
 fest_gate_type: testing
-fest_created: 2026-02-18T14:21:00.580635-07:00
+fest_created: 2026-02-18T14:21:00-07:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 03 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
-Verify all functionality implemented in this sequence works correctly through comprehensive testing.
-
-## Requirements
-
-- [ ] All unit tests pass
-- [ ] Integration tests verify main workflows
-- [ ] Manual testing confirms user stories work as expected
-- [ ] Error cases are handled correctly
-- [ ] Edge cases are addressed
+Verify the Inference Metrics panel works correctly. Focus on compute gauge, storage bar, iNFT card, and job table.
 
 ## Test Categories
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+cd $(fgo) && npm test -- --testPathPattern="InferenceMetrics"
+```
 
-**Verify:**
+**Specific tests:**
 
-- [ ] All new/modified code has test coverage
-- [ ] Tests are meaningful (not just coverage padding)
-- [ ] Test names describe what they verify
-
-### Integration Tests
-
-[REPLACE: Run your project's integration test command]
-
-**Verify:**
-
-- [ ] Components work together correctly
-- [ ] External integrations function properly
-- [ ] Data flows correctly through the system
+1. **ComputeGauge**: 0% green, 50% yellow, 90% red. Null state skeleton. Stats display.
+2. **StorageUsage**: Correct percentage calculation. Progress bar width. Null skeleton. GB formatting.
+3. **INFTCard**: Token ID, model name, status badges. Null skeleton. Inference count formatting.
+4. **JobTable**: Correct row count (up to 30). Running jobs show "..." for output/latency. Status badges. Empty message.
+5. **InferenceMetrics integration**: Loading/empty/data states.
 
 ### Manual Verification
 
-Walk through each requirement from the sequence:
-
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Gauge animation**: Circular progress ring renders correctly.
+2. [ ] **Color transitions**: 30%, 60%, 90% utilization show green, yellow, red.
+3. [ ] **Storage bar**: Test at 25%, 70%, 95% usage.
+4. [ ] **iNFT statuses**: Test active, minting, inactive badges.
+5. [ ] **Running job**: Status='running' shows "..." for pending values.
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
-
-[REPLACE: Run your project's coverage command]
+- Minimum coverage: 70% for new component code
 
 ## Error Handling Verification
 
-- [ ] Invalid inputs are rejected gracefully
-- [ ] Error messages are clear and actionable
-- [ ] Errors don't expose sensitive information
-- [ ] Recovery paths work correctly
+- [ ] Null compute/storage/iNFT handled
+- [ ] Zero total storage (division by zero) handled
+- [ ] Negative utilization clamped to 0
 
 ## Definition of Done
 
-- [ ] All automated tests pass
-- [ ] Manual verification complete
-- [ ] Coverage meets requirements
-- [ ] Error handling verified
-- [ ] No regressions introduced
-
-## Notes
-
-Document any test gaps, flaky tests, or areas needing future attention here.
+- [ ] All tests pass, manual verification complete, coverage met
 
 ---
 
 **Test Results Summary:**
 
 - Unit tests: [ ] Pass / [ ] Fail
-- Integration tests: [ ] Pass / [ ] Fail
 - Manual tests: [ ] Pass / [ ] Fail
 - Coverage: ____%

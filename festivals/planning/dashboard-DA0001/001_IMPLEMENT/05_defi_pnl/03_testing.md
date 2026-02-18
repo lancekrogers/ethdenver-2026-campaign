@@ -6,86 +6,58 @@ fest_parent: 05_defi_pnl
 fest_order: 3
 fest_status: pending
 fest_gate_type: testing
-fest_created: 2026-02-18T14:21:00.579285-07:00
+fest_created: 2026-02-18T14:21:00-07:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 03 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
-Verify all functionality implemented in this sequence works correctly through comprehensive testing.
-
-## Requirements
-
-- [ ] All unit tests pass
-- [ ] Integration tests verify main workflows
-- [ ] Manual testing confirms user stories work as expected
-- [ ] Error cases are handled correctly
-- [ ] Edge cases are addressed
+Verify the DeFi P&L panel works correctly. Focus on summary card calculations, chart rendering, trade table formatting, and currency display.
 
 ## Test Categories
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+cd $(fgo) && npm test -- --testPathPattern="DeFiPnL"
+```
 
-**Verify:**
+**Specific tests:**
 
-- [ ] All new/modified code has test coverage
-- [ ] Tests are meaningful (not just coverage padding)
-- [ ] Test names describe what they verify
-
-### Integration Tests
-
-[REPLACE: Run your project's integration test command]
-
-**Verify:**
-
-- [ ] Components work together correctly
-- [ ] External integrations function properly
-- [ ] Data flows correctly through the system
+1. **SummaryCards**: Correct currency formatting. Green/red for positive/negative net P&L. Win rate percentage. Null summary shows skeleton.
+2. **TradeTable**: Correct row count (up to 50). Buy=green, sell=red. P&L color coding. Empty trades message.
+3. **DeFiPnL integration**: Loading/empty/error states. All sub-components render with data.
 
 ### Manual Verification
 
-Walk through each requirement from the sequence:
-
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Chart rendering**: 20+ PnLDataPoint entries, verify revenue and costs lines.
+2. [ ] **Chart tooltip**: Hover shows formatted values.
+3. [ ] **Summary cards**: All five cards show correct values.
+4. [ ] **Trade table scrolling**: 60 trades, verify scroll and 50 row limit.
+5. [ ] **Negative net P&L**: Costs > revenue, verify red display.
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
-
-[REPLACE: Run your project's coverage command]
+- Minimum coverage: 70% for new component code
 
 ## Error Handling Verification
 
-- [ ] Invalid inputs are rejected gracefully
-- [ ] Error messages are clear and actionable
-- [ ] Errors don't expose sensitive information
-- [ ] Recovery paths work correctly
+- [ ] Null summary handled
+- [ ] Empty chartData handled
+- [ ] Very large/small currency values formatted correctly
 
 ## Definition of Done
 
-- [ ] All automated tests pass
-- [ ] Manual verification complete
-- [ ] Coverage meets requirements
-- [ ] Error handling verified
-- [ ] No regressions introduced
-
-## Notes
-
-Document any test gaps, flaky tests, or areas needing future attention here.
+- [ ] All tests pass, manual verification complete, coverage met
 
 ---
 
 **Test Results Summary:**
 
 - Unit tests: [ ] Pass / [ ] Fail
-- Integration tests: [ ] Pass / [ ] Fail
 - Manual tests: [ ] Pass / [ ] Fail
 - Coverage: ____%
