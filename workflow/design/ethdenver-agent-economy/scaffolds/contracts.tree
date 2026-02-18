@@ -1,0 +1,13 @@
+├── justfile
+├── .gitignore
+├── CLAUDE.md
+├── README.md
+├── foundry.toml
+├── src/
+│   ├── AgentSettlement.sol
+│   └── ReputationDecay.sol
+├── test/
+│   └── .gitkeep
+├── script/
+│   └── .gitkeep
+└── .env.example

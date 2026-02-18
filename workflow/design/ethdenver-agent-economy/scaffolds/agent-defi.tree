@@ -1,0 +1,26 @@
+├── justfile
+├── .gitignore
+├── .env.example
+├── CLAUDE.md
+├── README.md
+├── cmd/
+│   └── agent/
+│       └── main.go
+├── internal/
+│   ├── strategy/
+│   │   ├── engine.go
+│   │   └── pnl.go
+│   ├── identity/
+│   │   └── erc8004.go
+│   ├── payments/
+│   │   └── x402.go
+│   ├── attribution/
+│   │   └── erc8021.go
+│   ├── agent/
+│   │   ├── agent.go
+│   │   └── tasks.go
+│   ├── daemon/
+│   │   └── client.go
+│   └── config/
+│       └── config.go
+└── go.mod

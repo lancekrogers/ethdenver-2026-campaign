@@ -1,0 +1,24 @@
+├── justfile
+├── .gitignore
+├── .env.example
+├── CLAUDE.md
+├── README.md
+├── cmd/
+│   └── agent/
+│       └── main.go
+├── internal/
+│   ├── zerog/
+│   │   ├── compute.go
+│   │   ├── storage.go
+│   │   └── da.go
+│   ├── inft/
+│   │   ├── contract.go
+│   │   └── metadata.go
+│   ├── agent/
+│   │   ├── agent.go
+│   │   └── tasks.go
+│   ├── daemon/
+│   │   └── client.go
+│   └── config/
+│       └── config.go
+└── go.mod

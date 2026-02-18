@@ -37,6 +37,7 @@
 **Hedera SDK**: `@hashgraph/sdk` (JS/TS) or `hedera-sdk-py` (Python) — choose based on Agent Kit compatibility
 
 **Responsibilities**:
+
 1. Create and manage festival plans (task structures for multi-agent work)
 2. Publish festival plans to HCS topic (immutable record)
 3. Assign tasks to specialist agents via HCS messages
@@ -46,6 +47,7 @@
 7. Use Schedule Service to create recurring heartbeat checks
 
 **Hedera Operations (native SDK only)**:
+
 ```
 HCS Operations:
   - TopicCreateTransaction → create festival topic
@@ -75,6 +77,7 @@ Account Operations:
 **LLM**: Self-hosted via 0G Compute (the point is decentralized inference)
 
 **Responsibilities**:
+
 1. Accept inference requests from Coordinator (via HCS)
 2. Route inference jobs to 0G Compute (decentralized GPU marketplace)
 3. Store model weights and agent memory on 0G Storage
@@ -83,6 +86,7 @@ Account Operations:
 6. Report results back to Coordinator via HCS
 
 **0G Operations**:
+
 ```
 0G Compute:
   - Connect to broker via @0glabs/0g-serving-broker
@@ -112,6 +116,7 @@ Account Operations:
 **LLM**: Claude or GPT (best for financial reasoning)
 
 **Responsibilities**:
+
 1. Execute DeFi strategies on Base mainnet (swap, LP, yield)
 2. Earn revenue that exceeds operational costs (self-sustaining requirement)
 3. Register identity via ERC-8004 (Trustless Agents)
@@ -122,6 +127,7 @@ Account Operations:
 8. Maintain public performance dashboard
 
 **Base Operations**:
+
 ```
 ERC-8004 (Trustless Agents):
   - Identity Registry: register agent NFT
@@ -200,6 +206,7 @@ Message Format (JSON published to HCS topic):
 ```
 
 HCS provides:
+
 - **Ordering**: Messages are globally ordered (consensus timestamp)
 - **Immutability**: Once published, cannot be altered
 - **Audit trail**: Full history of all agent interactions
@@ -207,18 +214,18 @@ HCS provides:
 
 ## Technology Stack
 
-| Layer | Technology | Language |
-|-------|-----------|----------|
-| **Orchestrator** | obey daemon | Go |
-| **Agent runtime** | obey daemon agents | Go (with TS adapters where SDKs require it) |
-| **Hedera SDK** | `@hashgraph/sdk` | TypeScript |
-| **0G SDKs** | `@0glabs/0g-ts-sdk`, `@0glabs/0g-serving-broker` | TypeScript |
-| **Base/EVM** | ethers.js + Coinbase AgentKit | TypeScript |
-| **Dashboard** | Next.js | TypeScript/React |
-| **Hiero CLI Plugin** | Node.js (wrapping camp Go binary) | Node.js |
-| **Planning** | fest CLI | Go |
-| **Workspace** | camp CLI | Go |
-| **Build system** | just (modular justfiles) | - |
+| Layer                | Technology                                       | Language                                    |
+| -------------------- | ------------------------------------------------ | ------------------------------------------- |
+| **Orchestrator**     | obey daemon                                      | Go                                          |
+| **Agent runtime**    | obey daemon agents                               | Go (with TS adapters where SDKs require it) |
+| **Hedera SDK**       | `@hashgraph/sdk`                                 | TypeScript                                  |
+| **0G SDKs**          | `@0glabs/0g-ts-sdk`, `@0glabs/0g-serving-broker` | TypeScript                                  |
+| **Base/EVM**         | ethers.js + Coinbase AgentKit                    | TypeScript                                  |
+| **Dashboard**        | Next.js                                          | TypeScript/React                            |
+| **Hiero CLI Plugin** | Node.js (wrapping camp Go binary)                | Node.js                                     |
+| **Planning**         | fest CLI                                         | Go                                          |
+| **Workspace**        | camp CLI                                         | Go                                          |
+| **Build system**     | just (modular justfiles)                         | -                                           |
 
 ## Project Structure (camp campaign)
 
@@ -296,6 +303,7 @@ ethdenver2026/
 ## Security Model
 
 ### Hedera Key Management
+
 - Each agent gets its own Hedera account with dedicated key pair
 - Coordinator account holds escrow funds
 - Multi-sig required for large transfers (coordinator + agent)
@@ -303,16 +311,19 @@ ethdenver2026/
 - Testnet keys stored in environment variables, never committed
 
 ### 0G Security
+
 - TEE attestation for compute providers (CVM verification)
 - Encrypted iNFT metadata — only owner can read agent intelligence
 - TEE oracle handles metadata transfer during iNFT sale
 
 ### Base Security
+
 - Agentic Wallet with spend limits (Coinbase infrastructure)
 - Smart Account (AA) for gasless execution
 - Builder code attribution creates transparent audit trail
 
 ### General
+
 - All secrets in `.env` files, gitignored
 - Testnet only for hackathon (no real funds at risk)
 - Dashboard is read-only (observes, never acts)

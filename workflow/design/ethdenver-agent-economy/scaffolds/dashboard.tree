@@ -1,0 +1,29 @@
+├── justfile
+├── .gitignore
+├── CLAUDE.md
+├── README.md
+├── package.json
+├── next.config.js
+├── tsconfig.json
+├── public/
+│   └── .gitkeep
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── globals.css
+│   ├── components/
+│   │   ├── festival-view/
+│   │   │   └── index.tsx
+│   │   ├── hcs-feed/
+│   │   │   └── index.tsx
+│   │   ├── agent-activity/
+│   │   │   └── index.tsx
+│   │   ├── defi-pnl/
+│   │   │   └── index.tsx
+│   │   └── inference-metrics/
+│   │       └── index.tsx
+│   └── lib/
+│       ├── daemon.ts
+│       └── hedera.ts
+└── .env.example
