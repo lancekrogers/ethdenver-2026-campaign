@@ -1,0 +1,18 @@
+[submodule "projects/agent-coordinator"]
+	path = projects/agent-coordinator
+	url = git@github.com:lancekrogers/agent-coordinator.git
+[submodule "projects/agent-inference"]
+	path = projects/agent-inference
+	url = git@github.com:lancekrogers/agent-inference.git
+[submodule "projects/agent-defi"]
+	path = projects/agent-defi
+	url = git@github.com:lancekrogers/agent-defi.git
+[submodule "projects/hiero-plugin"]
+	path = projects/hiero-plugin
+	url = git@github.com:lancekrogers/hiero-plugin.git
+[submodule "projects/dashboard"]
+	path = projects/dashboard
+	url = git@github.com:lancekrogers/dashboard.git
+[submodule "projects/contracts"]
+	path = projects/contracts
+	url = git@github.com:lancekrogers/contracts.git

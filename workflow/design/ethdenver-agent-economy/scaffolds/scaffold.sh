@@ -3,9 +3,9 @@ set -euo pipefail
 
 # Scaffold all ETHDenver agent economy projects.
 #
-# Creates each project via `camp project new`, then builds out the internal
-# directory structure with Go/Node/Foundry boilerplate. Each project gets
-# its own git repo (submodule under projects/).
+# Creates each project as a private GitHub repo via `gh repo create`, adds it
+# to the campaign via `camp project add`, builds out the internal directory
+# structure with Go/Node/Foundry boilerplate, and pushes the scaffold commit.
 #
 # The .tree files in this directory document the intended structure but are NOT
 # fed to t2s — t2s has depth-tracking bugs with nested directories. Instead,
@@ -16,7 +16,7 @@ set -euo pipefail
 #   ./scaffold.sh --dry-run # Preview only
 #
 # Prerequisites:
-#   - camp CLI available
+#   - camp CLI and gh CLI available and authenticated
 #   - Run from campaign root (ethdenver2026/)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -40,6 +40,22 @@ project_exists() {
     [[ -d "$CAMPAIGN_ROOT/projects/$1" ]]
 }
 
+# Create a private GitHub repo and add it to the campaign as a submodule.
+# Usage: create_project <name>
+create_project() {
+    local name="$1"
+    run "gh repo create $GITHUB_ORG/$name --private --add-readme"
+    run "camp project add git@github.com:$GITHUB_ORG/$name.git --no-commit"
+}
+
+# Commit scaffold inside a project and push to GitHub.
+# Usage: commit_and_push <dir> <name>
+commit_and_push() {
+    local dir="$1"
+    local name="$2"
+    cd "$dir" && git add -A && git commit -m "Scaffold $name project structure" && git push && cd "$CAMPAIGN_ROOT"
+}
+
 # ─── Go project: agent-coordinator ───────────────────────────────────
 
 scaffold_agent_coordinator() {
@@ -49,7 +65,7 @@ scaffold_agent_coordinator() {
     if project_exists "$name"; then skip "$name"; return; fi
     info "Creating project: $name"
 
-    run "camp project new $name --no-commit"
+    create_project "$name"
     if [[ "$DRY_RUN" == "--dry-run" ]]; then return; fi
 
     # Directory structure
@@ -86,7 +102,7 @@ GOMOD
     write_go_boilerplate "$dir" "$name" \
         "Coordinator agent — reads festival plans, assigns tasks via HCS, monitors progress, enforces quality gates, manages HTS payments. Uses daemon Execute RPC to run fest commands within the campaign sandbox. fest detects campaign root and festivals/ automatically."
 
-    cd "$dir" && git add -A && git commit -m "Scaffold $name project structure" && cd "$CAMPAIGN_ROOT"
+    commit_and_push "$dir" "$name"
 }
 
 # ─── Go project: agent-inference ─────────────────────────────────────
@@ -98,7 +114,7 @@ scaffold_agent_inference() {
     if project_exists "$name"; then skip "$name"; return; fi
     info "Creating project: $name"
 
-    run "camp project new $name --no-commit"
+    create_project "$name"
     if [[ "$DRY_RUN" == "--dry-run" ]]; then return; fi
 
     mkdir -p "$dir/cmd/agent"
@@ -128,7 +144,7 @@ GOMOD
     write_go_boilerplate "$dir" "$name" \
         "Inference agent — routes inference to 0G Compute (REST API), stores results on 0G Storage, maintains ERC-7857 iNFT on 0G Chain via go-ethereum, uses 0G DA for audit trail. Receives tasks from coordinator via HCS."
 
-    cd "$dir" && git add -A && git commit -m "Scaffold $name project structure" && cd "$CAMPAIGN_ROOT"
+    commit_and_push "$dir" "$name"
 }
 
 # ─── Go project: agent-defi ──────────────────────────────────────────
@@ -140,7 +156,7 @@ scaffold_agent_defi() {
     if project_exists "$name"; then skip "$name"; return; fi
     info "Creating project: $name"
 
-    run "camp project new $name --no-commit"
+    create_project "$name"
     if [[ "$DRY_RUN" == "--dry-run" ]]; then return; fi
 
     mkdir -p "$dir/cmd/agent"
@@ -172,7 +188,7 @@ GOMOD
     write_go_boilerplate "$dir" "$name" \
         "DeFi agent — executes trading strategies on Base via go-ethereum, registers identity via ERC-8004, pays for compute via x402, attributes transactions via ERC-8021. Reports P&L to coordinator via HCS."
 
-    cd "$dir" && git add -A && git commit -m "Scaffold $name project structure" && cd "$CAMPAIGN_ROOT"
+    commit_and_push "$dir" "$name"
 }
 
 # ─── Node.js project: hiero-plugin ──────────────────────────────────
@@ -184,7 +200,7 @@ scaffold_hiero_plugin() {
     if project_exists "$name"; then skip "$name"; return; fi
     info "Creating project: $name"
 
-    run "camp project new $name --no-commit"
+    create_project "$name"
     if [[ "$DRY_RUN" == "--dry-run" ]]; then return; fi
 
     mkdir -p "$dir/src/commands"
@@ -268,7 +284,7 @@ CLAUDE
 Hiero CLI plugin providing camp workspace management for Hedera developers.
 README
 
-    cd "$dir" && git add -A && git commit -m "Scaffold $name project structure" && cd "$CAMPAIGN_ROOT"
+    commit_and_push "$dir" "$name"
 }
 
 # ─── Next.js project: dashboard ──────────────────────────────────────
@@ -280,7 +296,7 @@ scaffold_dashboard() {
     if project_exists "$name"; then skip "$name"; return; fi
     info "Creating project: $name"
 
-    run "camp project new $name --no-commit"
+    create_project "$name"
     if [[ "$DRY_RUN" == "--dry-run" ]]; then return; fi
 
     mkdir -p "$dir/src/app"
@@ -381,7 +397,7 @@ CLAUDE
 ETHDenver agent economy observer dashboard.
 README
 
-    cd "$dir" && git add -A && git commit -m "Scaffold $name project structure" && cd "$CAMPAIGN_ROOT"
+    commit_and_push "$dir" "$name"
 }
 
 # ─── Foundry project: contracts ──────────────────────────────────────
@@ -393,7 +409,7 @@ scaffold_contracts() {
     if project_exists "$name"; then skip "$name"; return; fi
     info "Creating project: $name"
 
-    run "camp project new $name --no-commit"
+    create_project "$name"
     if [[ "$DRY_RUN" == "--dry-run" ]]; then return; fi
 
     mkdir -p "$dir/src"
@@ -466,7 +482,7 @@ CLAUDE
 Solidity contracts for the ETHDenver agent economy.
 README
 
-    cd "$dir" && git add -A && git commit -m "Scaffold $name project structure" && cd "$CAMPAIGN_ROOT"
+    commit_and_push "$dir" "$name"
 }
 
 # ─── Shared helpers ──────────────────────────────────────────────────
@@ -581,8 +597,9 @@ scaffold_contracts
 
 if [[ "$DRY_RUN" != "--dry-run" ]]; then
     echo ""
-    info "All projects scaffolded. Committing campaign-level changes..."
+    info "All projects scaffolded. Committing and pushing campaign-level changes..."
     camp commit -m "Add scaffolded projects: coordinator, inference, defi, hiero-plugin, dashboard, contracts"
+    camp push
     info "Done. Projects:"
     camp project list
 else
