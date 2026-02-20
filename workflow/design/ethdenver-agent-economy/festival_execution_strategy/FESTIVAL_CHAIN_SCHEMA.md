@@ -4,59 +4,101 @@
 
 The Festival Methodology handles **intra-festival** orchestration well: phases, sequences, tasks, quality gates, lifecycle states. But it has no formal mechanism for **inter-festival** orchestration — expressing that festival B depends on festival A, that festivals C and D can run in parallel after A completes, or that a final festival E gates on everything else.
 
-Today this is handled with prose documentation (this directory's README.md). That works for humans reading a design doc but is:
+Today this is handled with prose documentation. That works for humans reading a design doc but is:
 
 - Not machine-parseable by `fest` or agents
 - Not enforceable (nothing prevents activating a festival before its dependencies are met)
-- Not portable across campaigns (every campaign re-invents the dependency story)
-- Disconnected from the lifecycle states (`planning` → `active` → `dungeon/completed`)
+- Not portable (every initiative re-invents the dependency story)
+- Disconnected from festival lifecycle states
+
+## Key Insight: Campaign ≠ Initiative
+
+A campaign is like a company — it can have **many concurrent initiatives**. A festival chain groups related festivals that depend on each other within a single initiative. Multiple chains can be active simultaneously, and completed chains archive like any other artifact.
+
+**Hierarchy**: Campaign → Chain(s) → Festival(s) → Phase(s) → Sequence(s) → Task(s)
 
 ## Design Goals
 
-1. **Human-readable**: A person should be able to open the file and understand the dependency graph in seconds
-2. **Agent-readable**: `fest` and AI agents should parse it to determine what's unblocked
-3. **Minimal**: Don't over-engineer; add only what's needed to fill the gap
-4. **Non-breaking**: Existing festivals and `fest.yaml` files don't need to change (chain is additive)
-5. **Campaign-scoped**: One chain file per campaign (not per-festival)
+1. **Human-readable**: Open the file, understand the dependency graph in seconds
+2. **Agent-readable**: `fest` and AI agents parse it to determine what's unblocked
+3. **First-class artifact**: Chains have IDs, lifecycle states, and archive to dungeon like festivals
+4. **Multi-chain**: A campaign can have many chains running concurrently
+5. **Non-breaking**: Existing `fest.yaml` files don't need to change (chain is additive)
+6. **Minimal**: Only what's needed to fill the gap
 
-## Proposed Schema: `chain.yaml`
+## Proposed Schema
 
-### Location
+### Directory Structure
 
 ```
 festivals/
-├── chain.yaml              <── NEW: the inter-festival dependency graph
-├── planning/
-├── active/
-├── ready/
+├── chains/                             <── NEW: active chain files
+│   └── ethdenver-agents-EC0001.yaml
+│
+├── planning/                           # Unchanged — festivals
+├── active/                             # Unchanged — festivals
+├── ready/                              # Unchanged — festivals
 ├── dungeon/
+│   ├── completed/                      # Completed festivals
+│   │   └── chains/                     <── NEW: completed chain files
+│   ├── archived/
+│   └── someday/
 ├── .festival/
-└── README.md
+│   └── chains/                         <── NEW: chain schema template + docs
+│       ├── CHAIN_TEMPLATE.yaml
+│       └── README.md
+├── README.md
+└── .gitignore
 ```
 
-Lives at the **festivals root**, alongside the lifecycle directories. One file, one campaign.
+**Why `festivals/chains/` and not `festivals/.festival/chains/`?**
+
+`.festival/` is methodology resources (templates, docs, reference). Chain files are **campaign artifacts** — they're authored content specific to the campaign, like festivals themselves. They belong alongside the lifecycle directories, not inside the methodology internals.
+
+### File Naming Convention
+
+```
+<chain-name>-<CHAIN_ID>.yaml
+```
+
+Following the same pattern as festivals: `hedera-foundation-HF0001`, `chain-agents-CA0001`, etc.
+
+Chain IDs use a two-letter prefix + 4-digit number: `EC0001`, `MG0001`, etc.
+
+Examples:
+- `ethdenver-agents-EC0001.yaml`
+- `platform-migration-PM0001.yaml`
+- `q1-infrastructure-QI0001.yaml`
 
 ### Schema Definition
 
 ```yaml
-# festivals/chain.yaml
+# festivals/chains/ethdenver-agents-EC0001.yaml
+# ──────────────────────────────────────────────
 # Festival Chain — inter-festival dependency graph
-#
-# This file defines execution order, dependencies, and wave groupings
-# for festivals within this campaign. It is read by `fest` and AI agents
-# to determine which festivals are unblocked and ready to activate.
+# for a single initiative within this campaign.
 
 chain_version: "1.0"
 
-# ─── Campaign Metadata ───────────────────────────────────────────
-campaign:
-  name: ethdenver2026
+# ─── Chain Identity ──────────────────────────────────────────────
+metadata:
+  id: EC0001
+  name: ethdenver-agents
   goal: "Build a 3-agent autonomous economy on Hedera + 0G + Base for ETHDenver 2026"
+  created_at: 2026-02-18T20:00:00Z
+  status: active                     # planning | active | completed
+  status_history:
+    - status: planning
+      timestamp: 2026-02-18T20:00:00Z
+      notes: "Chain created during campaign planning"
+    - status: active
+      timestamp: 2026-02-20T10:00:00Z
+      notes: "All festivals validated at 100/100, chain activated"
 
 # ─── Festival Nodes ──────────────────────────────────────────────
-# Each festival that participates in this chain.
-# `id` must match the fest.yaml metadata.id field.
-# `ref` is a short alias used in dependency edges below.
+# Each festival in this chain.
+# `ref` is a short alias used in edges and waves below.
+# `id` must match the festival's fest.yaml metadata.id.
 
 festivals:
   - ref: hf
@@ -85,81 +127,71 @@ festivals:
     projects: [agent-coordinator, agent-inference, agent-defi, hiero-plugin, dashboard, contracts]
 
 # ─── Dependency Edges ────────────────────────────────────────────
-# Each edge: `from` must complete (or reach a gate) before `to` can activate.
+# from → to: `from` must complete (or reach a gate) before `to` can activate.
 #
 # type:
-#   hard  — `to` cannot start ANY work until `from` completes
-#   soft  — `to` can start with mocks/stubs; full integration needs `from`
+#   hard — `to` cannot start ANY work until `from` completes
+#   soft — `to` can start with mocks/stubs; full integration needs `from`
 #
 # gate (optional):
-#   If set, `to` unblocks when `from` passes this specific quality gate
-#   rather than requiring full festival completion.
-#   Format: "sequence_name/gate_id" or "completed" (default)
-#
-# note (optional):
-#   Human-readable explanation of WHY this dependency exists.
+#   Unblock when `from` passes this gate instead of full completion.
+#   Format: "sequence_name/gate_id" or omit for "completed" (default).
 
 edges:
   - from: hf
     to: ca
     type: hard
-    note: "chain-agents need HCS topics, HTS tokens, coordinator engine, daemon client from hedera-foundation"
+    note: "Agents need HCS topics, HTS tokens, coordinator engine, daemon client"
 
   - from: hf
     to: da
     type: soft
-    note: "dashboard can scaffold with mock data; live panels need HCS/HTS/daemon APIs"
+    note: "Dashboard can scaffold with mock data; live panels need HCS/HTS/daemon APIs"
 
   - from: ca
     to: sp
     type: hard
-    note: "submission needs working agents for E2E testing and demo"
+    note: "Submission needs working agents for E2E testing and demo"
 
   - from: da
     to: sp
     type: hard
-    note: "submission needs dashboard for demo video and deployment"
+    note: "Submission needs dashboard for demo video and deployment"
 
   - from: hp
     to: sp
     type: hard
-    note: "submission packages all tracks including hiero-plugin"
-
-  # hp has NO incoming edges — it's fully independent
+    note: "Submission packages all tracks including hiero-plugin"
 
 # ─── Waves ───────────────────────────────────────────────────────
-# Waves group festivals that can execute in parallel.
-# Each wave has an `unlock` condition: what must be true before
-# this wave's festivals can activate.
-#
-# This section is DERIVED from edges above but stated explicitly
+# Parallel execution groups. Derived from edges but stated explicitly
 # for human readability and agent planning.
+#
+# unlock: condition expression using ref:status
+#   "none"           — no prerequisites, start immediately
+#   "hf:completed"   — single festival must complete
+#   "ca:completed AND da:completed" — multiple must complete
 
 waves:
   - id: 1
     name: "Foundation + Independent"
-    unlock: "none"  # Start immediately
+    unlock: "none"
     festivals: [hf, hp]
-    notes: "hf and hp have no incoming edges; start both immediately"
 
   - id: 2
     name: "Agents + Dashboard"
     unlock: "hf:completed"
     festivals: [ca, da]
-    notes: "da can start early with mocks (soft dep) but full activation waits for hf"
 
   - id: 3
     name: "Final Assembly"
     unlock: "ca:completed AND da:completed AND hp:completed"
     festivals: [sp]
-    notes: "sp gates on ALL other festivals completing"
 
-# ─── Sequence-Level Cross-Dependencies (optional) ────────────────
-# For soft dependencies, you can specify which sequences in the
-# downstream festival can start early vs which need the upstream.
-#
-# This is optional granularity — omit if the edge-level type
-# (hard/soft) is sufficient.
+# ─── Sequence Hints (optional) ───────────────────────────────────
+# For soft dependencies, specify which downstream sequences can
+# start early vs which need the upstream to finish.
+# Omit entirely if edge-level hard/soft is sufficient.
 
 sequence_hints:
   - festival: da
@@ -171,152 +203,179 @@ sequence_hints:
       condition: "Requires live agent data from ca"
 
   - festival: ca
-    parallel_sequences:
-      - [01_inference_zerog, 02_defi_base]  # These run in parallel
-    serial_after:
-      - 03_integration_verify  # Waits for both above
+    internal_parallelism:
+      parallel: [01_inference_zerog, 02_defi_base]
+      then: [03_integration_verify]
 ```
 
-### Schema Field Reference
+## Schema Field Reference
+
+### Top-Level
 
 | Field | Required | Type | Description |
 |-------|----------|------|-------------|
 | `chain_version` | yes | string | Schema version for forward compatibility |
-| `campaign.name` | yes | string | Campaign identifier |
-| `campaign.goal` | no | string | Human-readable campaign objective |
-| `festivals[]` | yes | list | Festival nodes in the chain |
-| `festivals[].ref` | yes | string | Short alias (used in edges/waves) |
-| `festivals[].id` | yes | string | Must match `fest.yaml` `metadata.id` |
-| `festivals[].name` | yes | string | Must match `fest.yaml` `metadata.name` |
-| `festivals[].projects` | no | list | Projects this festival touches |
-| `edges[]` | yes | list | Dependency relationships |
-| `edges[].from` | yes | ref | Upstream festival ref |
-| `edges[].to` | yes | ref | Downstream festival ref |
-| `edges[].type` | yes | enum | `hard` or `soft` |
-| `edges[].gate` | no | string | Specific gate that unblocks (default: `completed`) |
-| `edges[].note` | no | string | Why this dependency exists |
-| `waves[]` | no | list | Parallel execution groups (derived from edges) |
-| `waves[].unlock` | yes | string | Condition expression using `ref:status` |
-| `sequence_hints[]` | no | list | Optional intra-festival parallelism notes |
+| `metadata` | yes | object | Chain identity and lifecycle |
+| `festivals` | yes | list | Festival nodes in the chain |
+| `edges` | yes | list | Dependency relationships |
+| `waves` | no | list | Parallel execution groups |
+| `sequence_hints` | no | list | Intra-festival parallelism guidance |
+
+### metadata
+
+| Field | Required | Type | Description |
+|-------|----------|------|-------------|
+| `id` | yes | string | Unique chain ID (e.g., `EC0001`) |
+| `name` | yes | string | Human-readable chain name |
+| `goal` | no | string | What this initiative aims to achieve |
+| `created_at` | yes | datetime | Creation timestamp |
+| `status` | yes | enum | `planning`, `active`, `completed` |
+| `status_history` | yes | list | Lifecycle audit trail |
+
+### festivals[]
+
+| Field | Required | Type | Description |
+|-------|----------|------|-------------|
+| `ref` | yes | string | Short alias used in edges/waves |
+| `id` | yes | string | Must match `fest.yaml` `metadata.id` |
+| `name` | yes | string | Must match `fest.yaml` `metadata.name` |
+| `projects` | no | list | Projects this festival touches |
+
+### edges[]
+
+| Field | Required | Type | Description |
+|-------|----------|------|-------------|
+| `from` | yes | ref | Upstream festival |
+| `to` | yes | ref | Downstream festival |
+| `type` | yes | enum | `hard` or `soft` |
+| `gate` | no | string | Specific gate that unblocks (default: full completion) |
+| `note` | no | string | Why this dependency exists |
 
 ### Edge Type Semantics
 
 | Type | Meaning | Agent Behavior |
 |------|---------|----------------|
 | `hard` | Downstream cannot start ANY work | Agent must wait; `fest promote` blocked |
-| `soft` | Downstream can start with mocks | Agent may activate but must track upstream completion for integration |
+| `soft` | Downstream can start with mocks | Agent may activate but must track upstream for integration |
 
-## Integration with `fest` CLI
+## Chain Lifecycle
 
-### New Commands (future)
+Chains follow the same lifecycle pattern as festivals but at a higher level:
+
+```
+festivals/chains/                        # Active chains live here
+    ethdenver-agents-EC0001.yaml         # status: active
+
+festivals/dungeon/completed/chains/      # Completed chains archive here
+    ethdenver-agents-EC0001.yaml         # status: completed
+```
+
+### Lifecycle Flow
+
+```
+planning → active → completed → dungeon/completed/chains/
+```
+
+1. **planning**: Chain is being designed. Festivals may still be in planning/
+2. **active**: Chain is executing. Festivals move through their own lifecycles
+3. **completed**: All festivals in the chain have completed. Chain file moves to dungeon
+
+### Chain Completion
+
+A chain is complete when **every festival in its `festivals[]` list** has reached `dungeon/completed/`. At that point:
+
+1. Update `metadata.status` to `completed`
+2. Add a status_history entry
+3. Move the chain file to `festivals/dungeon/completed/chains/`
+
+### Multiple Concurrent Chains
+
+```
+festivals/chains/
+    ethdenver-agents-EC0001.yaml         # Initiative 1: hackathon submission
+    platform-migration-PM0001.yaml       # Initiative 2: infra migration
+    q1-features-QF0001.yaml             # Initiative 3: quarterly feature work
+```
+
+Chains are independent. A festival can only belong to **one chain** (enforced by validation). This prevents conflicting dependency graphs.
+
+## Integration with `fest.yaml` (Optional Backlink)
+
+A single optional field in `fest.yaml` creates a bidirectional reference:
+
+```yaml
+# In fest.yaml (optional)
+metadata:
+  id: CA0001
+  name: chain-agents
+  chain: EC0001              # "I belong to this chain"
+```
+
+Not required — the chain file is the source of truth. But lets an agent reading a single festival know it's part of a chain without scanning all chain files.
+
+## Integration with `fest` CLI (Future)
+
+### New Subcommand: `fest chain`
 
 ```bash
-# Validate chain.yaml against actual fest.yaml files
-fest chain validate
+# ─── Lifecycle ────────────────────────────────────
+fest chain create                     # Interactive TUI to create a chain
+fest chain list                       # List all active chains
+fest chain status <chain-id>          # Show chain graph with festival statuses
+fest chain complete <chain-id>        # Mark chain completed, move to dungeon
 
-# Show what's currently unblocked based on festival statuses
-fest chain status
+# ─── Validation ───────────────────────────────────
+fest chain validate <chain-id>        # Validate chain against fest.yaml files
+fest chain check <festival-ref>       # Is this festival unblocked?
+  # → "ca (CA0001) BLOCKED by: hf (HF0001) [active, needs: completed]"
+  # → "hp (HP0001) UNBLOCKED — no incoming edges"
 
-# ASCII/mermaid rendering of the dependency graph
-fest chain graph
-fest chain graph --mermaid
-
-# Check if a specific festival is ready to activate
-fest chain check <festival-ref>
-# → "ca (CA0001) is BLOCKED by: hf (HF0001) [status: active, needs: completed]"
-# → "hp (HP0001) is UNBLOCKED — no incoming dependencies"
+# ─── Visualization ───────────────────────────────
+fest chain graph <chain-id>           # ASCII dependency graph
+fest chain graph <chain-id> --mermaid # Mermaid output
 ```
 
 ### Integration with `fest promote`
 
-When promoting a festival (`fest promote` or `fest flow advance`), the CLI could:
+When promoting a festival to active:
 
-1. Read `chain.yaml`
-2. Check if the festival being promoted has unmet hard dependencies
-3. Warn or block if upstream festivals haven't completed
-4. After completion, report which downstream festivals are now unblocked
+1. Check if it belongs to a chain (via backlink or chain file scan)
+2. If yes, verify hard dependencies are met
+3. Warn on unmet hard deps, note soft deps
+4. After a festival completes, report newly unblocked downstream festivals
 
-### Integration with `fest.yaml` (Minimal, Optional)
+### Validation Rules
 
-A single optional field could be added to individual `fest.yaml` files to create a bidirectional link:
-
-```yaml
-# In fest.yaml (optional addition)
-metadata:
-  id: CA0001
-  name: chain-agents
-  chain:
-    ref: ca              # My alias in chain.yaml
-    depends_on: [hf]     # Shorthand — canonical deps live in chain.yaml
+```bash
+fest chain validate EC0001
 ```
 
-This is **not required** — `chain.yaml` is the source of truth. But having a `chain.ref` in `fest.yaml` lets an agent reading a single festival quickly know it's part of a chain without reading the full chain file.
+1. Every `festivals[].id` must match an existing `fest.yaml` `metadata.id`
+2. Every `festivals[].name` must match the corresponding `fest.yaml` `metadata.name`
+3. `edges[].from` and `edges[].to` must reference valid `festivals[].ref` values
+4. No cycles in the edge graph (DAG enforcement)
+5. Wave festivals must cover all nodes exactly once
+6. Wave unlock conditions must be satisfiable by the edge graph
+7. No festival appears in more than one active chain
 
-## Integration with `festivals/` Directory
+## Template
 
-### No Structural Changes Required
-
-The chain file is purely additive:
-
-```
-festivals/
-├── chain.yaml              <── New file
-├── planning/               # Unchanged
-│   └── submission-and-polish-SP0001/
-├── active/                 # Unchanged
-│   ├── hedera-foundation-HF0001/
-│   ├── chain-agents-CA0001/
-│   ├── dashboard-DA0001/
-│   └── hiero-plugin-HP0001/
-├── ready/                  # Unchanged
-├── dungeon/                # Unchanged
-├── .festival/              # Unchanged
-└── README.md               # Unchanged
-```
-
-### Chain-Aware Lifecycle
-
-The chain file enriches the existing lifecycle without changing it:
+The methodology resources would include a chain template:
 
 ```
-                    chain.yaml says:
-                    "ca depends on hf (hard)"
-                           │
-planning/ ──► ready/ ──► active/ ──► dungeon/completed/
-                         │
-                    fest chain check ca
-                    → BLOCKED (hf still active)
-                         │
-                    hf moves to dungeon/completed/
-                         │
-                    fest chain check ca
-                    → UNBLOCKED
-                         │
-                    fest promote ca → active/
+festivals/.festival/chains/
+├── CHAIN_TEMPLATE.yaml     # Blank chain with comments
+└── README.md               # How to create and manage chains
 ```
-
-### Agent Workflow
-
-An AI agent running a campaign would:
-
-1. Read `chain.yaml` to understand the full graph
-2. Call `fest chain status` (or parse statuses manually) to find unblocked festivals
-3. Activate and execute unblocked festivals
-4. After completing a festival, check what's newly unblocked
-5. Repeat until the chain is fully resolved
-
-## Example: This Campaign's `chain.yaml`
-
-See the full schema example above — it directly models the ETHDenver 2026 dependency chain that was previously only documented in prose in this directory's README.md.
 
 ## Open Questions
 
-1. **Multiple chains per campaign?** Current design is one `chain.yaml`. If a campaign has independent workstreams, they could be separate chains in a `chains/` directory. Premature to add now.
+1. **Cross-chain dependencies?** Currently chains are independent. If chain A's output feeds chain B, that's a higher-level problem. Defer until needed.
 
-2. **Cross-campaign chains?** Out of scope. Each campaign owns its chain. If campaigns depend on each other, that's a higher-level orchestration problem.
+2. **Partial completion gates?** The `gate` field on edges allows unblocking at a specific quality gate rather than full festival completion. Useful but adds complexity — keep optional.
 
-3. **Gate-level unlocking?** The `gate` field on edges allows specifying "unblock when sequence X passes its testing gate" rather than waiting for full completion. Useful but adds complexity — keep optional.
+3. **Validation strictness?** Should `fest chain validate` hard-block `fest promote`, or just warn? Suggest advisory first, opt-in enforcement later via a chain-level config flag.
 
-4. **Validation strictness?** Should `fest chain validate` be a hard gate on `fest promote`, or advisory? Suggest advisory first, opt-in enforcement later.
+4. **Wave auto-derivation?** Waves can be computed from edges (topological sort). Should `fest` auto-derive them? Suggest: author writes them explicitly for readability, `fest chain validate` verifies they match the edge graph.
 
-5. **Wave auto-derivation?** Waves can be computed from edges (topological sort). Should `fest` auto-derive them or require explicit declaration? Suggest: explicit in the file for human readability, but `fest chain validate` should verify waves match the edge graph.
+5. **Chain in .festival/ or festivals/?** Resolved: chain *files* (campaign artifacts) go in `festivals/chains/`. Chain *templates and docs* (methodology resources) go in `festivals/.festival/chains/`.

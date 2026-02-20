@@ -1,0 +1,11 @@
+version: 1
+updated_at: 2026-02-20T18:18:03.42437Z
+links:
+    hedera-foundation-HF0001:
+        path: projects/agent-coordinator
+        festival_path: festivals/active/hedera-foundation-HF0001
+        linked_at: 2026-02-20T18:10:01.337914Z
+    hiero-plugin-HP0001:
+        path: projects/hiero-plugin
+        festival_path: festivals/active/hiero-plugin-HP0001
+        linked_at: 2026-02-20T18:18:03.42437Z
