@@ -2,11 +2,12 @@
 fest_type: festival
 fest_id: HF0001
 fest_name: hedera-foundation
-fest_status: active
+fest_status: dungeon/completed
 fest_created: 2026-02-18T13:40:53.486552-07:00
-fest_updated: 2026-02-20T10:20:06.523769-07:00
+fest_updated: 2026-02-20T13:49:02.086974-07:00
 fest_tracking: true
 ---
+
 
 
 # Hedera Foundation

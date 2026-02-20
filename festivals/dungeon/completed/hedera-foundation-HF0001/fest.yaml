@@ -15,6 +15,9 @@ metadata:
         - status: active
           timestamp: 2026-02-20T10:20:06.52564-07:00
           path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/active/hedera-foundation-HF0001
+        - status: dungeon/completed
+          timestamp: 2026-02-20T13:49:02.087588-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/dungeon/completed/hedera-foundation-HF0001
 type_config:
     auto_phases:
         - IMPLEMENT
