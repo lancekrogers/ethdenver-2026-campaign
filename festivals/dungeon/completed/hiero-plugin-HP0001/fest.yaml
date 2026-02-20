@@ -15,6 +15,9 @@ metadata:
         - status: active
           timestamp: 2026-02-20T10:20:53.449184-07:00
           path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/active/hiero-plugin-HP0001
+        - status: dungeon/completed
+          timestamp: 2026-02-20T15:55:46.877132-07:00
+          path: /Users/lancerogers/Dev/ethdenver-2026-campaign/festivals/dungeon/completed/hiero-plugin-HP0001
 type_config:
     auto_phases:
         - IMPLEMENT
