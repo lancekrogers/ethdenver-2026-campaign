@@ -1,4 +1,3 @@
-{"ts":"2026-02-20T23:24:24.22246Z","event":"completed","task":"001_IMPLEMENT/01_inference_0g/01_link_project.md"}
 {"ts":"2026-02-20T23:27:10.216481Z","event":"completed","task":"001_IMPLEMENT/01_inference_0g/02_design_agent_architecture.md"}
 {"ts":"2026-02-20T23:34:39.518672Z","event":"completed","task":"001_IMPLEMENT/01_inference_0g/03_implement_0g_compute.md"}
 {"ts":"2026-02-20T23:35:58.952562Z","event":"completed","task":"001_IMPLEMENT/01_inference_0g/04_implement_0g_storage.md"}
@@ -10,8 +9,6 @@
 {"ts":"2026-02-20T23:43:13.24026Z","event":"completed","task":"001_IMPLEMENT/01_inference_0g/10_review.md"}
 {"ts":"2026-02-20T23:43:13.264861Z","event":"completed","task":"001_IMPLEMENT/01_inference_0g/11_iterate.md"}
 {"ts":"2026-02-20T23:43:46.153524Z","event":"completed","task":"001_IMPLEMENT/01_inference_0g/12_fest_commit.md"}
-{"ts":"2026-02-20T23:43:59.994111Z","event":"completed","task":"001_IMPLEMENT/02_defi_base/01_link_project.md"}
-{"ts":"2026-02-20T23:59:22.797707Z","event":"completed","task":"001_IMPLEMENT/02_defi_base/02_design_agent_architecture.md"}
 {"ts":"2026-02-20T23:59:27.656587Z","event":"completed","task":"001_IMPLEMENT/02_defi_base/03_implement_erc8004.md"}
 {"ts":"2026-02-20T23:59:28.491946Z","event":"completed","task":"001_IMPLEMENT/02_defi_base/04_implement_x402.md"}
 {"ts":"2026-02-20T23:59:29.476Z","event":"completed","task":"001_IMPLEMENT/02_defi_base/05_implement_erc8021.md"}
