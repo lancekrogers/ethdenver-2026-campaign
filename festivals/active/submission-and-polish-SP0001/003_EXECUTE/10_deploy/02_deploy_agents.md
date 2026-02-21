@@ -62,7 +62,12 @@ tail -f logs/coordinator.log
 # Look for: "Coordinator started", heartbeat messages
 ```
 
-### Step 3: Deploy the inference agent
+### Step 3: Re-link to agent-inference and deploy
+
+```bash
+fest unlink
+fest link /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/projects/agent-inference
+```
 
 ```bash
 cd /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/projects/agent-inference
@@ -76,7 +81,12 @@ tail -f logs/inference.log
 # Look for: "Agent registered with coordinator", heartbeat messages
 ```
 
-### Step 4: Deploy the DeFi agent
+### Step 4: Re-link to agent-defi and deploy
+
+```bash
+fest unlink
+fest link /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/projects/agent-defi
+```
 
 ```bash
 cd /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/projects/agent-defi

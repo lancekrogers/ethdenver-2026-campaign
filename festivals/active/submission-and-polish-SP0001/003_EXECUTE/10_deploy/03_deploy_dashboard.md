@@ -29,7 +29,14 @@ Deploy the dashboard to a hosting platform (Vercel, Railway, or similar) with a 
 
 ## Implementation
 
-### Step 1: Prepare the dashboard for deployment
+### Step 1: Re-link to dashboard project
+
+```bash
+fest unlink
+fest link /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/projects/dashboard
+```
+
+### Step 2: Prepare the dashboard for deployment
 
 Navigate to the dashboard project:
 
@@ -45,7 +52,7 @@ just build
 # Or: npm run build / yarn build / pnpm build
 ```
 
-### Step 2: Configure environment variables
+### Step 3: Configure environment variables
 
 Set the production environment variables:
 
@@ -62,7 +69,7 @@ NEXT_PUBLIC_API_ENDPOINT=https://[your-agent-host]/api
 NEXT_PUBLIC_NETWORK=testnet
 ```
 
-### Step 3: Deploy to hosting platform
+### Step 4: Deploy to hosting platform
 
 **Option A: Vercel**
 
@@ -89,7 +96,7 @@ railway up
 
 Follow the platform's deployment guide. The dashboard is a standard web application (React/Next.js).
 
-### Step 4: Verify the deployment
+### Step 5: Verify the deployment
 
 1. Open the public URL in a browser
 2. Verify the page loads within 3 seconds
@@ -103,7 +110,7 @@ Follow the platform's deployment guide. The dashboard is a standard web applicat
 
 5. Wait 60 seconds and verify data continues updating (not a stale snapshot)
 
-### Step 5: Test accessibility
+### Step 6: Test accessibility
 
 - Test from a different device or browser (ensure no cookies/auth required)
 - Test the URL on mobile (judges may check from phones)

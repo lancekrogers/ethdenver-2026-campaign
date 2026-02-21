@@ -20,6 +20,8 @@ fest_tracking: true
 
 Unlink the previously linked project (hiero-plugin) and link the festival back to the agent-coordinator project for deployment orchestration.
 
+> **Note:** This is the initial link for the deploy sequence. Since deployment spans multiple repos (coordinator, inference, defi, dashboard), subsequent tasks will re-link to each project as work moves between them.
+
 ## Requirements
 
 - [ ] Previous project unlinked using `fest unlink`
