@@ -1,0 +1,6 @@
+version: 1
+criteria:
+    - name: Please add feedback related to fest and camp cli if you notice any pain points or bugs
+settings:
+    inject_reminder: true
+    auto_link_task: true
