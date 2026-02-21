@@ -1,0 +1,13 @@
+{"time":"2026-02-21T05:04:29.602747-07:00","level":"WARN","msg":"attribution encoder disabled","error":"attribution: builder code is required when enabled"}
+{"time":"2026-02-21T05:04:30.083605-07:00","level":"INFO","msg":"HCS transport initialized","account_id":"0.0.7985425"}
+{"time":"2026-02-21T05:04:30.083662-07:00","level":"INFO","msg":"DeFi agent starting","agent_id":"defi-001","chain_id":84532,"rpc_url":"https://sepolia.base.org","strategy":"mean_reversion"}
+{"time":"2026-02-21T05:04:30.083686-07:00","level":"INFO","msg":"starting DeFi agent","agent_id":"defi-001","strategy":"mean_reversion"}
+{"time":"2026-02-21T05:04:30.427029-07:00","level":"INFO","msg":"agent identity ready","agent_id":"defi-001","tx":"0x0000000000000000000000000000000000000000000000000000000000000001"}
+{"time":"2026-02-21T05:04:30.485707-07:00","level":"INFO","msg":"processing coordinator task","task_id":"task-defi-01","type":"execute_trade"}
+{"time":"2026-02-21T05:04:30.73297-07:00","level":"INFO","msg":"strategy signal","type":"sell","confidence":0.7142857142857143,"reason":"price 1800.0000 is 2.86% above MA 1750.0000"}
+{"time":"2026-02-21T05:04:30.832042-07:00","level":"INFO","msg":"trade executed","tx_hash":"0x0000000000000000000000000000000000000000000000000000000000000001","signal":"sell","profitable":false}
+{"time":"2026-02-21T05:05:30.492954-07:00","level":"INFO","msg":"strategy signal","type":"sell","confidence":0.7142857142857143,"reason":"price 1800.0000 is 2.86% above MA 1750.0000"}
+{"time":"2026-02-21T05:05:30.571792-07:00","level":"INFO","msg":"trade executed","tx_hash":"0x0000000000000000000000000000000000000000000000000000000000000001","signal":"sell","profitable":false}
+Failed to subscribe to topic with status Unavailable
+{"time":"2026-02-21T05:06:27.925177-07:00","level":"INFO","msg":"shutting down DeFi agent","completed_trades":2,"failed_trades":0,"uptime":117838961834}
+{"time":"2026-02-21T05:06:27.92523-07:00","level":"INFO","msg":"DeFi agent stopped gracefully"}

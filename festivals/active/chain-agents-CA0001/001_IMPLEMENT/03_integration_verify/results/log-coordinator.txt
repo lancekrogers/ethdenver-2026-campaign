@@ -1,0 +1,8 @@
+time=2026-02-21T05:03:40.877-07:00 level=INFO msg="coordinator starting" version=0.2.0 task_topic=0.0.7999404 status_topic=0.0.7999405 tasks=2
+time=2026-02-21T05:03:45.273-07:00 level=INFO msg="tasks assigned" count=2 task_ids="[task-inference-01 task-defi-01]"
+time=2026-02-21T05:04:15.873-07:00 level=INFO msg="task result received" task_id=task-inference-01 status=failed sender=inference-001 duration_ms=0
+time=2026-02-21T05:04:34.039-07:00 level=INFO msg="task result received" task_id=task-defi-01 status=completed sender=defi-001 duration_ms=346
+time=2026-02-21T05:04:38.040-07:00 level=INFO msg="payment settled" task_id=task-defi-01 agent_id=defi-001 amount=100
+Subscription to topic finished
+time=2026-02-21T05:06:27.925-07:00 level=INFO msg="coordinator shutting down"
+Subscription to topic finished

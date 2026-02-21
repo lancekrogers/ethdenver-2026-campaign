@@ -1,0 +1,8 @@
+{"time":"2026-02-21T05:04:04.949493-07:00","level":"INFO","msg":"HCS transport initialized","account_id":"0.0.7984825"}
+{"time":"2026-02-21T05:04:04.949823-07:00","level":"INFO","msg":"inference agent starting","agent_id":"inference-001"}
+{"time":"2026-02-21T05:04:04.94984-07:00","level":"INFO","msg":"starting inference agent","agent_id":"inference-001"}
+{"time":"2026-02-21T05:04:05.026459-07:00","level":"INFO","msg":"processing task","task_id":"task-inference-01","model":"test-model"}
+{"time":"2026-02-21T05:04:12.990826-07:00","level":"ERROR","msg":"task processing failed","task_id":"task-inference-01","error":"agent: compute submit failed for task task-inference-01: compute: resolve provider for test-model: no provider for model test-model: compute: list models from chain: getServiceCount: no contract code at given address"}
+Failed to subscribe to topic with status Unavailable
+{"time":"2026-02-21T05:06:27.925152-07:00","level":"INFO","msg":"shutting down inference agent","completed":0,"failed":1,"uptime":142972243334}
+{"time":"2026-02-21T05:06:27.925235-07:00","level":"INFO","msg":"inference agent stopped gracefully"}
