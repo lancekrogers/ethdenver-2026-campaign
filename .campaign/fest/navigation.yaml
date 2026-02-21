@@ -1,7 +1,7 @@
 version: 1
-updated_at: 2026-02-21T03:20:32.013465Z
+updated_at: 2026-02-21T03:25:52.219778Z
 links:
     chain-agents-CA0001:
-        path: projects/agent-defi
+        path: projects/agent-coordinator
         festival_path: festivals/active/chain-agents-CA0001
-        linked_at: 2026-02-21T03:20:32.013465Z
+        linked_at: 2026-02-21T03:25:52.219778Z
