@@ -2,11 +2,12 @@
 fest_type: festival
 fest_id: CA0001
 fest_name: chain-agents
-fest_status: ready
+fest_status: dungeon/completed
 fest_created: 2026-02-18T13:40:55.706133-07:00
-fest_updated: 2026-02-20T11:07:10.73094-07:00
+fest_updated: 2026-02-20T17:11:43.54188-07:00
 fest_tracking: true
 ---
+
 
 
 

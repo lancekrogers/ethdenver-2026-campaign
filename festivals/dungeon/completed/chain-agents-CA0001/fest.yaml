@@ -1,23 +1,26 @@
 version: "1.0"
 metadata:
-    id: DA0001
-    uuid: b3e22f92-5cf1-47bb-b03b-898c8f5db33a
-    name: dashboard
-    goal: Build the observer dashboard visualizing the entire agent economy in real-time across all three chains — festival progress, HCS feed, agent activity, DeFi P&L, inference metrics. Primary demo surface for judges.
+    id: CA0001
+    uuid: 51cff628-1992-4bc4-b0b0-121ec2613b0a
+    name: chain-agents
+    goal: Build the 0G inference agent and Base DeFi agent so all three agents form a working autonomous economy — coordinator assigns tasks, inference executes AI on decentralized compute, DeFi trades autonomously, both report via HCS.
     festival_type: implementation
-    created_at: 2026-02-18T20:40:59.813189Z
-    initial_size_bytes: 21962
+    created_at: 2026-02-18T20:40:55.706889Z
+    initial_size_bytes: 21968
     status_history:
         - status: planning
-          timestamp: 2026-02-18T20:40:59.813189Z
-          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/planning/dashboard-DA0001
+          timestamp: 2026-02-18T20:40:55.706889Z
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/planning/chain-agents-CA0001
           notes: Festival created
         - status: active
-          timestamp: 2026-02-20T10:20:24.925173-07:00
-          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/active/dashboard-DA0001
+          timestamp: 2026-02-20T10:20:41.303893-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/active/chain-agents-CA0001
         - status: ready
-          timestamp: 2026-02-20T11:07:11.523923-07:00
-          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/ready/dashboard-DA0001
+          timestamp: 2026-02-20T11:07:10.731395-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/ready/chain-agents-CA0001
+        - status: dungeon/completed
+          timestamp: 2026-02-20T17:11:43.542124-07:00
+          path: /Users/lancerogers/Dev/ethdenver-2026-campaign/festivals/dungeon/completed/chain-agents-CA0001
 type_config:
     auto_phases:
         - IMPLEMENT

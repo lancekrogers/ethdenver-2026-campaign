@@ -1,11 +1,7 @@
 version: 1
-updated_at: 2026-02-20T23:43:50.608105Z
+updated_at: 2026-02-21T00:11:43.542333Z
 links:
-    chain-agents-CA0001:
-        path: projects/agent-defi
-        festival_path: festivals/active/chain-agents-CA0001
-        linked_at: 2026-02-20T23:43:50.608104Z
     dashboard-DA0001:
         path: projects/dashboard
-        festival_path: festivals/active/dashboard-DA0001
-        linked_at: 2026-02-20T23:24:30.832216Z
+        festival_path: festivals/dungeon/completed/active/dashboard-DA0001
+        linked_at: 2026-02-21T00:10:11.652968Z
