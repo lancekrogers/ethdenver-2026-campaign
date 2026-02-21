@@ -16,9 +16,9 @@ fest_tracking: true
 
 ## Phase Objective
 
-**Primary Goal:** Unblock all three chains (Hedera, 0G, Base), verify the dashboard, run the full economy cycle end-to-end, package bounty evidence, deploy, and record the demo video.
+**Primary Goal:** Unblock all three chains (Hedera, 0G, Base), verify the dashboard, run the full economy cycle end-to-end, package bounty evidence, and validate the system is deployment-ready via Docker.
 
-**Context:** The ingest phase cataloged all artifacts from festivals 1-4 and the planning phase identified three blockers: dashboard needs build verification, 0G inference has an ABI mismatch in broker.go, and Base DeFi has stub trade execution. The first three sequences unblock these in parallel, then E2E testing validates the full system, bounty packaging documents everything, deployment makes it accessible, and the demo video captures it all.
+**Context:** The ingest phase cataloged all artifacts from festivals 1-4 and the planning phase identified three blockers: dashboard needs build verification, 0G inference has an ABI mismatch in broker.go, and Base DeFi has stub trade execution. The first three sequences unblock these in parallel, then E2E testing validates the full system, bounty packaging documents everything, and Docker local testing validates containerized deployment readiness. Deployment and demo video are handled in 004_SUBMIT.
 
 ## Sequences
 
@@ -33,8 +33,7 @@ fest_tracking: true
 | 07_zerog_track3_package | agent-inference | Create iNFT showcase documentation and demo notes for 0G Track 3 |
 | 08_base_package | agent-defi | Polish README, create P&L proof document for Base bounty |
 | 09_hedera_track4_package | hiero-plugin | Polish README, finalize PR for Hedera Track 4 |
-| 10_deploy | agent-coordinator | Deploy all agents to testnet, deploy dashboard to hosting |
-| 11_demo_video | dashboard | Write demo script, rehearse, and record under-3-minute demo video |
+| 10_local_docker_test | all projects | Containerize all services, verify Docker Compose stack works locally |
 
 ## Success Criteria
 
@@ -49,9 +48,8 @@ This execute phase is complete when:
 - [ ] iNFT showcase documentation created with on-chain evidence
 - [ ] P&L proof document created with transaction hashes and revenue breakdown
 - [ ] Hiero plugin PR finalized and ready for submission
-- [ ] All three agents deployed and running on testnet
-- [ ] Dashboard deployed and accessible via public URL
-- [ ] Demo video recorded, under 2 minutes, uploaded with public URL
+- [ ] All services containerized with Dockerfiles and docker-compose.yml
+- [ ] Docker Compose stack verified locally (all services build, start, and communicate)
 
 ## Dependencies
 
@@ -61,7 +59,7 @@ This execute phase is complete when:
 
 ## Notes
 
-- Sequences are ordered by dependency: E2E testing first (validates everything works), then per-track packaging, then deployment, then demo.
+- Sequences are ordered by dependency: unblock chains first, then E2E testing, then per-track packaging, then Docker local verification.
 - Each sequence targets one project at a time using `fest link` / `fest unlink`.
 - Quality gates (testing, code review, iterate) are appended to every sequence.
 - No new features. If something is broken, fix it. If something is missing, document it as a known limitation.

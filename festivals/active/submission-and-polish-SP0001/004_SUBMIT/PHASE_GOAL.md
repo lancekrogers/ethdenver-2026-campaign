@@ -16,21 +16,26 @@ fest_tracking: true
 
 ## Phase Objective
 
-**Primary Goal:** Perform final cross-project review, submit all five bounty tracks to ETHDenver, and verify submissions are accessible to judges.
+**Primary Goal:** Deploy all agents and dashboard, record a demo video, perform final cross-project review, submit all five bounty tracks to ETHDenver, and verify submissions are accessible to judges.
 
-**Context:** The execute phase produced all submission materials: polished READMEs, architecture docs, compute metrics, P&L proof, deployed agents, deployed dashboard, and a demo video. This submit phase is the final checkpoint: review everything one last time, fill out each bounty submission form, and verify judges can access all linked materials. This is the last festival -- there is no recovery if something is missed.
+**Context:** The execute phase produced all submission materials: polished READMEs, architecture docs, compute metrics, and P&L proof. This phase takes those materials through the final pipeline: deploy the live system, record the demo, review everything, and submit. This is the last festival -- there is no recovery if something is missed.
 
 ## Sequences
 
 | Sequence | Project | Objective |
 |----------|---------|-----------|
-| 01_final_review | agent-coordinator | Cross-project review of all READMEs, deployments, and submission materials |
-| 02_submit_all_tracks | agent-coordinator | Submit all five bounty tracks and perform post-submission verification |
+| 01_deploy | multi-repo | Deploy all three agents to testnet and dashboard to hosting with public URL |
+| 02_demo_video | multi-repo | Write demo script, rehearse, and record demo video of live system |
+| 03_final_review | agent-coordinator | Cross-project review of all READMEs, deployments, and submission materials |
+| 04_submit_all_tracks | agent-coordinator | Submit all five bounty tracks and perform post-submission verification |
 
 ## Success Criteria
 
 This submit phase is complete when:
 
+- [ ] All three agents deployed and running persistently on testnet
+- [ ] Dashboard deployed with public URL showing live agent data
+- [ ] Demo video recorded and accessible via URL
 - [ ] All six project READMEs reviewed and pass completeness checklist
 - [ ] All deployments verified live (agents on testnet, dashboard accessible, demo video URL works)
 - [ ] All links in READMEs are valid and resolve correctly
@@ -44,7 +49,7 @@ This submit phase is complete when:
 
 ## Dependencies
 
-- 003_EXECUTE must be complete (all submission materials ready, agents deployed, demo recorded)
+- 003_EXECUTE must be complete (all submission materials ready: READMEs, architecture docs, P&L proof)
 
 ## Notes
 

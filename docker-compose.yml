@@ -1,0 +1,59 @@
+services:
+  dashboard:
+    build:
+      context: ./projects/dashboard
+      args:
+        NEXT_PUBLIC_USE_MOCK: "${NEXT_PUBLIC_USE_MOCK:-true}"
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  coordinator:
+    build:
+      context: ./projects/agent-coordinator
+    environment:
+      HEDERA_COORDINATOR_ACCOUNT_ID: "${HEDERA_COORDINATOR_ACCOUNT_ID}"
+      HEDERA_COORDINATOR_PRIVATE_KEY: "${HEDERA_COORDINATOR_PRIVATE_KEY}"
+      HEDERA_AGENT1_ACCOUNT_ID: "${HEDERA_AGENT1_ACCOUNT_ID}"
+      HEDERA_AGENT2_ACCOUNT_ID: "${HEDERA_AGENT2_ACCOUNT_ID}"
+      HCS_TASK_TOPIC_ID: "${HCS_TASK_TOPIC_ID}"
+      HCS_STATUS_TOPIC_ID: "${HCS_STATUS_TOPIC_ID}"
+      HTS_PAYMENT_TOKEN_ID: "${HTS_PAYMENT_TOKEN_ID}"
+      DAEMON_ADDRESS: "host.docker.internal:50051"
+    profiles: [agents]
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  inference:
+    build:
+      context: ./projects/agent-inference
+    environment:
+      HEDERA_ACCOUNT_ID: "${INFERENCE_HEDERA_ACCOUNT_ID}"
+      HEDERA_PRIVATE_KEY: "${INFERENCE_HEDERA_PRIVATE_KEY}"
+      INFERENCE_AGENT_ID: "${INFERENCE_AGENT_ID:-inference-001}"
+      INFERENCE_DAEMON_ADDR: "host.docker.internal:9090"
+      HCS_TASK_TOPIC: "${HCS_TASK_TOPIC}"
+      HCS_RESULT_TOPIC: "${HCS_RESULT_TOPIC}"
+    profiles: [agents]
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  defi:
+    build:
+      context: ./projects/agent-defi
+    environment:
+      HEDERA_ACCOUNT_ID: "${DEFI_HEDERA_ACCOUNT_ID}"
+      HEDERA_PRIVATE_KEY: "${DEFI_HEDERA_PRIVATE_KEY}"
+      DEFI_AGENT_ID: "${DEFI_AGENT_ID:-defi-001}"
+      DEFI_DAEMON_ADDR: "host.docker.internal:9090"
+      HCS_TASK_TOPIC: "${DEFI_HCS_TASK_TOPIC}"
+      HCS_RESULT_TOPIC: "${DEFI_HCS_RESULT_TOPIC}"
+      DEFI_BASE_RPC_URL: "${DEFI_BASE_RPC_URL:-https://sepolia.base.org}"
+      DEFI_PRIVATE_KEY: "${DEFI_PRIVATE_KEY}"
+      DEFI_WALLET_ADDRESS: "${DEFI_WALLET_ADDRESS}"
+    profiles: [agents]
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
