@@ -16,41 +16,42 @@ fest_tracking: true
 
 ## Festival Objective
 
-**Primary Goal:** Get every bounty submission polished, tested end-to-end, and deployed for final judging.
+**Primary Goal:** Get the three-agent autonomous economy running end-to-end and record a demo video.
 
-**Vision:** All six projects are verified working together in a full economy cycle, each bounty track has complete documentation and demo materials, agents are running on testnet, the dashboard is deployed, and a rehearsed 2-minute demo script is ready. No new features -- only verification, packaging, and submission.
+**Vision:** All three agents operate across Hedera, 0G, and Base — communicating via HCS, settling payments via HTS — with a working dashboard or visualization, captured in a demo video. Submission deadline has passed; this is about making the system work and proving it on camera.
 
 ## Success Criteria
 
-### Functional Success
+### Must Have
 
-- [ ] Full economy cycle runs end-to-end on testnet (opportunity detection through profit realization)
-- [ ] Failure recovery paths verified (agent restarts, failed transactions, network issues)
-- [ ] Profitability validation passes with documented P&L proof
-- [ ] Each bounty track has a complete submission package (README, architecture, demo)
-- [ ] Demo video recorded and under 2 minutes
-- [ ] All agents running on testnet with observable behavior via dashboard
+- [ ] Full economy cycle runs end-to-end on testnet (coordinator assigns, agents execute, payment settles)
+- [ ] Dashboard or visualization shows agent activity in real-time
+- [ ] Demo video recorded (under 3 minutes)
+- [ ] Zero critical bugs in agent code
 
-### Quality Success
+### Should Have
 
-- [ ] All six project READMEs pass a completeness checklist (setup, architecture, usage, bounty alignment)
-- [ ] Zero critical bugs in end-to-end test suite
-- [ ] Dashboard loads and displays live agent state within 3 seconds
-- [ ] Demo script rehearsed at least once with no dead time exceeding 5 seconds
+- [ ] 0G inference pipeline executes against real compute
+- [ ] DeFi agent executes real trades on Base Sepolia
+- [ ] P&L proof with real trade data
+
+### Nice to Have
+
+- [ ] Polished project READMEs
+- [ ] Architecture diagrams
 
 ## Progress Tracking
 
 ### Phase Completion
 
-- [ ] 001_INGEST: Gather all artifacts, outputs, and deployment state from prior festivals (1-4)
-- [ ] 002_PLAN: Define submission strategy, checklist per track, and deployment plan
-- [ ] 003_EXECUTE: Run E2E tests, fix issues, build submission packages, record demo
-- [ ] 004_SUBMIT: Final review, submit all bounty tracks, confirm deployment
+- [x] 001_INGEST: Gather all artifacts and assess project state
+- [ ] 002_PLAN: Define what needs to be fixed/built to get the demo working
+- [ ] 003_EXECUTE: Fix dashboard, resolve blockers, run E2E, record demo
+- [ ] 004_SUBMIT: Final review and cleanup
 
 ## Complete When
 
 - [ ] All phases completed
-- [ ] Every bounty track submitted with required materials
-- [ ] Agents running on testnet and dashboard deployed
-- [ ] Demo video recorded, reviewed, and linked in submissions
+- [ ] Three-agent economy runs end-to-end on testnet
+- [ ] Demo video recorded and reviewed
 - [ ] No known critical issues remaining
