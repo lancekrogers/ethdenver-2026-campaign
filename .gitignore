@@ -1,5 +1,6 @@
 .env
-.env.docker
+.env.*
+!.env.docker.example
 .playwright-mcp/*
 .playwright-mcp/
 .screenshots/

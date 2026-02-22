@@ -1,0 +1,49 @@
+version: "1.0"
+metadata:
+    id: BC0001
+    uuid: 9b5881ad-1fb8-4363-9e13-f7600904d1f9
+    name: bounty-completion
+    goal: Finish all 7 ETHDenver bounty tracks for public release. Wire remaining stubs, implement contracts, add templates, polish for production.
+    festival_type: implementation
+    created_at: 2026-02-21T23:42:29.554248Z
+    initial_size_bytes: 21978
+    status_history:
+        - status: planning
+          timestamp: 2026-02-21T23:42:29.554248Z
+          path: /Users/lancerogers/Dev/ethdenver-2026-campaign/festivals/planning/bounty-completion-BC0001
+          notes: Festival created
+type_config:
+    auto_phases:
+        - IMPLEMENT
+    skip_ingestion: true
+quality_gates:
+    enabled: true
+    auto_append: true
+    implementation:
+        - id: testing
+          template: gates/implementation/QUALITY_GATE_TESTING
+          name: Testing and Verification
+          enabled: true
+        - id: review
+          template: gates/implementation/QUALITY_GATE_REVIEW
+          name: Code Review
+          enabled: true
+        - id: iterate
+          template: gates/implementation/QUALITY_GATE_ITERATE
+          name: Review Results and Iterate
+          enabled: true
+        - id: fest-commit
+          template: gates/implementation/QUALITY_GATE_FEST_COMMIT
+          name: Fest Commit Changes
+          enabled: true
+excluded_patterns:
+    - '*_planning'
+    - '*_research'
+    - '*_requirements'
+    - '*_docs'
+templates:
+    task_default: tasks/SIMPLE
+    prefer_simple: true
+tracking:
+    enabled: true
+    checksum_file: .festival-checksums.json

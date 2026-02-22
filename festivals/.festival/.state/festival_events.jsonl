@@ -8,3 +8,4 @@
 {"ts":"2026-02-20T23:50:46.714835Z","event":"move","id":"DA0001","from":"active","to":"completed"}
 {"ts":"2026-02-21T17:00:36.367061Z","event":"move","id":"SP0001","from":"planning","to":"ready"}
 {"ts":"2026-02-21T17:00:43.144882Z","event":"move","id":"SP0001","from":"ready","to":"active"}
+{"ts":"2026-02-21T23:42:29.558911Z","event":"create","id":"BC0001","name":"bounty-completion","status":"planning"}
