@@ -1,6 +1,10 @@
 version: 1
-updated_at: 2026-02-21T19:20:09.967558Z
+updated_at: 2026-02-23T20:38:11.31848Z
 links:
+    bounty-completion-BC0001:
+        path: projects/contracts
+        festival_path: festivals/active/bounty-completion-BC0001
+        linked_at: 2026-02-23T20:38:11.31848Z
     submission-and-polish-SP0001:
         path: projects/agent-coordinator
         festival_path: festivals/active/submission-and-polish-SP0001

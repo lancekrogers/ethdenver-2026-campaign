@@ -4,11 +4,13 @@ fest_id: 05_fix_getidentity_decode.md
 fest_name: fix getidentity decode
 fest_parent: 01_base_agent_bugfixes
 fest_order: 5
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-02-21T17:49:06.904341-07:00
+fest_updated: 2026-02-23T13:36:28.611967-07:00
 fest_tracking: true
 ---
+
 
 # Task: Fix ERC-8004 GetIdentity ABI Decoding
 

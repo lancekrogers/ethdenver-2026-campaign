@@ -4,11 +4,13 @@ fest_id: 04_fix_pnl_accuracy.md
 fest_name: fix pnl accuracy
 fest_parent: 01_base_agent_bugfixes
 fest_order: 4
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-02-21T17:49:06.904077-07:00
+fest_updated: 2026-02-23T13:31:00.56357-07:00
 fest_tracking: true
 ---
+
 
 # Task: Fix P&L Accuracy — Real Gas Costs and Trade Revenue
 
