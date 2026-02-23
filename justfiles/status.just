@@ -29,3 +29,26 @@ env:
 # Show submodule status
 submodules:
     cd {{root}} && git submodule status --recursive
+
+# List open PRs across all project submodules
+prs:
+    @for proj in agent-coordinator agent-inference agent-defi contracts hiero-plugin dashboard; do \
+        echo "=== $proj ==="; \
+        cd {{root}}/projects/$proj && gh pr list 2>/dev/null || echo "  (no remote or gh not configured)"; \
+        echo ""; \
+    done
+
+# List all PRs (open + closed + merged) across all project submodules
+prs-all:
+    @for proj in agent-coordinator agent-inference agent-defi contracts hiero-plugin dashboard; do \
+        echo "=== $proj ==="; \
+        cd {{root}}/projects/$proj && gh pr list --state all 2>/dev/null || echo "  (no remote or gh not configured)"; \
+        echo ""; \
+    done
+
+# Merge all open develop→main PRs across all project submodules
+prs-merge:
+    @for proj in agent-coordinator agent-inference agent-defi contracts hiero-plugin dashboard; do \
+        echo "=== $proj ==="; \
+        cd {{root}}/projects/$proj && gh pr list --base main --head develop --json number --jq '.[0].number' 2>/dev/null | xargs -I{} gh pr merge {} --merge 2>/dev/null || echo "  (no open PR or already merged)"; \
+    done
