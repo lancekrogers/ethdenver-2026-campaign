@@ -15,8 +15,8 @@ install:
     cd {{root}}/projects/agent-coordinator && go mod download
     cd {{root}}/projects/agent-inference && go mod download
     cd {{root}}/projects/agent-defi && go mod download
-    cd {{root}}/projects/dashboard && npm ci
-    cd {{root}}/projects/hiero-plugin && npm ci
+    cd {{root}}/projects/dashboard && npm install
+    cd {{root}}/projects/hiero-plugin && npm install
 
 # Build + run dashboard in mock mode (zero config)
 demo:
