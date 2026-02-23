@@ -4,11 +4,13 @@ fest_id: 02_add_hedera_rpc_profile.md
 fest_name: add hedera rpc profile
 fest_parent: 07_contracts_hip1215
 fest_order: 2
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-02-21T17:49:14.845633-07:00
+fest_updated: 2026-02-23T14:01:44.484575-07:00
 fest_tracking: true
 ---
+
 
 # Task: Add Hedera RPC Profile to foundry.toml
 

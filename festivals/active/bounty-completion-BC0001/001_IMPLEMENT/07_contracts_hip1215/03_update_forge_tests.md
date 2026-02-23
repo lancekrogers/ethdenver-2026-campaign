@@ -4,11 +4,13 @@ fest_id: 03_update_forge_tests.md
 fest_name: update forge tests
 fest_parent: 07_contracts_hip1215
 fest_order: 3
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-02-21T17:49:14.845935-07:00
+fest_updated: 2026-02-23T14:02:39.01036-07:00
 fest_tracking: true
 ---
+
 
 # Task: Update Forge Tests for HIP-1215 Scheduling
 
