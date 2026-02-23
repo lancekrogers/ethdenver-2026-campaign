@@ -5,7 +5,7 @@ root := justfile_directory()
     just --list --justfile {{source_file()}}
 
 # Run all tests across all projects
-all: _go-tests _dashboard-tests
+all: _go-tests _dashboard-tests _hiero-plugin-tests
 
 [private]
 _go-tests:
@@ -16,6 +16,10 @@ _go-tests:
 [private]
 _dashboard-tests:
     cd {{root}}/projects/dashboard && npm test
+
+[private]
+_hiero-plugin-tests:
+    cd {{root}}/projects/hiero-plugin && npm test
 
 # Run Go tests with coverage
 go-coverage:

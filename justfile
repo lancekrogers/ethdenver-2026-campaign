@@ -1,11 +1,22 @@
 mod docker 'justfiles/docker.just'
 mod test 'justfiles/test.just'
 mod build 'justfiles/build.just'
+mod lint 'justfiles/lint.just'
 mod status 'justfiles/status.just'
+
+root := justfile_directory()
 
 [private]
 @default:
     just --list --list-submodules
+
+# Install all project dependencies
+install:
+    cd {{root}}/projects/agent-coordinator && go mod download
+    cd {{root}}/projects/agent-inference && go mod download
+    cd {{root}}/projects/agent-defi && go mod download
+    cd {{root}}/projects/dashboard && npm ci
+    cd {{root}}/projects/hiero-plugin && npm ci
 
 # Build + run dashboard in mock mode (zero config)
 demo:

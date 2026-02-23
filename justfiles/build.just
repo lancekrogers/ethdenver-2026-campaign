@@ -4,8 +4,8 @@ root := justfile_directory()
 @default:
     just --list --justfile {{source_file()}}
 
-# Build all Go binaries
-all: _coordinator _inference _defi
+# Build all projects
+all: _coordinator _inference _defi _hiero-plugin
 
 [private]
 _coordinator:
@@ -18,3 +18,7 @@ _inference:
 [private]
 _defi:
     cd {{root}}/projects/agent-defi && go build -o bin/agent-defi ./cmd/agent-defi
+
+[private]
+_hiero-plugin:
+    cd {{root}}/projects/hiero-plugin && npm run build
