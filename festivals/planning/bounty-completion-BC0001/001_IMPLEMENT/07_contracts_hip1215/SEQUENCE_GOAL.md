@@ -9,22 +9,15 @@ fest_created: 2026-02-21T17:48:56.77726-07:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 07_contracts_hip1215
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-02-21T17:48:56-07:00
+**Sequence:** 07_contracts_hip1215 | **Phase:** 001_IMPLEMENT | **Status:** Pending | **Created:** 2026-02-21T17:48:56-07:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Add HIP-1215 Scheduled Transaction support to AgentSettlement.sol and ReputationDecay.sol by integrating the Hedera Schedule Service system contract at address 0x167, enabling time-delayed batch settlements and automated reputation decay.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** Hedera Track 1 ($15k) values use of native Hedera services. HIP-1215 scheduled transactions are a differentiating Hedera-native feature that strengthens the submission by demonstrating the contracts leverage Hedera's unique capabilities rather than being generic EVM contracts.
 
 ## Success Criteria
 
@@ -32,55 +25,54 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **IHederaScheduleService interface**: Solidity interface for the system contract at 0x167 with `hasScheduleCapacity()` and `scheduleNative()` functions
+- [ ] **scheduleBatchSettle function**: New function in AgentSettlement.sol that checks capacity then schedules a future batch settlement via HIP-1215
+- [ ] **scheduleDecay function**: New function in ReputationDecay.sol that schedules automated periodic decay via HIP-1215
+- [ ] **Hedera RPC profile**: Foundry profile in foundry.toml targeting Hedera testnet JSON-RPC for deployment
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Tests pass**: `cd projects/contracts && forge test` passes including new scheduling tests
+- [ ] **No regressions**: All existing AgentSettlement and ReputationDecay tests still pass
 
 ### Completion Criteria
 
 - [ ] All tasks in sequence completed successfully
 - [ ] Quality verification tasks passed
 - [ ] Code review completed and issues addressed
-- [ ] Documentation updated
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_integrate_hip1215_scheduling | Add IHederaScheduleService interface and scheduling functions to both contracts | Contracts can schedule future settlements and decay |
+| 02_add_hedera_rpc_profile | Add Hedera testnet RPC profile to foundry.toml | Contracts deployable to Hedera testnet |
+| 03_update_forge_tests | Add Forge tests mocking the HIP-1215 system contract | Scheduling logic verified without Hedera node |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- None: AgentSettlement.sol and ReputationDecay.sol already exist and compile
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- HIP-1215 integration: Strengthens Hedera Track 1 submission, used by 002_REVIEW phase
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| HIP-1215 system contract interface may differ from docs | Medium | High | Check Hedera GitHub for canonical IHederaScheduleService.sol interface |
+| vm.mockCall may not work cleanly for system contract | Low | Medium | Use vm.etch to place code at 0x167 before mocking |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: IHederaScheduleService interface created and both contracts compile with new functions
+- [ ] **Milestone 2**: Forge tests pass with mocked system contract
+- [ ] **Milestone 3**: Hedera RPC profile added to foundry.toml
 
 ## Quality Gates
 
@@ -88,15 +80,13 @@ The sequence goal is achieved when:
 
 - [ ] All unit tests pass
 - [ ] Integration tests complete
-- [ ] Performance benchmarks met
 
 ### Code Review
 
 - [ ] Code review conducted
 - [ ] Review feedback addressed
-- [ ] Standards compliance verified
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

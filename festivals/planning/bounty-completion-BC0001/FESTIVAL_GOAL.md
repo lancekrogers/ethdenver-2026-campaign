@@ -13,34 +13,37 @@ fest_tracking: true
 
 ## Festival Objective
 
-**Primary Goal:** Finish all 7 ETHDenver bounty tracks by wiring remaining stubs, implementing Solidity contracts, adding 0G templates, and polishing for public release.
+**Primary Goal:** Close remaining implementation gaps across the ETHDenver multi-agent economy project so every targeted bounty track has qualifying on-chain evidence of functionality.
 
-**Vision:** Every bounty track the project targeted has qualifying implementation — real on-chain transactions, working contracts, complete dev tooling templates, and production-ready documentation. The project is ready for public GitHub showcase.
+**Vision:** The 3 Go agents (coordinator, DeFi, inference), Solidity contracts, and Hiero CLI plugin form a working agent economy. Bugs in the DeFi agent are fixed, the missing ERC-7857 iNFT contract is implemented, 0G session auth is wired, HIP-1215 scheduling is added to contracts, and all documentation is accurate. The project is ready for bounty judge evaluation across all targeted tracks.
 
 ## Success Criteria
 
 ### Functional Success
 
-- [ ] Base DeFi agent signs and sends real transactions on Base Sepolia
-- [ ] Coordinator uses all 4 Hedera native services (HCS, HTS, Schedule, Accounts)
-- [ ] AgentSettlement.sol and ReputationDecay.sol compile and pass Forge tests
-- [ ] Hiero plugin includes 0G agent and iNFT templates
-- [ ] All Docker images build and run successfully
+- [ ] Base DeFi agent's mean-reversion strategy uses real moving averages (not hardcoded `price * 0.98`)
+- [ ] x402 payment is wired into the trading cycle (not dead code)
+- [ ] ERC-8021 attribution builder encodes bytes correctly (not ASCII string)
+- [ ] ERC-7857 iNFT contract implemented, compiling, and passing Forge tests
+- [ ] 0G inference agent constructs signed Bearer tokens for session auth
+- [ ] AgentSettlement.sol and ReputationDecay.sol have HIP-1215 scheduling functions
+- [ ] Docker healthchecks report all 4 services as healthy
+- [ ] All project READMEs have accurate, copy-paste-ready instructions
 
 ### Quality Success
 
 - [ ] All Go agents pass `just test` with no failures
-- [ ] Forge tests pass for both contracts
-- [ ] All 6 project READMEs have accurate setup instructions
+- [ ] `forge test` passes for all contracts including new tests
+- [ ] Hiero plugin passes `npm test` with 0 failures
 
 ## Progress Tracking
 
 ### Phase Completion
 
-- [ ] 001_IMPLEMENT: Complete all remaining implementation work
+- [ ] 001_IMPLEMENT: Fix bugs, implement missing contracts, wire auth, polish system
 - [ ] 002_REVIEW: Verify bounty qualification
 
 ## Complete When
 
 - [ ] All phases completed
-- [ ] All 7 bounty tracks meet their qualifying criteria
+- [ ] Every targeted bounty track meets its qualifying criteria

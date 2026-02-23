@@ -1,6 +1,6 @@
 # Festival TODO - Bounty Completion (BC0001)
 
-**Goal**: Finish all 7 ETHDenver 2026 bounty tracks by wiring remaining stubs, implementing Solidity contracts, adding 0G templates, and polishing for public release.
+**Goal**: Close remaining implementation gaps across the ETHDenver multi-agent economy project so every targeted bounty track has qualifying evidence of functionality.
 **Status**: Active
 
 ---
@@ -9,14 +9,14 @@
 
 ### Phase Completion Status
 
-- [ ] 001_IMPLEMENT — Complete all remaining implementation work across 7 sequences
-- [ ] 002_REVIEW — Verify bounty qualification for all 7 tracks
+- [ ] 001_IMPLEMENT — Fix bugs, implement missing contracts, wire auth, polish system (7 sequences)
+- [ ] 002_REVIEW — Verify bounty qualification for all targeted tracks
 
 ### Current Work Status
 
 ```
 Active Phase: 001_IMPLEMENT
-Active Sequences: 01_coordinator_schedule_wiring, 02_base_tx_signing, 03_contracts_implementation, 04_0g_templates, 05_hiero_plugin_polish, 06_docker_verify, 07_readme_polish
+Active Sequences: 01_base_agent_bugfixes, 02_erc7857_inft_contract, 03_zerog_compute_payment, 04_hiero_submission_prep, 05_system_polish, 06_doc_accuracy, 07_contracts_hip1215
 Blockers: None
 ```
 
@@ -30,52 +30,40 @@ Blockers: None
 
 #### Sequences
 
-- [ ] **01_coordinator_schedule_wiring** — Wire Hedera Scheduled Transactions into the coordinator's schedule service
-  - [ ] 01_wire_schedule_service — Implement ScheduleService using Hedera SDK scheduled transactions
-  - [ ] 02_testing — Test the schedule wiring with unit and integration tests
-  - [ ] 03_review — Review code quality and correctness
-  - [ ] 04_iterate — Iterate on any review findings
-  - [ ] 05_fest_commit — Commit and mark sequence complete
+- [ ] **01_base_agent_bugfixes** — Fix 5 bugs in agent-defi that produce wrong trading outputs
+  - [ ] 01_fix_strategy_moving_average — Replace hardcoded `price * 0.98` with real SMA calculation
+  - [ ] 02_fix_erc8021_encoding — Hex-decode builder code bytes in attribution builder
+  - [ ] 03_wire_x402_into_trading_loop — Call x402 payment in executeTradingCycle()
+  - [ ] 04_fix_pnl_accuracy — Compute gas costs from tx receipts instead of $0.50 stub
+  - [ ] 05_fix_getidentity_decode — Decode on-chain GetIdentity response instead of returning hardcoded stub
 
-- [ ] **02_base_tx_signing** — Wire real Base Sepolia tx signing into the agent-defi executor
-  - [ ] 01_add_ethutil_package — Add ethutil package with key loading and tx signing helpers
-  - [ ] 02_wire_executor_signing — Wire signing into the swap executor
-  - [ ] 03_wire_register_signing — Wire signing into the register/deregister flow
-  - [ ] 04_wire_x402_signing — Wire signing into the x402 payment flow
-  - [ ] 05_wire_market_state — Wire market state into the defi agent's decision loop
-  - [ ] 06_testing — Test all signing paths
-  - [ ] 07_review — Review code quality and correctness
-  - [ ] 08_iterate — Iterate on any review findings
-  - [ ] 09_fest_commit — Commit and mark sequence complete
+- [ ] **02_erc7857_inft_contract** — Implement ERC-7857 iNFT Solidity contract for 0G Track 3
+  - [ ] 01_implement_erc7857_contract — Write iNFT721.sol with updateVerifiable() and tokenURI()
+  - [ ] 02_write_forge_tests — Write Forge tests for mint, update, and verification flow
+  - [ ] 03_deploy_and_configure — Add deploy script and wire ZG_INFT_CONTRACT env var
 
-- [ ] **03_contracts_implementation** — Implement AgentSettlement.sol and ReputationDecay.sol with Forge tests and deploy scripts
-  - [ ] 01_forge_setup — Set up Forge project structure and dependencies
-  - [ ] 02_implement_settlement — Implement AgentSettlement.sol
-  - [ ] 03_implement_reputation — Implement ReputationDecay.sol
-  - [ ] 04_write_tests — Write Forge tests for both contracts
-  - [ ] 05_deploy_script — Write deploy scripts for Hedera testnet and Base Sepolia
-  - [ ] 06_testing — Run tests and verify coverage
-  - [ ] 07_review — Review code quality and correctness
-  - [ ] 08_iterate — Iterate on any review findings
-  - [ ] 09_fest_commit — Commit and mark sequence complete
+- [ ] **03_zerog_compute_payment** — Wire 0G session auth and populate empty environment variables
+  - [ ] 01_implement_session_auth — Build signed Bearer token construction and 401 retry in broker
+  - [ ] 02_configure_env_vars — Fill empty ZG_* variables with valid Galileo testnet values
 
-- [ ] **04_0g_templates** — Create 0g-agent and 0g-inft-build camp templates in the hiero-plugin for 0G Track 4
-  - [ ] 01_create_0g_agent_template — Create Go scaffold with 0G Compute, Storage, and chain client stubs
-  - [ ] 02_create_0g_inft_template — Create ERC-7857 iNFT scaffold with AES-256-GCM and 0G DA publisher
-  - [ ] 03_register_templates — Register both templates in the plugin manifest and command handlers
+- [ ] **04_hiero_submission_prep** — Polish hiero-plugin docs, tests, PR branch, and demo script
+  - [ ] 01_update_plugin_docs — Update submission.md, architecture.md, usage-guide.md with 0G content
+  - [ ] 02_add_0g_test_coverage — Add test cases for 0G template generation edge cases
+  - [ ] 03_create_hiero_pr — Create clean PR branch with conventional commits
+  - [ ] 04_record_demo_video — Write demo walkthrough script
 
-- [ ] **05_hiero_plugin_polish** — Verify all plugin tests pass and update submission docs
-  - [ ] 01_verify_tests — Run all 37+ tests and fix any failures
-  - [ ] 02_update_docs — Update submission.md, architecture.md, and usage-guide.md with 0G template content
+- [ ] **05_system_polish** — Fix coordinator topic keys and add Docker healthchecks
+  - [ ] 01_coordinator_topic_keys — Load HEDERA_TOPIC_SUBMIT_KEY and pass to HCS client
+  - [ ] 02_docker_healthchecks — Add healthcheck blocks to all 4 services in docker-compose.yml
 
-- [ ] **06_docker_verify** — Verify Docker orchestration works end-to-end with mock mode and healthchecks
-  - [ ] 01_verify_builds — Run `just docker build-all` and fix any Dockerfile failures
-  - [ ] 02_verify_mock_mode — Run `just demo` and verify all 5 dashboard panels render in mock mode
-  - [ ] 03_add_healthchecks — Add healthcheck blocks to docker-compose.yml for all 4 services
+- [ ] **06_doc_accuracy** — Audit and fix all READMEs, add root quickstart
+  - [ ] 01_fix_all_stale_readmes — Audit all 6 project READMEs against actual codebase
+  - [ ] 02_add_root_quickstart — Add 5-minute quickstart to root README
 
-- [ ] **07_readme_polish** — Review and update all 7 READMEs with verified quick-start instructions
-  - [ ] 01_review_readmes — Read root + 6 project READMEs and apply accuracy fixes
-  - [ ] 02_verify_quickstarts — Walk through each README's quick-start and confirm commands work
+- [ ] **07_contracts_hip1215** — Add HIP-1215 scheduled transaction support to Solidity contracts
+  - [ ] 01_integrate_hip1215_scheduling — Add IHederaScheduleService interface and scheduling functions
+  - [ ] 02_add_hedera_rpc_profile — Add Hedera testnet RPC profile to foundry.toml
+  - [ ] 03_update_forge_tests — Add Forge tests mocking the HIP-1215 system contract
 
 ### 002_REVIEW
 
@@ -83,7 +71,7 @@ Blockers: None
 
 #### Sequences
 
-- [ ] Bounty qualification verification for all 7 tracks (sequences TBD — created during review phase)
+- [ ] Bounty qualification verification for all targeted tracks (sequences TBD — created during review phase)
 
 ---
 
@@ -93,11 +81,20 @@ None currently.
 
 ---
 
+## Execution Order
+
+Sequences 01, 02, 03, 07 can run in parallel (no dependencies).
+Sequence 04 soft-depends on 02 (iNFT contract should exist before plugin demo).
+Sequence 05 depends on 01 (DeFi agent must build for Docker healthchecks).
+Sequence 06 runs last (earlier sequences change code that READMEs reference).
+
+---
+
 ## Decision Log
 
-- 2026-02-21: Structured BC0001 with 7 implementation sequences covering coordinator wiring, Base signing, contracts, 0G templates, plugin polish, Docker verification, and README polish.
-- 2026-02-21: Seq 04 (0g_templates) placed before Seq 05 (hiero_plugin_polish) since polish depends on templates existing.
-- 2026-02-21: Seq 06 (docker_verify) depends on Seq 01 and 02 completing so Go changes compile into Docker images.
+- 2026-02-21: Original plan had 7 sequences based on incomplete codebase audit. Deleted and rebuilt with 7 new sequences based on thorough audit of actual remaining gaps.
+- 2026-02-21: Discovered contracts (AgentSettlement, ReputationDecay) and hiero-plugin templates already exist — removed from plan. Added actual missing work: DeFi agent bugs, ERC-7857 iNFT, 0G session auth, HIP-1215 scheduling.
+- 2026-02-21: Ordered sequences so code changes (01-03, 07) happen before polish (04-06).
 
 ---
 
