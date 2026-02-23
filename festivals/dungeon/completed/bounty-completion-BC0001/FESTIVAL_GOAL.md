@@ -2,11 +2,12 @@
 fest_type: festival
 fest_id: BC0001
 fest_name: bounty-completion
-fest_status: active
+fest_status: dungeon/completed
 fest_created: 2026-02-21T16:42:29.553073-07:00
-fest_updated: 2026-02-23T13:15:31.71425-07:00
+fest_updated: 2026-02-23T14:25:48.396382-07:00
 fest_tracking: true
 ---
+
 
 
 # Bounty Completion

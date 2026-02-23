@@ -15,6 +15,9 @@ metadata:
         - status: active
           timestamp: 2026-02-23T13:15:31.715213-07:00
           path: festivals/active/bounty-completion-BC0001
+        - status: dungeon/completed
+          timestamp: 2026-02-23T14:25:48.397169-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/dungeon/completed/bounty-completion-BC0001
 type_config:
     auto_phases:
         - IMPLEMENT
