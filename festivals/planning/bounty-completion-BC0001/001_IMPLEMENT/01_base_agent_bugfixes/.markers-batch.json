@@ -1,0 +1,179 @@
+{
+  "files": [
+    {
+      "path": "/Users/lancerogers/Dev/ethdenver-2026-campaign/festivals/planning/bounty-completion-BC0001/001_IMPLEMENT/01_base_agent_bugfixes/01_fix_strategy_moving_average.md",
+      "markers": [
+        {
+          "line": 13,
+          "hint": "Task Name",
+          "value": "Fix Mean Reversion Moving Average"
+        },
+        {
+          "line": 17,
+          "hint": "One sentence describing what this task accomplishes",
+          "value": "Replace the hardcoded `price * 0.98` moving average in `GetMarketState` with a real windowed TWAP so the mean reversion strategy produces correct buy and sell signals."
+        },
+        {
+          "line": 21,
+          "hint": "Requirement 1",
+          "value": "`GetMarketState` in `projects/agent-defi/internal/base/trading/executor.go` returns a `MovingAverage` computed from a sliding window of historical prices, not `price * 0.98`"
+        },
+        {
+          "line": 22,
+          "hint": "Requirement 2",
+          "value": "The strategy in `projects/agent-defi/internal/base/trading/strategy.go` correctly produces BUY signals when price < MA and SELL signals when price > MA (currently it always sells because MA is always below price)"
+        },
+        {
+          "line": 26,
+          "hint": "How to implement - steps, code locations, patterns to follow, actual code for each location, assume this document will be followed like a tutorial",
+          "value": "### Step 1: Add a price history ring buffer\n\nCreate a new file `projects/agent-defi/internal/base/trading/moving_avg.go`:\n\n- Define a `MovingAverage` struct with a `[]float64` ring buffer, a `size` int (window length, default 20), and a `mu sync.Mutex`\n- Method `Add(price float64)` appends to the buffer, evicting oldest if len > size\n- Method `Value() float64` returns the arithmetic mean of all prices in the buffer. If buffer is empty, return 0\n- Method `Ready() bool` returns true when buffer has at least `size/2` entries (enough data to be meaningful)\n\n### Step 2: Wire the moving average into the Executor\n\nIn `projects/agent-defi/internal/base/trading/executor.go`:\n\n- Add a `ma *MovingAverage` field to the `Executor` struct\n- Initialize it in the constructor: `ma: NewMovingAverage(20)`\n- In `GetMarketState`, after fetching the current `price` from Uniswap V3 `slot0`:\n  1. Call `e.ma.Add(price)`\n  2. If `e.ma.Ready()`, set `state.MovingAverage = e.ma.Value()`\n  3. If not ready, set `state.MovingAverage = price` (neutral — no trade signal until we have data)\n- Remove the line `MovingAverage: price * 0.98`\n\n### Step 3: Verify strategy logic\n\nIn `projects/agent-defi/internal/base/trading/strategy.go`, confirm `Evaluate` compares `market.Price` against `market.MovingAverage` with the correct threshold (default 2%). The existing logic should be correct once MA is real — buy when price is >2% below MA, sell when >2% above MA.\n\n### Step 4: Write tests\n\nIn `projects/agent-defi/internal/base/trading/moving_avg_test.go`:\n\n- Test `Add` + `Value` with known values (e.g., add 10, 20, 30 → avg is 20)\n- Test `Ready` returns false when buffer has fewer than size/2 entries\n- Test ring buffer eviction when exceeding window size\n- Test thread safety with concurrent Add calls"
+        },
+        {
+          "line": 31,
+          "hint": "Specific verification criterion",
+          "value": "Unit test exists proving: add 20 prices trending up, MA is lower than latest price, strategy returns SELL; add 20 prices trending down, MA is higher than latest price, strategy returns BUY"
+        }
+      ]
+    },
+    {
+      "path": "/Users/lancerogers/Dev/ethdenver-2026-campaign/festivals/planning/bounty-completion-BC0001/001_IMPLEMENT/01_base_agent_bugfixes/02_fix_erc8021_encoding.md",
+      "markers": [
+        {
+          "line": 13,
+          "hint": "Task Name",
+          "value": "Fix ERC-8021 Builder Code Encoding"
+        },
+        {
+          "line": 17,
+          "hint": "One sentence describing what this task accomplishes",
+          "value": "Fix the ERC-8021 attribution encoder to hex-decode the builder code address instead of copying raw ASCII string bytes, so transactions contain valid 20-byte builder attribution."
+        },
+        {
+          "line": 21,
+          "hint": "Requirement 1",
+          "value": "The `BuilderCode` field in the Attribution config is populated with hex-decoded bytes from `DEFI_BUILDER_CODE` env var (e.g., `0xc71d...` becomes 20 bytes, not 42 ASCII characters)"
+        },
+        {
+          "line": 22,
+          "hint": "Requirement 2",
+          "value": "The `Encode` method in `projects/agent-defi/internal/base/attribution/builder.go` appends the correct 4-byte magic (`\\x45\\x52\\x43\\x38`) + 20-byte address to calldata"
+        },
+        {
+          "line": 26,
+          "hint": "How to implement - steps, code locations, patterns to follow, actual code for each location, assume this document will be followed like a tutorial",
+          "value": "### Step 1: Find the config loading code\n\nIn `projects/agent-defi/internal/agent/agent.go` or wherever the Attribution config is constructed from env vars, find where `DEFI_BUILDER_CODE` is read.\n\nThe current code does something like:\n```go\ncopy(cfg.Attribution.BuilderCode[:], builderCode)\n```\nwhere `builderCode` is a string like `\"0xc71d8a19422c649fe9bdcbf3ffa536326c82b58b\"`. This copies the ASCII bytes of the hex string, not the actual address bytes.\n\n### Step 2: Fix the encoding\n\nReplace the raw string copy with proper hex decoding:\n```go\nimport \"encoding/hex\"\n\n// Strip \"0x\" prefix if present\nclean := strings.TrimPrefix(builderCode, \"0x\")\ndecoded, err := hex.DecodeString(clean)\nif err != nil {\n    return fmt.Errorf(\"invalid builder code hex: %w\", err)\n}\nif len(decoded) != 20 {\n    return fmt.Errorf(\"builder code must be 20 bytes, got %d\", len(decoded))\n}\ncopy(cfg.Attribution.BuilderCode[:], decoded)\n```\n\n### Step 3: Update the test\n\nIn `projects/agent-defi/internal/base/attribution/builder_test.go`, verify that `Encode` appends exactly 24 bytes (4 magic + 20 address) to the calldata, and that the address bytes match the hex-decoded input."
+        },
+        {
+          "line": 31,
+          "hint": "Specific verification criterion",
+          "value": "Test asserts: given builder code `0xc71d8a19422c649fe9bdcbf3ffa536326c82b58b`, the last 20 bytes of encoded calldata equal `[0xc7, 0x1d, 0x8a, ...]` (hex-decoded), not `[0x30, 0x78, 0x63, ...]` (ASCII of \"0xc\")"
+        }
+      ]
+    },
+    {
+      "path": "/Users/lancerogers/Dev/ethdenver-2026-campaign/festivals/planning/bounty-completion-BC0001/001_IMPLEMENT/01_base_agent_bugfixes/03_wire_x402_into_trading_loop.md",
+      "markers": [
+        {
+          "line": 13,
+          "hint": "Task Name",
+          "value": "Wire x402 Payment Into Trading Loop"
+        },
+        {
+          "line": 17,
+          "hint": "One sentence describing what this task accomplishes",
+          "value": "Integrate the existing x402 payment protocol into the agent's trading cycle so the agent actually pays for market data or compute before executing trades, demonstrating the HTTP 402 payment flow required by the Base bounty."
+        },
+        {
+          "line": 21,
+          "hint": "Requirement 1",
+          "value": "The `executeTradingCycle` method in `projects/agent-defi/internal/agent/agent.go` calls `a.payment.HandlePaymentRequired()` or `a.payment.Pay()` at least once per cycle (e.g., to pay for price feed data before calling `GetMarketState`)"
+        },
+        {
+          "line": 22,
+          "hint": "Requirement 2",
+          "value": "The x402 payment cost is recorded in the P&L tracker via `a.pnl.RecordFee()` so it appears in the self-sustainability calculation"
+        },
+        {
+          "line": 26,
+          "hint": "How to implement - steps, code locations, patterns to follow, actual code for each location, assume this document will be followed like a tutorial",
+          "value": "### Step 1: Understand the current code\n\nIn `projects/agent-defi/internal/agent/agent.go`, the `Agent` struct already has a `payment *payment.X402Client` field (or similar). The `executeTradingCycle` method calls `GetMarketState` then `Evaluate` then `Execute` but never touches `a.payment`.\n\n### Step 2: Add x402 payment before market data fetch\n\nIn `executeTradingCycle`, before calling `GetMarketState`, add a payment step:\n\n```go\n// Pay for market data via x402\nif a.payment != nil {\n    cost, err := a.payment.Pay(ctx, a.cfg.MarketDataEndpoint, a.cfg.MarketDataCost)\n    if err != nil {\n        // Log warning but don't block trading — market data may be free\n        a.logger.Warn(\"x402 payment failed\", \"err\", err)\n    } else {\n        a.pnl.RecordFee(cost, \"x402-market-data\")\n    }\n}\n```\n\nIf there's no `MarketDataEndpoint` config field, add one to the agent config with a sensible default or empty string (skip payment if empty).\n\n### Step 3: Add config fields\n\nIn the agent's config struct, add:\n- `MarketDataEndpoint string` — URL of the x402-enabled data provider (env: `DEFI_MARKET_DATA_ENDPOINT`)\n- `MarketDataCost string` — cost per request in wei (env: `DEFI_MARKET_DATA_COST`, default: `\"1000000000000000\"` = 0.001 ETH)\n\n### Step 4: Update tests\n\nIn `projects/agent-defi/internal/agent/agent_test.go`, add a test that mocks the payment client and verifies `Pay` is called during `executeTradingCycle`. Verify the P&L tracker receives the fee."
+        },
+        {
+          "line": 31,
+          "hint": "Specific verification criterion",
+          "value": "Test confirms: when `MarketDataEndpoint` is set, `payment.Pay()` is called once per trading cycle, and the cost appears in `pnl.Report()` under fees"
+        }
+      ]
+    },
+    {
+      "path": "/Users/lancerogers/Dev/ethdenver-2026-campaign/festivals/planning/bounty-completion-BC0001/001_IMPLEMENT/01_base_agent_bugfixes/04_fix_pnl_accuracy.md",
+      "markers": [
+        {
+          "line": 13,
+          "hint": "Task Name",
+          "value": "Fix P&L Accuracy — Real Gas Costs and Trade Revenue"
+        },
+        {
+          "line": 17,
+          "hint": "One sentence describing what this task accomplishes",
+          "value": "Replace the stubbed $0.50 gas cost and arbitrary 1% revenue calculation with real values derived from transaction receipts and actual trade input/output deltas."
+        },
+        {
+          "line": 21,
+          "hint": "Requirement 1",
+          "value": "Gas cost in `processTrade` (in `projects/agent-defi/internal/base/trading/executor.go`) is calculated from the transaction receipt's `GasUsed * EffectiveGasPrice`, converted to USD using a price feed or reasonable estimate"
+        },
+        {
+          "line": 22,
+          "hint": "Requirement 2",
+          "value": "Trade revenue is calculated from the actual swap output amount minus input amount (net of the trade), not an arbitrary percentage"
+        },
+        {
+          "line": 26,
+          "hint": "How to implement - steps, code locations, patterns to follow, actual code for each location, assume this document will be followed like a tutorial",
+          "value": "### Step 1: Fix gas cost calculation\n\nIn `projects/agent-defi/internal/base/trading/executor.go`, find the `processTrade` or `Execute` method where gas cost is recorded. Currently it's something like:\n```go\ngasCost := 0.50 // stub\n```\n\nReplace with real receipt-based calculation:\n```go\n// After sending the transaction and getting the receipt:\nreceipt, err := bind.WaitMined(ctx, client, tx)\nif err != nil { ... }\n\ngasUsed := new(big.Int).SetUint64(receipt.GasUsed)\neffectiveGasPrice := receipt.EffectiveGasPrice\ngasCostWei := new(big.Int).Mul(gasUsed, effectiveGasPrice)\n\n// Convert wei to ETH\ngasCostETH := new(big.Float).Quo(\n    new(big.Float).SetInt(gasCostWei),\n    new(big.Float).SetFloat64(1e18),\n)\n\n// For USD conversion, use a hardcoded ETH price estimate\n// (a live oracle is out of scope — use $2500 as reasonable testnet approximation)\nethPriceUSD := 2500.0\ngasCostFloat, _ := gasCostETH.Float64()\ngasCostUSD := gasCostFloat * ethPriceUSD\n\na.pnl.RecordGasCost(gasCostUSD)\n```\n\n### Step 2: Fix revenue calculation\n\nIn the same method, find where revenue is recorded. Currently it's:\n```go\nrevenue := signal.SuggestedSize * market.Price * 0.01\n```\n\nReplace with actual trade delta. After the swap executes, parse the `Swap` event from the receipt logs to get `amount0` and `amount1` (the actual tokens exchanged). The revenue is the output token value minus input token value:\n```go\n// Parse swap event from receipt logs for actual amounts\n// amountOut is the token received, amountIn is the token spent\nrevenue := (amountOutFloat * outputTokenPrice) - (amountInFloat * inputTokenPrice)\na.pnl.RecordTrade(revenue)\n```\n\nIf parsing swap events is too complex for now, at minimum use the slippage-adjusted expected output:\n```go\n// Minimum viable: estimate from trade size and price impact\nexpectedOutput := signal.SuggestedSize * market.Price\nslippage := 0.003 // 0.3% typical Uniswap V3 fee tier\nrevenue := expectedOutput * slippage // net of fees\n```\n\n### Step 3: Fix MinAmountOut\n\nAlso in the executor, find where `MinAmountOut` is set to `\"0\"`. Replace with a slippage-protected value:\n```go\n// 0.5% slippage tolerance\nminOut := new(big.Int).Mul(expectedOut, big.NewInt(995))\nminOut.Div(minOut, big.NewInt(1000))\n```"
+        },
+        {
+          "line": 31,
+          "hint": "Specific verification criterion",
+          "value": "After a trade, the P&L report shows gas cost > $0.00 (derived from receipt, not hardcoded $0.50) and `MinAmountOut` is non-zero in the transaction calldata"
+        }
+      ]
+    },
+    {
+      "path": "/Users/lancerogers/Dev/ethdenver-2026-campaign/festivals/planning/bounty-completion-BC0001/001_IMPLEMENT/01_base_agent_bugfixes/05_fix_getidentity_decode.md",
+      "markers": [
+        {
+          "line": 13,
+          "hint": "Task Name",
+          "value": "Fix ERC-8004 GetIdentity ABI Decoding"
+        },
+        {
+          "line": 17,
+          "hint": "One sentence describing what this task accomplishes",
+          "value": "Replace the hardcoded stub response in `GetIdentity` with proper ABI decoding of the on-chain ERC-8004 registry response so identity reads reflect actual on-chain state."
+        },
+        {
+          "line": 21,
+          "hint": "Requirement 1",
+          "value": "`GetIdentity` in `projects/agent-defi/internal/base/identity/register.go` ABI-decodes the response bytes from the `eth_call` into an `Identity` struct with real `Status`, `Metadata`, and `Signature` fields"
+        },
+        {
+          "line": 22,
+          "hint": "Requirement 2",
+          "value": "If the on-chain call returns empty bytes (agent not registered), `GetIdentity` returns a clear `ErrNotRegistered` error instead of a fake active identity"
+        },
+        {
+          "line": 26,
+          "hint": "How to implement - steps, code locations, patterns to follow, actual code for each location, assume this document will be followed like a tutorial",
+          "value": "### Step 1: Read the current stub\n\nIn `projects/agent-defi/internal/base/identity/register.go`, find `GetIdentity`. It currently does an `eth_call` with selector `0xf4c714b4` but has a comment saying \"In production, ABI-decode the result bytes into an Identity struct. Return a stub identity for the RPC integration layer.\" It returns a hardcoded `Identity{Status: StatusActive}` regardless of the response.\n\n### Step 2: Define the ABI decoding\n\nThe ERC-8004 `getIdentity(bytes32)` returns a tuple. Use go-ethereum's `abi` package to decode:\n\n```go\nimport \"github.com/ethereum/go-ethereum/accounts/abi\"\n\n// Define the return type ABI\nidentityABI, _ := abi.JSON(strings.NewReader(`[{\n    \"name\": \"getIdentity\",\n    \"type\": \"function\",\n    \"outputs\": [\n        {\"name\": \"status\", \"type\": \"uint8\"},\n        {\"name\": \"metadata\", \"type\": \"bytes\"},\n        {\"name\": \"signature\", \"type\": \"bytes\"}\n    ]\n}]`))\n```\n\n### Step 3: Replace the stub\n\nAfter the `eth_call` returns `result` bytes:\n```go\nif len(result) == 0 {\n    return Identity{}, ErrNotRegistered\n}\n\noutputs, err := identityABI.Methods[\"getIdentity\"].Outputs.Unpack(result)\nif err != nil {\n    return Identity{}, fmt.Errorf(\"decode identity: %w\", err)\n}\n\nstatus := outputs[0].(uint8)\nmetadata := outputs[1].([]byte)\nsignature := outputs[2].([]byte)\n\nreturn Identity{\n    Status:    IdentityStatus(status),\n    Metadata:  metadata,\n    Signature: signature,\n}, nil\n```\n\n### Step 4: Add ErrNotRegistered\n\nDefine `var ErrNotRegistered = errors.New(\"agent not registered on-chain\")` in the identity package if it doesn't exist.\n\n### Step 5: Update tests\n\nIn `projects/agent-defi/internal/base/identity/register_test.go`, add a test that provides mock ABI-encoded bytes and verifies correct decoding, and a test that provides empty bytes and expects `ErrNotRegistered`."
+        },
+        {
+          "line": 31,
+          "hint": "Specific verification criterion",
+          "value": "Test with mock ABI-encoded response verifies all three fields (status, metadata, signature) are correctly decoded; test with empty response returns `ErrNotRegistered`"
+        }
+      ]
+    }
+  ]
+}
