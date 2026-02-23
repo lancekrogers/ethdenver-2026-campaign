@@ -26,6 +26,7 @@ Implement the session-based Bearer token authentication required by 0G Compute p
 ### Step 1: Understand the 0G auth protocol
 
 0G Compute providers require a Bearer token constructed from an ECDSA signature. The format is:
+
 1. Create a raw message (typically a timestamp or nonce)
 2. Sign it with the same private key used for the 0G chain (`ZG_CHAIN_PRIVATE_KEY`)
 3. Base64-encode `rawMessage:signature`

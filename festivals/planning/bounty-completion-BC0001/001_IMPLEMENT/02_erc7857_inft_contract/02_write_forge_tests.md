@@ -57,6 +57,7 @@ contract AgentINFTTest is Test {
 ```
 
 Key patterns to follow:
+
 - Use `vm.prank(alice)` to simulate calls from specific addresses
 - Use `vm.expectEmit(true, true, false, false)` for Transfer event verification
 - Use `vm.expectRevert()` for access control tests

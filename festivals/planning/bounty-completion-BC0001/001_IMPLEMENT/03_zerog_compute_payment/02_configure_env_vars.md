@@ -27,6 +27,7 @@ Fill in the empty environment variables in `projects/agent-inference/.env` that 
 ### Step 1: Research current 0G testnet endpoints
 
 Check 0G documentation for current Galileo testnet storage node endpoints. As of early 2026, common endpoints include:
+
 - Storage node: `https://storage-testnet.0g.ai` or similar
 - The DA and compute contracts are already configured with correct addresses
 

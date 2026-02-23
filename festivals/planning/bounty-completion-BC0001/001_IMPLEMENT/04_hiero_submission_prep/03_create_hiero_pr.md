@@ -32,6 +32,7 @@ gh repo fork hiero-ledger/hiero-cli --clone
 ### Step 2: Follow their plugin guide
 
 Read `PLUGIN_ARCHITECTURE_GUIDE.md` in the hiero-cli repo. The plugin needs to:
+
 - Be in a specific directory structure under `plugins/`
 - Export a manifest with command definitions
 - Follow their Node.js plugin interface
@@ -50,6 +51,7 @@ gh pr create --title "feat: add camp workspace management plugin" --body "..."
 ```
 
 Include in the PR body:
+
 - What camp does (workspace management for Hedera development)
 - The 5 templates available (3 Hedera + 2 0G)
 - Link to demo video (from task 04)

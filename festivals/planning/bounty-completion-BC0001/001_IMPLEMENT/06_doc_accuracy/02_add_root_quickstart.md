@@ -53,6 +53,7 @@ just docker up-all
 # View logs
 just docker logs
 ```
+
 ```
 
 ### Step 2: Verify commands work

@@ -28,6 +28,7 @@ Write `AgentINFT.sol` in `projects/contracts/src/` implementing ERC-721 with enc
 ### Step 1: Read the Go minter ABI
 
 In `projects/agent-inference/internal/zerog/inft/minter.go`, find the ABI string used for encoding. The minter packs calls to:
+
 - `mint(address,string,string,bytes,bytes32,string)`
 - `updateEncryptedMetadata(uint256,bytes)`
 
@@ -96,6 +97,7 @@ cd projects/contracts && forge install OpenZeppelin/openzeppelin-contracts --no-
 ```
 
 Add the remapping to `foundry.toml` or `remappings.txt`:
+
 ```
 @openzeppelin/=lib/openzeppelin-contracts/
 ```

@@ -70,11 +70,13 @@ Gates that must pass before review completion:
 **Decision:** [ ] GO / [ ] NO-GO
 
 **Conditions for GO:**
+
 - [ ] All review criteria passed
 - [ ] All stakeholder sign-offs received
 - [ ] All approval gates satisfied
 
 **If NO-GO, actions required:**
+
 - Document blockers
 - Return to relevant implementation tasks
 - Schedule re-review

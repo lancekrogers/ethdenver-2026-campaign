@@ -28,6 +28,7 @@ Add healthcheck blocks to all 4 services in `docker-compose.yml` so `docker comp
 In the root `docker-compose.yml`, add healthcheck blocks to each service:
 
 **dashboard** (Next.js on port 3000):
+
 ```yaml
 healthcheck:
   test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000"]
@@ -38,6 +39,7 @@ healthcheck:
 ```
 
 **coordinator** (Go binary — add a simple /healthz endpoint or use process check):
+
 ```yaml
 healthcheck:
   test: ["CMD", "pgrep", "-x", "coordinator"]
@@ -48,6 +50,7 @@ healthcheck:
 ```
 
 **inference** (Go binary):
+
 ```yaml
 healthcheck:
   test: ["CMD", "pgrep", "-x", "agent-inference"]
@@ -58,6 +61,7 @@ healthcheck:
 ```
 
 **defi** (Go binary):
+
 ```yaml
 healthcheck:
   test: ["CMD", "pgrep", "-x", "agent-defi"]

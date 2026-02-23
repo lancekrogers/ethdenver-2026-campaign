@@ -33,6 +33,7 @@ In `projects/contracts/README.md`, find the status line that says "Scaffolded bu
 ```
 
 Also ensure the README describes both contracts accurately:
+
 - AgentSettlement.sol: settle, batchSettle, ownership, events
 - ReputationDecay.sol: time-decay reputation, updateReputation, getReputation
 

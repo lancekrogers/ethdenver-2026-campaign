@@ -61,6 +61,7 @@ ZG_ENCRYPTION_KEY=<generate_32_random_hex_bytes>
 ```
 
 Generate a 32-byte encryption key:
+
 ```bash
 openssl rand -hex 32
 ```

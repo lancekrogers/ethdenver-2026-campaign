@@ -50,6 +50,7 @@ hcli camp status
 ### Step 2: Record
 
 Use a screen recording tool (OBS, QuickTime, or asciinema for terminal). Keep it concise:
+
 - Start with a brief intro of what the plugin does
 - Run through the demo script
 - Show the generated project structure briefly
