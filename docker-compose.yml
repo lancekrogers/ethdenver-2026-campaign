@@ -4,6 +4,9 @@ services:
       context: ./projects/dashboard
       args:
         NEXT_PUBLIC_USE_MOCK: "${NEXT_PUBLIC_USE_MOCK:-true}"
+        NEXT_PUBLIC_HEDERA_TOPIC_IDS: "${NEXT_PUBLIC_HEDERA_TOPIC_IDS:-}"
+        NEXT_PUBLIC_HEDERA_MIRROR_NODE_URL: "${NEXT_PUBLIC_HEDERA_MIRROR_NODE_URL:-https://testnet.mirrornode.hedera.com}"
+        NEXT_PUBLIC_HUB_WS_URL: "${NEXT_PUBLIC_HUB_WS_URL:-ws://coordinator:8080/ws}"
     ports:
       - "3000:3000"
     restart: unless-stopped
