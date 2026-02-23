@@ -18,6 +18,27 @@ This campaign was created and managed using Obedience Corp's developer tooling:
 
 This repository — its git history, submodule structure, `festivals/` planning directory, and `workflow/` design documents — is a live example of what these products can do.
 
+## Quick Start
+
+```bash
+# Clone with submodules
+git clone --recursive https://github.com/lancekrogers/ethdenver-2026-campaign.git
+cd ethdenver-2026-campaign
+
+# Run the demo (dashboard in mock mode — no env vars needed)
+just demo
+```
+
+Open `http://localhost:3000` to see all 5 panels with simulated data: Festival View, HCS Feed, Agent Activity, DeFi P&L, and Inference Metrics.
+
+### Full System (requires .env configuration)
+
+```bash
+cp .env.example .env         # Fill in Hedera + 0G + Base credentials
+just live                    # Build and start all agents + dashboard
+docker compose ps            # Verify health status
+```
+
 ## Dashboard
 
 ![Agent Economy Observer Dashboard](docs/images/dashboard.png)
@@ -94,14 +115,15 @@ Data flows in priority order: Hub WebSocket (primary), direct daemon gRPC (dev f
 
 ### Contracts
 
-Two Solidity contracts for Hedera Track 2 (On-Chain Automation):
+Three Solidity contracts:
 
-- **AgentSettlement.sol**: Accumulates pending inter-agent payments and batch-settles via HIP-1215 scheduled transactions
-- **ReputationDecay.sol**: Tracks agent activity timestamps and schedules periodic reputation score decay for inactive agents
+- **AgentSettlement.sol**: Accumulates pending inter-agent payments and batch-settles via HIP-1215 scheduled transactions (Hedera Track 2)
+- **ReputationDecay.sol**: Tracks agent activity timestamps and schedules periodic reputation score decay for inactive agents (Hedera Track 2)
+- **AgentINFT.sol**: ERC-7857 iNFT for agent inference provenance — stores encrypted metadata, result hashes, and DA references on 0G Chain
 
 ### Hiero Plugin
 
-A TypeScript Hiero CLI plugin (`hcli camp`) that extends the Hiero CLI with workspace management. Ships three templates: `hedera-smart-contract` (Hardhat + Hedera testnet), `hedera-dapp` (Vite + React + HashConnect), and `hedera-agent` (Go agent with HCS/HTS).
+A TypeScript Hiero CLI plugin (`hcli camp`) that extends the Hiero CLI with workspace management. Ships five templates: `hedera-smart-contract` (Hardhat + Hedera testnet), `hedera-dapp` (Vite + React + HashConnect), `hedera-agent` (Go agent with HCS/HTS), `0g-agent` (0G Compute inference), and `0g-inft-build` (ERC-7857 iNFT minting).
 
 ## Projects
 
