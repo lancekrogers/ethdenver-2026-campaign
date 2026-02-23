@@ -9,22 +9,15 @@ fest_created: 2026-02-21T17:48:56.72717-07:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 04_hiero_submission_prep
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-02-21T17:48:56-07:00
+**Sequence:** 04_hiero_submission_prep | **Phase:** 001_IMPLEMENT | **Status:** Pending | **Created:** 2026-02-21T17:48:56-07:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Polish the hiero-plugin submission materials (docs, test coverage, demo video script) so the plugin meets Hedera Track 4 ($10k) judging criteria for a production-quality CLI plugin.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** The hiero-plugin code and templates already work, but the submission package needs updated docs referencing 0G templates, better test coverage for edge cases, a PR-ready branch, and a demo video walkthrough. Without these, judges lack evidence of quality.
 
 ## Success Criteria
 
@@ -32,55 +25,55 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Updated plugin docs**: submission.md, architecture.md, and usage-guide.md accurately describe all templates including 0G agent and iNFT
+- [ ] **Test coverage**: At least 2 new test cases for 0G template generation and validation edge cases
+- [ ] **PR branch**: Clean branch with conventional commits ready for hiero-plugin upstream PR
+- [ ] **Demo script**: Written walkthrough script showing `camp create 0g-agent` and `camp create 0g-inft-build` end-to-end
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **All tests pass**: `cd projects/hiero-plugin && npm test` passes with 0 failures
+- [ ] **Docs accuracy**: Every command shown in docs actually works when copy-pasted
 
 ### Completion Criteria
 
 - [ ] All tasks in sequence completed successfully
 - [ ] Quality verification tasks passed
 - [ ] Code review completed and issues addressed
-- [ ] Documentation updated
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_update_plugin_docs | Update submission.md, architecture.md, usage-guide.md with 0G template content | Judges see complete, accurate documentation |
+| 02_add_0g_test_coverage | Add test cases for 0G template generation | Test suite validates all templates work |
+| 03_create_hiero_pr | Create clean PR branch with conventional commits | Submission-ready code for upstream |
+| 04_record_demo_video | Write demo script and record walkthrough | Visual proof of plugin functionality |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 02_erc7857_inft_contract: The iNFT template references the ERC-7857 contract, so that contract should exist before demoing
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- Submission-ready plugin: Used by 002_REVIEW phase for Hedera Track 4 qualification check
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| 0G template tests flaky on CI | Low | Medium | Run tests locally 3x before committing |
+| Demo video tooling not available | Low | Low | Written script is sufficient fallback for judges |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: All three docs updated with 0G template sections
+- [ ] **Milestone 2**: Test suite passes including new 0G test cases
+- [ ] **Milestone 3**: PR branch created and demo script written
 
 ## Quality Gates
 
@@ -88,15 +81,13 @@ The sequence goal is achieved when:
 
 - [ ] All unit tests pass
 - [ ] Integration tests complete
-- [ ] Performance benchmarks met
 
 ### Code Review
 
 - [ ] Code review conducted
 - [ ] Review feedback addressed
-- [ ] Standards compliance verified
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

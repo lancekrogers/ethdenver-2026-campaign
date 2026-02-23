@@ -9,22 +9,15 @@ fest_created: 2026-02-21T17:48:56.743337-07:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 05_system_polish
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-02-21T17:48:56-07:00
+**Sequence:** 05_system_polish | **Phase:** 001_IMPLEMENT | **Status:** Pending | **Created:** 2026-02-21T17:48:56-07:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Fix the coordinator's missing HCS topic key configuration and add Docker healthchecks to docker-compose.yml so the full system runs reliably end-to-end.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** Bounty judges will run `docker compose up` to verify the system works. Without healthchecks, compose can't report service health. Without the coordinator's topic key fix, HCS message submission fails silently. These are the last two infrastructure gaps blocking a clean demo.
 
 ## Success Criteria
 
@@ -32,55 +25,50 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Topic key config**: Coordinator reads `HEDERA_TOPIC_SUBMIT_KEY` from environment and passes it to HCS client, so message submission doesn't fail with "INVALID_SIGNATURE"
+- [ ] **Docker healthchecks**: All 4 services in docker-compose.yml (coordinator, defi, inference, dashboard) have healthcheck blocks that docker reports as healthy
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Coordinator builds**: `cd projects/agent-coordinator && just build` succeeds
+- [ ] **Docker healthy**: `docker compose up -d && docker compose ps` shows all services as "healthy" within 60 seconds
 
 ### Completion Criteria
 
 - [ ] All tasks in sequence completed successfully
 - [ ] Quality verification tasks passed
 - [ ] Code review completed and issues addressed
-- [ ] Documentation updated
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_coordinator_topic_keys | Add HEDERA_TOPIC_SUBMIT_KEY env loading and pass to HCS client | HCS messages authenticate correctly |
+| 02_docker_healthchecks | Add healthcheck blocks to all 4 services in docker-compose.yml | `docker compose ps` shows healthy status |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 01_base_agent_bugfixes: DeFi agent must build cleanly before Docker healthchecks can pass
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- Working Docker orchestration: Used by 06_doc_accuracy for verifying quickstart instructions
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Healthcheck ports differ from actual service ports | Medium | Low | Read each Dockerfile to confirm exposed port before writing healthcheck |
+| Topic key format mismatch (hex vs DER) | Low | Medium | Check Hedera SDK docs for expected key format |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: Coordinator topic key config compiles and passes unit test
+- [ ] **Milestone 2**: All 4 Docker healthchecks added and reporting healthy
 
 ## Quality Gates
 
@@ -88,15 +76,13 @@ The sequence goal is achieved when:
 
 - [ ] All unit tests pass
 - [ ] Integration tests complete
-- [ ] Performance benchmarks met
 
 ### Code Review
 
 - [ ] Code review conducted
 - [ ] Review feedback addressed
-- [ ] Standards compliance verified
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A
