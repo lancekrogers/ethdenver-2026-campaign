@@ -10,8 +10,11 @@ metadata:
     status_history:
         - status: planning
           timestamp: 2026-02-21T23:42:29.554248Z
-          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/planning/bounty-completion-BC0001
+          path: festivals/planning/bounty-completion-BC0001
           notes: Festival created
+        - status: active
+          timestamp: 2026-02-23T13:15:31.715213-07:00
+          path: festivals/active/bounty-completion-BC0001
 type_config:
     auto_phases:
         - IMPLEMENT
