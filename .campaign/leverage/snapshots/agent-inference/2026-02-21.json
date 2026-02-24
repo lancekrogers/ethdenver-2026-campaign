@@ -1,0 +1,74 @@
+{
+  "project": "agent-inference",
+  "commit_hash": "2047860bda0d80003e0ebeca9c4ca5e2791e136c",
+  "commit_date": "2026-02-21T16:16:24-07:00",
+  "sampled_at": "2026-02-24T12:58:56.742742-07:00",
+  "date": "2026-02-21",
+  "scc": {
+    "estimated_cost": 128736.3525864561,
+    "estimated_schedule_months": 6.311033895779885,
+    "estimated_people": 1.8122437189221108,
+    "total_files": 33,
+    "total_lines": 5538,
+    "total_code": 4424,
+    "total_comments": 263,
+    "total_blanks": 851,
+    "total_complexity": 762,
+    "languages": [
+      {
+        "name": "Go",
+        "files": 25,
+        "code": 3890,
+        "complexity": 762
+      },
+      {
+        "name": "Markdown",
+        "files": 5,
+        "code": 497,
+        "complexity": 0
+      },
+      {
+        "name": "Docker ignore",
+        "files": 1,
+        "code": 9,
+        "complexity": 0
+      },
+      {
+        "name": "Dockerfile",
+        "files": 1,
+        "code": 11,
+        "complexity": 0
+      },
+      {
+        "name": "License",
+        "files": 1,
+        "code": 17,
+        "complexity": 0
+      }
+    ]
+  },
+  "leverage": {
+    "project_name": "agent-inference",
+    "estimated_people": 1.8122437189221108,
+    "estimated_months": 6.311033895779885,
+    "estimated_cost": 128736.3525864561,
+    "actual_people": 1,
+    "elapsed_months": 0.10265678992066968,
+    "actual_person_months": 0.16569024675135058,
+    "author_count": 1,
+    "full_leverage": 69.02718634184428,
+    "simple_leverage": 1.8122437189221108,
+    "total_files": 33,
+    "total_lines": 5538,
+    "total_code": 4424
+  },
+  "authors": [
+    {
+      "name": "lancekrogers",
+      "email": "lancekrogers@gmail.com",
+      "lines": 5967,
+      "percentage": 100
+    }
+  ],
+  "total_lines": 5538
+}

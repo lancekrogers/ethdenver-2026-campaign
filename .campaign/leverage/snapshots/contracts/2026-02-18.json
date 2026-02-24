@@ -1,0 +1,50 @@
+{
+  "project": "contracts",
+  "commit_hash": "615aae68a0cac74d3156fe6585fe97aa803efc8c",
+  "commit_date": "2026-02-18T13:16:46-07:00",
+  "sampled_at": "2026-02-24T12:58:56.870168-07:00",
+  "date": "2026-02-18",
+  "scc": {
+    "estimated_cost": 19.124730597666847,
+    "estimated_schedule_months": 0.2215237428056705,
+    "estimated_people": 0.007669922244011662,
+    "total_files": 1,
+    "total_lines": 1,
+    "total_code": 1,
+    "total_comments": 0,
+    "total_blanks": 0,
+    "total_complexity": 0,
+    "languages": [
+      {
+        "name": "Markdown",
+        "files": 1,
+        "code": 1,
+        "complexity": 0
+      }
+    ]
+  },
+  "leverage": {
+    "project_name": "contracts",
+    "estimated_people": 0.007669922244011662,
+    "estimated_months": 0.2215237428056705,
+    "estimated_cost": 19.124730597666847,
+    "actual_people": 1,
+    "elapsed_months": 0.0000041824840609334705,
+    "actual_person_months": 0.1655815021657663,
+    "author_count": 1,
+    "full_leverage": 0.01026123003051974,
+    "simple_leverage": 0.007669922244011662,
+    "total_files": 1,
+    "total_lines": 1,
+    "total_code": 1
+  },
+  "authors": [
+    {
+      "name": "Lance Rogers",
+      "email": "lancekrogers@gmail.com",
+      "lines": 1,
+      "percentage": 100
+    }
+  ],
+  "total_lines": 1
+}

@@ -1,0 +1,92 @@
+{
+  "project": "dashboard",
+  "commit_hash": "2d577ff8190ab8ac86d63535608c84e57cc393bb",
+  "commit_date": "2026-02-23T14:58:24-07:00",
+  "sampled_at": "2026-02-24T12:58:57.931638-07:00",
+  "date": "2026-02-23",
+  "scc": {
+    "estimated_cost": 148912.69376259603,
+    "estimated_schedule_months": 6.670034958998303,
+    "estimated_people": 1.9834420913362376,
+    "total_files": 54,
+    "total_lines": 5806,
+    "total_code": 5082,
+    "total_comments": 79,
+    "total_blanks": 645,
+    "total_complexity": 277,
+    "languages": [
+      {
+        "name": "TypeScript",
+        "files": 44,
+        "code": 4808,
+        "complexity": 276
+      },
+      {
+        "name": "JSON",
+        "files": 2,
+        "code": 82,
+        "complexity": 0
+      },
+      {
+        "name": "JavaScript",
+        "files": 2,
+        "code": 41,
+        "complexity": 0
+      },
+      {
+        "name": "Markdown",
+        "files": 2,
+        "code": 82,
+        "complexity": 0
+      },
+      {
+        "name": "CSS",
+        "files": 1,
+        "code": 11,
+        "complexity": 0
+      },
+      {
+        "name": "Docker ignore",
+        "files": 1,
+        "code": 11,
+        "complexity": 0
+      },
+      {
+        "name": "Dockerfile",
+        "files": 1,
+        "code": 30,
+        "complexity": 1
+      },
+      {
+        "name": "License",
+        "files": 1,
+        "code": 17,
+        "complexity": 0
+      }
+    ]
+  },
+  "leverage": {
+    "project_name": "dashboard",
+    "estimated_people": 1.9834420913362376,
+    "estimated_months": 6.670034958998303,
+    "estimated_cost": 148912.69376259603,
+    "actual_people": 1,
+    "elapsed_months": 0.16658035540468197,
+    "actual_person_months": 0.1665773135980922,
+    "author_count": 1,
+    "full_leverage": 79.42034724056764,
+    "simple_leverage": 1.9834420913362376,
+    "total_files": 54,
+    "total_lines": 5806,
+    "total_code": 5082
+  },
+  "authors": [
+    {
+      "name": "lancekrogers",
+      "email": "lancekrogers@gmail.com",
+      "lines": 18004,
+      "percentage": 100
+    }
+  ],
+  "total_lines": 5806
+}

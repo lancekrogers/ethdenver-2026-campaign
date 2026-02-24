@@ -1,0 +1,68 @@
+{
+  "project": "contracts",
+  "commit_hash": "823026bdb05a90ed30de54c7913a31fc057e5436",
+  "commit_date": "2026-02-21T17:41:17-07:00",
+  "sampled_at": "2026-02-24T12:58:57.059961-07:00",
+  "date": "2026-02-21",
+  "scc": {
+    "estimated_cost": 9510.582919977896,
+    "estimated_schedule_months": 2.3449455804654757,
+    "estimated_people": 0.3603215885856586,
+    "total_files": 9,
+    "total_lines": 573,
+    "total_code": 370,
+    "total_comments": 73,
+    "total_blanks": 130,
+    "total_complexity": 39,
+    "languages": [
+      {
+        "name": "Solidity",
+        "files": 5,
+        "code": 318,
+        "complexity": 39
+      },
+      {
+        "name": "Markdown",
+        "files": 2,
+        "code": 31,
+        "complexity": 0
+      },
+      {
+        "name": "License",
+        "files": 1,
+        "code": 17,
+        "complexity": 0
+      },
+      {
+        "name": "TOML",
+        "files": 1,
+        "code": 4,
+        "complexity": 0
+      }
+    ]
+  },
+  "leverage": {
+    "project_name": "contracts",
+    "estimated_people": 0.3603215885856586,
+    "estimated_months": 2.3449455804654757,
+    "estimated_cost": 9510.582919977896,
+    "actual_people": 1,
+    "elapsed_months": 0.10459328004088188,
+    "actual_person_months": 0.1655815021657663,
+    "author_count": 1,
+    "full_leverage": 5.102831570246066,
+    "simple_leverage": 0.3603215885856586,
+    "total_files": 9,
+    "total_lines": 573,
+    "total_code": 370
+  },
+  "authors": [
+    {
+      "name": "lancekrogers",
+      "email": "lancekrogers@gmail.com",
+      "lines": 598,
+      "percentage": 100
+    }
+  ],
+  "total_lines": 573
+}

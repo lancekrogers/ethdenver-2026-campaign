@@ -1,0 +1,104 @@
+{
+  "project": "hiero-plugin",
+  "commit_hash": "edcb528fecda9c0498934385df6be512d9c3a53d",
+  "commit_date": "2026-02-21T17:41:20-07:00",
+  "sampled_at": "2026-02-24T12:58:58.619246-07:00",
+  "date": "2026-02-21",
+  "scc": {
+    "estimated_cost": 73139.06026604686,
+    "estimated_schedule_months": 5.090856078577469,
+    "estimated_people": 1.2763637816831148,
+    "total_files": 73,
+    "total_lines": 3185,
+    "total_code": 2582,
+    "total_comments": 58,
+    "total_blanks": 545,
+    "total_complexity": 191,
+    "languages": [
+      {
+        "name": "TypeScript",
+        "files": 26,
+        "code": 1101,
+        "complexity": 77
+      },
+      {
+        "name": "Go",
+        "files": 18,
+        "code": 554,
+        "complexity": 114
+      },
+      {
+        "name": "Markdown",
+        "files": 12,
+        "code": 687,
+        "complexity": 0
+      },
+      {
+        "name": "JSON",
+        "files": 11,
+        "code": 148,
+        "complexity": 0
+      },
+      {
+        "name": "CSS",
+        "files": 1,
+        "code": 19,
+        "complexity": 0
+      },
+      {
+        "name": "HTML",
+        "files": 1,
+        "code": 12,
+        "complexity": 0
+      },
+      {
+        "name": "JavaScript",
+        "files": 1,
+        "code": 7,
+        "complexity": 0
+      },
+      {
+        "name": "License",
+        "files": 1,
+        "code": 17,
+        "complexity": 0
+      },
+      {
+        "name": "Shell",
+        "files": 1,
+        "code": 21,
+        "complexity": 0
+      },
+      {
+        "name": "Solidity",
+        "files": 1,
+        "code": 16,
+        "complexity": 0
+      }
+    ]
+  },
+  "leverage": {
+    "project_name": "hiero-plugin",
+    "estimated_people": 1.2763637816831148,
+    "estimated_months": 5.090856078577469,
+    "estimated_cost": 73139.06026604686,
+    "actual_people": 1,
+    "elapsed_months": 0.10459442071835305,
+    "actual_person_months": 0.1661811182897747,
+    "author_count": 1,
+    "full_leverage": 39.10061734647399,
+    "simple_leverage": 1.2763637816831148,
+    "total_files": 73,
+    "total_lines": 3185,
+    "total_code": 2582
+  },
+  "authors": [
+    {
+      "name": "lancekrogers",
+      "email": "lancekrogers@gmail.com",
+      "lines": 7939,
+      "percentage": 100
+    }
+  ],
+  "total_lines": 3185
+}

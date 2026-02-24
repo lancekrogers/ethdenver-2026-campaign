@@ -1,0 +1,80 @@
+{
+  "project": "agent-coordinator",
+  "commit_hash": "83c24917ad4895aae4085d9614e055bf7571ebe4",
+  "commit_date": "2026-02-21T17:41:14-07:00",
+  "sampled_at": "2026-02-24T12:58:56.358717-07:00",
+  "date": "2026-02-21",
+  "scc": {
+    "estimated_cost": 158711.63803773987,
+    "estimated_schedule_months": 6.833534489584565,
+    "estimated_people": 2.063380390314065,
+    "total_files": 71,
+    "total_lines": 7013,
+    "total_code": 5400,
+    "total_comments": 361,
+    "total_blanks": 1252,
+    "total_complexity": 706,
+    "languages": [
+      {
+        "name": "Go",
+        "files": 57,
+        "code": 4047,
+        "complexity": 706
+      },
+      {
+        "name": "Markdown",
+        "files": 10,
+        "code": 1279,
+        "complexity": 0
+      },
+      {
+        "name": "Docker ignore",
+        "files": 1,
+        "code": 9,
+        "complexity": 0
+      },
+      {
+        "name": "Dockerfile",
+        "files": 1,
+        "code": 11,
+        "complexity": 0
+      },
+      {
+        "name": "License",
+        "files": 1,
+        "code": 17,
+        "complexity": 0
+      },
+      {
+        "name": "Protocol Buffers",
+        "files": 1,
+        "code": 37,
+        "complexity": 0
+      }
+    ]
+  },
+  "leverage": {
+    "project_name": "agent-coordinator",
+    "estimated_people": 2.063380390314065,
+    "estimated_months": 6.833534489584565,
+    "estimated_cost": 158711.63803773987,
+    "actual_people": 1,
+    "elapsed_months": 0.10459213936341072,
+    "actual_person_months": 0.16560925865089796,
+    "author_count": 1,
+    "full_leverage": 85.14126068317601,
+    "simple_leverage": 2.063380390314065,
+    "total_files": 71,
+    "total_lines": 7013,
+    "total_code": 5400
+  },
+  "authors": [
+    {
+      "name": "lancekrogers",
+      "email": "lancekrogers@gmail.com",
+      "lines": 7335,
+      "percentage": 100
+    }
+  ],
+  "total_lines": 7013
+}

@@ -1,0 +1,74 @@
+{
+  "project": "agent-defi",
+  "commit_hash": "27becd03951a30e52c5ccec1dc23c7ec7f0898bc",
+  "commit_date": "2026-02-21T17:41:50-07:00",
+  "sampled_at": "2026-02-24T12:58:56.518258-07:00",
+  "date": "2026-02-21",
+  "scc": {
+    "estimated_cost": 138408.44355365893,
+    "estimated_schedule_months": 6.48717836241846,
+    "estimated_people": 1.8954950805323205,
+    "total_files": 31,
+    "total_lines": 6511,
+    "total_code": 4740,
+    "total_comments": 684,
+    "total_blanks": 1087,
+    "total_complexity": 830,
+    "languages": [
+      {
+        "name": "Go",
+        "files": 25,
+        "code": 4371,
+        "complexity": 830
+      },
+      {
+        "name": "Markdown",
+        "files": 3,
+        "code": 332,
+        "complexity": 0
+      },
+      {
+        "name": "Docker ignore",
+        "files": 1,
+        "code": 9,
+        "complexity": 0
+      },
+      {
+        "name": "Dockerfile",
+        "files": 1,
+        "code": 11,
+        "complexity": 0
+      },
+      {
+        "name": "License",
+        "files": 1,
+        "code": 17,
+        "complexity": 0
+      }
+    ]
+  },
+  "leverage": {
+    "project_name": "agent-defi",
+    "estimated_people": 1.8954950805323205,
+    "estimated_months": 6.48717836241846,
+    "estimated_cost": 138408.44355365893,
+    "actual_people": 1,
+    "elapsed_months": 0.10460582749306468,
+    "actual_person_months": 0.16571306030077385,
+    "author_count": 1,
+    "full_leverage": 74.20305104607668,
+    "simple_leverage": 1.8954950805323205,
+    "total_files": 31,
+    "total_lines": 6511,
+    "total_code": 4740
+  },
+  "authors": [
+    {
+      "name": "lancekrogers",
+      "email": "lancekrogers@gmail.com",
+      "lines": 6938,
+      "percentage": 100
+    }
+  ],
+  "total_lines": 6511
+}
