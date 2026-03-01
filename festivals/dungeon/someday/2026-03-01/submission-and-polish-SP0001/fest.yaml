@@ -18,6 +18,9 @@ metadata:
         - status: planning
           timestamp: 2026-02-20T10:53:40.722429-07:00
           path: /Users/lancerogers/Dev/Crypto/ETHDENVER/ethdenver2026/festivals/planning/submission-and-polish-SP0001
+        - status: dungeon/someday
+          timestamp: 2026-03-01T16:47:52.697681-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/dungeon/someday/2026-03-01/submission-and-polish-SP0001
 type_config:
     auto_phases:
         - INGEST

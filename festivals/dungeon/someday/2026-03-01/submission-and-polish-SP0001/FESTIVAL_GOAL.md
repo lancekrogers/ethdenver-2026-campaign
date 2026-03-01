@@ -2,11 +2,12 @@
 fest_type: festival
 fest_id: SP0001
 fest_name: submission-and-polish
-fest_status: planning
+fest_status: dungeon/someday
 fest_created: 2026-02-18T13:41:01.436091-07:00
-fest_updated: 2026-02-20T10:53:40.721914-07:00
+fest_updated: 2026-03-01T16:47:52.69634-07:00
 fest_tracking: true
 ---
+
 
 
 
