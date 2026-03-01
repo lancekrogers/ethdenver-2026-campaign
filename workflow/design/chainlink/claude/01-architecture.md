@@ -33,13 +33,13 @@
 
 ### Hackathon Requirements Alignment
 
-| Requirement | How We Satisfy |
-|---|---|
-| CRE-based workflow | Standalone Go workflow with `InitWorkflow()` |
-| `cre workflow simulate` | Workflow is simulatable from clean clone |
-| On-chain write | `RiskDecisionReceipt.sol` on CRE-supported testnet |
-| Transaction hash | `--broadcast` flag produces verifiable tx |
-| `#cre-ai` use case | AI inference signals drive risk decisions |
+| Requirement             | How We Satisfy                                     |
+| ----------------------- | -------------------------------------------------- |
+| CRE-based workflow      | Standalone Go workflow with `InitWorkflow()`       |
+| `cre workflow simulate` | Workflow is simulatable from clean clone           |
+| On-chain write          | `RiskDecisionReceipt.sol` on CRE-supported testnet |
+| Transaction hash        | `--broadcast` flag produces verifiable tx          |
+| `#cre-ai` use case      | AI inference signals drive risk decisions          |
 
 ### Integration with Existing Economy
 
@@ -80,6 +80,7 @@ projects/cre-risk-router/
 The workflow is triggered by an HTTP POST from the agent-coordinator (or manually for simulation). The HTTP trigger provides cryptographic signature verification.
 
 **Trigger payload:**
+
 ```json
 {
   "agent_id": "agent-defi-001",
@@ -136,6 +137,7 @@ cre workflow simulate . --broadcast
 ```
 
 The simulation:
+
 1. Uses a mock/cron trigger for deterministic replay (HTTP trigger can be simulated)
 2. Fetches real market data via HTTP
 3. Reads Chainlink price feed on testnet
@@ -146,6 +148,7 @@ The simulation:
 ## Network Selection
 
 **Primary target: Arbitrum Sepolia** (or Base Sepolia)
+
 - Well-supported by CRE
 - Chainlink price feeds available on testnet
 - Low gas costs for testnet writes

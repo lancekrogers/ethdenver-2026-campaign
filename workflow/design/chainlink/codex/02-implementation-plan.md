@@ -143,4 +143,3 @@ Submission-ready when all are true:
 2. At least one on-chain receipt is written and verifiable.
 3. End-to-end flow is demonstrated with current agent economy components.
 4. Moltbook post is compliant and published before cutoff.
-

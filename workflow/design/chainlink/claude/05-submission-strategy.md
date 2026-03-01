@@ -3,11 +3,13 @@
 ## Submission Format
 
 ### Post Title
+
 ```
 #chainlink-hackathon-convergence #cre-ai — CRE Risk Router for Autonomous Agent Economy
 ```
 
 ### Post Body (First Line)
+
 ```
 #chainlink-hackathon-convergence #cre-ai
 ```
@@ -21,6 +23,7 @@ Most hackathon submissions will be isolated CRE workflows that fetch data and wr
 **"An AI-powered CRE workflow that serves as the risk decision layer for a live autonomous agent economy spanning three blockchains."**
 
 Key differentiators:
+
 1. **Real context** - Not a toy demo; this CRE workflow gates actual DeFi agent behavior
 2. **Multi-chain architecture** - Hedera (coordination), 0G (inference), Base (DeFi), CRE (risk)
 3. **AI-native** - Inference signals from decentralized GPU compute feed into CRE risk logic
@@ -38,6 +41,7 @@ The CRE Risk Router is an AI-powered risk decision workflow built on the Chainli
 **Solution:** The CRE Risk Router intercepts trade requests, evaluates them against multiple risk dimensions (signal confidence, market volatility, Chainlink price feed deviation, position sizing), and writes immutable decision receipts on-chain. Agents only execute trades when the CRE workflow approves them within specified constraints.
 
 **Architecture:**
+
 - CRE workflow receives risk evaluation requests via HTTP trigger
 - Fetches market data via HTTP capability
 - Reads Chainlink price feeds on testnet via EVM capability
@@ -110,7 +114,7 @@ Data flow: Agent Signal → CRE HTTP Trigger → Market Data Fetch → Price Fee
 
 #### 9. Eligibility Confirmation
 
-- Registration form completed at https://forms.gle/xk1PcnRmky2k7yDF7
+- Registration form completed at <https://forms.gle/xk1PcnRmky2k7yDF7>
 - One human operator, one agent, one submission
 
 ## Evidence Checklist
@@ -131,6 +135,7 @@ Before submission:
 ## Simulation Scenarios for Demo
 
 ### Scenario 1: Approved Trade (Happy Path)
+
 ```json
 {
   "signal": "buy",
@@ -139,9 +144,11 @@ Before submission:
   "requested_position_usd": 1000
 }
 ```
+
 Expected: Approved, max position $1000, slippage 50 bps
 
 ### Scenario 2: Denied - Low Confidence
+
 ```json
 {
   "signal": "buy",
@@ -150,9 +157,11 @@ Expected: Approved, max position $1000, slippage 50 bps
   "requested_position_usd": 1000
 }
 ```
+
 Expected: Denied, reason "signal_confidence_below_threshold"
 
 ### Scenario 3: Denied - High Risk
+
 ```json
 {
   "signal": "buy",
@@ -161,9 +170,11 @@ Expected: Denied, reason "signal_confidence_below_threshold"
   "requested_position_usd": 1000
 }
 ```
+
 Expected: Denied, reason "risk_score_exceeds_maximum"
 
 ### Scenario 4: Constrained - Volatility Adjustment
+
 ```json
 {
   "signal": "buy",
@@ -172,6 +183,7 @@ Expected: Denied, reason "risk_score_exceeds_maximum"
   "requested_position_usd": 5000
 }
 ```
+
 Expected: Approved, max position reduced to $2500 due to risk score
 
 ## Timeline (March 1-8)

@@ -96,4 +96,3 @@ Then include:
 3. Evidence artifacts stored and linkable.
 4. Title/body formatting verified against exact requirement strings.
 5. Post published before **March 8, 2026, 11:59 PM ET**.
-

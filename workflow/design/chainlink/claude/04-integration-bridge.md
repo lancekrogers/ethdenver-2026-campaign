@@ -164,18 +164,19 @@ File: `projects/dashboard/src/components/panels/CREPanel.tsx`
 
 ### P1: Integration Demo (If Time Allows)
 
-4. **Coordinator CRE client** - HTTP call to CRE Risk Router before task assignment
-5. **Inference structured signals** - Add signal fields to task result payload
-6. **DeFi execution guard** - Apply CRE constraints before trade
+1. **Coordinator CRE client** - HTTP call to CRE Risk Router before task assignment
+2. **Inference structured signals** - Add signal fields to task result payload
+3. **DeFi execution guard** - Apply CRE constraints before trade
 
 ### P2: Polish (Stretch)
 
-7. **Dashboard CRE panel** - Visual timeline of CRE decisions
-8. **Scenario bank** - Pre-built simulation scenarios for demo
+1. **Dashboard CRE panel** - Visual timeline of CRE decisions
+2. **Scenario bank** - Pre-built simulation scenarios for demo
 
 ## Why This Ordering Matters
 
 The hackathon judges evaluate:
+
 1. Does `cre workflow simulate` work from a clean clone? (P0-1)
 2. Is there an on-chain write with a tx hash? (P0-2)
 3. Is the submission properly formatted? (P0-3)

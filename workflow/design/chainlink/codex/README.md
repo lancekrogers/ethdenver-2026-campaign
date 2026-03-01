@@ -40,4 +40,3 @@ The missing differentiator for Chainlink is not a full rebuild. It is adding a *
 - `01-cre-ai-core-feature.md`: concrete feature/update design tied to current repos.
 - `02-implementation-plan.md`: day-by-day execution plan to March 8, 2026.
 - `03-submission-playbook.md`: post format, evidence checklist, and demo narrative.
-

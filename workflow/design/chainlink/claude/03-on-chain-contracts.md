@@ -153,6 +153,7 @@ If time permits, a second version implementing `IReceiver` can be added to show 
 ### Deployment Strategy
 
 **Option A (preferred): Direct deployment via Foundry**
+
 ```bash
 # Deploy to Arbitrum Sepolia
 forge create src/RiskDecisionReceipt.sol:RiskDecisionReceipt \
@@ -226,6 +227,7 @@ contract RiskDecisionReceiptTest is Test {
 The contracts in `projects/contracts/` (`AgentSettlement.sol`, `ReputationDecay.sol`, `AgentINFT.sol`) are Hedera-specific (HIP-1215 scheduling). They don't need modification for the Chainlink submission.
 
 The new `RiskDecisionReceipt.sol` can either:
+
 1. Live in `projects/cre-risk-router/contracts/` (self-contained, recommended for clean submission)
 2. Live in `projects/contracts/src/` alongside existing contracts (shared Foundry workspace)
 
@@ -236,6 +238,7 @@ Recommendation: **Option 1** - keep the CRE project self-contained so the submis
 The CRE workflow reads Chainlink price feeds on testnet to validate agent price assumptions:
 
 **Arbitrum Sepolia price feeds (examples):**
+
 - ETH/USD: verify against Chainlink's testnet feed contracts
 - Need to confirm exact feed addresses via Chainlink docs or CRE tooling
 

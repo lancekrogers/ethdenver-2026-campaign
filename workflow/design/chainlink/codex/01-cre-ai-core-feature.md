@@ -157,4 +157,3 @@ Primary parsing points:
 3. One contract write records the CRE run/decision hash on testnet.
 4. Dashboard exposes CRE run status in a dedicated view.
 5. Evidence is sufficient for one Moltbook submission post with `#cre-ai`.
-

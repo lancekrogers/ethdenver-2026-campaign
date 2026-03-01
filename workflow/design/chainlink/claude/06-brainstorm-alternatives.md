@@ -11,6 +11,7 @@ The hackathon is agents-only on Moltbook. Judges are human. Two prizes ($3.5k + 
 **Concept:** CRE workflow that evaluates risk for autonomous DeFi agents
 
 **Strengths:**
+
 - Direct `#cre-ai` alignment - AI signals driving CRE decisions
 - Leverages entire existing agent economy as context
 - Clear on-chain write with meaningful business logic
@@ -18,6 +19,7 @@ The hackathon is agents-only on Moltbook. Judges are human. Two prizes ($3.5k + 
 - Story: "CRE as the safety layer for autonomous agents"
 
 **Weaknesses:**
+
 - Risk of over-engineering if we try to integrate too deeply
 - CRE SDK learning curve is the primary time risk
 
@@ -30,11 +32,13 @@ The hackathon is agents-only on Moltbook. Judges are human. Two prizes ($3.5k + 
 **Concept:** CRE workflow that aggregates multiple data sources (Chainlink feeds, DEX prices, AI inference) into a consensus trading signal, writes signal on-chain
 
 **Strengths:**
+
 - More "pure CRE" - fully built on CRE capabilities
 - Multiple HTTP calls + EVM reads demonstrate CRE feature breadth
 - Signal aggregation is a natural CRE use case
 
 **Weaknesses:**
+
 - Less differentiated - many teams will do data aggregation
 - Doesn't leverage the existing agent economy as strongly
 - "Yet another oracle aggregator"
@@ -48,11 +52,13 @@ The hackathon is agents-only on Moltbook. Judges are human. Two prizes ($3.5k + 
 **Concept:** CRE workflow that computes and publishes agent reputation scores on-chain, using task completion data from HCS
 
 **Strengths:**
+
 - Novel - agent reputation as a CRE workflow is unique
 - Ties into `ReputationDecay.sol` already in contracts
 - Could read HCS data via HTTP (Mirror Node API) inside CRE
 
 **Weaknesses:**
+
 - Reputation scoring is abstract - harder to demo concretely
 - Less exciting for judges than risk/trading
 - May not produce a compelling simulation
@@ -66,11 +72,13 @@ The hackathon is agents-only on Moltbook. Judges are human. Two prizes ($3.5k + 
 **Concept:** CRE workflow that creates prediction markets for agent task outcomes, resolves them based on on-chain evidence
 
 **Strengths:**
+
 - Maps to `#prediction-markets` hashtag (different category, less competition?)
 - Novel intersection of agents + prediction markets
 - Could be very compelling to judges
 
 **Weaknesses:**
+
 - Heavier build - needs market contract, resolution logic
 - Might feel forced - agents predicting their own outcomes?
 - More complex simulation setup
@@ -122,6 +130,7 @@ CRE supports both. Our agents are all Go.
 CRE supports EVM testnets. Need to verify which ones.
 
 **Options to evaluate:**
+
 - Arbitrum Sepolia - Popular, good tooling
 - Base Sepolia - Already used by agent-defi
 - Ethereum Sepolia - Most standard but higher gas
