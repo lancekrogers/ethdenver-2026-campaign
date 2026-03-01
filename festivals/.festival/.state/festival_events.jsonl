@@ -9,3 +9,4 @@
 {"ts":"2026-02-21T17:00:36.367061Z","event":"move","id":"SP0001","from":"planning","to":"ready"}
 {"ts":"2026-02-21T17:00:43.144882Z","event":"move","id":"SP0001","from":"ready","to":"active"}
 {"ts":"2026-02-21T23:42:29.558911Z","event":"create","id":"BC0001","name":"bounty-completion","status":"planning"}
+{"ts":"2026-03-01T22:45:35.985264Z","event":"create","id":"CR0001","name":"cre-risk-router-planning","status":"planning"}
