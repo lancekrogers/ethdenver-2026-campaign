@@ -31,6 +31,16 @@
       "in_monorepo": true,
       "monorepo_path": "projects/contracts"
     },
+    "cre-risk-router": {
+      "path": "projects/cre-risk-router",
+      "include": true
+    },
+    "cre-risk-router@lib/forge-std": {
+      "path": "projects/cre-risk-router/lib/forge-std",
+      "include": false,
+      "in_monorepo": true,
+      "monorepo_path": "projects/cre-risk-router"
+    },
     "dashboard": {
       "path": "projects/dashboard",
       "include": true

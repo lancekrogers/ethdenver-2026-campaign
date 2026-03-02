@@ -1,0 +1,29 @@
+{
+  "lib/forge-std": {
+    "tag": {
+      "name": "v1.15.0",
+      "rev": "0844d7e1fc5e60d77b68e469bff60265f236c398"
+    }
+  },
+  "projects/agent-coordinator": {
+    "rev": "50b7228439a127fce7281d6d69bfacebcfcf4015"
+  },
+  "projects/agent-defi": {
+    "rev": "2587f07da5253a485709c926fb82e1fdf0689af6"
+  },
+  "projects/agent-inference": {
+    "rev": "1b7d2680496c258be50099d964b62ea55cca676c"
+  },
+  "projects/contracts": {
+    "rev": "a9467ded8e8afe156c0c9c75fcaed64ae6f65d79"
+  },
+  "projects/cre-risk-router": {
+    "rev": "30060877c7b97c5c937bfe2b6c9c1f2ca89038f3"
+  },
+  "projects/dashboard": {
+    "rev": "2d577ff8190ab8ac86d63535608c84e57cc393bb"
+  },
+  "projects/hiero-plugin": {
+    "rev": "fe9e08704aeb56dd06175eba132d9ea188aaa90b"
+  }
+}

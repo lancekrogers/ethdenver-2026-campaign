@@ -16,3 +16,9 @@
 [submodule "projects/contracts"]
 	path = projects/contracts
 	url = git@github.com:lancekrogers/contracts-ethden-2026.git
+[submodule "projects/cre-risk-router"]
+	path = projects/cre-risk-router
+	url = /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/cre-risk-router
+[submodule "lib/forge-std"]
+	path = lib/forge-std
+	url = https://github.com/foundry-rs/forge-std

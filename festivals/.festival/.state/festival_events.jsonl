@@ -13,3 +13,4 @@
 {"ts":"2026-03-02T00:42:00.615372Z","event":"create","id":"CR0002","name":"cre-risk-router","status":"planning"}
 {"ts":"2026-03-02T02:08:09.936774Z","event":"move","id":"CR0001","from":"planning","to":"ready"}
 {"ts":"2026-03-02T02:08:12.388125Z","event":"move","id":"CR0001","from":"ready","to":"active"}
+{"ts":"2026-03-02T08:37:10.517405Z","event":"move","id":"CR0001","from":"active","to":"completed"}
