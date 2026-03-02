@@ -4,11 +4,13 @@ fest_id: 01_hello_world_workflow.md
 fest_name: hello world workflow
 fest_parent: 01_cli_setup
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-01T17:42:44.241177-07:00
+fest_updated: 2026-03-02T00:11:41.055387-07:00
 fest_tracking: true
 ---
+
 
 # Task: hello world workflow
 

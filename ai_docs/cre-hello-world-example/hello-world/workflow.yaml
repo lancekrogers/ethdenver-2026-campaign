@@ -1,0 +1,16 @@
+# CRE Workflow Settings
+staging-settings:
+  user-workflow:
+    workflow-name: "hello-world-staging"
+  workflow-artifacts:
+    workflow-path: "."
+    config-path: "./config.staging.json"
+    secrets-path: ""
+
+production-settings:
+  user-workflow:
+    workflow-name: "hello-world-production"
+  workflow-artifacts:
+    workflow-path: "."
+    config-path: "./config.production.json"
+    secrets-path: ""

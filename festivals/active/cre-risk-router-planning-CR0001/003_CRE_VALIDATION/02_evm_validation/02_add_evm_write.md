@@ -4,11 +4,13 @@ fest_id: 01_add_evm_write.md
 fest_name: add evm write
 fest_parent: 02_evm_validation
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-01T17:43:09.715483-07:00
+fest_updated: 2026-03-02T00:32:26.517808-07:00
 fest_tracking: true
 ---
+
 
 # Task: add evm write
 

@@ -4,11 +4,13 @@ fest_id: 01_deploy_trivial_contract.md
 fest_name: deploy trivial contract
 fest_parent: 02_evm_validation
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-01T17:43:09.698131-07:00
+fest_updated: 2026-03-02T00:28:32.459701-07:00
 fest_tracking: true
 ---
+
 
 # Task: deploy trivial contract
 
