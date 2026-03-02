@@ -25,6 +25,7 @@ Create the CRE Risk Router project as a submodule in the Obey Agent Economy mono
 - [ ] `config.json` with all Config fields and defaults per spec Section 5
 - [ ] `secrets.yaml` with secret declarations
 - [ ] `.env.example` template with all required environment variables
+- [ ] Festival linked to project repo via `fest link` (enables `fgo` navigation)
 
 ## Implementation
 
@@ -42,13 +43,22 @@ Create the CRE Risk Router project as a submodule in the Obey Agent Economy mono
    git remote add origin git@github.com:lancekrogers/cre-risk-router.git
    ```
 
-3. **Initialize Go module**:
+3. **Link the festival to the project repo**:
+
+   Navigate to the festival directory and link to the new project. This enables `fgo` for quick navigation between the festival and the project for all subsequent phases.
+
+   ```bash
+   cd festivals/active/cre-risk-router-planning-CR0001
+   fest link ../../projects/cre-risk-router
+   ```
+
+5. **Initialize Go module**:
 
    ```bash
    go mod init github.com/lancekrogers/cre-risk-router
    ```
 
-4. **Create directory structure** per spec Section 3:
+6. **Create directory structure** per spec Section 3:
 
    ```
    cre-risk-router/
@@ -83,7 +93,7 @@ Create the CRE Risk Router project as a submodule in the Obey Agent Economy mono
 
    Use `t2s` to scaffold from this tree if available.
 
-5. **Create `config.json`** with all Config fields and defaults:
+7. **Create `config.json`** with all Config fields and defaults:
 
    ```json
    {
@@ -105,7 +115,7 @@ Create the CRE Risk Router project as a submodule in the Obey Agent Economy mono
    }
    ```
 
-6. **Create `secrets.yaml`** declaring required secrets:
+8. **Create `secrets.yaml`** declaring required secrets:
 
    ```yaml
    secrets:
@@ -115,7 +125,7 @@ Create the CRE Risk Router project as a submodule in the Obey Agent Economy mono
        description: CoinGecko API key (optional, for higher rate limits)
    ```
 
-7. **Create `.env.example`**:
+9. **Create `.env.example`**:
 
    ```env
    # CRE Risk Router Environment Variables
@@ -124,13 +134,13 @@ Create the CRE Risk Router project as a submodule in the Obey Agent Economy mono
    TESTNET_RPC=https://rpc-url-for-chosen-testnet
    ```
 
-8. **Create stub files** (`workflow.go`, `risk.go`, `types.go`, `helpers.go`) with package declarations so the project compiles:
+10. **Create stub files** (`workflow.go`, `risk.go`, `types.go`, `helpers.go`) with package declarations so the project compiles:
 
    ```go
    package main
    ```
 
-9. **Create `foundry.toml`**:
+11. **Create `foundry.toml`**:
 
    ```toml
    [profile.default]
@@ -140,7 +150,7 @@ Create the CRE Risk Router project as a submodule in the Obey Agent Economy mono
    libs = ["lib"]
    ```
 
-10. **Verify the project compiles**:
+12. **Verify the project compiles**:
 
     ```bash
     go build -o /dev/null .
@@ -153,3 +163,4 @@ Create the CRE Risk Router project as a submodule in the Obey Agent Economy mono
 - [ ] Directory structure matches spec Section 3
 - [ ] `config.json` has all 15 Config fields with correct defaults
 - [ ] GitHub repo exists and is set as remote (make public before final submission)
+- [ ] Festival linked to project via `fest link` — `fgo` navigates between festival and project
