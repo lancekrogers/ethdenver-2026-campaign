@@ -4,6 +4,7 @@ metadata:
     uuid: 47193645-4af3-4662-861b-d1f3bb60b3c9
     name: cre-risk-router-planning
     goal: Ingest CRE Risk Router spec and prepare festival planning artifacts
+    festival_type: standard
     created_at: 2026-03-01T22:45:35.984653Z
     initial_size_bytes: 20275
     status_history:
@@ -11,6 +12,9 @@ metadata:
           timestamp: 2026-03-01T22:45:35.984653Z
           path: festivals/planning/cre-risk-router-planning-CR0001
           notes: Festival created
+        - status: ready
+          timestamp: 2026-03-01T19:08:09.937359-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/ready/cre-risk-router-planning-CR0001
 quality_gates:
     enabled: true
     auto_append: true
