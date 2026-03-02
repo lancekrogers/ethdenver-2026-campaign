@@ -4,29 +4,29 @@ fest_id: 001_INGEST
 fest_name: INGEST
 fest_parent: cre-risk-router-planning-CR0001
 fest_order: 1
-fest_status: pending
+fest_status: complete
 fest_created: 2026-03-01T15:45:41.937013-07:00
 fest_phase_type: ingest
 fest_tracking: true
 ---
 
-# Phase Goal: [REPLACE: Phase name like 001_INGEST]
+# Phase Goal: 001_INGEST
 
-**Phase:** 001_INGEST | **Status:** Pending | **Type:** Ingest
+**Phase:** 001_INGEST | **Status:** Complete | **Type:** Ingest
 
 ## Phase Objective
 
 **Primary Goal:** Ingest CRE Risk Router spec and produce structured planning outputs
 
-**Context:** [REPLACE: Where the input came from and how the structured output will be used]
+**Context:** The full product spec was authored at `workflow/design/cre-risk-router/spec.md` after multiple rounds of review between Claude and Codex agents. The structured outputs feed directly into the 002_PLAN phase to decompose requirements into an implementation festival.
 
 ## Input Sources
 
 Place all raw input materials in `input_specs/`:
 
-- [ ] [REPLACE: Input source 1 - e.g., user requirements document]
-- [ ] [REPLACE: Input source 2 - e.g., reference materials]
-- [ ] [REPLACE: Additional sources as needed]
+- [x] `workflow/design/cre-risk-router/spec.md` — Full CRE Risk Router product spec (source of truth)
+- [x] `workflow/design/chainlink/claude/` — 7 Chainlink CRE design documents (reference material)
+- [x] `workflow/design/cre-risk-router/agent-thread.md` — Spec review thread with Codex findings and fixes
 
 ## Expected Outputs
 
@@ -43,10 +43,10 @@ The following structured documents will be created in `output_specs/`:
 
 This ingest phase is complete when:
 
-- [ ] All input sources reviewed and understood
-- [ ] Output specs created following standard structure
-- [ ] User has approved the structured output
-- [ ] No unresolved questions or ambiguities
+- [x] All input sources reviewed and understood
+- [x] Output specs created following standard structure
+- [x] User has approved the structured output
+- [x] No unresolved questions or ambiguities
 
 ## Workflow
 
@@ -57,7 +57,9 @@ Use `fest workflow advance` to move to the next step.
 
 ## Notes
 
-[REPLACE: Any assumptions, constraints, or open items]
+- Spec went through 3 rounds of inter-agent review (claude/codex) before ingest
+- All blockers from Codex review resolved: 8-decimal precision standardized, MaxPositionBps wired into Gate 6
+- Full spec copied to `output_specs/spec.md` for downstream reference
 
 ---
 

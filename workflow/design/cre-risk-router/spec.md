@@ -87,12 +87,7 @@ cre-risk-router/
 └── foundry.toml                           # Foundry config for contract
 ```
 
-This lives either as:
-
-- A new repo: `github.com/lancekrogers/cre-risk-router` (cleaner for judges)
-- A subdir: `projects/cre-risk-router/` in the monorepo (simpler to manage)
-
-Decision: resolve before starting implementation.
+This lives at `projects/cre-risk-router/` in the Obey Agent Economy monorepo. The submission README directs judges to this directory and provides clear setup instructions.
 
 ---
 

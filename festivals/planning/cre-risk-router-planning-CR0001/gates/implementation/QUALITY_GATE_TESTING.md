@@ -15,7 +15,7 @@ fest_order: <no value>
 fest_gate_type: testing
 fest_status: pending
 fest_tracking: true
-fest_created: 2026-03-01T15:45:35-07:00
+fest_created: 2026-03-01T17:42:00-07:00
 ---
 
 # Task: Testing and Verification
@@ -38,7 +38,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+just test
+```
 
 **Verify:**
 
@@ -48,7 +50,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+just simulate
+```
 
 **Verify:**
 
@@ -60,15 +64,17 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Requirement 1**: Run the CRE workflow simulation and verify gate evaluations produce expected results
+2. [ ] **Requirement 2**: Verify on-chain receipt is written with correct parameters when broadcasting
+3. [ ] **Requirement 3**: Confirm error/fallback paths behave correctly (e.g., CoinGecko down, Chainlink stale)
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 80% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+go test ./... -coverprofile=coverage.out
+```
 
 ## Error Handling Verification
 

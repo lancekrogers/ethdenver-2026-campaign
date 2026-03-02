@@ -15,7 +15,7 @@ fest_order: <no value>
 fest_gate_type: review
 fest_status: pending
 fest_tracking: true
-fest_created: 2026-03-01T15:45:35-07:00
+fest_created: 2026-03-01T17:42:00-07:00
 ---
 
 # Task: Code Review
@@ -46,7 +46,9 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+just lint
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
