@@ -2,11 +2,12 @@
 fest_type: festival
 fest_id: CR0001
 fest_name: cre-risk-router-planning
-fest_status: ready
+fest_status: active
 fest_created: 2026-03-01T15:45:35.977594-07:00
-fest_updated: 2026-03-01T19:08:09.937003-07:00
+fest_updated: 2026-03-01T19:08:12.388218-07:00
 fest_tracking: true
 ---
+
 
 
 # cre-risk-router
