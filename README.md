@@ -16,7 +16,7 @@ The system demonstrates a complete agent-to-agent economy: the Coordinator dispa
 
 Everything below runs right now with no daemon required:
 
-- **`just demo`** - Full dashboard with all 5 panels rendering mock data. Zero config, zero env vars.
+- **`just demo`** - Full dashboard with all 6 panels rendering mock data. Zero config, zero env vars.
 - **`just live`** - Dashboard with live Hedera Mirror Node data. Festival View and HCS Feed panels show real on-chain messages.
 - **Go agents build and pass all tests** - `just build all` compiles all three agents; `just test all` runs the full suite.
 - **Real 0G Compute integration** - Provider discovery and inference job submission on the Galileo testnet.
@@ -59,7 +59,7 @@ just install
 just demo
 ```
 
-Open `http://localhost:3000` to see all 5 panels with simulated data: Festival View, HCS Feed, Agent Activity, DeFi P&L, and Inference Metrics.
+Open `http://localhost:3000` to see all 6 panels with simulated data: Festival View, HCS Feed, CRE Decisions, Agent Activity, DeFi P&L, and Inference Metrics.
 
 ### Build & Test
 
@@ -72,9 +72,31 @@ just lint                   # Lint all projects
 ### Live Mode (requires .env configuration)
 
 ```bash
-cp .env.example .env         # Fill in Hedera + 0G + Base credentials
+cp .env.docker.example .env.docker
 just live                    # Dashboard with live Hedera mirror node data
 ```
+
+### Chainlink Hackathon Demo (justfile-first)
+
+```bash
+# Bring up dashboard + agents + CRE bridge (no raw docker compose commands)
+just chainlink up
+
+# Run approved + denied CRE scenarios against the live bridge
+just chainlink demo
+
+# Capture evidence artifacts for submission packaging
+just evidence collect
+just evidence validate
+
+# Optional: run CRE broadcast flow for on-chain write proof
+just chainlink broadcast
+
+# Teardown
+just chainlink down
+```
+
+If ports are in use, set `DASHBOARD_PORT` and/or `CRE_BRIDGE_PORT` in `.env.docker` (for example `DASHBOARD_PORT=3001`, `CRE_BRIDGE_PORT=8081`) before running `just chainlink up`.
 
 ## Architecture
 
@@ -136,13 +158,14 @@ The DeFi agent executes a mean reversion trading strategy on Uniswap V3 (Base Se
 
 ### Dashboard
 
-A Next.js/React read-only observer UI with five panels:
+A Next.js/React read-only observer UI with six panels:
 
 1. **Festival View**: Hierarchical phase/sequence/task progress with completion percentages and status badges
 2. **HCS Feed**: Real-time stream of all HCS messages (timestamps, topic IDs, sequence numbers, message types, senders)
-3. **Agent Activity**: Status cards for all three agents showing heartbeats, current task, uptime, and error counts
-4. **DeFi P&L**: Revenue, costs, net profit, trade count, win rate, and full trade history with tx hashes
-5. **Inference Metrics**: GPU/memory utilization, active jobs, latency, total inferences, storage metrics, iNFT status
+3. **CRE Decisions**: Risk-check requested/approved/denied lifecycle with reasons and constraints
+4. **Agent Activity**: Status cards for all three agents showing heartbeats, current task, uptime, and error counts
+5. **DeFi P&L**: Revenue, costs, net profit, trade count, win rate, and full trade history with tx hashes
+6. **Inference Metrics**: GPU/memory utilization, active jobs, latency, total inferences, storage metrics, iNFT status
 
 Data flows in priority order: Hub WebSocket (primary), direct daemon gRPC (dev fallback), Hedera Mirror Node REST API (historical data).
 

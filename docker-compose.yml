@@ -8,7 +8,7 @@ services:
         NEXT_PUBLIC_HEDERA_MIRROR_NODE_URL: "${NEXT_PUBLIC_HEDERA_MIRROR_NODE_URL:-https://testnet.mirrornode.hedera.com}"
         NEXT_PUBLIC_HUB_WS_URL: "${NEXT_PUBLIC_HUB_WS_URL:-ws://coordinator:8080/ws}"
     ports:
-      - "3000:3000"
+      - "${DASHBOARD_PORT:-3000}:3000"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000"]
@@ -28,6 +28,7 @@ services:
       HCS_TASK_TOPIC_ID: "${HCS_TASK_TOPIC_ID:-}"
       HCS_STATUS_TOPIC_ID: "${HCS_STATUS_TOPIC_ID:-}"
       HTS_PAYMENT_TOKEN_ID: "${HTS_PAYMENT_TOKEN_ID:-}"
+      CRE_ENDPOINT: "${CRE_ENDPOINT:-}"
       DAEMON_ADDRESS: "host.docker.internal:50051"
     profiles: [agents]
     restart: unless-stopped
@@ -103,3 +104,14 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+
+  cre-bridge:
+    image: golang:1.25
+    working_dir: /app
+    command: ["go", "run", "./cmd/bridge"]
+    volumes:
+      - ./projects/cre-risk-router:/app
+    ports:
+      - "${CRE_BRIDGE_PORT:-8080}:8080"
+    profiles: [chainlink]
+    restart: unless-stopped

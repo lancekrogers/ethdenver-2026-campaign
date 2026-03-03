@@ -187,3 +187,33 @@ If we want a single-command CRE demo UX at campaign root, add a new modular just
 - `just cre-demo.evidence`
 
 No implementation done in this exploration; this is only the command architecture recommendation.
+
+---
+
+## Implementation Status (March 2026)
+
+The root command architecture has now been implemented with modular justfile modules and no required raw `docker compose` commands for operators.
+
+### Primary Commands
+
+1. `just chainlink up`
+2. `just chainlink demo`
+3. `just evidence collect`
+4. `just evidence validate`
+5. `just chainlink broadcast` (optional on-chain proof)
+6. `just chainlink down`
+
+### Evidence Output
+
+`just evidence collect` writes artifacts to:
+
+`workflow/explore/cre-demo/evidence/latest/`
+
+Artifacts include:
+
+- `approved.json`
+- `denied.json`
+- `scenario-results.json`
+- `run.log`
+- `dashboard-checklist.json`
+- `submission-ready.md`

@@ -1,8 +1,10 @@
-mod docker 'justfiles/docker.just'
-mod test 'justfiles/test.just'
-mod build 'justfiles/build.just'
-mod lint 'justfiles/lint.just'
-mod status 'justfiles/status.just'
+mod docker '.justfiles/docker.just'
+mod test '.justfiles/test.just'
+mod build '.justfiles/build.just'
+mod lint '.justfiles/lint.just'
+mod status '.justfiles/status.just'
+mod chainlink '.justfiles/chainlink.just'
+mod evidence '.justfiles/evidence.just'
 
 root := justfile_directory()
 
@@ -31,3 +33,15 @@ live:
 # Stop all services
 down:
     just docker down
+
+# Chainlink demo stack (dashboard + agents + CRE bridge)
+chainlink-demo:
+    just chainlink demo
+
+# Capture Chainlink evidence pack
+chainlink-evidence:
+    just evidence collect
+
+# Optional CRE broadcast helper
+chainlink-broadcast:
+    just chainlink broadcast
