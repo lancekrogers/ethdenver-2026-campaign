@@ -12,7 +12,7 @@ build:
 
 # Build all images (dashboard + agents)
 build-all:
-    {{compose_env}} --profile agents build
+    just chainlink build
 
 # Start dashboard in mock mode (zero config)
 up:
@@ -20,7 +20,7 @@ up:
 
 # Start full system with agents (requires .env.docker)
 up-all:
-    NEXT_PUBLIC_USE_MOCK=false {{compose_env}} --profile agents up -d
+    just chainlink up
 
 # Stop all services
 down:
