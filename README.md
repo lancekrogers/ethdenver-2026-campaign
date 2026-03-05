@@ -10,7 +10,7 @@ The system demonstrates a complete agent-to-agent economy: the Coordinator dispa
 
 ## Dashboard
 
-![Agent Economy Observer Dashboard](docs/images/dashboard-demo.gif)
+![Agent Economy Observer Dashboard](docs/images/dashboard.png)
 
 ## What Works Today
 
