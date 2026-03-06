@@ -2,11 +2,12 @@
 fest_type: festival
 fest_id: FC0001
 fest_name: fest-cli-runtime-integration
-fest_status: active
+fest_status: dungeon/completed
 fest_created: 2026-03-06T13:36:57.740491-07:00
-fest_updated: 2026-03-06T15:26:22.799942-07:00
+fest_updated: 2026-03-06T15:57:33.60045-07:00
 fest_tracking: true
 ---
+
 
 
 
