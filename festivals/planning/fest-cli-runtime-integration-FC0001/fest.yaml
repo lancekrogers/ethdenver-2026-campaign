@@ -1,0 +1,49 @@
+version: "1.0"
+metadata:
+    id: FC0001
+    uuid: b2e9f9e6-d256-4692-bacb-da2e19f8e7ed
+    name: fest-cli-runtime-integration
+    goal: Integrate fest CLI as a true runtime dependency across coordinator, dashboard, and root modes with strict live behavior and synthetic demo fallback
+    festival_type: implementation
+    created_at: 2026-03-06T20:36:57.742322Z
+    initial_size_bytes: 21928
+    status_history:
+        - status: planning
+          timestamp: 2026-03-06T20:36:57.742322Z
+          path: festivals/planning/fest-cli-runtime-integration-FC0001
+          notes: Festival created
+type_config:
+    auto_phases:
+        - IMPLEMENT
+    skip_ingestion: true
+quality_gates:
+    enabled: true
+    auto_append: true
+    implementation:
+        - id: testing
+          template: gates/implementation/QUALITY_GATE_TESTING
+          name: Testing and Verification
+          enabled: true
+        - id: review
+          template: gates/implementation/QUALITY_GATE_REVIEW
+          name: Code Review
+          enabled: true
+        - id: iterate
+          template: gates/implementation/QUALITY_GATE_ITERATE
+          name: Review Results and Iterate
+          enabled: true
+        - id: fest-commit
+          template: gates/implementation/QUALITY_GATE_FEST_COMMIT
+          name: Fest Commit Changes
+          enabled: true
+excluded_patterns:
+    - '*_planning'
+    - '*_research'
+    - '*_requirements'
+    - '*_docs'
+templates:
+    task_default: tasks/SIMPLE
+    prefer_simple: true
+tracking:
+    enabled: true
+    checksum_file: .festival-checksums.json
