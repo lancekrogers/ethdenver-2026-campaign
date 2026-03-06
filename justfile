@@ -6,6 +6,7 @@ mod status '.justfiles/status.just'
 mod chainlink '.justfiles/chainlink.just'
 mod evidence '.justfiles/evidence.just'
 mod mode '.justfiles/mode.just'
+mod fest '.justfiles/fest.just'
 mod demo '.justfiles/demo.just'
 mod live '.justfiles/live.just'
 

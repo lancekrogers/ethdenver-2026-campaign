@@ -1,0 +1,7 @@
+{"ts":"2026-03-06T22:27:04.834541Z","event":"completed","task":"001_IMPLEMENT/01_campaign_root_mode_and_preflight/01_switch_to_campaign_root_and_link_festival.md"}
+{"ts":"2026-03-06T22:28:22.209309Z","event":"completed","task":"001_IMPLEMENT/01_campaign_root_mode_and_preflight/02_implement_root_fest_just_commands.md"}
+{"ts":"2026-03-06T22:30:14.650338Z","event":"completed","task":"001_IMPLEMENT/01_campaign_root_mode_and_preflight/03_enforce_live_preflight_fest_gates.md"}
+{"ts":"2026-03-06T22:30:20.006344Z","event":"completed","task":"001_IMPLEMENT/01_campaign_root_mode_and_preflight/04_verify_demo_fallback_live_failfast.md"}
+{"ts":"2026-03-06T22:30:47.384824Z","event":"completed","task":"001_IMPLEMENT/01_campaign_root_mode_and_preflight/05_testing.md"}
+{"ts":"2026-03-06T22:30:57.174834Z","event":"completed","task":"001_IMPLEMENT/01_campaign_root_mode_and_preflight/06_review.md"}
+{"ts":"2026-03-06T22:31:03.221996Z","event":"completed","task":"001_IMPLEMENT/01_campaign_root_mode_and_preflight/07_iterate.md"}

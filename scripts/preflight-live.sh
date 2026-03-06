@@ -45,6 +45,15 @@ require_var() {
   fi
 }
 
+fest_gate_fail_or_warn() {
+  local reason="$1"
+  if [[ "${FEST_FALLBACK_ALLOW_SYNTHETIC:-false}" == "true" ]]; then
+    warn "fest_fallback_enabled:$reason"
+  else
+    fail "$reason"
+  fi
+}
+
 jsonrpc_post() {
   local rpc_url="$1"
   local method="$2"
@@ -86,6 +95,42 @@ fi
 
 if [[ "${LIVE_ALLOW_SIMULATED_CRE:-false}" != "true" ]]; then
   fail "live_mode_blocked_simulated_cre:set LIVE_ALLOW_SIMULATED_CRE=true to acknowledge current simulation-backed CRE oracle path"
+fi
+
+# Gate A2: fest runtime readiness.
+fest_available=false
+fest_selector=""
+if command -v fest >/dev/null 2>&1; then
+  fest_available=true
+  if ! fest_all_json="$(fest show all --json 2>/dev/null)"; then
+    fest_gate_fail_or_warn "fest_show_all_failed"
+  elif ! jq -e . >/dev/null 2>&1 <<<"$fest_all_json"; then
+    fest_gate_fail_or_warn "fest_show_all_invalid_json"
+  else
+    fest_selector="${FEST_SELECTOR:-}"
+    if [[ -z "$fest_selector" ]]; then
+      fest_allow_completed="${FEST_ALLOW_COMPLETED:-false}"
+      fest_selector="$(
+        jq -r --arg allow_completed "$fest_allow_completed" \
+          '(.active.festivals[0].name
+            // .ready.festivals[0].name
+            // .planning.festivals[0].name
+            // .["dungeon/someday"].festivals[0].name
+            // (if $allow_completed == "true" then .["dungeon/completed"].festivals[0].name else empty end)
+            // empty)' <<<"$fest_all_json"
+      )"
+    fi
+
+    if [[ -z "$fest_selector" ]]; then
+      fest_gate_fail_or_warn "fest_selector_unresolved"
+    elif ! fest_roadmap_json="$(fest show --festival "$fest_selector" --json --roadmap 2>/dev/null)"; then
+      fest_gate_fail_or_warn "fest_show_roadmap_failed:selector=$fest_selector"
+    elif ! jq -e '.festival and .roadmap' >/dev/null 2>&1 <<<"$fest_roadmap_json"; then
+      fest_gate_fail_or_warn "fest_show_roadmap_invalid_json:selector=$fest_selector"
+    fi
+  fi
+else
+  fest_gate_fail_or_warn "fest_binary_missing"
 fi
 
 # Gate B: basic network reachability.
@@ -155,16 +200,21 @@ fi
 jq -n \
   --arg mode "$MODE" \
   --arg env_file "$ENV_FILE" \
+  --arg fest_selector "$fest_selector" \
   --arg generated_at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
   --argjson valid "$valid" \
+  --argjson fest_available "$fest_available" \
   --argjson failures "$fail_json" \
   --argjson warnings "$warn_json" \
-  '{mode:$mode,env_file:$env_file,generated_at:$generated_at,valid:$valid,gates:{config_completeness:(($failures | map(select(startswith("missing_required_var:"))) | length)==0),network_reachability:(($failures | map(select(startswith("unreachable:"))) | length)==0),funding_readiness:(($failures | map(select(startswith("insufficient_base_balance:") or startswith("funding_check_failed:"))) | length)==0)},failures:$failures,warnings:$warnings}' > "$report_file"
+  '{mode:$mode,env_file:$env_file,generated_at:$generated_at,valid:$valid,fest:{available:$fest_available,selector:$fest_selector},gates:{config_completeness:(($failures | map(select(startswith("missing_required_var:"))) | length)==0),fest_cli_readiness:(($failures | map(select(startswith("fest_"))) | length)==0),network_reachability:(($failures | map(select(startswith("unreachable:"))) | length)==0),funding_readiness:(($failures | map(select(startswith("insufficient_base_balance:") or startswith("funding_check_failed:"))) | length)==0)},failures:$failures,warnings:$warnings}' > "$report_file"
 
 {
   echo "Live Preflight Summary"
   echo "  mode: $MODE"
   echo "  env_file: $ENV_FILE"
+  if [[ -n "$fest_selector" ]]; then
+    echo "  fest_selector: $fest_selector"
+  fi
   echo "  report: $report_file"
   if (( ${#failures[@]} == 0 )); then
     echo "  status: PASS"
