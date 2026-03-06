@@ -16,8 +16,8 @@ The system demonstrates a complete agent-to-agent economy: the Coordinator dispa
 
 Everything below runs right now with no daemon required:
 
-- **`just demo`** - Full dashboard with all 6 panels rendering mock data. Zero config, zero env vars.
-- **`just live`** - Dashboard with live Hedera Mirror Node data. Festival View and HCS Feed panels show real on-chain messages.
+- **`just demo`** - Demo mode from campaign root (`just demo up|run|down`). Deterministic CRE scenarios with mock-safe defaults.
+- **`just live`** - Live-testnet mode from campaign root (`just live up|run|down`) with fail-fast preflight checks.
 - **Go agents build and pass all tests** - `just build all` compiles all three agents; `just test all` runs the full suite.
 - **Real 0G Compute integration** - Provider discovery and inference job submission on the Galileo testnet.
 - **Real DeFi trading on Base Sepolia** - Uniswap V3 swaps, ERC-8004 (agent identity), x402 (HTTP payment protocol), ERC-8021 (builder codes).
@@ -72,8 +72,27 @@ just lint                   # Lint all projects
 ### Live Mode (requires .env configuration)
 
 ```bash
-cp .env.docker.example .env.docker
-just live                    # Dashboard with live Hedera mirror node data
+cp .env.live.example .env.live
+just live                    # Runs live preflight then starts full live testnet stack
+```
+
+`just live` will fail fast until live-mode contracts are satisfied (for example:
+`NEXT_PUBLIC_USE_MOCK=false`, `DEFI_MOCK_MODE=false`, sufficient Base Sepolia
+wallet balance, and explicit acknowledgment for the current simulated CRE bridge path).
+
+### Mode Commands
+
+```bash
+just mode status             # show env resolution and mode command matrix
+just mode doctor             # run live preflight and write JSON report
+
+just demo up                 # dashboard + CRE bridge
+just demo run                # deterministic approved/denied CRE scenarios
+just demo down
+
+just live up                 # preflight + full stack
+just live run                # preflight + stack + smoke scenarios
+just live down
 ```
 
 ### Chainlink Hackathon Demo (justfile-first)

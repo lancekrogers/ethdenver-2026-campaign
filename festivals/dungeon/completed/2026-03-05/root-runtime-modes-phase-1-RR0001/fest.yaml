@@ -1,0 +1,67 @@
+version: "1.0"
+metadata:
+    id: RR0001
+    uuid: d5b77d01-d5cd-4cdd-8aaa-c298f69f2adb
+    name: Root Runtime Modes Phase 1
+    goal: 'Implement Phase 1 root mode framework for demo/live-testnet command UX: env split, just command aliases, and live preflight gate skeleton.'
+    festival_type: implementation
+    created_at: 2026-03-06T05:55:29.619199Z
+    initial_size_bytes: 21918
+    status_history:
+        - status: planning
+          timestamp: 2026-03-06T05:55:29.619199Z
+          path: festivals/planning/root-runtime-modes-phase-1-RR0001
+          notes: Festival created
+        - status: ready
+          timestamp: 2026-03-05T22:56:59.713972-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/ready/root-runtime-modes-phase-1-RR0001
+        - status: active
+          timestamp: 2026-03-05T22:56:59.742629-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/root-runtime-modes-phase-1-RR0001
+        - status: planning
+          timestamp: 2026-03-05T22:58:40.790752-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/planning/root-runtime-modes-phase-1-RR0001
+        - status: ready
+          timestamp: 2026-03-05T23:00:10.624366-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/ready/root-runtime-modes-phase-1-RR0001
+        - status: active
+          timestamp: 2026-03-05T23:00:10.642763-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/root-runtime-modes-phase-1-RR0001
+        - status: completed
+          timestamp: 2026-03-05T23:10:09.817324-07:00
+          path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/dungeon/completed/2026-03-05/root-runtime-modes-phase-1-RR0001
+type_config:
+    auto_phases:
+        - IMPLEMENT
+    skip_ingestion: true
+quality_gates:
+    enabled: true
+    auto_append: true
+    implementation:
+        - id: testing
+          template: gates/implementation/QUALITY_GATE_TESTING
+          name: Testing and Verification
+          enabled: true
+        - id: review
+          template: gates/implementation/QUALITY_GATE_REVIEW
+          name: Code Review
+          enabled: true
+        - id: iterate
+          template: gates/implementation/QUALITY_GATE_ITERATE
+          name: Review Results and Iterate
+          enabled: true
+        - id: fest-commit
+          template: gates/implementation/QUALITY_GATE_FEST_COMMIT
+          name: Fest Commit Changes
+          enabled: true
+excluded_patterns:
+    - '*_planning'
+    - '*_research'
+    - '*_requirements'
+    - '*_docs'
+templates:
+    task_default: tasks/SIMPLE
+    prefer_simple: true
+tracking:
+    enabled: true
+    checksum_file: .festival-checksums.json

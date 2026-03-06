@@ -22,6 +22,8 @@ check:
 env:
     @echo "=== Environment Files ==="
     @test -f {{root}}/.env.docker && echo "  .env.docker               OK" || echo "  .env.docker               MISSING (cp .env.docker.example .env.docker)"
+    @test -f {{root}}/.env.demo && echo "  .env.demo                 OK" || echo "  .env.demo                 MISSING (optional: cp .env.demo.example .env.demo)"
+    @test -f {{root}}/.env.live && echo "  .env.live                 OK" || echo "  .env.live                 MISSING (optional: cp .env.live.example .env.live)"
     @grep -q '^CRE_ENDPOINT=' {{root}}/.env.docker 2>/dev/null && echo "  CRE_ENDPOINT              OK" || echo "  CRE_ENDPOINT              MISSING (optional: set for custom CRE bridge URL)"
     @test -f {{root}}/projects/agent-coordinator/.env && echo "  agent-coordinator/.env    OK" || echo "  agent-coordinator/.env    MISSING"
     @test -f {{root}}/projects/agent-inference/.env && echo "  agent-inference/.env      OK" || echo "  agent-inference/.env      MISSING"

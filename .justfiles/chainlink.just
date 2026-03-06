@@ -1,6 +1,7 @@
 root := justfile_directory()
 compose := "docker compose -f " + root / "docker-compose.yml"
-compose_env := compose + " --env-file " + root / ".env.docker"
+env_file := env_var_or_default("ENV_FILE", root / ".env.docker")
+compose_env := compose + " --env-file " + env_file
 cre_endpoint := "http://cre-bridge:8080/evaluate-risk"
 bridge_port := env_var_or_default("CRE_BRIDGE_PORT", "8080")
 

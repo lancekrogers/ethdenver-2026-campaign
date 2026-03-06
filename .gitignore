@@ -1,8 +1,11 @@
 .env
 .env.*
 !.env.docker.example
+!.env.demo.example
+!.env.live.example
 .playwright-mcp/*
 .playwright-mcp/
 .screenshots/
 ai_docs/bugs/*
 workflow/explore/cre-demo/evidence/latest/
+workflow/explore/cre-demo/runs/

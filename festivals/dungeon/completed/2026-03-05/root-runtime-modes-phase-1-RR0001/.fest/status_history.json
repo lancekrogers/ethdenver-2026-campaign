@@ -1,0 +1,27 @@
+[
+  {
+    "timestamp": "2026-03-05T22:56:59.71273-07:00",
+    "from_status": "planning",
+    "to_status": "ready"
+  },
+  {
+    "timestamp": "2026-03-05T22:56:59.739662-07:00",
+    "from_status": "ready",
+    "to_status": "active"
+  },
+  {
+    "timestamp": "2026-03-05T23:00:10.623428-07:00",
+    "from_status": "planning",
+    "to_status": "ready"
+  },
+  {
+    "timestamp": "2026-03-05T23:00:10.642203-07:00",
+    "from_status": "ready",
+    "to_status": "active"
+  },
+  {
+    "timestamp": "2026-03-05T23:10:09.815974-07:00",
+    "from_status": "active",
+    "to_status": "completed"
+  }
+]
