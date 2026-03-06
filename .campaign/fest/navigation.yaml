@@ -1,3 +1,7 @@
 version: 1
-updated_at: 2026-03-02T08:37:10.518387Z
-links: {}
+updated_at: 2026-03-06T22:50:13.441962Z
+links:
+    fest-cli-runtime-integration-FC0001:
+        path: .
+        festival_path: festivals/active/fest-cli-runtime-integration-FC0001
+        linked_at: 2026-03-06T22:50:13.441962Z

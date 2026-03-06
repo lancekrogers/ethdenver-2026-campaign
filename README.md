@@ -95,6 +95,31 @@ just live run                # preflight + stack + smoke scenarios
 just live down
 ```
 
+### Fest Runtime Integration
+
+The coordinator now uses `fest` CLI JSON at runtime to:
+
+- derive task planning input
+- publish canonical `festival_progress` HCS events
+- mark event source as `fest` (real data) or `synthetic` (fallback)
+
+The dashboard `Festival View` renders a source label for this stream:
+
+- `Source: fest`
+- `Source: synthetic (fallback)`
+
+Operator commands from campaign root:
+
+```bash
+just fest status             # inspect fest availability and candidate selector
+just fest doctor             # strict selector + roadmap validation
+just demo run                # fallback-friendly local demo path
+just live run                # strict live path (fails fast when fest gates fail)
+```
+
+For full mode matrix, troubleshooting, and expected outcomes see:
+[`docs/guides/fest-runtime-integration.md`](docs/guides/fest-runtime-integration.md).
+
 ### Chainlink Hackathon Demo (justfile-first)
 
 ```bash

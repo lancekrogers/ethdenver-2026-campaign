@@ -56,3 +56,7 @@ Phase 1 intentionally fails hard by default until this flag is acknowledged:
 - `LIVE_ALLOW_SIMULATED_CRE=true`
 
 Reason: current CRE bridge HTTP path is simulation-backed for oracle data.
+
+For fest runtime source behavior (`fest` vs `synthetic`) and troubleshooting, see:
+
+- `docs/guides/fest-runtime-integration.md`

@@ -13,14 +13,28 @@ This guide demonstrates the Chainlink hackathon feature set without relying on l
 - Docker + Docker Compose
 - `just`
 - Campaign dependencies installed (`just install`)
+- Optional but recommended: `fest` binary available for runtime diagnostics (`just fest status`)
 
 ## What This Proves
 
 - Dashboard renders CRE-related UI (`CRE Decisions` panel + risk events in `HCS Feed`)
 - CRE risk engine produces both approved and denied outcomes deterministically
+- Runtime source behavior is explicit in dashboard (`Source: fest` or `Source: synthetic (fallback)`)
 - Evidence bundle generation works from campaign root
 
-## Step 1: Start mock dashboard
+## Step 1: Check mode and fest diagnostics (optional but recommended)
+
+```bash
+just mode status
+just fest status || true
+```
+
+Expected:
+
+- demo mode command path is visible
+- if `fest` is unavailable, demo can still proceed with synthetic fallback
+
+## Step 2: Start mock dashboard
 
 ```bash
 just demo
@@ -28,7 +42,7 @@ just demo
 
 Open `http://localhost:3000` and confirm the 6 panels render, including `CRE Decisions`.
 
-## Step 2: Run deterministic CRE integration scenarios
+## Step 3: Run deterministic CRE integration scenarios
 
 If ports `3000` or `8080` are occupied, override them inline:
 
@@ -41,7 +55,20 @@ Expected output includes two responses:
 - approved decision (`"approved": true`)
 - denied decision (`"approved": false`, reason such as `signal_confidence_below_threshold`)
 
-## Step 3: Generate and validate evidence
+## Step 4: Verify Festival View source label
+
+```bash
+just chainlink status
+```
+
+In dashboard `Festival View`, capture which label is visible:
+
+- `Source: fest`
+- or `Source: synthetic (fallback)`
+
+Record the run context (`demo`) and timestamp in your notes.
+
+## Step 5: Generate and validate evidence
 
 ```bash
 DASHBOARD_PORT=3001 CRE_BRIDGE_PORT=8081 just evidence collect
@@ -61,11 +88,18 @@ Expected files:
 - `dashboard-checklist.json`
 - `submission-ready.md`
 
-## Step 4: Teardown
+## Step 6: Teardown
 
 ```bash
 DASHBOARD_PORT=3001 CRE_BRIDGE_PORT=8081 just chainlink down
 ```
+
+## Evidence Checklist
+
+- [ ] Approved and denied scenario outputs captured
+- [ ] `Festival View` source label captured (`fest` or `synthetic`)
+- [ ] Run context noted (`demo`) with timestamp
+- [ ] Evidence files archived under `workflow/explore/cre-demo/evidence/latest/`
 
 ## Requirement Mapping (Chainlink Convergence)
 
