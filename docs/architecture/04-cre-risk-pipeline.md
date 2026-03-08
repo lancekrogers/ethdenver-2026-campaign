@@ -113,10 +113,13 @@ When the coordinator issues an `execute_trade` task with a `cre_decision` payloa
 ## On-Chain Receipt
 
 The CRE WASM binary runs in parallel:
-1. Decision is ABI-encoded
+1. Decision is ABI-encoded (raw payload, no function selector)
 2. `GenerateReport` creates a signed CRE report
 3. DON consensus validates and co-signs
-4. `recordDecision()` writes to `RiskDecisionReceipt.sol` at [`0xfcA344515D72a05232DF168C1eA13Be22383cCB6`](https://sepolia.etherscan.io/address/0xfcA344515D72a05232DF168C1eA13Be22383cCB6) on Ethereum Sepolia
+4. KeystoneForwarder (`0x15fC6ae953E024d975e77382eEeC56A9101f9F88`) calls `onReport(bytes,bytes)` on `RiskDecisionReceipt.sol` at [`0x9C7Aa5502ad229c80894E272Be6d697Fd02001d7`](https://sepolia.etherscan.io/address/0x9C7Aa5502ad229c80894E272Be6d697Fd02001d7) on Ethereum Sepolia
+5. `onReport()` decodes the report payload and delegates to `_recordDecision()` for storage
+
+The contract implements the CRE `IReceiver` interface and ERC165 for interface detection.
 
 ## See Also
 
