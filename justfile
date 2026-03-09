@@ -9,6 +9,7 @@ mod mode '.justfiles/mode.just'
 mod fest '.justfiles/fest.just'
 mod demo '.justfiles/demo.just'
 mod live '.justfiles/live.just'
+mod moltbook '.justfiles/moltbook.just'
 
 root := justfile_directory()
 
