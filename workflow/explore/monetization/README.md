@@ -33,6 +33,7 @@ Each path is evaluated on:
 | 4 | Hackathon Bounties | [04-hackathon-bounties.md](04-hackathon-bounties.md) |
 | 5 | Consulting and Templates | [05-consulting-and-templates.md](05-consulting-and-templates.md) |
 | 6 | Verdict | [06-verdict.md](06-verdict.md) |
+| 7 | Market Evidence Snapshot (2026-03-09) | [07-market-evidence-snapshot-2026-03-09.md](07-market-evidence-snapshot-2026-03-09.md) |
 
 ## Relationship to Existing Work
 
