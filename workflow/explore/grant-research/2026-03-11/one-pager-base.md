@@ -15,7 +15,7 @@ AI agents are entering DeFi, but they operate as anonymous black boxes. There's 
 
 ## Solution
 
-An autonomous DeFi trading agent built natively on Base, integrating three emerging Base-aligned standards to create an accountable, self-sustaining agent:
+An autonomous DeFi trading agent built natively on Base, integrating three emerging Base-aligned standards to create an accountable agent with implemented testnet economics:
 
 | Standard | How We Use It |
 |----------|---------------|
@@ -31,11 +31,11 @@ An autonomous DeFi trading agent built natively on Base, integrating three emerg
 - **Strategy:** Mean reversion on USDC/WETH via Uniswap V3 on Base Sepolia
 - **Execution:** `exactInputSingle` swaps through Uniswap V3 SwapRouter
 - **Logic:** Buys 2% below 30-period moving average, sells 2% above. Confidence scales with deviation; position sizes proportionally.
-- **Economics:** ~$12–$16 net profit per trade at 2% threshold ($1,000 position): $20 revenue − $3 Uniswap fee − $0.01 gas − $1–5 slippage
+- **Economics:** Position sizing, cost accounting, and P&L reporting are implemented in code. Additional live trade evidence is still being collected.
 
 ### Autonomous Operations
 - **3 concurrent loops:** Trading (60s), P&L reporting (5m), health heartbeat (30s)
-- **Self-sustaining:** Agent covers its own gas and operational costs from trading profits
+- **Cost-aware:** Agent tracks gas, service costs, and P&L as part of its runtime
 - **Risk-gated:** Integrates with CRE Risk Router — no trade executes without passing 8 risk gates
 
 ### Coordination
@@ -78,12 +78,13 @@ An autonomous DeFi trading agent built natively on Base, integrating three emerg
 ## What's Built
 
 - **Go agent** (`agent-defi`) — fully implemented, tested, running
+- **Base Sepolia evidence:** 4 deployed contracts plus ERC-8004 identity registration from our wallet
 - **ERC-8004 identity registration** — `internal/base/identity/register.go`
 - **ERC-8021 builder attribution** — appended to every transaction
 - **x402 payment handling** — autonomous invoice parsing, validation, payment, retry
 - **Uniswap V3 trading** — `internal/base/trading/executor.go` with real swap execution
 - **Mean reversion strategy** — configurable thresholds, position sizing, confidence scaling
-- **P&L tracking** — revenue, costs, net profit, win rate, self-sustaining status
+- **P&L tracking** — revenue, costs, net profit, and win rate accounting
 - **Dashboard panel** — Real-time DeFi P&L visualization with trade history and tx hashes
 - **Risk integration** — Fail-closed connection to CRE Risk Router
 
@@ -92,7 +93,7 @@ An autonomous DeFi trading agent built natively on Base, integrating three emerg
 ## Why This Matters for Base
 
 1. **Demonstrates the agent identity stack** — ERC-8004 + ERC-8021 + x402 working together in a real application, not a demo
-2. **Self-sustaining economics** — Agent covers its own costs, proving Base is viable for autonomous agent operations
+2. **Implemented agent economics** — The runtime tracks costs and P&L instead of treating economics as an afterthought
 3. **Builder attribution on every tx** — ERC-8021 creates traceable, accountable agent transactions on Base
 4. **Blueprint for other builders** — Architecture shows how to build accountable, risk-controlled DeFi agents on Base
 
@@ -106,7 +107,7 @@ An autonomous DeFi trading agent built natively on Base, integrating three emerg
 | Trading pair | USDC/WETH on Uniswap V3 |
 | Concurrent loops | 3 (trading, P&L, heartbeat) |
 | Risk gates before execution | 8 (via CRE Risk Router) |
-| Estimated profit per trade | $12–$16 net |
+| Base evidence collected | 4 deployments + 1 ERC-8004 registration tx |
 | Chain | Base Sepolia (84532) |
 
 ---

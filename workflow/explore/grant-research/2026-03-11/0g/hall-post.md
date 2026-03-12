@@ -11,7 +11,7 @@
 **What we're building:** Obey Agent Economy is a multi-agent system where autonomous AI agents coordinate work, execute inference, trade on DeFi, and settle payments — all with on-chain provenance. The inference agent is built natively on all four 0G services: Compute, Storage, Chain, and Data Availability.
 
 **What's already built:**
-- **agent-inference** (Go): Full 7-stage pipeline — receive task → discover providers → execute inference → store result → mint iNFT → publish audit trail → report result
+- **agent-inference** (Go): Implemented 7-stage pipeline — receive task → discover providers → execute inference → store result → mint iNFT → publish audit trail → report result. Galileo deployments and provider discovery are proven; provider-authenticated inference execution is the remaining public proof gap.
 - **agent-coordinator** (Go): Multi-agent orchestration with quality gates and payment settlement
 - **agent-defi** (Go): Autonomous DeFi trading on Base with risk controls
 - **cre-risk-router** (Go/WASM): Chainlink CRE risk evaluation with on-chain receipts (live on Ethereum Sepolia)
@@ -54,7 +54,7 @@ Task Assignment (Hedera Consensus Service)
 
 **0G Storage:** Persists inference results with SHA-256 data root anchoring via Flow contract at `0x22E03a6A89B950F1c82ec5e74F8eCa321a105296`. Every result gets a verifiable content ID anchored on-chain before upload to storage nodes.
 
-**0G Chain (Galileo):** Mints ERC-7857 iNFTs containing AES-256-GCM encrypted inference metadata (model config, memory, knowledge base, strategy weights). Only the owner can decrypt via TEE oracle on transfer. Token metadata includes result hash, storage reference, and agent address.
+**0G Chain (Galileo):** `AgentINFT` is deployed at `0x17F41075454cf268D0672dd24EFBeA29EF2Dc05b`. The contract mints ERC-7857 iNFTs containing AES-256-GCM encrypted inference metadata (model config, memory, knowledge base, strategy weights). Only the owner can decrypt via TEE oracle on transfer. Token metadata includes result hash, storage reference, and agent address.
 
 **0G Data Availability:** Publishes immutable audit events to a dedicated DA namespace via DA Entrance at `0xE75A073dA5bb7b0eC622170Fd268f35E675a957B`. Each event contains agent ID, task ID, job ID, storage content ID, iNFT token ID, and timestamp.
 
@@ -71,9 +71,9 @@ Task Assignment (Hedera Consensus Service)
 
 | 0G Service | Current Integration | Grant Enables |
 |------------|-------------------|---------------|
-| **Compute** | Provider discovery + endpoint probing working on Galileo | Session auth + live inference + multi-provider routing |
+| **Compute** | Provider discovery + endpoint probing working on Galileo; session manager implemented in current code | Public proof of session auth + live inference + multi-provider routing |
 | **Storage** | Flow contract integration with SHA-256 anchoring | Mainnet deployment + redundancy |
-| **Chain** | AgentINFT.sol (ERC-7857) with encrypted metadata — 9 passing tests | Mainnet contract deployment + iNFT marketplace |
+| **Chain** | AgentINFT.sol (ERC-7857) deployed on Galileo with encrypted metadata support | Mainnet contract deployment + iNFT marketplace |
 | **DA** | DA Entrance integration with audit event serialization | Mainnet deployment + batch submission optimization |
 
 **We are one of the few projects using all 4 0G services in a single pipeline.** Most applicants use 1-2.
@@ -84,8 +84,8 @@ All transactions verified on [chainscan.0g.ai](https://chainscan.0g.ai). Wallet:
 
 | Operation | Transaction | Contract |
 |-----------|-------------|----------|
-| AgentSettlement deploy | [`0x5a028b3f...`](https://chainscan.0g.ai/tx/0x5a028b3fafd2179c3a453dd3f12b0cead16d86e3810e76b4776478dc06350c58) | `0x437c2bf7a00da07983bc1ecaa872d9e2b27a3d40` |
-| ReputationDecay deploy | [`0x30f03a17...`](https://chainscan.0g.ai/tx/0x30f03a1777ab8bb0c106260891ec69eb0c0226eaf9243b0456552825698ed89b) | `0xbdcdbfd93c4341dfe3408900a830cbb0560a62c4` |
+| ReputationDecay deploy | [`0x5a028b3f...`](https://chainscan.0g.ai/tx/0x5a028b3fafd2179c3a453dd3f12b0cead16d86e3810e76b4776478dc06350c58) | `0xbdcdbfd93c4341dfe3408900a830cbb0560a62c4` |
+| AgentSettlement deploy | [`0x30f03a17...`](https://chainscan.0g.ai/tx/0x30f03a1777ab8bb0c106260891ec69eb0c0226eaf9243b0456552825698ed89b) | `0x437c2bf7a00da07983bc1ecaa872d9e2b27a3d40` |
 | AgentINFT (ERC-7857) deploy | [`0x929d4a74...`](https://chainscan.0g.ai/tx/0x929d4a74fd6a25ed34e1762181ba842edfa20f76b476a6adc1290db5175a88f4) | `0x17f41075454cf268d0672dd24efbea29ef2dc05b` |
 | 0G Compute (InferenceServing) | — (system contract) | `0xa79F4c8311FF93C06b8CfB403690cc987c93F91E` |
 | 0G Storage (Flow) | — (system contract) | `0x22E03a6A89B950F1c82ec5e74F8eCa321a105296` |
@@ -130,7 +130,7 @@ The `hiero-plugin` ships two 0G templates that scaffold new projects for other 0
 
 | Milestone | Week | Deliverable | Verification |
 |-----------|------|-------------|--------------|
-| M1 | 2 | Full pipeline on Galileo with tx evidence | 4+ chainscan transaction links |
+| M1 | 2 | Runtime Galileo evidence beyond deployment: storage, DA, iNFT mint, and one authenticated inference attempt | 4+ chainscan transaction links plus inference logs |
 | M2 | 4 | Multi-provider routing + parallel ops | Throughput benchmarks, provider selection logs |
 | M3 | 6 | Open-source Go SDK for 0G services | Public GitHub repo, README, examples |
 | M4 | 8 | Documentation + integration guide | Published docs, 1 community tutorial |

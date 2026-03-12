@@ -16,7 +16,12 @@
 
 ## Current Status
 
-- [ ] Evidence gaps closed (see evidence-gaps.md)
+- [x] Galileo wallet funded and used for contract deployments
+- [x] Core 0G deployment evidence recorded in `../evidence-manifest.md`
+- [ ] Storage `submit()` tx documented
+- [ ] DA `submitOriginalData()` tx documented
+- [ ] iNFT mint tx documented against deployed Galileo contract
+- [ ] Provider-authenticated inference execution documented
 - [ ] Hall post published
 - [ ] Application form submitted
 - [ ] Social media posts published

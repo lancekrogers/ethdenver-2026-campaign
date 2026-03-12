@@ -15,7 +15,7 @@ Autonomous AI agents generating trade signals and analysis in DeFi have no verif
 
 ## Solution
 
-A production-grade decentralized inference agent built natively on all four 0G service layers:
+A working testnet inference stack built natively on all four 0G service layers:
 
 | 0G Service | How We Use It |
 |------------|---------------|
@@ -54,8 +54,9 @@ Task Assignment (via Hedera HCS)
 ## What's Built
 
 - **Fully integrated Go agent** (`agent-inference`) compiled and tested
-- **On-chain contracts:** `AgentINFT.sol` (ERC-721 + ERC-7857 iNFT) deployed via Foundry to 0G Galileo
-- **All 4 0G services wired end-to-end** — not mocked, not simulated
+- **On-chain contracts:** `AgentINFT.sol` (ERC-721 + ERC-7857 iNFT) deployed to 0G Galileo at `0x17F41075454cf268D0672dd24EFBeA29EF2Dc05b`
+- **Galileo deployment evidence:** `ReputationDecay`, `AgentSettlement`, and `AgentINFT` all have verified deployment txs on 0G Galileo
+- **All 4 0G service integrations are implemented** — provider discovery and Galileo deployments are proven publicly; authenticated inference execution remains the main proof gap
 - **Developer tooling:** `hiero-plugin` ships two 0G templates (`0g-agent`, `0g-inft-build`) that scaffold new 0G projects for other builders
 - **Operational dashboard** panel showing inference metrics: GPU/memory utilization, active jobs, latency, iNFT status
 - **34 passing Solidity tests** (Foundry) + Go unit tests with context cancellation coverage
@@ -67,7 +68,7 @@ Task Assignment (via Hedera HCS)
 | Factor | Us | Typical Grant Applicant |
 |--------|-----|------------------------|
 | 0G services used | All 4 (Compute, Storage, DA, Chain) | 1-2 |
-| Stage | Working code on Galileo testnet | Whitepaper or mockup |
+| Stage | Working code plus Galileo deployment evidence | Whitepaper or mockup |
 | Provenance model | ERC-7857 iNFT with encrypted metadata + TEE decrypt | None or centralized |
 | Audit trail | Immutable DA namespace per inference | Logs in a database |
 | Developer tooling | Ships templates for other 0G builders | Single project only |
@@ -76,10 +77,10 @@ Task Assignment (via Hedera HCS)
 
 ## What's Next (Grant Funding Enables)
 
-1. **Mainnet deployment** — Migrate from Galileo testnet to 0G mainnet
-2. **Multi-provider load balancing** — Route inference across multiple GPU providers based on latency, cost, and availability
-3. **iNFT marketplace integration** — Enable trading of inference provenance NFTs, creating a market for verified AI outputs
-4. **Storage redundancy** — Multi-region persistence with cross-validation
+1. **Authenticated inference proof** — Capture one clean provider-authenticated inference execution with public evidence
+2. **Mainnet deployment** — Migrate from Galileo testnet to 0G mainnet
+3. **Multi-provider load balancing** — Route inference across multiple GPU providers based on latency, cost, and availability
+4. **iNFT marketplace integration** — Enable trading of inference provenance NFTs, creating a market for verified AI outputs
 5. **Open-source release** — Clean up and publish the inference agent as a reusable framework for other 0G builders
 
 ---

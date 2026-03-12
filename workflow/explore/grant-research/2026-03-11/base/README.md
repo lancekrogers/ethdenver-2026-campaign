@@ -18,7 +18,12 @@ Base grants reward **shipped code**, not proposals. The process is:
 
 ## Current Status
 
-- [ ] Evidence gaps closed (see evidence-gaps.md)
+- [x] Base Sepolia wallet funded
+- [x] Four Base Sepolia contracts deployed
+- [x] ERC-8004 identity registration tx recorded
+- [ ] x402 payment tx recorded
+- [ ] Uniswap swap tx recorded
+- [ ] Explicit ERC-8021-attributed tx recorded
 - [ ] Repos made public
 - [ ] Self-nomination submitted
 - [ ] builderscore.xyz registered

@@ -2,25 +2,17 @@
 
 ## Pre-Submission Work (Do This First)
 
-### Step 0: Close Evidence Gaps (~1-2 hours)
+### Step 0: Refresh Evidence And Close The Remaining Gaps (~1-2 hours)
 
-This is the **blocker**. You cannot submit a credible application without on-chain transaction hashes.
+The old "wallet empty / nothing deployed" blocker is gone. The current job is to reuse the deployment evidence you already have and add the missing runtime txs.
 
-1. **Get Galileo testnet tokens**
-   - Go to https://faucet.0g.ai
-   - Fund your wallet with testnet 0G
+1. **Copy existing Galileo deployment evidence into the submission materials**
+   - `ReputationDecay` → `0x5a028b3fafd2179c3a453dd3f12b0cead16d86e3810e76b4776478dc06350c58`
+   - `AgentSettlement` → `0x30f03a1777ab8bb0c106260891ec69eb0c0226eaf9243b0456552825698ed89b`
+   - `AgentINFT` → `0x929d4a74fd6a25ed34e1762181ba842edfa20f76b476a6adc1290db5175a88f4`
 
-2. **Deploy AgentINFT.sol to Galileo**
-   ```bash
-   cd projects/contracts
-   # Update foundry.toml rpc_endpoints to use Galileo
-   forge script script/Deploy.s.sol \
-     --rpc-url https://evmrpc-testnet.0g.ai \
-     --broadcast \
-     --private-key $ZG_CHAIN_PRIVATE_KEY
-   ```
-   - Save the deployed contract address
-   - Verify on https://chainscan.0g.ai
+2. **Top up Galileo wallet only if needed**
+   - If gas balance is low, use https://faucet.0g.ai
 
 3. **Execute Storage submit() transaction**
    - Either write a live test or run the agent with ZG_CHAIN_PRIVATE_KEY set
@@ -31,10 +23,14 @@ This is the **blocker**. You cannot submit a credible application without on-cha
    - Save the transaction hash
 
 5. **Mint an iNFT on the deployed contract**
+   - Use deployed contract `0x17F41075454cf268D0672dd24EFBeA29EF2Dc05b`
    - Call mint() with test metadata
    - Save the transaction hash + token ID
 
-6. **Document all tx hashes** in the hall post (fill [PLACEHOLDER] sections)
+6. **Optional but high-value: capture one successful provider-authenticated inference run**
+   - Save request logs, provider selected, and any resulting tx or audit evidence
+
+7. **Document all tx hashes** in the hall post and one-pager
 
 ### Step 0.5: Make Repos Public
 
@@ -77,7 +73,7 @@ Go to https://guild.0gfoundation.ai/apply
 **Page 2: Project Info**
 - Project Name: Obey Agent Economy
 - Category: AI Agents (their HIGHEST PRIORITY category)
-- Project Description: "Decentralized inference pipeline using all 4 0G services — Compute for GPU provider discovery, Storage for result anchoring, Chain for ERC-7857 iNFT minting, and DA for immutable audit trails. Part of a multi-agent economy spanning 4 blockchains."
+  - Project Description: "Decentralized inference pipeline using all 4 0G services — Compute for GPU provider discovery, Storage for result anchoring, Chain for ERC-7857 iNFT minting, and DA for immutable audit trails. Galileo deployment evidence is already live; the remaining milestone is authenticated inference execution."
 - Website/GitHub: github.com/lancekrogers
 - Stage: Working prototype on Galileo testnet
 
@@ -153,10 +149,10 @@ Join https://discord.gg/0glabs and post in the builders or showcase channel:
 
 | Step | Time | Depends On |
 |------|------|-----------|
-| Close evidence gaps | 1-2 hours | Funded Galileo wallet |
+| Refresh evidence + close remaining gaps | 1-2 hours | Existing Galileo deploy txs |
 | Make repos public | 5 min | — |
 | Create hall.0g.ai account | 5 min | — |
-| Post on hall.0g.ai | 15 min | Evidence gaps closed |
+| Post on hall.0g.ai | 15 min | Deployment evidence copied, placeholders filled |
 | Fill application form | 20 min | Hall post URL |
 | Twitter thread | 30 min | Hall post URL |
 | Discord post | 10 min | Hall post URL |

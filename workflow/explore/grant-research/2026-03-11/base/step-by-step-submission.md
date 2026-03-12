@@ -15,38 +15,38 @@ Base grants are **retroactive and scout-based**. There is no formal application 
 
 ## Pre-Submission Work
 
-### Step 0: Verify/Generate On-Chain Evidence (~30-60 min)
+### Step 0: Verify Existing Evidence And Add Missing Runtime Proofs (~20-60 min)
 
-You need Base Sepolia transaction hashes to link publicly.
+You already have usable Base Sepolia transaction evidence. The main job now is to package it cleanly and decide whether to collect optional runtime txs before nominating.
 
-1. **Check existing wallet history**
-   - Go to https://sepolia.basescan.org
-   - Search your agent wallet address
-   - Check if ERC-8004, Uniswap, or x402 transactions already exist
+1. **Start with the evidence you already have**
+   - Funding tx: `0xfebaae44845667ac09c39b19db4a2b259d85881274e70c3ca41f79245a4cad2c`
+   - Deploy txs:
+     - `0x21c52923db732f0b79e0488c8af64fb26fae07b4fd843b8400f9cf7ef872b739`
+     - `0xa52f45a1d4fd1347512da079340f3699f4e7cee7e286e9d46445bb7856d6f8fe`
+     - `0xbb0b9a2b8fc0dedf5c811e89a8e34e73531c9c077d5c3b11e711f2fb0aa1f97e`
+     - `0x653d47b30ebc91f870ea302103b743cd7f30a722649b1af67ebe8a9e40af9c92`
+   - Identity registration tx:
+     - `0x9b31bd785dd7b12649d9d12379546c268aea1da6e0060777bed6276cf8e4002a`
 
-2. **If no transactions exist, generate them:**
+2. **Optional: add stronger runtime evidence**
 
    a. Fund Base Sepolia wallet:
    - Get Sepolia ETH from a faucet
    - Bridge to Base Sepolia or use a Base Sepolia faucet
    - Get USDC from Base Sepolia faucet (0x036CbD53842c5426634e7929541eC2318f3dCF7e)
 
-   b. Execute ERC-8004 registration:
-   ```bash
-   cd projects/agent-defi
-   export BASE_PRIVATE_KEY=<your-key>
-   export BASE_RPC=https://sepolia.base.org
-   go run cmd/main.go --register-identity
-   # Or: go test -tags live -run TestLive_Register -v ./internal/base/identity/
-   ```
-
-   c. Execute a Uniswap V3 swap:
+   b. Execute a Uniswap V3 swap:
    ```bash
    go run cmd/main.go --execute-trade
    # Or: go test -tags live -run TestLive_Swap -v ./internal/base/trading/
    ```
 
-3. **Save all transaction hashes** and verify on basescan
+   c. Capture an x402 payment tx if a suitable service is available
+
+   d. Capture one explicit ERC-8021-attributed tx and verify the suffix
+
+3. **Save all transaction hashes** and verify on Basescan
 
 ### Step 1: Make Repos Public (~5 min)
 
@@ -66,7 +66,7 @@ You need Base Sepolia transaction hashes to link publicly.
 2. Find the nomination/submission link (typically a Google Form or similar)
 3. Fill out:
    - **Project name:** Obey Agent Economy — Autonomous DeFi Agent
-   - **What it does:** "Autonomous trading agent on Base Sepolia integrating ERC-8004 (trustless identity), ERC-8021 (builder attribution), and x402 (machine payments). Trades Uniswap V3 with Chainlink CRE risk controls. Self-sustaining — covers its own gas costs from trading profits."
+   - **What it does:** "Autonomous trading agent on Base Sepolia integrating ERC-8004 (trustless identity), ERC-8021 (builder attribution), and x402 (machine payments). Trades Uniswap V3 with Chainlink CRE risk controls. Four contracts are deployed from our wallet and the agent has already executed ERC-8004 identity registration on Base Sepolia."
    - **GitHub:** [your public repo link]
    - **On-chain evidence:** [basescan tx links]
    - **Social:** [your Twitter/Farcaster handles]
@@ -129,7 +129,7 @@ The Base grants team continuously scouts. A single post isn't enough.
 
 | Step | Time | Depends On |
 |------|------|-----------|
-| Verify/generate on-chain evidence | 30-60 min | Funded Base Sepolia wallet |
+| Package current evidence + optional runtime txs | 20-60 min | Existing Base Sepolia txs |
 | Make repos public | 5 min | — |
 | Self-nominate | 10 min | Public repo + tx evidence |
 | Register builderscore.xyz | 5 min | Wallet |

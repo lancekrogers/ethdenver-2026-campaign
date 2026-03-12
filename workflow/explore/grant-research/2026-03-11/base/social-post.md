@@ -12,6 +12,8 @@ Built an autonomous DeFi agent on @base that:
 → Pays for services autonomously (x402)
 → Trades Uniswap V3 with risk controls
 
+4 contracts deployed from our wallet on Base Sepolia, plus an ERC-8004 identity registration tx.
+
 3 Base-native standards in one agent. All real code, all on Base Sepolia.
 
 🧵👇
@@ -38,7 +40,7 @@ The agent autonomously handles payment-gated resources:
 - Submits on-chain USDC payment
 - Retries with proof
 
-No human needed. Agent pays its own bills.
+No human needed. This is implemented in the agent and ready for more live tx evidence.
 
 445 lines of real x402 implementation.
 ```
@@ -58,10 +60,10 @@ On-chain accountability for autonomous agents.
 - USDC/WETH pair on Base Sepolia
 - Buys 2% below 30-period MA
 - Sells 2% above
-- ~$12-16 net profit per trade
-- Covers its own gas + operational costs
+- Tracks P&L, gas, and service costs in code
+- Uses explicit cost accounting instead of hand-waving economics
 
-Self-sustaining agent economy.
+Implemented agent economics, with more live trade evidence being collected.
 ```
 
 ```
@@ -106,7 +108,7 @@ ERC-8004: On-chain agent identity
 ERC-8021: Builder attribution on every tx
 x402: Machine-to-machine payments
 
-Agent trades Uniswap V3, pays its own bills, and every action is traceable.
+Agent trades Uniswap V3, tracks its operating costs, and every action is traceable.
 
 40+ tests passing, all real implementations (no mocks in prod).
 
@@ -123,7 +125,7 @@ Evidence: [basescan links]
 For any social post about this project on Base channels:
 
 1. **Lead with the standards** — ERC-8004, ERC-8021, x402. These are new and Base wants adoption.
-2. **"Self-sustaining"** — agent covers its own costs. This is the Base bounty angle.
+2. **"Implemented agent economics"** — the agent tracks costs, P&L, and machine payments in code. Use this instead of overstating live profit proof.
 3. **"Traceable"** — ERC-8021 makes every tx attributable. This matters for accountability.
 4. **"Real code"** — link to GitHub, link to basescan. Evidence beats claims.
 5. **Don't oversell** — it's on testnet, say so. Honesty builds trust.

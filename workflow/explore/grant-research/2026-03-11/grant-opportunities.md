@@ -23,7 +23,7 @@
 
 ### 1. 0G Foundation — Ecosystem Growth Program & Guild
 
-**Why you're a strong fit:** `agent-inference` is a fully integrated 0G project using Compute (GPU provider discovery), Storage (result persistence), and Data Availability (audit trail) on 0G Galileo. Plus `hiero-plugin` includes 0G templates. You're one of the few builders with deep multi-service 0G integration.
+**Why you're a strong fit:** `agent-inference` has real multi-service 0G integration with provider discovery, Galileo deployments, and audit/provenance infrastructure already wired. Plus `hiero-plugin` includes 0G templates. You're one of the few builders with this much 0G surface area in one project.
 
 | Detail | Info |
 |--------|------|
@@ -33,7 +33,7 @@
 | **Status** | Rolling applications, early submissions prioritized |
 | **Apply** | [0G Foundation](https://www.0gfoundation.ai/) → Guild or Ecosystem tabs |
 
-**Your pitch angle:** "Production-grade decentralized inference pipeline with provenance tracking, on-chain storage anchoring, and DA-backed audit trails — already integrated across 0G Compute, Storage, and DA on Galileo testnet."
+**Your pitch angle:** "Working 0G testnet inference stack with real Galileo deployment evidence, provenance tracking, on-chain storage anchoring, and DA-backed audit trails — grant funding closes the final authenticated inference gap and pushes the stack toward mainnet readiness."
 
 ---
 
@@ -92,7 +92,7 @@
 | **Status** | Rolling applications |
 | **Apply** | [Chainlink Build Program](https://chain.link/build-program) |
 
-**Your pitch angle:** "CRE-native risk evaluation layer for autonomous agents — 8-gate pipeline with DON-verified on-chain receipts. Already deployed and simulated on Sepolia with real transaction evidence."
+**Your pitch angle:** "CRE-native risk evaluation layer for autonomous agents — 8-gate pipeline with DON-verified on-chain receipts. Already deployed and executed on Sepolia with real transaction evidence."
 
 ---
 
@@ -248,6 +248,6 @@
 
 ## Key Positioning
 
-> "Obey Agent Economy is a production-grade multi-agent system spanning 4 chains (Hedera, Base, 0G, Ethereum) with runtime risk controls, auditable on-chain execution, and decentralized inference. Unlike demo projects, every component has deployed contracts, real transactions, and working integration."
+> "Obey Agent Economy is a working multi-agent system spanning 4 chains (Hedera, Base, 0G, Ethereum) with runtime risk controls, auditable on-chain execution, and decentralized inference. Core components now have deployed contracts and real transactions, with the remaining major proof gap concentrated in authenticated 0G inference execution."
 
 The fact that you've built **across** ecosystems is rare and valuable — most grant applicants are single-chain. Lean into the multi-chain narrative while applying to each ecosystem's specific program with their chain-specific work highlighted.
