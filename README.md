@@ -142,6 +142,53 @@ just chainlink down
 
 If ports are in use, set `DASHBOARD_PORT` and/or `CRE_BRIDGE_PORT` in `.env.docker` (for example `DASHBOARD_PORT=3001`, `CRE_BRIDGE_PORT=8081`) before running `just chainlink up`.
 
+## On-Chain Evidence
+
+All contracts and agent operations have been deployed and executed on live testnets across 4 chains. **80+ verified transactions** demonstrate the system working end-to-end.
+
+### Hedera Testnet
+
+| Account | Role | Transactions | Link |
+|---------|------|-------------|------|
+| `0.0.7974114` | Coordinator | 24+ (HCS messages, token transfers, scheduling) | [mirror](https://testnet.mirrornode.hedera.com/api/v1/transactions?account.id=0.0.7974114&limit=25&order=desc) |
+| `0.0.7984825` | Inference Agent | 25+ (HCS status reporting) | [mirror](https://testnet.mirrornode.hedera.com/api/v1/transactions?account.id=0.0.7984825&limit=25&order=desc) |
+| `0.0.7985425` | DeFi Agent | 24+ (HCS status, token receipts) | [mirror](https://testnet.mirrornode.hedera.com/api/v1/transactions?account.id=0.0.7985425&limit=25&order=desc) |
+
+- **HCS Topics:** `0.0.7999404` (tasks), `0.0.7999405` (status)
+- **HTS Token:** `0.0.7999406` (agent economy payment token)
+
+### 0G Galileo (Chain ID 16602)
+
+Wallet: `0x38CB2E2eeb45E6F70D267053DcE3815869a8C44d`
+
+| Contract | Address | Tx |
+|----------|---------|-----|
+| ReputationDecay | `0xbdCdBfd93C4341DfE3408900A830CBB0560a62C4` | [`0x5a028b...`](https://chainscan.0g.ai/tx/0x5a028b3fafd2179c3a453dd3f12b0cead16d86e3810e76b4776478dc06350c58) |
+| AgentSettlement | `0x437c2bF7a00Da07983bc1eCaa872d9E2B27A3d40` | [`0x30f03a...`](https://chainscan.0g.ai/tx/0x30f03a1777ab8bb0c106260891ec69eb0c0226eaf9243b0456552825698ed89b) |
+| AgentINFT (ERC-7857) | `0x17F41075454cf268D0672dd24EFBeA29EF2Dc05b` | [`0x929d4a...`](https://chainscan.0g.ai/tx/0x929d4a74fd6a25ed34e1762181ba842edfa20f76b476a6adc1290db5175a88f4) |
+
+### Base Sepolia (Chain ID 84532)
+
+Wallet: `0xc71d8a19422c649fe9bdcbf3ffa536326c82b58b`
+
+| Contract | Address | Tx |
+|----------|---------|-----|
+| AgentIdentityRegistry (ERC-8004) | `0x0C97820abBdD2562645DaE92D35eD581266CCe70` | [`0x21c529...`](https://sepolia.basescan.org/tx/0x21c52923db732f0b79e0488c8af64fb26fae07b4fd843b8400f9cf7ef872b739) |
+| AgentSettlement | `0xa5378FbDCD2799C549A559C1C7c1F91D7C983A44` | [`0xa52f45...`](https://sepolia.basescan.org/tx/0xa52f45a1d4fd1347512da079340f3699f4e7cee7e286e9d46445bb7856d6f8fe) |
+| ReputationDecay | `0x54734cC3AF4Db984cD827f967BaF6C64DEAEd0B1` | [`0xbb0b9a...`](https://sepolia.basescan.org/tx/0xbb0b9a2b8fc0dedf5c811e89a8e34e73531c9c077d5c3b11e711f2fb0aa1f97e) |
+| AgentINFT (ERC-7857) | `0xfcA344515D72a05232DF168C1eA13Be22383cCB6` | [`0x653d47...`](https://sepolia.basescan.org/tx/0x653d47b30ebc91f870ea302103b743cd7f30a722649b1af67ebe8a9e40af9c92) |
+
+**Agent operation:** DeFi agent identity registration — [`0x9b31bd...`](https://sepolia.basescan.org/tx/0x9b31bd785dd7b12649d9d12379546c268aea1da6e0060777bed6276cf8e4002a) (AgentRegistered event emitted)
+
+### Ethereum Sepolia (Chain ID 11155111)
+
+| Operation | Tx |
+|-----------|-----|
+| CRE risk evaluation | [`0xea6784...`](https://sepolia.etherscan.io/tx/0xea6784a79fd108cfb4fc07127ab19b2c9f2a90867fcccc47b339e685fe3169c4) |
+| CRE risk evaluation | [`0x0c7292...`](https://sepolia.etherscan.io/tx/0x0c72922fd8e31f859dc5ce30364d87e86c939f7c2a2282899db11b65242dabd1) |
+
+Full evidence manifest: [`workflow/explore/grant-research/2026-03-11/evidence-manifest.md`](workflow/explore/grant-research/2026-03-11/evidence-manifest.md)
+
 ## Architecture
 
 ```
@@ -215,11 +262,12 @@ Data flows in priority order: Hub WebSocket (primary), direct daemon gRPC (dev f
 
 ### Contracts
 
-Three Solidity contracts:
+Four Solidity contracts deployed to 0G Galileo and Base Sepolia:
 
 - **AgentSettlement.sol**: Accumulates pending inter-agent payments and batch-settles via HIP-1215 scheduled transactions (Hedera Track 2)
 - **ReputationDecay.sol**: Tracks agent activity timestamps and schedules periodic reputation score decay for inactive agents (Hedera Track 2)
 - **AgentINFT.sol**: ERC-7857 iNFT for agent inference provenance - stores encrypted metadata, result hashes, and DA references on 0G Chain
+- **AgentIdentityRegistry.sol**: ERC-8004 agent identity registry on Base - agents register public keys and metadata on-chain for trustless identity verification
 
 ### Hiero Plugin
 
