@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:39.719279-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 03_agent_vault_client
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
+**Sequence:** 03_agent_vault_client | **Phase:** 002_MVP_VAULT | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Build a Go client that reads vault state from the on-chain program and periodically updates the on-chain NAV from the agent's portfolio tracker, keeping share prices in sync with actual Drift BET position values.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** The vault NAV update is admin-controlled in the MVP. This client automates that update so share prices stay fresh without manual intervention.
 
 ## Success Criteria
 
@@ -32,14 +25,13 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Vault client package**: Go client reading VaultState (total_nav, total_shares, share_mint, last update timestamp) via Solana RPC
+- [ ] **NAV reporting service**: Periodic task (every 5 minutes) reading agent portfolio NAV and submitting update_nav transaction when deviation exceeds 0.5%
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Idempotent updates**: Redundant NAV updates with same value skip transaction submission
+- [ ] **Context propagation**: All RPC calls respect context cancellation
 
 ### Completion Criteria
 
@@ -50,37 +42,40 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_vault_client.md | Go client for reading vault state and submitting NAV updates | Core vault program interaction |
+| 02_nav_reporting.md | Periodic NAV sync from agent portfolio to on-chain vault | Automated NAV freshness |
+| 03_testing.md | Quality gate: run full test suite | Ensures client works against devnet |
+| 04_review.md | Quality gate: code review | Validates client design |
+| 05_iterate.md | Quality gate: address review feedback | Resolves issues |
+| 06_fest_commit.md | Quality gate: commit completed work | Finalizes deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 02_vault_tests: Verified vault program on devnet with known program ID
+- 001_DRIFT_BET_AGENT/03_agent_loop: Portfolio tracker providing current NAV
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- Automated on-chain NAV updates: Used by 003_LANDING_PAGE/01_agent_profile (REST API reads on-chain NAV)
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| RPC rate limits cause missed NAV updates | Low | Low | Dedicated RPC endpoint; updates non-critical if delayed by minutes |
+| Transaction fees from frequent updates | Low | Low | Threshold-based submission; ~0.00025 SOL per tx is negligible |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: Go client reads VaultState from devnet
+- [ ] **Milestone 2**: NAV reporting submits update transactions
+- [ ] **Milestone 3**: End-to-end: trade changes NAV, on-chain vault reflects it
 
 ## Quality Gates
 
@@ -98,5 +93,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

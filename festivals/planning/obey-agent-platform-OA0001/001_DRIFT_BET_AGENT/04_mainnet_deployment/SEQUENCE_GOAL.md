@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:31.127377-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 04_mainnet_deployment
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:31-06:00
+**Sequence:** 04_mainnet_deployment | **Phase:** 001_DRIFT_BET_AGENT | **Status:** Pending | **Created:** 2026-03-13T02:20:31-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Deploy the prediction market agent to Solana mainnet with a funded wallet, verify live trading with small positions, integrate HCS reporting, and confirm 24-hour operational stability.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** This sequence takes the tested agent binary and puts it into production. A successful 24-hour monitored run with real trades on Drift BET completes the phase and proves the core thesis that AI agents can profitably trade prediction markets autonomously.
 
 ## Success Criteria
 
@@ -32,14 +25,14 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Funded Solana wallet**: Generated agent keypair funded with SOL for gas and $5K-$10K USDC seed capital
+- [ ] **Mainnet deployment**: Agent binary running and verified trading live Drift BET markets, monitored for 24h with no crashes
+- [ ] **HCS integration**: Agent broadcasting trade events and P&L reports to coordinator HCS topics
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Conservative sizing**: Initial positions capped at 2% of seed capital until 24h stability confirmed
+- [ ] **Real-time monitoring**: Logs, health checks, and HCS messages visible during observation period
 
 ### Completion Criteria
 
@@ -50,37 +43,42 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_solana_wallet_setup.md | Generate wallet, fund with SOL + USDC seed capital | Provides funded wallet for mainnet trading |
+| 02_deploy_and_verify.md | Deploy agent, verify live trading, monitor 24h | Validates agent on mainnet |
+| 03_hcs_integration.md | Connect to HCS topics, broadcast trades and P&L | External visibility and coordination |
+| 04_testing.md | Quality gate: verify deployment health | Ensures stability requirements met |
+| 05_review.md | Quality gate: deployment review | Validates process and monitoring |
+| 06_iterate.md | Quality gate: address issues from 24h monitoring | Resolves mainnet-specific issues |
+| 07_fest_commit.md | Quality gate: commit completed work | Finalizes sequence deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 03_agent_loop: Complete agent binary with risk management and portfolio tracking
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- Live mainnet agent with known wallet address: Used by 002_MVP_VAULT (vault points to agent wallet)
+- HCS trade/P&L data stream: Used by 003_LANDING_PAGE (data source for agent profile)
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Agent loses significant capital in first 24h | Low | High | 15% max drawdown stop-loss; 2% max position size; manual kill switch |
+| Solana RPC unreliability | Low | Med | Multiple RPC endpoints with failover (Helius/Triton) |
+| HCS publish failures | Low | Low | Non-blocking; agent continues trading; retry with backoff |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: Wallet created, funded, agent deployed to mainnet
+- [ ] **Milestone 2**: First successful live trade on Drift BET
+- [ ] **Milestone 3**: 24-hour monitored run complete with stable operation
 
 ## Quality Gates
 
@@ -98,5 +96,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

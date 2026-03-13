@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:39.636463-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 01_anchor_vault
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
+**Sequence:** 01_anchor_vault | **Phase:** 002_MVP_VAULT | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Implement the MVP vault Anchor program (~200 LOC) with instructions for initialization, USDC deposit with proportional share minting, withdrawal with optional delay, and admin-controlled NAV update.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** This is the core smart contract enabling user deposits. Without it, the agent trades only with platform capital. The vault transforms the platform from an internal tool into a product accepting external funds and generating fee revenue.
 
 ## Success Criteria
 
@@ -32,14 +25,17 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Anchor project**: Initialized with devnet configuration and test framework
+- [ ] **VaultState account**: PDA with authority, agent_wallet, share_mint, usdc_vault, total_nav, total_shares, withdrawal_delay fields
+- [ ] **Initialize instruction**: Creates vault PDA, share token mint (PDA-controlled), USDC vault ATA
+- [ ] **Deposit instruction**: Transfers USDC to vault, mints proportional shares (1:1 bootstrap for first deposit)
+- [ ] **Withdrawal instructions**: request_withdrawal (escrow shares, snapshot NAV, start delay) + execute_withdrawal (verify delay, burn shares, transfer proportional USDC)
+- [ ] **NAV update instruction**: Admin-only, sets total_nav and timestamp
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Checked arithmetic**: All math uses checked operations to prevent overflow
+- [ ] **Access control**: Admin-only on NAV update, share-holder-only on withdrawal, correct PDA derivation
 
 ### Completion Criteria
 
@@ -50,37 +46,44 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_anchor_setup.md | Initialize Anchor project, configure devnet, test framework | Project foundation |
+| 02_vault_state.md | Define VaultState account struct | Data model for vault operations |
+| 03_initialize.md | Initialize instruction (vault PDA, share mint, USDC vault) | Creates vault infrastructure on-chain |
+| 04_deposit.md | Deposit instruction with proportional share minting | Enables user deposits |
+| 05_withdrawal.md | Request + execute withdrawal with delay | Enables user exits at NAV |
+| 06_nav_update.md | Admin-only NAV update instruction | Keeps on-chain NAV synced with portfolio |
+| 07_testing.md | Quality gate: run full test suite | Validates all instructions |
+| 08_review.md | Quality gate: code review | Validates security and correctness |
+| 09_iterate.md | Quality gate: address review feedback | Resolves issues |
+| 10_fest_commit.md | Quality gate: commit completed work | Finalizes deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 001_DRIFT_BET_AGENT/04_mainnet_deployment: Live agent with known wallet address (vault references agent_wallet)
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- Vault program and account addresses: Used by 02_vault_tests and 03_agent_vault_client
+- Share token mint: Used by 003_LANDING_PAGE/02_deposit_flow (UI displays share balance)
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Share math rounding errors cause fund leakage | Low | High | Extensive multi-depositor tests; rounding favors vault |
+| Anchor version incompatibility with devnet | Low | Med | Pin Anchor version; test deployment early |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: Anchor project set up, VaultState defined, initialize working
+- [ ] **Milestone 2**: Deposit and withdrawal instructions compiling
+- [ ] **Milestone 3**: All instructions passing `anchor test`
 
 ## Quality Gates
 
@@ -98,5 +101,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

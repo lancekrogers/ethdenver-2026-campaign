@@ -7,41 +7,52 @@ fest_created: 2026-03-13T02:19:41.173079-06:00
 fest_tracking: true
 ---
 
-# [REPLACE: Festival Name]
+# OBEY Agent Platform
 
 **Status:** Planned | **Created:** 2026-03-13T02:19:41-06:00
 
 ## Festival Objective
 
-**Primary Goal:** [REPLACE: One sentence describing what this festival accomplishes]
+**Primary Goal:** Build and launch the OBEY Agent Platform — a permissionless on-chain platform where AI agents autonomously trade prediction markets with smart contract custody, real user deposits, and real revenue generation.
 
-**Vision:** [REPLACE: 2-3 sentences describing the desired end state]
+**Vision:** Deliver a production Solana-based platform where anyone can fund AI agents that trade prediction markets across Drift BET, Polymarket, and Limitless. Agents execute within smart contract custody (they can trade but never extract funds), users burn share tokens to exit at NAV, and the platform earns 0.8% of every trade plus 10% performance fees. The OBEY token on Bags creates a second revenue stream via 1% creator fees on token volume.
 
 ## Success Criteria
 
 ### Functional Success
 
-- [ ] [REPLACE: Specific functional outcome]
-
-<!-- Add more functional outcomes as needed -->
+- [ ] Live prediction market agent trading on Drift BET (Solana mainnet) with seed capital
+- [ ] On-chain vault program accepting USDC deposits and minting share tokens
+- [ ] Landing page displaying live agent performance with deposit/withdraw flow
+- [ ] OBEY token launched on Bags with automated fee claiming
+- [ ] Referral system distributing 10% L1 / 3% L2 fees to referrers
+- [ ] Early depositor incentives (bonus shares, fee waivers) operational
+- [ ] Polymarket adapter with cross-platform arbitrage capability
+- [ ] Full vault contracts with oracle-only NAV, concentration limits, and circuit breakers
 
 ### Quality Success
 
-- [ ] [REPLACE: Quality standard with metric]
-
-<!-- Add more quality criteria as needed -->
+- [ ] All Anchor programs pass unit, integration, and attack test suites
+- [ ] Agent maintains positive risk-adjusted returns over 30-day validation period
+- [ ] NAV calculations verified against independent platform API reads
+- [ ] Zero unauthorized fund access paths in smart contract audit
+- [ ] Landing page loads under 2 seconds with responsive mobile layout
 
 ## Progress Tracking
 
 ### Phase Completion
 
-- [ ] [REPLACE: Phase name]: [REPLACE: Brief description]
-
-<!-- Add phases as they're created -->
+- [ ] 001_DRIFT_BET_AGENT: Live prediction market agent on Solana mainnet
+- [ ] 002_MVP_VAULT: On-chain deposit/withdraw system with share tokens
+- [ ] 003_LANDING_PAGE: Public agent profile page with deposit flow
+- [ ] 004_BAGS_INTEGRATION: OBEY token on Bags with automated fee claiming
+- [ ] 005_GROWTH_ENGINE: Referral system and early depositor incentives
+- [ ] 006_PHASE_2_FOUNDATION: Multi-platform adapters and full vault contracts
 
 ## Complete When
 
 - [ ] All phases completed
-- [ ] [REPLACE: Additional completion criterion]
-
-<!-- Add more completion criteria as needed -->
+- [ ] Platform generating revenue from both trade fees and OBEY token volume
+- [ ] External depositors funding agents with real capital
+- [ ] Agent performance publicly verifiable on-chain
+- [ ] Bags hackathon submission with live mainnet traction data

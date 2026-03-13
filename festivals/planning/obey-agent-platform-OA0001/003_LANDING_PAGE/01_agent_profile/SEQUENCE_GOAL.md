@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:39.746429-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 01_agent_profile
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
+**Sequence:** 01_agent_profile | **Phase:** 003_LANDING_PAGE | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Build REST API endpoints serving agent performance data and a Next.js agent profile page displaying live NAV chart, trade history, performance metrics, and strategy description.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** The agent profile is the primary trust-building element. Visitors need to see live proof of performance (NAV growth, win rate, trade history) before depositing. This sequence provides both the data layer and the visual presentation.
 
 ## Success Criteria
 
@@ -32,14 +25,14 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Data API**: REST endpoints for agent stats (NAV, return %, win rate, Sharpe, max drawdown, trade count), trade history (paginated), and NAV chart time-series data
+- [ ] **Profile page**: Next.js page at /agents/:id showing NAV chart (Recharts), trade history table, strategy description, risk profile section, and depositor stats
+- [ ] **Performance metrics**: Calculated values: return %, win rate, Sharpe ratio, max drawdown, average holding period, trade count — displayed with appropriate formatting
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Data freshness**: NAV chart updates within 5 minutes of on-chain NAV change
+- [ ] **Responsive**: Profile page renders correctly on desktop (1200px+) and tablet (768px+)
 
 ### Completion Criteria
 
@@ -50,37 +43,41 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_data_api.md | REST API for agent stats, trade history, NAV chart data | Provides data layer for frontend |
+| 02_profile_page.md | Next.js page with NAV chart, trades, strategy, status | Visual presentation of agent performance |
+| 03_performance_metrics.md | Calculate and display return, Sharpe, drawdown, win rate | Quantitative trust signals for depositors |
+| 04_testing.md | Quality gate: run full test suite | Ensures API and UI work correctly |
+| 05_review.md | Quality gate: code review | Validates data accuracy and UI quality |
+| 06_iterate.md | Quality gate: address review feedback | Resolves issues |
+| 07_fest_commit.md | Quality gate: commit completed work | Finalizes deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 002_MVP_VAULT/03_agent_vault_client: On-chain NAV data for API reads
+- 001_DRIFT_BET_AGENT/04_mainnet_deployment: HCS trade data stream for trade history
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- Agent profile page and data API: Used by 02_deposit_flow (deposit button on profile) and 03_landing_design (featured agent card)
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Trade history data volume grows large | Low | Low | Paginate API responses; index by agent_id + timestamp |
+| NAV chart data gaps from missed updates | Low | Med | Interpolate gaps; show last-known NAV with staleness indicator |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: REST API returns agent stats and trade history
+- [ ] **Milestone 2**: Profile page renders with NAV chart and trade table
+- [ ] **Milestone 3**: Performance metrics calculated and displayed correctly
 
 ## Quality Gates
 
@@ -98,5 +95,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

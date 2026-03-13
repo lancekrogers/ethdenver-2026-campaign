@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:39.674756-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 02_vault_tests
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
+**Sequence:** 02_vault_tests | **Phase:** 002_MVP_VAULT | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Verify the MVP vault program through lifecycle tests, attack tests, and a devnet deployment proving the full deposit/withdraw flow with test wallets.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** Testing validates that user funds are safe and share math is correct before accepting real deposits. The devnet deployment proves the program works on an actual Solana cluster.
 
 ## Success Criteria
 
@@ -32,14 +25,14 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Lifecycle test**: Initialize, multi-depositor deposits, NAV updates, proportional withdrawals verified
+- [ ] **Attack tests**: Unauthorized NAV update rejected, unauthorized withdrawal rejected, zero-amount and edge cases handled
+- [ ] **Devnet deployment**: Program deployed, full flow executed with test wallets, transactions verified on explorer
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Multi-depositor math**: Depositor A and B receive correct proportional USDC after NAV changes
+- [ ] **Edge case coverage**: First deposit bootstrap, deposit at various NAV levels, maximum u64 values tested
 
 ### Completion Criteria
 
@@ -50,37 +43,40 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_lifecycle_test.md | Full lifecycle test with multi-depositor proportional math | Validates core vault functionality |
+| 02_attack_tests.md | Unauthorized access and edge case testing | Ensures vault rejects invalid operations |
+| 03_devnet_deploy.md | Deploy to devnet, run full flow with test wallets | Proves program works on real cluster |
+| 04_testing.md | Quality gate: run full test suite | Ensures all tests pass |
+| 05_review.md | Quality gate: code review of test suite | Validates test coverage |
+| 06_iterate.md | Quality gate: address review feedback | Resolves issues |
+| 07_fest_commit.md | Quality gate: commit completed work | Finalizes deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 01_anchor_vault: Compiled vault program with all instructions
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- Verified vault program and devnet program ID: Used by 03_agent_vault_client
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Devnet deployment fails due to program size | Low | Med | Check program size during build |
+| Local validator differs from devnet behavior | Low | Med | Run critical tests on both |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: Lifecycle test passing on local validator
+- [ ] **Milestone 2**: Attack tests passing
+- [ ] **Milestone 3**: Full flow verified on devnet
 
 ## Quality Gates
 
@@ -98,5 +94,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

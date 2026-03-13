@@ -1,3 +1,7 @@
 version: 1
-updated_at: 2026-03-06T22:57:33.600863Z
-links: {}
+updated_at: 2026-03-13T08:22:04.246806Z
+links:
+  obey-agent-platform-OA0001:
+    path: projects/agent-prediction
+    festival_path: festivals/planning/obey-agent-platform-OA0001
+    linked_at: 2026-03-13T08:22:04.246805Z

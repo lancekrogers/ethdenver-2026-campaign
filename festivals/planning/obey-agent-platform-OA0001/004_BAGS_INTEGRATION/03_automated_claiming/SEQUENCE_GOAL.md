@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:39.86488-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 03_automated_claiming
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
+**Sequence:** 03_automated_claiming | **Phase:** 004_BAGS_INTEGRATION | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Build a periodic service that automatically claims accumulated OBEY token fees every 6 hours and reports token metrics (volume, fees, holders) via HCS for dashboard display and coordination visibility.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** Without automated claiming, fees accumulate uncollected on Bags. This service ensures revenue flows to the platform treasury on a regular cadence and provides metrics for monitoring token health and hackathon traction reporting.
 
 ## Success Criteria
 
@@ -32,14 +25,13 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Claim loop service**: Runs every 6 hours, checks for claimable positions, generates and submits claim transactions, distributes to treasury wallet, logs success/failure
+- [ ] **Metrics reporter**: Tracks OBEY token volume, cumulative fee revenue, holder count, and pool depth — reports via HCS messages for dashboard consumption
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Reliability**: Service handles transient Bags API and Solana RPC failures with retry logic
+- [ ] **Observability**: Each claim cycle logs: claimable amount, claim tx hash, success/failure, cumulative totals
 
 ### Completion Criteria
 
@@ -50,37 +42,41 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_claim_loop.md | Periodic fee claiming service every 6 hours | Automates revenue collection |
+| 02_metrics_reporting.md | Track volume, fees, holders — report via HCS | Provides token health visibility |
+| 03_testing.md | Quality gate: run full test suite | Validates claiming and reporting |
+| 04_review.md | Quality gate: code review | Validates service reliability |
+| 05_iterate.md | Quality gate: address review feedback | Resolves issues |
+| 06_fest_commit.md | Quality gate: commit completed work | Finalizes deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 01_bags_client: Fee claiming client for Bags API operations
+- 02_token_launch: Live OBEY token with mint address for claiming
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- Fee revenue metrics: Used by 003_LANDING_PAGE (dashboard can display token revenue)
+- HCS metrics messages: Consumed by coordinator for platform-wide reporting
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Claim transactions fail silently | Low | Med | Verify on-chain balance after each claim; alert on discrepancy |
+| Service crashes between claim cycles | Low | Low | Run as supervised process; missed claims accumulate and are caught next cycle |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: Claim loop executes first successful fee claim
+- [ ] **Milestone 2**: Metrics reporter publishes token data via HCS
+- [ ] **Milestone 3**: Service runs for 48 hours with successful claims
 
 ## Quality Gates
 
@@ -98,5 +94,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

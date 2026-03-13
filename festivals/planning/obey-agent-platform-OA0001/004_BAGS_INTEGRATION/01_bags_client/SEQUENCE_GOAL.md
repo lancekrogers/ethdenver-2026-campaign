@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:39.815079-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 01_bags_client
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
+**Sequence:** 01_bags_client | **Phase:** 004_BAGS_INTEGRATION | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Implement a Go client for the Bags API covering agent authentication (JWT), token creation/metadata, swap operations, and fee claiming — providing the foundation for OBEY token launch and automated revenue collection.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** Every Bags integration operation depends on this client. Token launch, fee configuration, fee claiming, and metrics reporting all use these API clients. Without them, the OBEY token cannot be created or managed programmatically.
 
 ## Success Criteria
 
@@ -32,14 +25,15 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Auth client**: Agent registration with Bags, Moltbook JWT acquisition (365-day token), automatic token refresh before expiration
+- [ ] **Token client**: Create token with metadata (name, symbol, image, description), configure fee sharing with multiple recipients and basis point splits
+- [ ] **Trading client**: Get swap quote and execute swap transactions for OBEY token
+- [ ] **Fee client**: List claimable fee positions, generate claim transactions (V3), sign and submit claims, verify receipt on-chain
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Retry logic**: All API calls include retry with exponential backoff on transient failures
+- [ ] **JWT management**: Token refresh handled automatically with thread-safe access
 
 ### Completion Criteria
 
@@ -50,37 +44,41 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_auth_client.md | Agent registration, JWT acquisition, token refresh | Authentication foundation for all Bags operations |
+| 02_token_client.md | Create token, set metadata, configure fee sharing | Enables OBEY token creation and configuration |
+| 03_trading_client.md | Quote and swap operations | Enables programmatic OBEY token trading |
+| 04_fee_client.md | List claimable fees, execute claims, verify | Enables automated revenue collection |
+| 05_testing.md | Quality gate: run full test suite | Validates all client operations |
+| 06_review.md | Quality gate: code review | Validates API integration quality |
+| 07_iterate.md | Quality gate: address review feedback | Resolves issues |
+| 08_fest_commit.md | Quality gate: commit completed work | Finalizes deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- None (this sequence can start independently; Bags API access is the only external dependency)
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- Bags API client package: Used by 02_token_launch (token creation) and 03_automated_claiming (fee collection)
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Bags API changes or is undocumented | Med | High | Review existing Bags integration code in codebase; test against live API early |
+| JWT expiration causes missed fee claims | Low | Med | Auto-refresh well before expiration; alert on refresh failures |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: Auth client acquires and refreshes JWT successfully
+- [ ] **Milestone 2**: Token client creates test token with fee sharing config
+- [ ] **Milestone 3**: Fee client lists and claims test fees
 
 ## Quality Gates
 
@@ -98,5 +96,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

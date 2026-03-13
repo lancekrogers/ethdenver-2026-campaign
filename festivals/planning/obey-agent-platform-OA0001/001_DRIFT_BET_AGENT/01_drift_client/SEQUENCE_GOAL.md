@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:31.072306-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 01_drift_client
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:31-06:00
+**Sequence:** 01_drift_client | **Phase:** 001_DRIFT_BET_AGENT | **Status:** Pending | **Created:** 2026-03-13T02:20:31-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Implement a Go HTTP client for the Drift BET API that satisfies the MarketAdapter interface, enabling the agent to discover markets, place orders, track positions, and settle resolved markets on Solana.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** The Drift client is the agent's connection to the prediction market. Without it, the agent cannot discover markets, execute trades, or track positions. Every other sequence in this phase depends on a working Drift client.
 
 ## Success Criteria
 
@@ -32,14 +25,14 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Drift API research document**: Complete mapping of Drift BET API endpoints, authentication method, market data format, order request/response format, position queries, and settlement flow
+- [ ] **DriftBETAdapter Go package**: HTTP client implementing MarketAdapter interface (ListMarkets, GetMarket, GetOrderBook, PlaceOrder, CancelOrder, GetPositions, RedeemPosition, GetPositionValue)
+- [ ] **Test suite**: Unit tests with mock HTTP responses covering all adapter methods, plus integration test runnable against Drift devnet
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Context propagation**: All HTTP calls accept and respect context.Context for cancellation
+- [ ] **Error handling**: All errors wrapped with operation context (e.g., "drift: list markets: %w")
 
 ### Completion Criteria
 
@@ -50,37 +43,41 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_drift_api_research.md | Research Drift BET API endpoints, auth, data formats | Provides specification for client implementation |
+| 02_drift_http_client.md | Implement Go HTTP client for Drift BET MarketAdapter | Core deliverable: working adapter for all market operations |
+| 03_drift_client_tests.md | Unit tests with mocks + devnet integration test | Validates correctness of all adapter methods |
+| 04_testing.md | Quality gate: run full test suite | Ensures all tests pass before review |
+| 05_review.md | Quality gate: code review | Validates code quality and design |
+| 06_iterate.md | Quality gate: address review feedback | Resolves any issues found in review |
+| 07_fest_commit.md | Quality gate: commit completed work | Finalizes sequence deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- None (this is the first sequence in the first phase)
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- DriftBETAdapter package: Used by 02_analysis_pipeline (market data normalization) and 03_agent_loop (trade execution, position tracking)
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Drift BET API documentation is incomplete or inaccurate | Med | High | Test against devnet early; inspect SDK source code (TypeScript/Python) for undocumented behavior |
+| Drift BET market liquidity too low for meaningful testing | Low | Med | Focus on highest-volume markets; use devnet for integration tests |
+| Go HTTP client needs Solana transaction signing for orders | Med | Med | Use existing Solana Go SDK for signing; wrap in adapter |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: API research complete with documented endpoint mapping
+- [ ] **Milestone 2**: HTTP client compiles and handles ListMarkets + GetMarket
+- [ ] **Milestone 3**: Full MarketAdapter implementation with passing test suite
 
 ## Quality Gates
 
@@ -98,5 +95,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

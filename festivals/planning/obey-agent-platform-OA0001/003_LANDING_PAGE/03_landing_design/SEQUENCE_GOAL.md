@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:39.789351-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 03_landing_design
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
+**Sequence:** 03_landing_design | **Phase:** 003_LANDING_PAGE | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Build the landing page at obeyplatform.xyz with hero section, how-it-works explanation, featured agent card with live data, and deposit CTA — optimized for converting visitors into depositors, with responsive mobile layout.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** The landing page is the entry point for all users. It must communicate the value proposition in seconds ("Fund AI agents that trade prediction markets"), show proof of live performance, and funnel visitors to the deposit flow. It is also the primary visual artifact for the Bags hackathon submission.
 
 ## Success Criteria
 
@@ -32,14 +25,13 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Landing page**: Hero section with headline and value prop, how-it-works (4 steps: deposit, agent trades, burn to withdraw, refer friends), featured agent card pulling live NAV/return/Sharpe data, deposit CTA button, referral link section
+- [ ] **Responsive layout**: Full functionality on desktop (1200px+), tablet (768px+), and mobile (375px+) including wallet connect on mobile browsers
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Load time**: Page loads under 2 seconds on desktop with production data
+- [ ] **Mobile usability**: All interactive elements (buttons, wallet connect) are touch-friendly with minimum 44px tap targets
 
 ### Completion Criteria
 
@@ -50,37 +42,41 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_landing_page.md | Hero, how-it-works, agent card, CTA — conversion-optimized page | Primary user acquisition interface |
+| 02_responsive.md | Mobile-friendly layout, wallet connect on mobile browsers | Ensures mobile users can deposit |
+| 03_testing.md | Quality gate: run full test suite | Validates rendering and responsiveness |
+| 04_review.md | Quality gate: code review | Validates design and performance |
+| 05_iterate.md | Quality gate: address review feedback | Resolves issues |
+| 06_fest_commit.md | Quality gate: commit completed work | Finalizes deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 01_agent_profile: Data API for agent stats (landing page pulls live data for featured agent card)
+- 02_deposit_flow: Wallet connect component and deposit flow (CTA links to deposit)
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- Public landing page URL: Used by 005_GROWTH_ENGINE (referral links point to landing page)
+- Hackathon submission visual: Used for Bags hackathon application screenshots
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Landing page loads slowly due to live data fetching | Low | Med | Server-side rendering for initial load; client-side updates for real-time data |
+| Design does not convert visitors | Med | Med | Follow proven crypto landing page patterns; test with small user group before launch |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: Landing page renders with hero, how-it-works, and placeholder agent card
+- [ ] **Milestone 2**: Agent card pulls live data; CTA connects to deposit flow
+- [ ] **Milestone 3**: Responsive layout verified on mobile and tablet
 
 ## Quality Gates
 
@@ -98,5 +94,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

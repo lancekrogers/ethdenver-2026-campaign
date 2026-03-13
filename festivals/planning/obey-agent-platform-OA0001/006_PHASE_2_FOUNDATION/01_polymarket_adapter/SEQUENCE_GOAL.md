@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:39.941063-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 01_polymarket_adapter
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
+**Sequence:** 01_polymarket_adapter | **Phase:** 006_PHASE_2_FOUNDATION | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Implement a Go client for the Polymarket CLOB API (REST + WebSocket) with EIP-712 credential creation, HMAC-SHA256 API key authentication, order placement (GTC/FOK), CTF token position tracking, and settlement/redemption — satisfying the MarketAdapter interface.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** Polymarket has the deepest prediction market liquidity ($20M+/day volume). Adding this adapter unlocks the primary trading venue and enables cross-platform arbitrage with Drift BET. Without Polymarket access, the platform is limited to Solana-native markets only.
 
 ## Success Criteria
 
@@ -32,14 +25,15 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **CLOB client**: Go HTTP client for Polymarket CLOB API with rate limit handling (9,000 req/10s general, 3,500/10s orders)
+- [ ] **Gamma client**: Market metadata API client for resolution rules, category data, and market discovery
+- [ ] **Order management**: GTC and FOK order placement, CTF token (ERC-1155) position tracking, split/merge/redeem operations
+- [ ] **Integration tests**: Tests against Polymarket testnet or paper trading environment
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Auth chain**: EIP-712 credential creation and HMAC-SHA256 request signing implemented correctly
+- [ ] **Rate limiting**: Client respects rate limits with token bucket or sliding window; backs off on 429 responses
 
 ### Completion Criteria
 
@@ -50,37 +44,42 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_clob_client.md | CLOB API client with REST, WebSocket, auth | Core trading API access |
+| 02_gamma_client.md | Gamma API for market metadata and resolution rules | Market discovery and analysis data |
+| 03_order_placement.md | Order placement, CTF position tracking, redemption | Trade execution and settlement |
+| 04_polymarket_tests.md | Integration tests against testnet/paper trading | Validates adapter correctness |
+| 05_testing.md | Quality gate: run full test suite | Ensures all adapter methods work |
+| 06_review.md | Quality gate: code review | Validates auth and API integration |
+| 07_iterate.md | Quality gate: address review feedback | Resolves issues |
+| 08_fest_commit.md | Quality gate: commit completed work | Finalizes deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 001_DRIFT_BET_AGENT/01_drift_client: MarketAdapter interface definition (Polymarket adapter implements same interface)
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- PolymarketAdapter: Used by 02_cross_platform (cross-platform event matching and arbitrage with Drift)
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Polymarket API requires Polygon wallet interaction for auth | Med | Med | Use go-ethereum for EIP-712 signing; test auth flow early |
+| CTF token operations are complex (ERC-1155 on Polygon) | Med | Med | Study Polymarket Python/TS SDK source for implementation reference |
+| Rate limits restrict trading frequency | Low | Low | Implement proper rate limiting; batch market data requests |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: CLOB client authenticates and lists markets
+- [ ] **Milestone 2**: Order placement and position tracking working
+- [ ] **Milestone 3**: Integration tests passing against testnet
 
 ## Quality Gates
 
@@ -98,5 +97,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A

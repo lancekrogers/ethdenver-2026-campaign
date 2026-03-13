@@ -9,22 +9,15 @@ fest_created: 2026-03-13T02:20:39.966858-06:00
 fest_tracking: true
 ---
 
-<!--
-TEMPLATE USAGE:
-- All [REPLACE: ...] markers MUST be replaced with actual content
-- Do NOT leave any [REPLACE: ...] markers in the final document
-- Remove this comment block when filling the template
--->
+# Sequence Goal: 02_cross_platform
 
-# Sequence Goal: [REPLACE: NN_sequence_name]
-
-**Sequence:** [REPLACE: NN_sequence_name] | **Phase:** [REPLACE: NNN_PHASE_NAME] | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
+**Sequence:** 02_cross_platform | **Phase:** 006_PHASE_2_FOUNDATION | **Status:** Pending | **Created:** 2026-03-13T02:20:39-06:00
 
 ## Sequence Objective
 
-**Primary Goal:** [REPLACE: One clear sentence stating what this sequence must accomplish]
+**Primary Goal:** Enable cross-platform prediction market operations: LLM-assisted event matching between Drift BET and Polymarket, an arbitrage strategy that exploits price discrepancies, and a Wormhole bridge manager for Solana-Polygon USDC transfers.
 
-**Contribution to Phase Goal:** [REPLACE: How achieving this sequence goal directly supports the phase goal]
+**Contribution to Phase Goal:** Cross-platform arbitrage is a key structural edge that individual traders cannot replicate. Matching the same real-world event across platforms and trading price differences (net of fees and bridge costs) generates low-risk alpha. The bridge manager handles the cross-chain fund movement that makes this possible.
 
 ## Success Criteria
 
@@ -32,14 +25,14 @@ The sequence goal is achieved when:
 
 ### Required Deliverables
 
-- [ ] **[REPLACE: Deliverable 1 name]**: [REPLACE: Deliverable 1 description]
-- [ ] **[REPLACE: Deliverable 2 name]**: [REPLACE: Deliverable 2 description]
-- [ ] **[REPLACE: Deliverable 3 name]**: [REPLACE: Deliverable 3 description]
+- [ ] **Event matcher**: LLM-assisted matching that detects the same event on Drift BET and Polymarket, scores match confidence, and verifies resolution rule compatibility
+- [ ] **Arbitrage strategy**: ArbitrageScanner strategy implementing the Strategy interface — detects price discrepancies, calculates net edge after platform fees and bridge costs, generates paired buy/sell signals
+- [ ] **Bridge manager**: Solana-Polygon Wormhole bridge client for USDC transfers — batch bridging ($5K chunks), working capital management, status tracking, and in-transit NAV accounting
 
 ### Quality Standards
 
-- [ ] **[REPLACE: Quality standard 1]**: [REPLACE: Quality target 1]
-- [ ] **[REPLACE: Quality standard 2]**: [REPLACE: Quality target 2]
+- [ ] **Edge calculation**: Net edge accounts for platform fees on both sides + bridge cost + slippage estimate; only signals with >3% net edge pass
+- [ ] **Bridge tracking**: All in-transit funds tracked with status and included in NAV calculation
 
 ### Completion Criteria
 
@@ -50,37 +43,43 @@ The sequence goal is achieved when:
 
 ## Task Alignment
 
-> **Note:** This table should be populated AFTER creating task files.
-> SEQUENCE_GOAL.md defines WHAT to accomplish. Task files define HOW.
-> Run `fest create task` to create tasks, then update this table.
-
 | Task | Task Objective | Contribution to Sequence Goal |
 |------|----------------|-------------------------------|
-| [FILL: after creating tasks] | | |
+| 01_event_matcher.md | LLM-assisted cross-platform event matching with confidence scoring | Identifies arbitrage opportunities |
+| 02_arbitrage_strategy.md | ArbitrageScanner: detect discrepancies, calculate net edge, execute | Generates low-risk trading signals |
+| 03_bridge_manager.md | Wormhole bridge for Solana-Polygon USDC transfers | Enables cross-chain fund movement |
+| 04_testing.md | Quality gate: run full test suite | Validates matching, strategy, and bridge |
+| 05_review.md | Quality gate: code review | Validates edge calculation and bridge safety |
+| 06_iterate.md | Quality gate: address review feedback | Resolves issues |
+| 07_fest_commit.md | Quality gate: commit completed work | Finalizes deliverables |
 
 ## Dependencies
 
 ### Prerequisites (from other sequences)
 
-- [REPLACE: Sequence X]: [REPLACE: What we need from it]
+- 01_polymarket_adapter: Polymarket MarketAdapter for market data and trading
+- 001_DRIFT_BET_AGENT/01_drift_client: Drift BET MarketAdapter for market data and trading
 
 ### Provides (to other sequences)
 
-- [REPLACE: What this sequence produces]: Used by [REPLACE: Sequence Z]
+- ArbitrageScanner strategy: Integrated into agent strategy roster
+- Bridge manager: Used by 03_full_vault (vault tracks cross-chain assets)
 
 ## Risk Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| [REPLACE: Risk description] | [REPLACE: Low/Med/High] | [REPLACE: Low/Med/High] | [REPLACE: Prevention strategy] |
+| Event matching produces false positives (different events matched) | Med | High | Require resolution rule compatibility check; minimum 0.9 confidence threshold |
+| Bridge delays cause stale arbitrage (prices converge before funds arrive) | Med | Med | Hold working capital on Polygon; only bridge in large batches |
+| Wormhole bridge downtime | Low | High | Track bridge status; pause cross-chain strategy during outages |
 
 ## Progress Tracking
 
 ### Milestones
 
-- [ ] **Milestone 1**: [REPLACE: First key deliverable]
-- [ ] **Milestone 2**: [REPLACE: Second key deliverable]
-- [ ] **Milestone 3**: [REPLACE: Final key deliverable]
+- [ ] **Milestone 1**: Event matcher identifies equivalent markets across platforms
+- [ ] **Milestone 2**: Arbitrage strategy generates signals with accurate net edge
+- [ ] **Milestone 3**: Bridge manager successfully transfers USDC between Solana and Polygon
 
 ## Quality Gates
 
@@ -98,5 +97,5 @@ The sequence goal is achieved when:
 
 ### Iteration Decision
 
-- [ ] Need another iteration? [REPLACE: Yes/No]
-- [ ] If yes, new tasks created: [REPLACE: List task numbers]
+- [ ] Need another iteration? No
+- [ ] If yes, new tasks created: N/A
