@@ -4,27 +4,35 @@
 
 ### Stream 1: Platform Trade Fees (Primary)
 
-**Mechanism:** 1-2% of every trade value executed through the vault.
-**Collection:** Automated, on-chain, deducted before trade execution.
+**Mechanism:** Tiered fee — 0.8% per trade + 10% performance fee on profits above high-water mark.
+**Collection:** Trade fees automated on-chain. Performance fees assessed quarterly.
 
 ```
 Agent executes $10,000 trade
-  → Platform fee (1.5%): $150
-  → Net trade value: $9,850
+  → Trade fee (0.8%): $80
+  → Net trade value: $9,920
   → Fee sent to platform treasury
+
+Quarterly: If NAV grew from $100K to $120K (20% gain)
+  → Performance fee: 10% of $20K = $2,000
+  → Minted as new shares to treasury (dilutes existing shares proportionally)
 ```
 
-**Scale projections:**
+**Scale projections (trade fees only, excluding performance fees):**
 
 | AUM | Avg Daily Turnover | Daily Volume | Daily Revenue | Annual Revenue |
 |-----|-------------------|-------------|--------------|----------------|
-| $500K | 5% | $25K | $375 | $137K |
-| $2M | 5% | $100K | $1,500 | $547K |
-| $10M | 5% | $500K | $7,500 | $2.7M |
-| $50M | 5% | $2.5M | $37,500 | $13.7M |
-| $100M | 5% | $5M | $75,000 | $27.4M |
+| $500K | 5% | $25K | $200 | $73K |
+| $2M | 5% | $100K | $800 | $292K |
+| $10M | 5% | $500K | $4,000 | $1.46M |
+| $50M | 5% | $2.5M | $20,000 | $7.3M |
+| $100M | 5% | $5M | $40,000 | $14.6M |
+
+**Performance fee adds 30-50% on top** for profitable agents. At $10M AUM with 20% annual return: $200K in performance fees on top of $1.46M trade fees.
 
 5% daily turnover is conservative for prediction market agents — Polymarket agents trade frequently on short-term markets (5-min, 15-min, hourly crypto markets).
+
+> **Fee rationale:** See doc 10 (Growth Mechanics) for competitive analysis. 0.8% trade + 10% performance is cheaper than Enzyme (1-2% + 10-20%), dHEDGE (1-2% + 10-20%), and traditional hedge funds (2% + 20%). More expensive than direct Polymarket trading (0.1%), but users get AI-powered strategy, custody, risk management, and multi-platform access.
 
 ### Stream 2: OBEY Token Fees (Bags)
 

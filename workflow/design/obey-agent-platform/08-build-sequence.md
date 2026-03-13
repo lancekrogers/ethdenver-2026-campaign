@@ -2,6 +2,10 @@
 
 ## Overview
 
+> **IMPORTANT: Start with doc 11 (Fast-Path MVP).** The milestones below are the full platform build. The MVP (doc 11) launches in 4 weeks with a single agent, simple vault, and landing page — generating real revenue while the full platform is built in parallel.
+>
+> **Execution order:** MVP first (4 weeks) → then Milestones 1-6 below (12 weeks) in parallel with growing the MVP.
+
 The build is organized into milestones. Each milestone produces a working, deployable artifact. No milestone depends on a future milestone — every step is shippable.
 
 ## Milestone 1: Vault Contracts (Solana/Anchor)
@@ -345,64 +349,79 @@ Month 4:
   └── M6: Mainnet deployment + launch
 ```
 
-## Project Structure
+## Project Structure (Scaffolded)
+
+All new projects created via `camp project new`. The existing agent-defi runtime patterns
+(Strategy interface, TradeExecutor, HCS messaging, execution loop) are the foundation —
+agent-prediction follows the same architecture, not a new runtime.
 
 ```
 projects/
-├── obey-platform/                  # NEW — Anchor programs
-│   ├── programs/
-│   │   ├── obey-registry/
-│   │   ├── obey-vault/
-│   │   ├── obey-nav/
-│   │   └── obey-fees/
-│   ├── tests/
-│   ├── Anchor.toml
-│   ├── justfile
-│   └── Cargo.toml
-│
-├── agent-engine/                   # NEW — Go agent runtime
-│   ├── cmd/
+├── agent-prediction/               # NEW — Prediction market trading agent (Go)
+│   ├── cmd/agent-prediction/       # Entry point (same pattern as agent-defi)
 │   ├── internal/
-│   │   ├── engine/                 # core execution loop
-│   │   ├── adapters/               # market adapters
-│   │   │   ├── polymarket/
-│   │   │   ├── limitless/
-│   │   │   └── drift/
-│   │   ├── strategies/             # trading strategies
-│   │   ├── risk/                   # risk management
-│   │   ├── portfolio/              # position tracking
-│   │   ├── bridge/                 # cross-chain bridging
-│   │   ├── vault/                  # Solana vault client
-│   │   └── coordinator/            # HCS reporting
+│   │   ├── adapters/               # MarketAdapter interface + implementations
+│   │   │   ├── drift/              # Drift BET (Solana) — MVP primary
+│   │   │   ├── polymarket/         # Polymarket (Polygon) — Phase 2
+│   │   │   └── limitless/          # Limitless (Base) — Phase 2
+│   │   ├── strategies/             # Strategy interface (extends agent-defi pattern)
+│   │   ├── analysis/               # Claude API market analysis pipeline
+│   │   ├── portfolio/              # Position tracking, NAV calculation
+│   │   ├── risk/                   # Position sizing, drawdown controls
+│   │   ├── agent/                  # Core execution loop (goroutine-based)
+│   │   └── hcs/                    # Coordinator messaging (reuse agent-defi patterns)
 │   ├── justfile
 │   └── go.mod
 │
-├── agent-bags/                     # NEW — Bags integration
-│   ├── cmd/
+├── obey-platform/                  # NEW — Solana/Anchor vault contracts
+│   ├── programs/
+│   │   └── obey-mvp-vault/         # MVP: simple deposit/withdraw (~200 LOC)
+│   │       └── src/lib.rs          # initialize, deposit, request/execute withdrawal, update_nav
+│   ├── tests/
+│   ├── justfile
+│   └── (Phase 2: obey-registry, obey-vault, obey-nav, obey-fees)
+│
+├── agent-bags/                     # NEW — Bags.fm integration service (Go)
+│   ├── cmd/agent-bags/
 │   ├── internal/
-│   │   ├── bags/                   # Bags API client
-│   │   ├── token/                  # OBEY token management
-│   │   └── fees/                   # fee claiming
+│   │   ├── bags/                   # Bags API HTTP client
+│   │   ├── token/                  # OBEY token creation + metadata
+│   │   ├── fees/                   # Periodic fee claiming + distribution
+│   │   └── metrics/                # Token metrics monitoring
 │   ├── justfile
 │   └── go.mod
 │
 ├── dashboard/                      # EXISTING — extend with marketplace
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Marketplace/        # NEW
-│   │   │   ├── AgentProfile/       # NEW
-│   │   │   ├── DepositFlow/        # NEW
-│   │   │   ├── WithdrawFlow/       # NEW
-│   │   │   ├── Portfolio/          # NEW
-│   │   │   ├── Leaderboard/        # NEW
-│   │   │   ├── CreatorDashboard/   # NEW
-│   │   │   └── ... (existing)
-│   │   └── pages/
+│   ├── src/components/
+│   │   ├── (existing panels)
+│   │   ├── Marketplace/            # NEW — agent discovery
+│   │   ├── AgentProfile/           # NEW — NAV chart, trades, deposit
+│   │   ├── DepositFlow/            # NEW — wallet connect → USDC → shares
+│   │   ├── WithdrawFlow/           # NEW — burn shares → receive USDC
+│   │   ├── Portfolio/              # NEW — user positions across agents
+│   │   ├── Leaderboard/            # NEW — ranked agents
+│   │   └── CreatorDashboard/       # NEW — agent management
 │   └── justfile
 │
 ├── agent-coordinator/              # EXISTING — extend with platform events
-├── agent-defi/                     # EXISTING — reference for trading logic
+├── agent-defi/                     # EXISTING — runtime patterns (Strategy, TradeExecutor, HCS)
 ├── agent-inference/                # EXISTING — future integration
-├── contracts/                      # EXISTING — EVM contracts (reference)
-└── hiero-plugin/                   # EXISTING
+├── contracts/                      # EXISTING — EVM contracts (settlement, reputation)
+├── cre-risk-router/                # EXISTING — risk assessment pipeline
+└── hiero-plugin/                   # EXISTING — Hedera CLI integration
 ```
+
+### Runtime Reuse Map
+
+The existing agent-defi is NOT replaced — its patterns ARE the runtime:
+
+| agent-defi Pattern | agent-prediction Equivalent |
+|---|---|
+| `Strategy` interface (Evaluate → Signal) | Same interface, new implementations (arbitrage, news, resolution) |
+| `TradeExecutor` interface | `MarketAdapter` interface (prediction market primitives) |
+| Goroutine execution loop (trading + P&L + health) | Same pattern, 15-min cycle for prediction markets |
+| HCS envelope messaging | Same format, new message types (deposit, burn, nav_update) |
+| CRE Guard (position constraints) | Risk manager (concentration limits, stop-loss) |
+| PnL tracker | Portfolio manager (NAV across platforms) |
+| Mock mode | Mock adapters for dry-run testing |
+| Config via env vars | Same pattern with PRED_ prefix |

@@ -22,3 +22,12 @@
 [submodule "lib/forge-std"]
 	path = lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "projects/agent-prediction"]
+	path = projects/agent-prediction
+	url = /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-prediction
+[submodule "projects/obey-platform"]
+	path = projects/obey-platform
+	url = /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/obey-platform
+[submodule "projects/agent-bags"]
+	path = projects/agent-bags
+	url = /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-bags
