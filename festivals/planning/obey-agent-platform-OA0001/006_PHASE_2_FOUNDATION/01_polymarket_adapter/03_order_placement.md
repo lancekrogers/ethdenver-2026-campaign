@@ -14,7 +14,7 @@ fest_tracking: true
 
 ## Objective
 
-Implement order creation, cancellation, CTF token split/merge/redeem operations, and the full `MarketAdapter` interface for Polymarket in `projects/agent-inference/internal/adapters/polymarket/adapter.go`.
+Implement order creation, cancellation, CTF token split/merge/redeem operations, and the full `MarketAdapter` interface for Polymarket in `projects/agent-prediction/internal/adapters/polymarket/adapter.go`.
 
 ## Requirements
 
@@ -31,7 +31,7 @@ Implement order creation, cancellation, CTF token split/merge/redeem operations,
 
 ### Step 1: Define order types
 
-Add to `projects/agent-inference/internal/adapters/polymarket/orders.go`:
+Add to `projects/agent-prediction/internal/adapters/polymarket/orders.go`:
 
 ```go
 package polymarket
@@ -220,7 +220,7 @@ func (c *CLOBClient) CancelAll(ctx context.Context) error {
 
 ### Step 4: Implement the MarketAdapter interface
 
-Create `projects/agent-inference/internal/adapters/polymarket/adapter.go`:
+Create `projects/agent-prediction/internal/adapters/polymarket/adapter.go`:
 
 ```go
 // PolymarketAdapter implements the MarketAdapter interface.

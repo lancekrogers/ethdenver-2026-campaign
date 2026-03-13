@@ -7,13 +7,13 @@ fest_order: 4
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.949748-06:00
+fest_created: 2026-03-13T02:27:19.949953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 4 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,33 +39,49 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+cd frontend && npx eslint src/ && npx tsc --noEmit
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `frontend/src/pages/Landing.tsx` - Landing page layout and hero section
+- `frontend/src/components/AgentCard.tsx` - Featured agent card with live stats
+- `frontend/src/components/HeroSection.tsx` - Hero section with CTA
+- `frontend/src/styles/` - Responsive styles and design tokens
+
+**Design patterns to verify:**
+- [ ] Responsive breakpoints use consistent design tokens (not magic pixel values)
+- [ ] Featured agent card fetches data from the same API as profile page (no duplication)
+- [ ] CTA links use Next.js Link component (client-side navigation)
+- [ ] Semantic HTML used (header, main, section, nav)
+- [ ] Accessibility: images have alt text, buttons have labels, color contrast meets WCAG AA
+- [ ] No inline styles; Tailwind or CSS modules used consistently
 
 ### Error Handling
 
 - [ ] Errors are handled appropriately
 - [ ] Error messages are helpful
 - [ ] No panic/crash scenarios
-- [ ] Resources are properly cleaned up
+- [ ] Loading/error states for data-fetching components
 
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] External links use rel="noopener noreferrer"
+- [ ] No user-generated content rendered without sanitization
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] Images optimized (Next.js Image component)
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Lighthouse score > 90 for performance
 
 ### Testing
 

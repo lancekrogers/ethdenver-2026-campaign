@@ -7,13 +7,13 @@ fest_order: 8
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.944642-06:00
+fest_created: 2026-03-13T02:27:19.944953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 8 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,40 +39,61 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+cargo clippy --all-targets -- -D warnings
+anchor build
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
 
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `programs/obey-vault/src/lib.rs` - Main program with all instructions
+- `programs/obey-vault/src/state.rs` - VaultState account struct
+- `programs/obey-vault/src/error.rs` - Custom error codes
+- `tests/` - Anchor test suite
+
+**Design patterns to verify:**
+- [ ] All arithmetic uses checked operations (checked_mul, checked_div, checked_add)
+- [ ] Rounding in share math favors the vault (no dust extraction attack)
+- [ ] PDA derivation uses deterministic seeds with bump stored in state
+- [ ] Admin-only instructions verify authority signer correctly
+- [ ] Share mint authority is the vault PDA (no external mint possible)
+- [ ] Withdrawal delay is enforced on-chain, not client-side
+- [ ] Zero-amount deposits and withdrawals are rejected
+- [ ] Account constraints use proper Anchor macros (has_one, constraint)
+
 ### Error Handling
 
 - [ ] Errors are handled appropriately
-- [ ] Error messages are helpful
+- [ ] Custom error codes are descriptive
 - [ ] No panic/crash scenarios
 - [ ] Resources are properly cleaned up
 
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] Access control enforced on all instructions
+- [ ] No reentrancy vulnerabilities
+- [ ] Token accounts validated with proper constraints
+- [ ] No unchecked arithmetic that could overflow
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
-- [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Account sizes are minimized
+- [ ] Compute budget fits within transaction limits
+- [ ] No unnecessary account allocations
 
 ### Testing
 
 - [ ] Tests are meaningful
 - [ ] Edge cases covered
 - [ ] Test data is appropriate
-- [ ] Mocks used correctly
+- [ ] Attack vectors tested
 
 ## Review Process
 

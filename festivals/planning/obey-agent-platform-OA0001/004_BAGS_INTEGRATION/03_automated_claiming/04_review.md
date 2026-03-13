@@ -7,13 +7,13 @@ fest_order: 4
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.952616-06:00
+fest_created: 2026-03-13T02:27:19.952953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 4 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,28 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+golangci-lint run ./internal/bags/claiming/... ./internal/bags/metrics/...
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `internal/bags/claiming/loop.go` - Periodic claim loop with configurable interval
+- `internal/bags/claiming/executor.go` - Claim transaction building and submission
+- `internal/bags/metrics/reporter.go` - Claim metrics recording and reporting
+
+**Design patterns to verify:**
+- [ ] Claim loop tied to context cancellation (clean shutdown)
+- [ ] Minimum claimable threshold prevents dust claims (wasted gas)
+- [ ] Claim execution is idempotent (handles double-claim gracefully)
+- [ ] Metrics include claim amount, tx hash, timestamp, and success/failure
+- [ ] Claim interval is configurable via environment variable
+- [ ] Failed claims do not block subsequent claim attempts
 
 ### Error Handling
 
@@ -55,17 +72,16 @@ Review all code changes in this sequence for quality, correctness, and adherence
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] Claimed funds sent only to agent wallet (not configurable to arbitrary address)
+- [ ] Transaction signing uses secure key management
+- [ ] No sensitive data in metrics output
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] Claim loop does not spin (proper sleep/ticker between cycles)
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Metrics storage bounded (not unbounded growth)
 
 ### Testing
 

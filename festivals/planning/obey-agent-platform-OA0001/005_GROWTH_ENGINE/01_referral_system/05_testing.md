@@ -7,13 +7,13 @@ fest_order: 5
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.9532-06:00
+fest_created: 2026-03-13T02:27:19.953453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 5 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,12 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+# Backend
+go test ./internal/referral/... -v -count=1
+# Frontend
+cd frontend && npm test -- --watchAll=false --testPathPattern=referral
+```
 
 **Verify:**
 
@@ -41,7 +46,18 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+go test ./internal/referral/... -v -tags=integration -run TestReferral
+cd frontend && npx cypress run --spec "cypress/e2e/referral.cy.ts"
+```
+
+Verify:
+
+- [ ] Referral state tracks referrer-referee relationships with wallet addresses
+- [ ] Referral code registration links a referee wallet to referrer wallet
+- [ ] Fee distribution calculates and credits correct referral bonus percentages
+- [ ] Referral UI displays unique referral link and referral stats (count, earnings)
+- [ ] Referral code captured during deposit flow and persisted
 
 **Verify:**
 
@@ -53,15 +69,18 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Referral registration**: Generate referral link, open in new browser, connect wallet, verify referral relationship created
+2. [ ] **Fee distribution**: Referee deposits and generates fees, verify referrer receives correct percentage bonus
+3. [ ] **Referral UI**: Check referral dashboard shows referral count, total earnings, and shareable link
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 80% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+go test ./internal/referral/... -coverprofile=coverage.out -covermode=atomic
+go tool cover -func=coverage.out
+```
 
 ## Error Handling Verification
 

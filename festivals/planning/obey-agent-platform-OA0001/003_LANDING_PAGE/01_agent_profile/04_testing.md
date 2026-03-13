@@ -7,13 +7,13 @@ fest_order: 4
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.947583-06:00
+fest_created: 2026-03-13T02:27:19.947453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 4 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,12 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+# API tests
+go test ./internal/api/... -v -count=1
+# Frontend tests
+cd frontend && npm test -- --watchAll=false
+```
 
 **Verify:**
 
@@ -41,7 +46,21 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+# API integration tests
+go test ./internal/api/... -v -tags=integration -run TestAgentProfile
+# Frontend E2E
+cd frontend && npx cypress run --spec "cypress/e2e/agent-profile.cy.ts"
+```
+
+Verify:
+
+- [ ] REST API /agents/:id returns agent stats (NAV, return %, win rate, Sharpe, max drawdown, trade count)
+- [ ] REST API /agents/:id/trades returns paginated trade history
+- [ ] REST API /agents/:id/nav-chart returns time-series NAV data
+- [ ] Profile page renders NAV chart (Recharts) with correct data points
+- [ ] Trade history table displays with pagination
+- [ ] Performance metrics (return %, Sharpe, drawdown) display with correct formatting
 
 **Verify:**
 
@@ -53,15 +72,19 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Data freshness**: Update on-chain NAV, verify API returns new value within 5 minutes
+2. [ ] **Responsive layout**: Open profile page at 1200px+ (desktop) and 768px+ (tablet), verify layout renders correctly
+3. [ ] **Performance metrics**: Compare displayed Sharpe ratio and max drawdown against manually calculated values from trade history
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 80% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+go test ./internal/api/... -coverprofile=coverage.out -covermode=atomic
+go tool cover -func=coverage.out
+cd frontend && npm test -- --coverage --watchAll=false
+```
 
 ## Error Handling Verification
 

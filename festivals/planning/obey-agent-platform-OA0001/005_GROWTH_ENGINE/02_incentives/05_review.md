@@ -7,13 +7,13 @@ fest_order: 5
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.95429-06:00
+fest_created: 2026-03-13T02:27:19.954953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 5 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,31 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+golangci-lint run ./internal/incentives/...
+cd frontend && npx eslint src/components/incentives/ src/pages/share/
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `internal/incentives/bonus.go` - Bonus share calculation and minting
+- `internal/incentives/waiver.go` - Fee waiver eligibility and enforcement
+- `internal/incentives/config.go` - Incentive configuration and time windows
+- `frontend/src/components/incentives/ShareCard.tsx` - Social share card generation
+- `frontend/src/components/incentives/IncentiveBanner.tsx` - Active incentive display
+
+**Design patterns to verify:**
+- [ ] Incentive time windows use on-chain or server timestamps, not client clock
+- [ ] Bonus share calculation uses same checked arithmetic as vault program
+- [ ] Fee waiver state persisted and not bypassable by re-depositing
+- [ ] Share card generation is server-side (OG image) for social preview compatibility
+- [ ] Incentive config is admin-configurable, not hardcoded
+- [ ] Stacking limits enforced (no double-dipping on multiple incentive programs)
 
 ### Error Handling
 
@@ -55,17 +75,16 @@ Review all code changes in this sequence for quality, correctness, and adherence
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] Incentive eligibility cannot be spoofed
+- [ ] Bonus share minting authorized only through incentive system
+- [ ] Share cards do not expose sensitive data
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] Share card generation cached
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Incentive eligibility checks are fast (indexed lookups)
 
 ### Testing
 

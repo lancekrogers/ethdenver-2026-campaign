@@ -7,13 +7,13 @@ fest_order: 3
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.94956-06:00
+fest_created: 2026-03-13T02:27:19.949453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 3 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+cd frontend && npm test -- --watchAll=false
+```
 
 **Verify:**
 
@@ -41,7 +43,16 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+cd frontend && npx cypress run --spec "cypress/e2e/landing-page.cy.ts"
+```
+
+Verify:
+
+- [ ] Landing page loads and renders hero section, featured agent card, and CTA
+- [ ] Featured agent card displays live NAV and performance stats from API
+- [ ] CTA button navigates to agent profile / deposit flow
+- [ ] Responsive layout renders correctly at 1200px+, 768px+, and 375px+ breakpoints
 
 **Verify:**
 
@@ -53,15 +64,17 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Landing page load**: Open landing page, verify hero section, agent card, and CTA render without layout shifts
+2. [ ] **Responsive design**: Resize browser through desktop, tablet, and mobile breakpoints, verify no overflow or broken layouts
+3. [ ] **Navigation flow**: Click CTA on landing page, verify it routes to agent profile with deposit button visible
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 70% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+cd frontend && npm test -- --coverage --watchAll=false
+```
 
 ## Error Handling Verification
 

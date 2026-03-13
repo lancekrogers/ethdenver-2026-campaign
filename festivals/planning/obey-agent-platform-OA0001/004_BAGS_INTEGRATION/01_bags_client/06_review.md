@@ -7,13 +7,13 @@ fest_order: 6
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.950605-06:00
+fest_created: 2026-03-13T02:27:19.950953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 6 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,30 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+golangci-lint run ./internal/bags/...
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `internal/bags/auth.go` - Authentication client
+- `internal/bags/token.go` - Token creation and metadata client
+- `internal/bags/trading.go` - Order placement and history client
+- `internal/bags/fees.go` - Fee schedule and balance client
+- `internal/bags/client.go` - Base HTTP client and shared config
+
+**Design patterns to verify:**
+- [ ] Base HTTP client shared across sub-clients (auth, token, trading, fees)
+- [ ] Auth token refreshed automatically on 401 responses
+- [ ] API response types are unexported; domain types exported
+- [ ] Context propagation on all HTTP calls
+- [ ] Rate limiting or retry logic for Bags API calls
+- [ ] Error wrapping follows "bags: <operation>: <cause>" pattern
 
 ### Error Handling
 
@@ -55,17 +74,16 @@ Review all code changes in this sequence for quality, correctness, and adherence
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] API credentials loaded from environment
+- [ ] Auth tokens not logged
+- [ ] HTTPS enforced for all API calls
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] HTTP connections reused
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Appropriate timeouts on HTTP calls
 
 ### Testing
 

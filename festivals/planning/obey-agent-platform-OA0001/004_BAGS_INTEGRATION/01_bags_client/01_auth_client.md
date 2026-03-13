@@ -129,7 +129,10 @@ func New(cfg Config) *Client {
 }
 
 // SetJWT updates the JWT token (called after successful auth).
+// Thread-safe: acquires the client mutex before writing.
 func (c *Client) SetJWT(token string) {
+    c.mu.Lock()
+    defer c.mu.Unlock()
     c.jwt = token
 }
 
@@ -152,8 +155,12 @@ func (c *Client) do(ctx context.Context, method, path string, body io.Reader) (*
     if c.apiKey != "" {
         req.Header.Set("x-api-key", c.apiKey)
     }
-    if c.jwt != "" {
-        req.Header.Set("Authorization", "Bearer "+c.jwt)
+    // Read JWT under mutex for thread safety (jwt may be updated by SetJWT).
+    c.mu.Lock()
+    jwt := c.jwt
+    c.mu.Unlock()
+    if jwt != "" {
+        req.Header.Set("Authorization", "Bearer "+jwt)
     }
 
     resp, err := c.httpClient.Do(req)
@@ -229,7 +236,7 @@ func (c *Client) Login(ctx context.Context, challengeID string) (*AuthToken, err
     if err := decodeResponse(resp, &token); err != nil {
         return nil, fmt.Errorf("login decode: %w", err)
     }
-    c.jwt = token.Token
+    c.SetJWT(token.Token)
     return &token, nil
 }
 ```

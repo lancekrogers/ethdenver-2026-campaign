@@ -31,7 +31,7 @@ Implement the Gamma API client that fetches Polymarket market metadata, event de
 
 ### Step 1: Define Gamma types
 
-Create `projects/agent-inference/internal/adapters/polymarket/gamma.go`:
+Create `projects/agent-prediction/internal/adapters/polymarket/gamma.go`:
 
 ```go
 package polymarket

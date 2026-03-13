@@ -7,13 +7,13 @@ fest_order: 4
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.951241-06:00
+fest_created: 2026-03-13T02:27:19.951453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 4 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+go test ./internal/bags/token/... ./internal/bags/launch/... -v -count=1
+```
 
 **Verify:**
 
@@ -41,7 +43,16 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+go test ./internal/bags/launch/... -v -tags=integration -run TestTokenLaunch
+```
+
+Verify against devnet/testnet:
+
+- [ ] Token creation via Bags API succeeds with correct metadata (name, symbol, image, description)
+- [ ] Fee configuration applies correct fee percentages to the token
+- [ ] Meteora liquidity pool launch creates pool with initial liquidity
+- [ ] Token is tradeable after launch on Meteora
 
 **Verify:**
 
@@ -53,15 +64,18 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Token creation**: Create agent token on devnet, verify metadata on Solana explorer
+2. [ ] **Fee configuration**: Verify fee settings match expected percentages via Bags API query
+3. [ ] **Meteora launch**: Verify pool exists on Meteora with correct token pair and initial liquidity
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 80% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+go test ./internal/bags/token/... ./internal/bags/launch/... -coverprofile=coverage.out -covermode=atomic
+go tool cover -func=coverage.out
+```
 
 ## Error Handling Verification
 

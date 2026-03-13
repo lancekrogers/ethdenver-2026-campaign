@@ -7,13 +7,13 @@ fest_order: 6
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.955148-06:00
+fest_created: 2026-03-13T02:27:19.955953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 6 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,30 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+golangci-lint run ./internal/adapters/polymarket/...
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `internal/adapters/polymarket/clob.go` - CLOB API client for order book and order placement
+- `internal/adapters/polymarket/gamma.go` - Gamma API client for market metadata
+- `internal/adapters/polymarket/order.go` - Order building and EIP-712 signature
+- `internal/adapters/polymarket/adapter.go` - MarketAdapter interface implementation
+- `internal/adapters/polymarket/types.go` - API request/response types
+
+**Design patterns to verify:**
+- [ ] MarketAdapter interface identical to Drift adapter (same interface, different implementation)
+- [ ] CLOB and Gamma clients are separate (different base URLs, different auth)
+- [ ] EIP-712 order signing is isolated and testable
+- [ ] API response types are unexported; domain types cross package boundaries
+- [ ] HTTP client reused across requests (connection pooling)
+- [ ] Error wrapping follows "polymarket: <operation>: <cause>" pattern
 
 ### Error Handling
 
@@ -55,17 +74,16 @@ Review all code changes in this sequence for quality, correctness, and adherence
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] API key and signing key loaded from environment
+- [ ] Private key never logged or exposed
+- [ ] HTTPS enforced for all API calls
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] HTTP connections reused
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Rate limiting respects Polymarket API limits
 
 ### Testing
 

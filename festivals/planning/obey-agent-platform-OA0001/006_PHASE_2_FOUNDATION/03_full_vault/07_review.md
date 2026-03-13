@@ -7,13 +7,13 @@ fest_order: 7
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.957495-06:00
+fest_created: 2026-03-13T02:27:19.957953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 7 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,40 +39,63 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+cargo clippy --all-targets -- -D warnings
+anchor build
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
 
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `programs/obey-registry/src/lib.rs` - Agent registry program
+- `programs/obey-nav/src/lib.rs` - NAV oracle program
+- `programs/obey-fees/src/lib.rs` - Fee calculation and collection program
+- `programs/obey-vault-v2/src/lib.rs` - Full vault integrating all sub-programs
+- `programs/obey-vault-v2/src/migration.rs` - MVP to full vault migration logic
+- `tests/` - Full test suite for all programs
+
+**Design patterns to verify:**
+- [ ] All programs use checked arithmetic (no overflow/underflow)
+- [ ] Registry uses PDA derivation with agent ID seed
+- [ ] NAV program supports multi-sig updates (not single admin)
+- [ ] Fee calculation uses high-water mark for performance fees (no double-charging)
+- [ ] Management fee accrual is time-weighted (not flat per-period)
+- [ ] Migration is one-way and irreversible (no downgrade path)
+- [ ] Migration verifies share balances sum correctly before and after
+- [ ] Cross-program invocations (CPI) use proper signer seeds
+
 ### Error Handling
 
 - [ ] Errors are handled appropriately
-- [ ] Error messages are helpful
+- [ ] Custom error codes are descriptive per program
 - [ ] No panic/crash scenarios
 - [ ] Resources are properly cleaned up
 
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] Access control on all admin instructions across all programs
+- [ ] Migration cannot be triggered by non-admin
+- [ ] Fee collection cannot exceed earned fees
+- [ ] No reentrancy via CPI
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
-- [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Account sizes optimized per program
+- [ ] Compute budget fits within transaction limits
+- [ ] CPI calls minimized where possible
 
 ### Testing
 
 - [ ] Tests are meaningful
 - [ ] Edge cases covered
 - [ ] Test data is appropriate
-- [ ] Mocks used correctly
+- [ ] Attack vectors tested for each program
 
 ## Review Process
 

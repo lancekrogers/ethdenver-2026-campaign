@@ -7,13 +7,13 @@ fest_order: 5
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.948589-06:00
+fest_created: 2026-03-13T02:27:19.948953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 5 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,31 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+cd frontend && npx eslint src/ && npx tsc --noEmit
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `frontend/src/components/WalletConnect.tsx` - Solana wallet adapter integration
+- `frontend/src/components/DepositForm.tsx` - Deposit amount input and share preview
+- `frontend/src/components/WithdrawalForm.tsx` - Withdrawal request and execute flow
+- `frontend/src/hooks/useVaultTransaction.ts` - Transaction building and submission
+- `frontend/src/utils/shareCalc.ts` - Share preview calculation logic
+
+**Design patterns to verify:**
+- [ ] Wallet adapter uses @solana/wallet-adapter-react properly
+- [ ] Transaction building separated from UI components (custom hooks)
+- [ ] Share preview calculation matches on-chain math exactly
+- [ ] Loading states shown during transaction confirmation
+- [ ] Success screen includes Solana explorer link for tx hash
+- [ ] Withdrawal delay countdown uses on-chain timestamp, not client clock
+- [ ] Error recovery guidance displayed for each failure mode
 
 ### Error Handling
 
@@ -55,17 +75,16 @@ Review all code changes in this sequence for quality, correctness, and adherence
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] No wallet private keys exposed in browser
+- [ ] Transaction simulation before submission
+- [ ] Slippage protection on deposit (max shares deviation)
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] Wallet connection state persisted across page navigations
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Transaction status polling uses reasonable interval
 
 ### Testing
 

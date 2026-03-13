@@ -7,13 +7,13 @@ fest_order: 4
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.95624-06:00
+fest_created: 2026-03-13T02:27:19.956453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 4 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+go test ./internal/crossplatform/... -v -count=1
+```
 
 **Verify:**
 
@@ -41,7 +43,16 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+go test ./internal/crossplatform/... -v -tags=integration -run TestCrossPlatform
+```
+
+Verify:
+
+- [ ] Event matcher identifies matching markets across Drift BET and Polymarket by event similarity
+- [ ] Arbitrage strategy detects price discrepancies above configurable threshold between platforms
+- [ ] Bridge manager handles cross-chain fund movement (Solana <-> Polygon) for arbitrage execution
+- [ ] Full arbitrage flow: detect discrepancy, calculate optimal size, execute on both platforms
 
 **Verify:**
 
@@ -53,15 +64,18 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Event matching**: Query both platforms, verify matcher correctly identifies 3+ overlapping events
+2. [ ] **Price discrepancy**: Find a matched event with price difference, verify arbitrage signal includes correct edge calculation
+3. [ ] **Bridge execution**: Simulate cross-chain bridge transaction (devnet/testnet), verify funds arrive on target chain
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 80% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+go test ./internal/crossplatform/... -coverprofile=coverage.out -covermode=atomic
+go tool cover -func=coverage.out
+```
 
 ## Error Handling Verification
 

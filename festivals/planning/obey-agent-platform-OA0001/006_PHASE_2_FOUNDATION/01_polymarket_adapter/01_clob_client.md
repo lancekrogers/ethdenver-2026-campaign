@@ -32,7 +32,7 @@ Implement the Polymarket CLOB (Central Limit Order Book) API client in Go with E
 
 ### Step 1: Define types and client struct
 
-Create `projects/agent-inference/internal/adapters/polymarket/clob.go`:
+Create `projects/agent-prediction/internal/adapters/polymarket/clob.go`:
 
 ```go
 package polymarket
@@ -178,6 +178,52 @@ func (c *CLOBClient) CreateAPICredentials(ctx context.Context) (*APICredentials,
 
     c.creds = &creds
     return &creds, nil
+}
+```
+
+### Step 2b: Crypto helper stubs (implement in `crypto.go`)
+
+These functions are used by credential derivation and order signing. They wrap
+`go-ethereum/crypto` and `go-ethereum/signer/core/apitypes` for EIP-712.
+
+```go
+// publicAddress returns the checksummed Ethereum address for the signer key.
+func (c *CLOBClient) publicAddress() string {
+    return crypto.PubkeyToAddress(c.signer.PublicKey).Hex()
+}
+
+// buildDomainSeparator computes the EIP-712 domain separator hash.
+func buildDomainSeparator(name, version string, chainID int64) []byte {
+    // hash of: keccak256(abi.encode(TYPE_HASH, name, version, chainId))
+    // Implementation: use go-ethereum's apitypes.TypedData
+    panic("implement: EIP-712 domain separator")
+}
+
+// buildClobAuthHash computes the struct hash for ClobAuth typed data.
+func buildClobAuthHash(address, timestamp, nonce, message string) []byte {
+    panic("implement: EIP-712 ClobAuth struct hash")
+}
+
+// buildEIP712Digest combines domain separator and struct hash per EIP-712.
+func buildEIP712Digest(domainSeparator, structHash []byte) []byte {
+    // keccak256("\x19\x01" + domainSeparator + structHash)
+    panic("implement: EIP-712 digest")
+}
+
+// signDigest signs a 32-byte digest with the ECDSA private key.
+func signDigest(key *ecdsa.PrivateKey, digest []byte) ([]byte, error) {
+    return crypto.Sign(digest, key)
+}
+
+// rawPost sends an unauthenticated POST (used for credential derivation).
+func (c *CLOBClient) rawPost(ctx context.Context, path, body string) (*http.Response, error) {
+    url := c.baseURL + path
+    req, err := http.NewRequestWithContext(ctx, http.MethodPost, url, strings.NewReader(body))
+    if err != nil {
+        return nil, err
+    }
+    req.Header.Set("Content-Type", "application/json")
+    return c.httpClient.Do(req)
 }
 ```
 

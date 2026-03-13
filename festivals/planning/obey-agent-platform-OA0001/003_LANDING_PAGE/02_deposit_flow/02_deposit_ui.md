@@ -93,7 +93,11 @@ export default function DepositPage({ params }: PageProps) {
   }
 
   const sharePrice = nav.currentSharePrice;
-  const creatorPct = profile.creatorOwnershipPct;
+  // Creator share split is a Phase 6 (full vault) feature.
+  // In MVP vault, all shares go to the depositor (creatorPct = 0).
+  // The UI is built to handle both: when creatorPct is 0, the creator
+  // share breakdown section is hidden.
+  const creatorPct = profile.creatorOwnershipPct ?? 0;
 
   return (
     <main className="min-h-screen bg-gray-950 text-gray-100">
@@ -262,20 +266,22 @@ export function DepositAmountStep({
               ~{estimatedShares.toFixed(2)} {shareTokenSymbol}
             </span>
           </div>
-          <div className="border-t border-gray-800 pt-3">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-400">Your Shares</span>
-              <span className="font-mono text-green-400">
-                ~{userShares.toFixed(2)} {shareTokenSymbol}
-              </span>
+          {creatorPct > 0 && (
+            <div className="border-t border-gray-800 pt-3">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-400">Your Shares</span>
+                <span className="font-mono text-green-400">
+                  ~{userShares.toFixed(2)} {shareTokenSymbol}
+                </span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-400">Creator Shares ({creatorPct}%)</span>
+                <span className="font-mono text-gray-500">
+                  ~{creatorShares.toFixed(2)} {shareTokenSymbol}
+                </span>
+              </div>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-400">Creator Shares ({creatorPct}%)</span>
-              <span className="font-mono text-gray-500">
-                ~{creatorShares.toFixed(2)} {shareTokenSymbol}
-              </span>
-            </div>
-          </div>
+          )}
         </div>
       )}
 
@@ -313,7 +319,8 @@ interface Props {
   onSuccess: (txHash: string, sharesReceived: number) => void;
 }
 
-const PLATFORM_FEE_PCT = 0.5; // 0.5% platform fee
+// No deposit fee in MVP vault. Trade fees (0.8%) are collected by the
+// obey_fees program (Phase 6) at trade time, not deposit time.
 
 export function DepositReviewStep({
   agentId,
@@ -331,10 +338,8 @@ export function DepositReviewStep({
   const [error, setError] = useState<string | null>(null);
 
   const totalShares = amount / sharePrice;
-  const creatorShares = totalShares * (creatorPct / 100);
+  const creatorShares = creatorPct > 0 ? totalShares * (creatorPct / 100) : 0;
   const userShares = totalShares - creatorShares;
-  const platformFee = amount * (PLATFORM_FEE_PCT / 100);
-  const netDeposit = amount - platformFee;
 
   const handleConfirm = useCallback(async () => {
     if (!publicKey || !signTransaction) return;
@@ -393,14 +398,6 @@ export function DepositReviewStep({
             <span className="text-gray-400">Deposit Amount</span>
             <span className="font-mono text-white">{amount.toLocaleString()} USDC</span>
           </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-400">Platform Fee ({PLATFORM_FEE_PCT}%)</span>
-            <span className="font-mono text-gray-400">-{platformFee.toFixed(2)} USDC</span>
-          </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-400">Net Deposit</span>
-            <span className="font-mono text-white">{netDeposit.toFixed(2)} USDC</span>
-          </div>
 
           <div className="border-t border-gray-700 pt-3">
             <div className="flex justify-between text-sm">
@@ -409,12 +406,14 @@ export function DepositReviewStep({
                 ~{userShares.toFixed(2)} {shareTokenSymbol}
               </span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-400">Creator Receives ({creatorPct}%)</span>
-              <span className="font-mono text-gray-500">
-                ~{creatorShares.toFixed(2)} {shareTokenSymbol}
-              </span>
-            </div>
+            {creatorPct > 0 && (
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-400">Creator Receives ({creatorPct}%)</span>
+                <span className="font-mono text-gray-500">
+                  ~{creatorShares.toFixed(2)} {shareTokenSymbol}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>

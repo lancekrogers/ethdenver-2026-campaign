@@ -7,13 +7,13 @@ fest_order: 5
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.950408-06:00
+fest_created: 2026-03-13T02:27:19.950453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 5 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+go test ./internal/bags/... -v -count=1
+```
 
 **Verify:**
 
@@ -41,7 +43,17 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+go test ./internal/bags/... -v -tags=integration -run TestBagsClient
+```
+
+Verify against Bags API (testnet/sandbox if available):
+
+- [ ] Auth client authenticates and obtains session/token
+- [ ] Token client creates token metadata and retrieves token info
+- [ ] Trading client places orders and retrieves order status
+- [ ] Fee client queries fee schedules and fee balances
+- [ ] All client methods respect context cancellation
 
 **Verify:**
 
@@ -53,15 +65,18 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Authentication**: Authenticate with Bags API, verify token/session returned
+2. [ ] **Token operations**: Create a test token, query its metadata, verify response fields
+3. [ ] **Trading operations**: Place a test order, verify order appears in order history
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 80% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+go test ./internal/bags/... -coverprofile=coverage.out -covermode=atomic
+go tool cover -func=coverage.out
+```
 
 ## Error Handling Verification
 

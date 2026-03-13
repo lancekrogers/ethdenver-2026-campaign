@@ -172,15 +172,14 @@ func (m *Manager) FilterSignals(
 			continue
 		}
 
-		// Position size check and adjustment
-		positionValue := signal.Size
-		if nav > 0 {
-			positionPct := positionValue / nav
-			if positionPct > m.cfg.MaxPositionPct {
-				// Clamp to max position size
-				signal.Size = m.cfg.MaxPositionPct * nav
-			}
+		// Position size check and adjustment.
+		// Signal.Size is a fraction of portfolio (e.g., 0.05 = 5%) from the strategy layer.
+		// Convert to USD for execution, then clamp to max position size.
+		if signal.Size > m.cfg.MaxPositionPct {
+			signal.Size = m.cfg.MaxPositionPct
 		}
+		// Convert fraction to USD amount for downstream execution.
+		signal.Size = signal.Size * nav
 
 		// Ensure position size is positive
 		if signal.Size <= 0 {
@@ -233,8 +232,8 @@ func TestFilterSignals_PositionSizing(t *testing.T) {
 	mgr.UpdateHighWaterMark(10000)
 
 	signals := []adapters.Signal{
-		{MarketID: "m1", Size: 1000}, // 10% of NAV, should be clamped to 5%
-		{MarketID: "m2", Size: 200},  // 2% of NAV, fine
+		{MarketID: "m1", Size: 0.10}, // 10% of NAV, should be clamped to 5%
+		{MarketID: "m2", Size: 0.02}, // 2% of NAV, fine
 	}
 
 	approved, err := mgr.FilterSignals(context.Background(), signals, nil, 10000)
@@ -246,13 +245,13 @@ func TestFilterSignals_PositionSizing(t *testing.T) {
 		t.Fatalf("expected 2 approved signals, got %d", len(approved))
 	}
 
-	// First signal should be clamped
-	if approved[0].Size != 500 { // 5% of 10000
+	// First signal: 10% clamped to 5%, then converted to USD = 500
+	if approved[0].Size != 500 { // 0.05 * 10000
 		t.Errorf("expected clamped size 500, got %f", approved[0].Size)
 	}
 
-	// Second signal should be unchanged
-	if approved[1].Size != 200 {
+	// Second signal: 2% converted to USD = 200
+	if approved[1].Size != 200 { // 0.02 * 10000
 		t.Errorf("expected size 200, got %f", approved[1].Size)
 	}
 }

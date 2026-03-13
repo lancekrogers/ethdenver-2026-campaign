@@ -7,13 +7,13 @@ fest_order: 6
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.957245-06:00
+fest_created: 2026-03-13T02:27:19.957453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 6 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+anchor test
+```
 
 **Verify:**
 
@@ -41,7 +43,17 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+anchor test --provider.cluster devnet
+```
+
+Verify against local validator and devnet:
+
+- [ ] Registry program: agent registration, vault creation, agent metadata updates
+- [ ] NAV program: oracle-style NAV feeds with multi-sig or automated updates, historical NAV storage
+- [ ] Fees program: management fee calculation, performance fee (high-water mark), fee collection instruction
+- [ ] Full vault program: integrates registry, NAV, and fees into complete vault with all MVP features plus new capabilities
+- [ ] Migration: existing MVP vault deposits migrated to full vault with correct share balances
 
 **Verify:**
 
@@ -53,15 +65,17 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Registry**: Register an agent, verify agent metadata stored on-chain, query agent by ID
+2. [ ] **Fee calculation**: Simulate 30 days of vault operation, verify management fee deducted correctly and performance fee applies only above high-water mark
+3. [ ] **Migration**: Migrate MVP vault state to full vault, verify all depositor share balances preserved exactly
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 90% for new code (higher threshold for smart contract code handling funds)
 
-[REPLACE: Run your project's coverage command]
+```bash
+anchor test 2>&1 | tail -20
+```
 
 ## Error Handling Verification
 

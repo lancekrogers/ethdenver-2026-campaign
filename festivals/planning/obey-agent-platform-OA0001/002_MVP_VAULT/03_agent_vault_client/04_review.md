@@ -7,13 +7,13 @@ fest_order: 4
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.946786-06:00
+fest_created: 2026-03-13T02:27:19.946953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 4 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,28 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+golangci-lint run ./internal/vault/...
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `internal/vault/client.go` - Go client reading VaultState via Solana RPC
+- `internal/vault/nav_reporter.go` - Periodic NAV sync service
+- `internal/vault/types.go` - VaultState struct and Borsh deserialization
+
+**Design patterns to verify:**
+- [ ] VaultState deserialization matches Anchor account layout exactly (Borsh encoding)
+- [ ] NAV reporter uses threshold-based submission (0.5% deviation)
+- [ ] Idempotent update logic prevents redundant transactions
+- [ ] Context propagation on all RPC and transaction calls
+- [ ] RPC client is injected (testable with mock)
+- [ ] Transaction signing uses the agent wallet, not a hardcoded key
 
 ### Error Handling
 
@@ -55,17 +72,16 @@ Review all code changes in this sequence for quality, correctness, and adherence
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] Wallet key loaded from env/file
+- [ ] RPC endpoint uses HTTPS
+- [ ] Transaction fees are negligible but monitored
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] RPC calls are batched where possible
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] 5-minute reporting interval is configurable
 
 ### Testing
 

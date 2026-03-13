@@ -7,13 +7,13 @@ fest_order: 4
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.945318-06:00
+fest_created: 2026-03-13T02:27:19.945453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 4 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+anchor test
+```
 
 **Verify:**
 
@@ -41,7 +43,17 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+anchor test --provider.cluster devnet
+```
+
+Run the full lifecycle and attack test suites on devnet. Verify:
+
+- [ ] Lifecycle test: initialize, multi-depositor deposits, NAV updates, proportional withdrawals all pass
+- [ ] Attack tests: unauthorized NAV update rejected, unauthorized withdrawal rejected
+- [ ] Edge cases: zero-amount operations rejected, first deposit bootstrap (1:1 shares), max u64 values handled
+- [ ] Devnet deployment: program deployed, full flow executed with test wallets
+- [ ] Transaction hashes verified on Solana explorer
 
 **Verify:**
 
@@ -53,15 +65,17 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Multi-depositor math**: Depositor A deposits 1000, NAV updated to 1500, Depositor B deposits 500 -- verify B gets fewer shares proportional to increased NAV
+2. [ ] **Attack rejection**: Attempt NAV update from non-admin wallet, verify instruction fails with AccessDenied error
+3. [ ] **Devnet verification**: Open Solana explorer, verify program deployment tx, deposit tx, and withdrawal tx are all confirmed
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 95% for test suite code (this sequence IS the test suite)
 
-[REPLACE: Run your project's coverage command]
+```bash
+anchor test 2>&1 | grep -E "(passing|failing|test)"
+```
 
 ## Error Handling Verification
 

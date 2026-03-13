@@ -7,13 +7,13 @@ fest_order: 4
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.94839-06:00
+fest_created: 2026-03-13T02:27:19.948453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 4 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+cd frontend && npm test -- --watchAll=false
+```
 
 **Verify:**
 
@@ -41,7 +43,17 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+cd frontend && npx cypress run --spec "cypress/e2e/deposit-flow.cy.ts,cypress/e2e/withdrawal-flow.cy.ts"
+```
+
+Verify against devnet vault program:
+
+- [ ] Wallet connect works with Phantom, Solflare, and Backpack adapters
+- [ ] Deposit flow: amount input, share preview calculation, USDC approval, vault deposit tx, confirmation with tx hash
+- [ ] Withdrawal flow: share balance display, burn amount input, request_withdrawal tx, delay countdown, execute_withdrawal tx
+- [ ] Rejected signature handled gracefully (user cancels wallet popup)
+- [ ] Insufficient USDC balance shows clear error message
 
 **Verify:**
 
@@ -53,15 +65,17 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Wallet connect**: Connect Phantom wallet, verify address displayed, disconnect, reconnect with Solflare
+2. [ ] **Deposit end-to-end**: Deposit 100 USDC on devnet, verify share balance updates on profile page
+3. [ ] **Withdrawal end-to-end**: Request withdrawal, wait for delay, execute, verify USDC returned to wallet
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 75% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+cd frontend && npm test -- --coverage --watchAll=false
+```
 
 ## Error Handling Verification
 

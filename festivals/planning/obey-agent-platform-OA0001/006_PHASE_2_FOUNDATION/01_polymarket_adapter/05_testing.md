@@ -7,13 +7,13 @@ fest_order: 5
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.954934-06:00
+fest_created: 2026-03-13T02:27:19.955453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 5 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+go test ./internal/adapters/polymarket/... -v -count=1
+```
 
 **Verify:**
 
@@ -41,7 +43,17 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+go test ./internal/adapters/polymarket/... -v -tags=integration -run TestPolymarket
+```
+
+Verify against Polymarket API:
+
+- [ ] CLOB client fetches order books, places limit orders, cancels orders
+- [ ] Gamma client fetches market metadata, resolution status, and event details
+- [ ] Order placement builds correct CLOB API request with signature
+- [ ] MarketAdapter interface fully satisfied (ListMarkets, GetMarket, GetOrderBook, PlaceOrder, CancelOrder, GetPositions)
+- [ ] All methods respect context cancellation
 
 **Verify:**
 
@@ -53,15 +65,18 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Market listing**: Fetch active Polymarket markets, verify response includes market question, outcomes, and prices
+2. [ ] **Order book**: Fetch order book for a specific market, verify bid/ask arrays populated
+3. [ ] **Order placement**: Place a small limit order on testnet/paper, verify order confirmation
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 80% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+go test ./internal/adapters/polymarket/... -coverprofile=coverage.out -covermode=atomic
+go tool cover -func=coverage.out
+```
 
 ## Error Handling Verification
 

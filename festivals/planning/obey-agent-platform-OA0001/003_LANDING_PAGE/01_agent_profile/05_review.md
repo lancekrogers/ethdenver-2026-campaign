@@ -7,13 +7,13 @@ fest_order: 5
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.947775-06:00
+fest_created: 2026-03-13T02:27:19.947953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 5 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,31 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+golangci-lint run ./internal/api/...
+cd frontend && npx eslint src/ && npx tsc --noEmit
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `internal/api/handlers/agent.go` - REST API handlers for agent stats, trades, NAV chart
+- `internal/api/metrics/` - Performance metric calculations (Sharpe, drawdown, win rate)
+- `frontend/src/pages/AgentProfile.tsx` - Profile page component
+- `frontend/src/components/NAVChart.tsx` - Recharts NAV chart component
+- `frontend/src/components/TradeHistory.tsx` - Paginated trade table
+
+**Design patterns to verify:**
+- [ ] API responses follow consistent JSON structure with proper error codes
+- [ ] Performance metrics calculated server-side, not in frontend
+- [ ] NAV chart handles data gaps gracefully (interpolation or staleness indicator)
+- [ ] Trade history pagination uses cursor-based pagination, not offset
+- [ ] React components use proper TypeScript types, no `any`
+- [ ] API data fetching uses SWR or React Query for caching/revalidation
 
 ### Error Handling
 
@@ -55,17 +75,16 @@ Review all code changes in this sequence for quality, correctness, and adherence
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] API does not expose private wallet data
+- [ ] CORS configured correctly
+- [ ] Input validation on API parameters (agent ID format, pagination limits)
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] API queries indexed by agent_id + timestamp
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Frontend bundle size reasonable
 
 ### Testing
 

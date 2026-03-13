@@ -7,13 +7,13 @@ fest_order: 3
 fest_status: pending
 fest_autonomy: medium
 fest_gate_type: testing
-fest_created: 2026-03-13T02:27:19.946555-06:00
+fest_created: 2026-03-13T02:27:19.946453-06:00
 fest_tracking: true
 ---
 
 # Task: Testing and Verification
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
+**Task Number:** 3 | **Parallel Group:** None | **Dependencies:** All implementation tasks | **Autonomy:** medium
 
 ## Objective
 
@@ -31,7 +31,9 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Unit Tests
 
-[REPLACE: Run your project's test command]
+```bash
+go test ./internal/vault/... -v -count=1
+```
 
 **Verify:**
 
@@ -41,7 +43,16 @@ Verify all functionality implemented in this sequence works correctly through co
 
 ### Integration Tests
 
-[REPLACE: Run your project's integration test command]
+```bash
+go test ./internal/vault/... -v -tags=integration -run TestVaultClient
+```
+
+Run against devnet vault program. Verify:
+
+- [ ] Vault client reads VaultState (total_nav, total_shares, share_mint, last_update) from devnet
+- [ ] NAV reporting service detects deviation >0.5% and submits update_nav transaction
+- [ ] Idempotent updates: redundant NAV with same value skips transaction submission
+- [ ] Context cancellation aborts in-flight RPC calls
 
 **Verify:**
 
@@ -53,15 +64,18 @@ Verify all functionality implemented in this sequence works correctly through co
 
 Walk through each requirement from the sequence:
 
-1. [ ] **Requirement 1**: [Describe manual test steps and expected result]
-2. [ ] **Requirement 2**: [Describe manual test steps and expected result]
-3. [ ] **Requirement 3**: [Describe manual test steps and expected result]
+1. [ ] **Vault state read**: Query devnet vault PDA, verify returned fields match on-chain state
+2. [ ] **NAV update flow**: Change agent portfolio NAV by >0.5%, verify on-chain NAV updates within 5 minutes
+3. [ ] **Idempotent skip**: Trigger NAV reporting with unchanged NAV, verify no transaction submitted (check logs)
 
 ## Coverage Requirements
 
-- Minimum coverage: [REPLACE: coverage threshold, e.g., 80%] for new code
+- Minimum coverage: 80% for new code
 
-[REPLACE: Run your project's coverage command]
+```bash
+go test ./internal/vault/... -coverprofile=coverage.out -covermode=atomic
+go tool cover -func=coverage.out
+```
 
 ## Error Handling Verification
 

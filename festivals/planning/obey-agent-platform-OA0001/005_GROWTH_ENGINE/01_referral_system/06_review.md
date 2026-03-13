@@ -7,13 +7,13 @@ fest_order: 6
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.953414-06:00
+fest_created: 2026-03-13T02:27:19.953953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 6 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,31 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+golangci-lint run ./internal/referral/...
+cd frontend && npx eslint src/components/referral/ src/pages/referral/
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `internal/referral/state.go` - Referral state storage and relationship tracking
+- `internal/referral/registration.go` - Referral code generation and registration
+- `internal/referral/distribution.go` - Fee distribution and referral bonus calculation
+- `frontend/src/components/referral/ReferralDashboard.tsx` - Referral stats UI
+- `frontend/src/components/referral/ReferralLink.tsx` - Shareable referral link
+
+**Design patterns to verify:**
+- [ ] Referral codes are unique, URL-safe, and not guessable
+- [ ] Self-referral prevented (referrer cannot be own referee)
+- [ ] Fee distribution percentages configurable and validated
+- [ ] Referral relationship is immutable once created (no re-assignment)
+- [ ] Referral state persisted in database, not in-memory only
+- [ ] Referral link includes UTM parameters for tracking
 
 ### Error Handling
 
@@ -55,17 +75,16 @@ Review all code changes in this sequence for quality, correctness, and adherence
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] Referral codes do not expose wallet addresses
+- [ ] Fee distribution cannot be manipulated by referrer
+- [ ] Rate limiting on referral registration endpoint
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] Referral lookups indexed by wallet address
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Fee distribution batched if many referrals
 
 ### Testing
 

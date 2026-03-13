@@ -7,13 +7,13 @@ fest_order: 5
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.956495-06:00
+fest_created: 2026-03-13T02:27:19.956953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 5 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,29 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+golangci-lint run ./internal/crossplatform/...
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `internal/crossplatform/matcher.go` - Event matching across platforms using text similarity
+- `internal/crossplatform/arbitrage.go` - Arbitrage strategy with discrepancy detection and sizing
+- `internal/crossplatform/bridge.go` - Cross-chain bridge manager (Solana <-> Polygon)
+- `internal/crossplatform/types.go` - Matched event, arbitrage signal types
+
+**Design patterns to verify:**
+- [ ] Event matcher uses fuzzy matching with configurable similarity threshold
+- [ ] Arbitrage strategy accounts for bridge fees, trading fees, and slippage in edge calculation
+- [ ] Bridge manager is abstracted behind interface (swappable bridge providers)
+- [ ] Execution is atomic-or-rollback: if one leg fails, the other is unwound
+- [ ] Cross-platform risk limits separate from single-platform limits
+- [ ] All cross-chain operations have timeout and retry logic
 
 ### Error Handling
 
@@ -55,17 +73,16 @@ Review all code changes in this sequence for quality, correctness, and adherence
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] Bridge transactions verified on both chains before proceeding
+- [ ] No funds locked in bridge indefinitely (timeout and recovery)
+- [ ] Private keys for both chains managed securely
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] Event matching cached (not re-computed every cycle)
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Bridge status polling uses reasonable interval
 
 ### Testing
 

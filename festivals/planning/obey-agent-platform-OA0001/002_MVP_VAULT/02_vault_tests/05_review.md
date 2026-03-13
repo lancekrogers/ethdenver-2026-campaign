@@ -7,13 +7,13 @@ fest_order: 5
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.945628-06:00
+fest_created: 2026-03-13T02:27:19.945953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 5 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,30 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+npx eslint tests/
+cargo clippy --all-targets -- -D warnings
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `tests/lifecycle.test.ts` - Full lifecycle test with multi-depositor flow
+- `tests/attack.test.ts` - Unauthorized access and edge case tests
+- `tests/devnet-deploy.ts` - Devnet deployment and verification script
+- `tests/helpers/` - Test utility functions
+
+**Design patterns to verify:**
+- [ ] Tests use separate wallet keypairs per depositor (not shared state)
+- [ ] Multi-depositor math assertions use exact expected values, not approximations
+- [ ] Attack tests verify specific error codes, not just "transaction failed"
+- [ ] Devnet deploy script is idempotent (can re-run safely)
+- [ ] Test cleanup handles partial failures (accounts still cleaned up)
+- [ ] No test interdependencies (each test can run independently)
 
 ### Error Handling
 
@@ -54,25 +73,23 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Security Considerations
 
-- [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] No secrets in test code
+- [ ] Test wallets use devnet only
+- [ ] No mainnet private keys in test fixtures
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] Tests run within reasonable time
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Devnet RPC calls are rate-limited appropriately
 
 ### Testing
 
 - [ ] Tests are meaningful
 - [ ] Edge cases covered
 - [ ] Test data is appropriate
-- [ ] Mocks used correctly
+- [ ] Assertions are precise
 
 ## Review Process
 

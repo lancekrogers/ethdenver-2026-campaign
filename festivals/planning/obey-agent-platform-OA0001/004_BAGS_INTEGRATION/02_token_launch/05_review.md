@@ -7,13 +7,13 @@ fest_order: 5
 fest_status: pending
 fest_autonomy: low
 fest_gate_type: review
-fest_created: 2026-03-13T02:27:19.951426-06:00
+fest_created: 2026-03-13T02:27:19.951953-06:00
 fest_tracking: true
 ---
 
 # Task: Code Review
 
-**Task Number:** <no value> | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
+**Task Number:** 5 | **Parallel Group:** None | **Dependencies:** Testing and Verification | **Autonomy:** low
 
 ## Objective
 
@@ -39,11 +39,28 @@ Review all code changes in this sequence for quality, correctness, and adherence
 
 ### Standards Compliance
 
-[REPLACE: Run your project's lint command]
+```bash
+golangci-lint run ./internal/bags/token/... ./internal/bags/launch/...
+```
 
 - [ ] Linting passes without warnings
 - [ ] Formatting is consistent
 - [ ] Project conventions are followed
+
+### Sequence-Specific Review Focus
+
+**Files/packages to review:**
+- `internal/bags/token/create.go` - Token creation with metadata
+- `internal/bags/token/fees.go` - Fee configuration for token
+- `internal/bags/launch/meteora.go` - Meteora liquidity pool launch
+- `internal/bags/launch/config.go` - Launch configuration and parameters
+
+**Design patterns to verify:**
+- [ ] Token creation is idempotent (handles "already exists" gracefully)
+- [ ] Fee percentages validated before submission (within allowed ranges)
+- [ ] Meteora launch uses proper slippage tolerance for initial liquidity
+- [ ] Launch process is resumable (can restart from last successful step)
+- [ ] All Solana transactions confirmed before proceeding to next step
 
 ### Error Handling
 
@@ -55,17 +72,16 @@ Review all code changes in this sequence for quality, correctness, and adherence
 ### Security Considerations
 
 - [ ] No secrets in code
-- [ ] Input validation present
-- [ ] No SQL injection risks
-- [ ] No XSS vulnerabilities
-- [ ] Proper authentication/authorization
+- [ ] Token metadata does not contain sensitive information
+- [ ] Initial liquidity amount validated against limits
+- [ ] Wallet signing uses secure key management
 
 ### Performance
 
 - [ ] No obvious performance issues
-- [ ] Queries are efficient
+- [ ] Transaction confirmation polling uses reasonable interval
 - [ ] No memory leaks
-- [ ] Appropriate caching used
+- [ ] Appropriate timeouts on blockchain operations
 
 ### Testing
 
