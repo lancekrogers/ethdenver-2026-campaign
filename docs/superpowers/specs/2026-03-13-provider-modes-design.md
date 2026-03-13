@@ -94,6 +94,13 @@ Read-only, plan but don't execute. Maps to:
 
 **Note:** Codex `PlanMode` uses `approval_policy: "never"` (not `"on-request"`) because the `read-only` sandbox already prevents all writes. Prompting for approval on actions the sandbox would block is confusing. The sandbox is the enforcement mechanism; approval is set to `never` to avoid unnecessary prompts.
 
+**SandboxAware:** All three built-in modes implement `SandboxAware` for Codex:
+- `AutonomousMode.SandboxValue("codex")` → `"danger-full-access"`
+- `SupervisedMode.SandboxValue("codex")` → `"workspace-write"`
+- `PlanMode.SandboxValue("codex")` → `"read-only"`
+
+For all other providers, `SandboxValue()` returns empty string (sandbox is a Codex-specific concept).
+
 #### VendorMode
 
 Raw pass-through. Created from strings like `vendor:codex/never` or `vendor:codex/never:read-only`.
@@ -162,8 +169,14 @@ OpenAI, OpenRouter, Ollama, OpenClaw, External return `nil`.
 
 ```go
 // SetMode changes the execution mode for subsequent turns.
-// Returns ErrModeMismatch if a VendorMode targets a different provider.
-// Returns ErrUnknownMode if the mode is not supported.
+// The mode persists until explicitly changed by another SetMode call.
+// Per-turn overrides via SendMessageRequest.mode are sticky — they
+// do NOT revert after the turn completes.
+//
+// Error conditions:
+//   - ErrModeMismatch: VendorMode targets a different provider
+//   - ErrUnknownMode: mode is not in the adapter's SupportedModes list
+//     (does not apply to VendorMode pass-through)
 SetMode(mode Mode) error
 
 // Mode returns the current active mode.
@@ -308,6 +321,9 @@ message ListModesResponse {
 8. **Empty mode in SendMessage** — empty string means no override, current mode preserved
 9. **Concurrency** — concurrent SetMode and SendMessage on same instance don't race (verified via `-race` flag)
 10. **First turn with nil thread** — SetMode before first SendMessage on Codex doesn't panic (nil thread handle is safe)
+11. **Mode persistence** — SetMode("supervised") persists across multiple SendMessage calls, doesn't revert
+12. **Codex thread resume failure** — if ResumeThread fails after mode change, error propagates through SendMessage; cached thread stays nil so next attempt retries
+13. **gRPC integration** — CreateSessionRequest with mode → verify provider receives correct vendor config end-to-end through gRPC handler → manager → adapter → provider
 
 ### Files Changed
 
