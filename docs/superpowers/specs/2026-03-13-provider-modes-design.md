@@ -51,6 +51,18 @@ type SandboxAware interface {
 }
 ```
 
+### Error Handling
+
+Mode resolution uses sentinel errors from the project's error framework:
+
+```go
+var (
+    ErrUnknownMode       = errors.New("unknown mode")
+    ErrInvalidVendorMode = errors.New("invalid vendor mode format")
+    ErrModeMismatch      = errors.New("vendor mode targets a different provider")
+)
+```
+
 ### Built-in Mode Implementations
 
 #### AutonomousMode (default)
@@ -77,20 +89,28 @@ Read-only, plan but don't execute. Maps to:
 
 | Provider | VendorValue | SandboxValue |
 |----------|-------------|--------------|
-| codex | `on-request` | `read-only` |
+| codex | `never` (approval_policy) | `read-only` |
 | claude-code | `plan` | — |
+
+**Note:** Codex `PlanMode` uses `approval_policy: "never"` (not `"on-request"`) because the `read-only` sandbox already prevents all writes. Prompting for approval on actions the sandbox would block is confusing. The sandbox is the enforcement mechanism; approval is set to `never` to avoid unnecessary prompts.
 
 #### VendorMode
 
-Raw pass-through. Created from strings like `vendor:codex/never`.
+Raw pass-through. Created from strings like `vendor:codex/never` or `vendor:codex/never:read-only`.
 
 ```go
 type VendorMode struct {
     provider string
-    value    string
+    value    string   // primary vendor value (approval_policy, permission_mode)
+    sandbox  string   // optional sandbox value (Codex only)
     desc     string
 }
 ```
+
+`VendorMode` implements `SandboxAware` when `sandbox` is non-empty. Format:
+- `vendor:codex/never` — sets approval policy only, sandbox unchanged
+- `vendor:codex/never:read-only` — sets both approval policy and sandbox
+- `vendor:claude-code/bypassPermissions` — sets permission mode
 
 ### Mode Resolution
 
@@ -102,15 +122,26 @@ func ResolveMode(name string) (Mode, error) {
     case "plan":           return PlanMode{}, nil
     default:
         if strings.HasPrefix(name, "vendor:") {
-            // Format: "vendor:codex/never"
-            parts := strings.SplitN(name[7:], "/", 2)
-            if len(parts) != 2 {
-                return nil, fmt.Errorf("invalid vendor mode format: %s (expected vendor:provider/value)", name)
-            }
-            return VendorMode{provider: parts[0], value: parts[1]}, nil
+            return parseVendorMode(name[7:])
         }
-        return nil, fmt.Errorf("unknown mode: %s", name)
+        return nil, fmt.Errorf("%w: %s", ErrUnknownMode, name)
     }
+}
+
+func parseVendorMode(raw string) (Mode, error) {
+    // Format: "provider/value" or "provider/value:sandbox"
+    parts := strings.SplitN(raw, "/", 2)
+    if len(parts) != 2 || parts[0] == "" || parts[1] == "" {
+        return nil, fmt.Errorf("%w: expected vendor:provider/value, got vendor:%s", ErrInvalidVendorMode, raw)
+    }
+    vm := VendorMode{provider: parts[0]}
+    if idx := strings.Index(parts[1], ":"); idx >= 0 {
+        vm.value = parts[1][:idx]
+        vm.sandbox = parts[1][idx+1:]
+    } else {
+        vm.value = parts[1]
+    }
+    return vm, nil
 }
 ```
 
@@ -131,6 +162,8 @@ OpenAI, OpenRouter, Ollama, OpenClaw, External return `nil`.
 
 ```go
 // SetMode changes the execution mode for subsequent turns.
+// Returns ErrModeMismatch if a VendorMode targets a different provider.
+// Returns ErrUnknownMode if the mode is not supported.
 SetMode(mode Mode) error
 
 // Mode returns the current active mode.
@@ -146,6 +179,12 @@ type AdapterConfig struct {
 }
 ```
 
+### Concurrency Safety
+
+Adapter instances already use `sync.Mutex` for status field access. `SetMode()` acquires the same mutex before modifying mode state. For the Codex adapter, `SetMode()` holds the lock while nilling the cached thread and updating config fields, preventing a concurrent `SendMessage()` from reading a partially-updated state.
+
+The session manager serializes per-session access — `SendMessage` acquires a per-session lock before calling `SetMode()` and `instance.SendMessage()` sequentially. This prevents concurrent mode changes and message sends on the same session.
+
 ### Per-Turn Mechanics
 
 #### Codex
@@ -155,7 +194,7 @@ type AdapterConfig struct {
 - `Client.SetApprovalPolicy(policy)` — updates config, nils cached thread
 - `Client.SetSandboxMode(sandbox)` — updates config, nils cached thread
 
-Nilling the cached thread forces `getOrCreateThread()` to call `ResumeThread(threadID, newOpts)` on the next turn — same conversation context, updated mode options.
+Nilling the cached thread handle (not the thread ID) forces `getOrCreateThread()` to call `ResumeThread(threadID, newOpts)` on the next turn — same conversation context, updated mode options. When `threadID` is empty (first turn), `getOrCreateThread()` calls `StartThread(newOpts)` as normal — nilling a nil thread handle is a no-op.
 
 New fields on `codex.Config`:
 
@@ -165,6 +204,8 @@ SandboxMode    codexsdk.SandboxMode  `json:"sandbox_mode,omitempty"`
 ```
 
 Wired through `buildThreadOptions()`.
+
+**VendorMode validation:** The Codex adapter's `SetMode()` checks `VendorMode.provider` — if it doesn't match `"codex"`, `SetMode` returns `ErrModeMismatch`. If the VendorMode targets codex but `VendorValue("codex")` returns a value not in the known `ApprovalMode` constants, it is passed through as-is (the Codex CLI validates it).
 
 #### Claude Code
 
@@ -176,9 +217,11 @@ c.sdk.DefaultOptions.PermissionMode = claude.PermissionMode(vendorValue)
 
 Takes effect immediately since `buildRunOptions()` inherits from `DefaultOptions` on every turn.
 
+**VendorMode validation:** Same pattern — `VendorMode.provider` must match `"claude-code"` or `SetMode` returns `ErrModeMismatch`.
+
 #### OpenAI-compatible (OpenAI, OpenRouter, Ollama, OpenClaw)
 
-`SetMode()` stores the mode for status reporting. No-op for the provider — these are stateless API providers without native mode concepts. Future enhancement: `supervised` could strip tools from `ChatRequest.Tools`, `plan` could inject a system message.
+`SetMode()` stores the mode for status reporting. No-op for the provider — these are stateless API providers without native mode concepts. `VendorMode` targeting these providers is accepted and stored but has no effect. Future enhancement: `supervised` could strip tools from `ChatRequest.Tools`, `plan` could inject a system message (tracked in GH issue #39).
 
 ### Data Flow
 
@@ -187,6 +230,7 @@ Takes effect immediately since `buildRunOptions()` inherits from `DefaultOptions
 ```
 gRPC CreateSessionRequest { mode: "autonomous" }
   → session_handlers.go: ResolveMode(req.Mode)
+    - empty string resolves to AutonomousMode (default)
   → Manager.CreateSession { Mode: resolvedMode }
   → AdapterConfig { Mode: resolvedMode }
   → Adapter.Start(): instance.SetMode(cfg.Mode)
@@ -197,11 +241,16 @@ gRPC CreateSessionRequest { mode: "autonomous" }
 
 ```
 gRPC SendMessageRequest { session_id, message, mode: "supervised" }
-  → session_handlers.go: ResolveMode(req.Mode)
-  → Manager.SendMessage: instance.SetMode(mode)
+  → session_handlers.go:
+    - if req.Mode == "": mode = nil (no override, keep current)
+    - if req.Mode != "": mode = ResolveMode(req.Mode)
+  → Manager.SendMessage(ctx, sessionID, msg, mode):
+    - if mode != nil: instance.SetMode(mode)
   → instance.SendMessage(ctx, msg)
-  → Provider uses updated mode config
+  → Provider uses current mode config
 ```
+
+**Important distinction:** In `CreateSessionRequest`, an empty `mode` string means "use default" (autonomous). In `SendMessageRequest`, an empty `mode` string means "no override" (keep whatever mode the session is currently in). The gRPC handler distinguishes these two contexts — it only calls `ResolveMode` on `SendMessageRequest.mode` when the field is non-empty.
 
 #### Mode Discovery
 
@@ -214,17 +263,22 @@ gRPC ListModesRequest { provider: "codex" }
 ### Proto Changes
 
 ```protobuf
-// In session.proto
+// In session.proto — additions to the SessionService
+
+service SessionService {
+    // ... existing RPCs ...
+    rpc ListModes(ListModesRequest) returns (ListModesResponse);
+}
 
 message CreateSessionRequest {
     // ... existing fields ...
-    string mode = 11;  // obey mode name or "vendor:provider/value"
+    string mode = 11;  // obey mode name or "vendor:provider/value"; empty = autonomous
 }
 
 message SendMessageRequest {
     string session_id = 1;
     string message = 2;
-    string mode = 3;  // optional per-turn override
+    string mode = 3;  // optional per-turn override; empty = no change
 }
 
 message ModeInfo {
@@ -234,7 +288,7 @@ message ModeInfo {
 }
 
 message ListModesRequest {
-    string provider = 1;  // optional filter
+    string provider = 1;  // optional filter; empty = all providers
 }
 
 message ListModesResponse {
@@ -244,38 +298,42 @@ message ListModesResponse {
 
 ### Testing Strategy
 
-1. **Mode resolution** — table-driven: `""` → autonomous, `"supervised"` → supervised, `"vendor:codex/never"` → VendorMode, `"garbage"` → error
+1. **Mode resolution** — table-driven: `""` → autonomous, `"supervised"` → supervised, `"vendor:codex/never"` → VendorMode, `"vendor:codex/never:read-only"` → VendorMode with sandbox, `"garbage"` → ErrUnknownMode, `"vendor:bad"` → ErrInvalidVendorMode
 2. **SupportedModes** — Codex and Claude Code return `[autonomous, supervised, plan]`, OpenAI/Ollama/OpenRouter/OpenClaw return nil
-3. **SetMode integration** — mock provider with capture, verify vendor values reach provider config
-4. **Per-turn override** — set autonomous → send → set supervised → send → verify both applied
-5. **Thread invalidation** — Codex: verify SetMode nils cached thread, next SendMessage resumes with new options
-6. **Default mode** — session created with nil/empty mode gets autonomous
+3. **SetMode integration** — mock provider with capture, verify vendor values reach provider config after SetMode
+4. **Per-turn override** — set autonomous → send → set supervised → send → verify both mode values applied to respective provider calls
+5. **Thread invalidation** — Codex: verify SetMode nils cached thread handle (not thread ID), next SendMessage resumes with new options, conversation context preserved
+6. **Default mode** — session created with empty mode string gets autonomous
+7. **VendorMode provider mismatch** — VendorMode targeting codex on a claude-code adapter returns ErrModeMismatch
+8. **Empty mode in SendMessage** — empty string means no override, current mode preserved
+9. **Concurrency** — concurrent SetMode and SendMessage on same instance don't race (verified via `-race` flag)
+10. **First turn with nil thread** — SetMode before first SendMessage on Codex doesn't panic (nil thread handle is safe)
 
 ### Files Changed
 
 | File | Change |
 |------|--------|
-| `session/mode.go` | **New** — Mode interface, SandboxAware, built-in modes, ResolveMode() |
-| `session/mode_test.go` | **New** — resolution and mode behavior tests |
+| `session/mode.go` | **New** — Mode interface, SandboxAware, built-in modes, sentinel errors, ResolveMode(), parseVendorMode() |
+| `session/mode_test.go` | **New** — resolution, vendor parsing, provider mismatch, concurrency tests |
 | `session/adapter.go` | Add Mode to AdapterConfig, SupportedModes() to SessionAdapter, SetMode()/Mode() to AdapterInstance |
-| `session/manager.go` | Add Mode to CreateSessionRequest, mode handling in SendMessage |
+| `session/manager.go` | Add Mode to CreateSessionRequest, mode handling in SendMessage (nil = no override) |
 | `provider/codex/config.go` | Add ApprovalPolicy, SandboxMode fields |
 | `provider/codex/client.go` | Add SetApprovalPolicy(), SetSandboxMode(), wire in buildThreadOptions |
 | `provider/claudecode/client.go` | Add SetPermissionMode() |
-| `adapters/codex.go` | Implement SetMode()/Mode(), wire in Start() |
-| `adapters/claude_code.go` | Implement SetMode()/Mode(), wire in Start() |
+| `adapters/codex.go` | Implement SetMode()/Mode(), VendorMode provider validation, wire in Start() |
+| `adapters/claude_code.go` | Implement SetMode()/Mode(), VendorMode provider validation, wire in Start() |
 | `adapters/openai.go` | Implement SetMode()/Mode() as no-op store |
 | `adapters/openrouter.go` | Same |
 | `adapters/ollama.go` | Same |
 | `adapters/openclaw.go` | Same |
 | `adapters/external.go` | Same |
 | `adapters/mock.go` | Add mode support for tests |
-| `protos/local/v1/session.proto` | Add mode fields to CreateSessionRequest, SendMessageRequest; add ListModes RPC |
-| `grpc/session_handlers.go` | Mode resolution, pass to manager, ListModes handler |
+| `protos/local/v1/session.proto` | Add mode to CreateSessionRequest/SendMessageRequest, add ListModes RPC to SessionService |
+| `grpc/session_handlers.go` | Mode resolution (context-aware: create vs send), ListModes handler |
 | `adapters/*_test.go` | Mode integration tests |
 
 ## Future Work
 
-- **`fest` mode** — Festival methodology execution mode (GH issue)
-- **OpenAI-compatible mode enforcement** — supervised strips tools, plan injects system message (GH issue)
+- **#38 `fest` mode** — Festival methodology execution mode
+- **#39 OpenAI-compatible mode enforcement** — supervised strips tools, plan injects system message
 - **Additional modes** — extensible via Mode interface without changes to existing code
