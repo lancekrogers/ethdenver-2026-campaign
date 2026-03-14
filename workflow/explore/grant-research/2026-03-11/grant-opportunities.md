@@ -1,5 +1,8 @@
 # Grant Opportunities for Obey Agent Economy
 
+> **Track:** Internal Confidence
+> This is a private strategy document. It can include stronger framing and prioritization bets that should be converted before public use.
+
 **Date:** 2026-03-11
 **Purpose:** Identify builder grant programs where existing work qualifies for funding, independent of the ETHDenver hackathon.
 

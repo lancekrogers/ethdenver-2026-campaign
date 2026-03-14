@@ -1,5 +1,7 @@
 # Hedera Foundation / Hashgraph Association Grant Application — One-Pager
 
+> Track: External Proof. Keep claims tied to deployed topics, transactions, or code paths.
+
 **Project:** Obey Agent Economy — Multi-Agent Coordination on Hedera
 **Applicant:** Lance Rogers
 **Date:** 2026-03-11

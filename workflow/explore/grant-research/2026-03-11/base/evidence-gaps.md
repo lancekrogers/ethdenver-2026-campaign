@@ -1,5 +1,7 @@
 # Base On-Chain Evidence Audit
 
+> Track: External Proof. Use evidence-backed wording only.
+
 **Date:** 2026-03-12 (updated for current Base evidence)
 **Verdict:** The wallet is now funded and active on Base Sepolia with contract deployments and an ERC-8004 identity registration. The remaining evidence gap is not "does anything exist on Base?" but "do we have public tx evidence for trading, x402 payments, and ERC-8021 attribution?"
 

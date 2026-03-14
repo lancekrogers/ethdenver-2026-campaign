@@ -1,5 +1,7 @@
 # Base Builder Grant — Social Media Content
 
+> Track: External Proof. Only post claims here that are backed by the linked code and on-chain evidence.
+
 ## Twitter/X Thread (Primary Discovery Channel)
 
 ### Main Post

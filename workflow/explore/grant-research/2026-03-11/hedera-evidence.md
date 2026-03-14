@@ -1,5 +1,7 @@
 # Hedera On-Chain Evidence Audit
 
+> Track: External Proof. Use evidence-backed wording only.
+
 **Date:** 2026-03-11
 **Verdict:** CONFIRMED — Real transactions verified on Hedera Testnet via mirror node API.
 

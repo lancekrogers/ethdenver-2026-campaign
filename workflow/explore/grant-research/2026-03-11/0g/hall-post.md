@@ -1,5 +1,7 @@
 # Obey Agent Economy: Decentralized Inference Pipeline on 0G
 
+> Track: External Proof. Safe for grant/forum use when every copied claim stays tied to the evidence listed below.
+
 > **Category:** Guild on 0G 2.0
 > **Copy-paste this into hall.0g.ai after creating an account**
 > **✅ Evidence compiled 2026-03-11 — All contract addresses and tx hashes verified on-chain**

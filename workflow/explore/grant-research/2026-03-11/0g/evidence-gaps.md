@@ -1,5 +1,7 @@
 # 0G On-Chain Evidence Audit
 
+> Track: External Proof. Use evidence-backed wording only.
+
 **Date:** 2026-03-12 (updated for current Galileo evidence)
 **Verdict:** 0G now has real write transactions and deployed contracts on Galileo. The remaining public evidence gap is not "does this wallet work on 0G?" but "can we document full runtime usage beyond deployment, especially authenticated inference?"
 

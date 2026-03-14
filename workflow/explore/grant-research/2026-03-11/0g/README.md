@@ -1,5 +1,8 @@
 # 0G Guild Grant Submission — Prep Directory
 
+> **Track:** External Proof
+> Everything in this folder should be safe to reuse in grant/public contexts. Claims should be backed by tx evidence, code, tests, or official docs.
+
 ## Submission Requires Two Steps
 
 1. **Forum post** on [hall.0g.ai](https://hall.0g.ai) in "Guild on 0G 2.0" category

@@ -1,5 +1,7 @@
 # Chainlink BUILD Program Application — One-Pager
 
+> Track: External Proof. Keep claims tied to deployed contracts, code paths, or documented integration evidence.
+
 **Project:** CRE Risk Router — Runtime Risk Controls for Autonomous Agents
 **Applicant:** Lance Rogers
 **Date:** 2026-03-11

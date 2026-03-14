@@ -1,5 +1,8 @@
 # Base Builder Grant Submission — Prep Directory
 
+> **Track:** External Proof
+> Everything in this folder should be safe to reuse in grant/public contexts. Claims should be backed by tx evidence, code, tests, or official docs.
+
 ## Submission Is Simple (Retroactive Grant)
 
 Base grants reward **shipped code**, not proposals. The process is:

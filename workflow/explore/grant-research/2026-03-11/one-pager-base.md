@@ -5,6 +5,9 @@
 **Date:** 2026-03-11
 **Target Program:** Base Builder Grants (Retroactive) + Builder Rewards
 
+> **Track:** External Proof
+> Keep every claim in this doc tied to tx evidence, code, tests, or official program docs.
+
 ---
 
 ## Problem

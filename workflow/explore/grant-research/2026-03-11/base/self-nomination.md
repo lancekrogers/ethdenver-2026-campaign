@@ -1,5 +1,7 @@
 # Base Builder Grant — Self-Nomination Content
 
+> Track: External Proof. Keep claims tied to the concrete Base Sepolia evidence referenced in this file.
+
 ## Short Version (For Nomination Form)
 
 **Project:** Obey Agent Economy — Autonomous DeFi Agent on Base

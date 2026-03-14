@@ -1,0 +1,50 @@
+version: "1.0"
+metadata:
+  id: OV0001
+  uuid: 5fcd8d2e-974e-4741-b755-06941e9b8945
+  name: obey-vault-synthesis
+  goal: 'Build and deploy OBEY Vault for Synthesis hackathon: ERC-4626 vault on Base with agent swap constraints, Go agent runtime, ERC-8004 identity, and observer CLI'
+  festival_type: implementation
+  created_at: 2026-03-14T01:18:37.313561Z
+  initial_size_bytes: 21888
+  status_history:
+    - status: planning
+      timestamp: 2026-03-14T01:18:37.313561Z
+      path: festivals/planning/obey-vault-synthesis-OV0001
+      notes: Festival created
+project_path: projects/agent-defi
+type_config:
+  auto_phases:
+    - IMPLEMENT
+  skip_ingestion: true
+quality_gates:
+  enabled: true
+  auto_append: true
+  implementation:
+    - id: testing
+      template: gates/implementation/QUALITY_GATE_TESTING
+      name: Testing and Verification
+      enabled: true
+    - id: review
+      template: gates/implementation/QUALITY_GATE_REVIEW
+      name: Code Review
+      enabled: true
+    - id: iterate
+      template: gates/implementation/QUALITY_GATE_ITERATE
+      name: Review Results and Iterate
+      enabled: true
+    - id: fest-commit
+      template: gates/implementation/QUALITY_GATE_FEST_COMMIT
+      name: Fest Commit Changes
+      enabled: true
+excluded_patterns:
+  - '*_planning'
+  - '*_research'
+  - '*_requirements'
+  - '*_docs'
+templates:
+  task_default: tasks/SIMPLE
+  prefer_simple: true
+tracking:
+  enabled: true
+  checksum_file: .festival-checksums.json

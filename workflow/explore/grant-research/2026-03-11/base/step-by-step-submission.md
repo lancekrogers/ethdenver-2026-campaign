@@ -1,5 +1,7 @@
 # Base Builder Grant — Step-by-Step Submission Guide
 
+> Track: External Proof. Treat this as a checklist for evidence-backed application copy.
+
 ## How Base Grants Work (Different From Other Programs)
 
 Base grants are **retroactive and scout-based**. There is no formal application form with milestone proposals. The process is:

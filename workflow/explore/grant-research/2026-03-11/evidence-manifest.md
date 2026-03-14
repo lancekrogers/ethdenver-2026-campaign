@@ -1,5 +1,8 @@
 # Evidence Manifest — Grant Submission GS0003
 
+> **Track:** External Proof
+> This file is the evidence backbone for application-facing claims.
+
 **Generated:** 2026-03-11
 **Campaign:** ethdenver2026 / Obey Agent Economy
 

@@ -1,5 +1,8 @@
 # Grant Odds Assessment — Honest Analysis
 
+> **Track:** Internal Confidence
+> This is a private strategy document. Odds and expected-value estimates here should not be treated as public-facing claims.
+
 **Date:** 2026-03-11
 **Purpose:** Realistic probability of getting paid, verified criteria, and how to improve odds.
 

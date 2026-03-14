@@ -1,5 +1,7 @@
 # 0G Guild — Step-by-Step Submission Guide
 
+> Track: External Proof. Treat this as a checklist for evidence-backed application copy.
+
 ## Pre-Submission Work (Do This First)
 
 ### Step 0: Refresh Evidence And Close The Remaining Gaps (~1-2 hours)
