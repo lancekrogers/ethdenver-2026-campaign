@@ -1,5 +1,5 @@
 version: 1
-updated_at: 2026-03-14T01:18:37.313956Z
+updated_at: 2026-03-16T01:05:37.586535Z
 links:
   obey-agent-platform-OA0001:
     path: projects/agent-prediction
@@ -7,5 +7,5 @@ links:
     linked_at: 2026-03-13T08:22:04.246805Z
   obey-vault-synthesis-OV0001:
     path: projects/agent-defi
-    festival_path: festivals/planning/obey-vault-synthesis-OV0001
-    linked_at: 2026-03-14T01:18:37.313956Z
+    festival_path: festivals/ready/obey-vault-synthesis-OV0001
+    linked_at: 2026-03-16T01:05:37.586535Z

@@ -12,6 +12,9 @@ metadata:
       timestamp: 2026-03-14T01:18:37.313561Z
       path: festivals/planning/obey-vault-synthesis-OV0001
       notes: Festival created
+    - status: ready
+      timestamp: 2026-03-15T19:05:37.58625-06:00
+      path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/ready/obey-vault-synthesis-OV0001
 project_path: projects/agent-defi
 type_config:
   auto_phases:
@@ -48,3 +51,8 @@ templates:
 tracking:
   enabled: true
   checksum_file: .festival-checksums.json
+auto_link:
+  enabled: true
+  require_on_phases:
+    - implementation
+  validate_path_exists: true
