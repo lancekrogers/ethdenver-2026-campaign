@@ -2,11 +2,12 @@
 fest_type: festival
 fest_id: OV0001
 fest_name: obey-vault-synthesis
-fest_status: ready
+fest_status: active
 fest_created: 2026-03-13T19:18:37.306681-06:00
-fest_updated: 2026-03-15T19:05:37.585804-06:00
+fest_updated: 2026-03-15T19:05:41.999988-06:00
 fest_tracking: true
 ---
+
 
 
 # obey-vault-synthesis
