@@ -35,6 +35,10 @@ shortcuts:
         path: dungeon/
         description: Jump to dungeon directory
         source: auto
+    ex:
+        path: workflow/explore/
+        description: Jump to explore
+        source: auto
     f:
         path: festivals/
         description: Festivals directory and commands
