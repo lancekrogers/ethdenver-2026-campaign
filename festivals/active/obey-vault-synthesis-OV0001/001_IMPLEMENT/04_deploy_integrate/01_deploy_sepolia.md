@@ -4,11 +4,13 @@ fest_id: 01_deploy_sepolia.md
 fest_name: 01_deploy_sepolia
 fest_parent: 04_deploy_integrate
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-13T19:25:34.24748-06:00
+fest_updated: 2026-03-15T19:51:26.480596-06:00
 fest_tracking: true
 ---
+
 
 # Task: Deploy Vault to Base Sepolia
 
