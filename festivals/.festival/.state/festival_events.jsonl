@@ -24,3 +24,4 @@
 {"ts":"2026-03-14T01:18:37.335377Z","event":"create","id":"OV0001","name":"obey-vault-synthesis","status":"planning"}
 {"ts":"2026-03-16T01:05:37.585366Z","event":"move","id":"OV0001","from":"planning","to":"ready"}
 {"ts":"2026-03-16T01:05:41.999884Z","event":"move","id":"OV0001","from":"ready","to":"active"}
+{"ts":"2026-03-16T02:15:42.554176Z","event":"move","id":"OV0001","from":"active","to":"completed"}
