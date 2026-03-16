@@ -4,10 +4,12 @@ fest_id: 01_vault_contract
 fest_name: vault contract
 fest_parent: 001_IMPLEMENT
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_created: 2026-03-13T19:19:51.968673-06:00
+fest_updated: 2026-03-15T19:34:11.481758-06:00
 fest_tracking: true
 ---
+
 
 # Sequence Goal: 01_vault_contract
 
@@ -18,6 +20,17 @@ fest_tracking: true
 **Primary Goal:** Build an ERC-4626 vault smart contract on Base with agent swap constraints, guardian controls, and NAV calculation via Uniswap V3 TWAP oracle.
 
 **Contribution to Phase Goal:** The vault is the core on-chain component that enforces all spending boundaries. Without it, the agent has no constrained execution environment. This sequence produces the deployed contract that all other sequences depend on.
+
+## Working Directory
+
+**Primary:** `projects/contracts/` (relative to campaign root)
+**Absolute:** `/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/contracts/`
+
+> **IMPORTANT:** Before executing ANY command in this sequence, navigate to the working directory first:
+> ```bash
+> cd /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/contracts/
+> ```
+> All Solidity development, Foundry tests, and deployment scripts operate from this directory. Run `cd projects/contracts` before any `forge` command.
 
 ## Success Criteria
 

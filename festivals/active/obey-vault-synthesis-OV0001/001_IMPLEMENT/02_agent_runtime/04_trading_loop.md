@@ -1,14 +1,16 @@
 ---
 fest_type: task
-fest_id: 01_trading_loop.md
+fest_id: 04_trading_loop.md
 fest_name: 04_trading_loop
 fest_parent: 02_agent_runtime
-fest_order: 1
-fest_status: pending
+fest_order: 4
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-13T19:24:37.788149-06:00
+fest_updated: 2026-03-15T19:39:18.979066-06:00
 fest_tracking: true
 ---
+
 
 # Task: Trading Loop Runner
 

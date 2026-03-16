@@ -1,9 +1,9 @@
 ---
 fest_type: task
-fest_id: 01_deploy_mainnet.md
+fest_id: 05_deploy_mainnet.md
 fest_name: 05_deploy_mainnet
 fest_parent: 04_deploy_integrate
-fest_order: 1
+fest_order: 5
 fest_status: pending
 fest_autonomy: medium
 fest_created: 2026-03-13T19:25:34.323512-06:00

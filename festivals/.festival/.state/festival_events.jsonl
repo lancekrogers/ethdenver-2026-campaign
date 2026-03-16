@@ -22,3 +22,5 @@
 {"ts":"2026-03-11T10:59:40.749961Z","event":"create","id":"GS0003","name":"grant-submissions","status":"planning"}
 {"ts":"2026-03-13T08:19:41.184425Z","event":"create","id":"OA0001","name":"obey-agent-platform","status":"planning"}
 {"ts":"2026-03-14T01:18:37.335377Z","event":"create","id":"OV0001","name":"obey-vault-synthesis","status":"planning"}
+{"ts":"2026-03-16T01:05:37.585366Z","event":"move","id":"OV0001","from":"planning","to":"ready"}
+{"ts":"2026-03-16T01:05:41.999884Z","event":"move","id":"OV0001","from":"ready","to":"active"}

@@ -19,6 +19,28 @@ fest_tracking: true
 
 **Contribution to Phase Goal:** This sequence takes all built components and makes them live on-chain. It validates the full system works end-to-end (deposit -> agent trades -> boundaries enforced -> NAV tracks) and ensures production readiness through security review before mainnet deployment with real USDC.
 
+## Working Directory
+
+This sequence operates across **two** project directories. Each task specifies which directory to use -- always check the task's Step 1.
+
+**Contracts (for forge deploy/verify):**
+- Relative: `projects/contracts/`
+- Absolute: `/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/contracts/`
+
+**Agent Runtime (for running the agent):**
+- Relative: `projects/agent-defi/`
+- Absolute: `/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/`
+
+> **IMPORTANT:** Before executing ANY command in this sequence, navigate to the correct working directory first:
+> ```bash
+> # For deployment tasks (forge script, forge verify):
+> cd /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/contracts/
+>
+> # For integration tasks (running the agent, observer, registration):
+> cd /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/
+> ```
+> Deployment tasks use `projects/contracts/` for forge commands. Integration tasks use `projects/agent-defi/` for running the agent. Each task specifies which directory to use -- always check the task's Step 1.
+
 ## Success Criteria
 
 The sequence goal is achieved when:

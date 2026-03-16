@@ -3,6 +3,10 @@
   "project_start": "2026-02-18T13:16:35-07:00",
   "cocomo_project_type": "organic",
   "projects": {
+    "agent-bags": {
+      "path": "projects/agent-bags",
+      "include": true
+    },
     "agent-coordinator": {
       "path": "projects/agent-coordinator",
       "include": true
@@ -13,6 +17,10 @@
     },
     "agent-inference": {
       "path": "projects/agent-inference",
+      "include": true
+    },
+    "agent-prediction": {
+      "path": "projects/agent-prediction",
       "include": true
     },
     "contracts": {
@@ -47,6 +55,10 @@
     },
     "hiero-plugin": {
       "path": "projects/hiero-plugin",
+      "include": true
+    },
+    "obey-platform": {
+      "path": "projects/obey-platform",
       "include": true
     }
   }

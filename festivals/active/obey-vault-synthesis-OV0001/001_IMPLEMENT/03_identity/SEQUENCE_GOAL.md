@@ -4,10 +4,12 @@ fest_id: 03_identity
 fest_name: identity
 fest_parent: 001_IMPLEMENT
 fest_order: 3
-fest_status: pending
+fest_status: completed
 fest_created: 2026-03-13T19:19:52.011525-06:00
+fest_updated: 2026-03-15T19:40:17.279873-06:00
 fest_tracking: true
 ---
+
 
 # Sequence Goal: 03_identity
 
@@ -18,6 +20,17 @@ fest_tracking: true
 **Primary Goal:** Register the agent with ERC-8004 identity via the Synthesis API, producing a Go client for the POST /register endpoint.
 
 **Contribution to Phase Goal:** ERC-8004 identity registration is a hackathon requirement. The agent must have a verifiable on-chain identity before it can participate in the Synthesis economy. This sequence produces the registration client and the registration artifacts needed for submission.
+
+## Working Directory
+
+**Primary:** `projects/agent-defi/` (relative to campaign root)
+**Absolute:** `/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/`
+
+> **IMPORTANT:** Before executing ANY command in this sequence, navigate to the working directory first:
+> ```bash
+> cd /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/
+> ```
+> The Synthesis client lives in the agent-defi Go module. Run `cd projects/agent-defi` before any `go` command.
 
 ## Success Criteria
 

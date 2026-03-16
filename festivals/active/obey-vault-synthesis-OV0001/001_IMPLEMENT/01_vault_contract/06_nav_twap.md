@@ -1,14 +1,16 @@
 ---
 fest_type: task
-fest_id: 01_nav_twap.md
+fest_id: 06_nav_twap.md
 fest_name: 06_nav_twap
 fest_parent: 01_vault_contract
-fest_order: 1
-fest_status: pending
+fest_order: 6
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-13T19:22:38.69806-06:00
+fest_updated: 2026-03-15T19:33:28.278547-06:00
 fest_tracking: true
 ---
+
 
 # Task: NAV Calculation via Uniswap V3 TWAP
 

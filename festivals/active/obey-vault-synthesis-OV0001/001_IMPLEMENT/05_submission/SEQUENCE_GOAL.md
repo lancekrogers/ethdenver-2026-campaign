@@ -19,6 +19,17 @@ fest_tracking: true
 
 **Contribution to Phase Goal:** This sequence produces the deliverables that judges will evaluate. The observer CLI demonstrates transparency (real-time vault state), and the submission package proves the agent works end-to-end with on-chain evidence.
 
+## Working Directory
+
+**Primary:** `projects/agent-defi/` (relative to campaign root)
+**Absolute:** `/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/`
+
+> **IMPORTANT:** Before executing ANY command in this sequence, navigate to the working directory first:
+> ```bash
+> cd /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/
+> ```
+> Observer CLI and submission artifacts operate from this directory. Run `cd projects/agent-defi` before any `go` command.
+
 ## Success Criteria
 
 The sequence goal is achieved when:

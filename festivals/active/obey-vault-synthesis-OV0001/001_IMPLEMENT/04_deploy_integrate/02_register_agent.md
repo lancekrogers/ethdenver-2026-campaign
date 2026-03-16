@@ -1,9 +1,9 @@
 ---
 fest_type: task
-fest_id: 01_register_agent.md
+fest_id: 02_register_agent.md
 fest_name: 02_register_agent
 fest_parent: 04_deploy_integrate
-fest_order: 1
+fest_order: 2
 fest_status: pending
 fest_autonomy: medium
 fest_created: 2026-03-13T19:25:34.265703-06:00

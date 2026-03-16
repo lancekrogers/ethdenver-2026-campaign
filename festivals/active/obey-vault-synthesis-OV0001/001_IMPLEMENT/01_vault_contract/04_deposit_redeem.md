@@ -1,14 +1,16 @@
 ---
 fest_type: task
-fest_id: 01_deposit_redeem.md
+fest_id: 04_deposit_redeem.md
 fest_name: 04_deposit_redeem
 fest_parent: 01_vault_contract
-fest_order: 1
-fest_status: pending
+fest_order: 4
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-13T19:22:36.954842-06:00
+fest_updated: 2026-03-15T19:31:11.40713-06:00
 fest_tracking: true
 ---
+
 
 # Task: ERC-4626 Deposit and Redeem
 

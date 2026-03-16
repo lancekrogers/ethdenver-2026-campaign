@@ -1,14 +1,16 @@
 ---
 fest_type: task
-fest_id: 01_guardian_controls.md
+fest_id: 03_guardian_controls.md
 fest_name: 03_guardian_controls
 fest_parent: 01_vault_contract
-fest_order: 1
-fest_status: pending
+fest_order: 3
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-13T19:22:36.008538-06:00
+fest_updated: 2026-03-15T19:30:27.73493-06:00
 fest_tracking: true
 ---
+
 
 # Task: Guardian Controls
 

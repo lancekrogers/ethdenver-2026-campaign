@@ -4,10 +4,12 @@ fest_id: 02_agent_runtime
 fest_name: agent runtime
 fest_parent: 001_IMPLEMENT
 fest_order: 2
-fest_status: pending
+fest_status: completed
 fest_created: 2026-03-13T19:19:51.990933-06:00
+fest_updated: 2026-03-15T19:39:19.092706-06:00
 fest_tracking: true
 ---
+
 
 # Sequence Goal: 02_agent_runtime
 
@@ -18,6 +20,17 @@ fest_tracking: true
 **Primary Goal:** Build a Go agent runtime that autonomously trades through the vault using an LLM strategy, risk management, and a continuous trading loop.
 
 **Contribution to Phase Goal:** The agent runtime is the autonomous actor that analyzes markets and executes trades through the vault's constrained interface. It demonstrates the core human-AI collaboration model: the agent is powerful but bounded.
+
+## Working Directory
+
+**Primary:** `projects/agent-defi/` (relative to campaign root)
+**Absolute:** `/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/`
+
+> **IMPORTANT:** Before executing ANY command in this sequence, navigate to the working directory first:
+> ```bash
+> cd /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/
+> ```
+> All Go development, tests, and binary builds operate from this directory. Run `cd projects/agent-defi` before any `go` command.
 
 ## Success Criteria
 

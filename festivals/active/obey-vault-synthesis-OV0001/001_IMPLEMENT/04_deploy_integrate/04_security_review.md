@@ -1,9 +1,9 @@
 ---
 fest_type: task
-fest_id: 01_security_review.md
+fest_id: 04_security_review.md
 fest_name: 04_security_review
 fest_parent: 04_deploy_integrate
-fest_order: 1
+fest_order: 4
 fest_status: pending
 fest_autonomy: medium
 fest_created: 2026-03-13T19:25:34.304002-06:00
