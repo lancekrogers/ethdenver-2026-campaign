@@ -18,6 +18,9 @@ metadata:
     - status: active
       timestamp: 2026-03-15T19:05:42.000175-06:00
       path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/obey-vault-synthesis-OV0001
+    - status: completed
+      timestamp: 2026-03-15T20:15:42.554991-06:00
+      path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/dungeon/completed/2026-03-15/obey-vault-synthesis-OV0001
 project_path: projects/agent-defi
 type_config:
   auto_phases:
