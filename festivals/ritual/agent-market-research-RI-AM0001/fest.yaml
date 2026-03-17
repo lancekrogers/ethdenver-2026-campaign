@@ -51,4 +51,4 @@ auto_link:
 ritual_config:
   schedule: manual
   last_run: "2026-03-17"
-  run_count: 1
+  run_count: 4

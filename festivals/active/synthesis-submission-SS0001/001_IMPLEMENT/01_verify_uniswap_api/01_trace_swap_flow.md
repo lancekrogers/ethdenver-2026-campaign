@@ -4,11 +4,13 @@ fest_id: 01_trace_swap_flow.md
 fest_name: trace swap flow
 fest_parent: 01_verify_uniswap_api
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-16T21:39:45.051722-06:00
+fest_updated: 2026-03-16T22:19:22.58268-06:00
 fest_tracking: true
 ---
+
 
 # Task: Trace Swap Flow in agent-defi
 

@@ -3,10 +3,14 @@ fest_type: task
 fest_id: 03_run_research_ritual
 fest_parent: 02_protocol_labs_artifacts
 fest_order: 3
-fest_status: pending
+fest_status: completed
 fest_autonomy: high
+fest_created: 0001-01-01T00:00:00Z
+fest_updated: 2026-03-16T23:50:57.128597-06:00
 fest_tracking: true
 ---
+
+
 
 # Task: Execute Market Research Ritual
 
@@ -29,11 +33,11 @@ Run the `agent-market-research-RI-AM0001` ritual 3+ times against live market da
    ```
    This creates a run copy in `festivals/active/` with an auto-incremented hex counter (e.g., `-0001`)
 
-2. Navigate to the active run and execute it:
+2. Execute the full ritual run autonomously using `ob fest execute`:
    ```bash
-   fest next
+   ob fest execute --festival agent-market-research-RI-AM0001-0001
    ```
-   Follow the `fest next` loop — it will walk through each phase:
+   This drives the `fest next` loop automatically — the agent reads each step, executes it, and advances through all phases:
    - **001_INGEST:** Query Uniswap V3 pool state, collect price history, get volume/volatility, query vault state
    - **002_RESEARCH:** Compute moving average, calculate deviation, run CRE 8-gate evaluation, score opportunity
    - **003_DECIDE:** Aggregate findings, produce GO/NO_GO decision, generate log entry, validate, review rationale, iterate if needed
@@ -42,13 +46,15 @@ Run the `agent-market-research-RI-AM0001` ritual 3+ times against live market da
    - `003_DECIDE/01_synthesize_decision/results/decision.json`
    - `003_DECIDE/01_synthesize_decision/results/agent_log_entry.json`
 
-4. Repeat 2 more times:
+4. Repeat 2 more times with fresh ritual runs:
    ```bash
    fest ritual run agent-market-research-RI-AM0001
-   fest next
-   # ... execute through all phases
+   ob fest execute --festival agent-market-research-RI-AM0001-0002
+
+   fest ritual run agent-market-research-RI-AM0001
+   ob fest execute --festival agent-market-research-RI-AM0001-0003
    ```
-   Each run gets a new hex counter (-0002, -0003, etc.)
+   Each run gets a new hex counter and is executed autonomously end-to-end.
 
 5. Collect all `agent_log_entry.json` files from completed runs for the next task (04_generate_agent_log)
 
