@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "paneTree": {
+    "id": "pane-3",
+    "type": "pane",
+    "content": {
+      "type": "chat",
+      "data": {
+        "questName": "quest-9bsmmd"
+      }
+    }
+  },
+  "openFiles": [],
+  "updatedAt": "2026-03-16T21:53:04.688Z"
+}
