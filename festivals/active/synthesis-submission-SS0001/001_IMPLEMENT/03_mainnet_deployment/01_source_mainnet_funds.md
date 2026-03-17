@@ -4,11 +4,14 @@ fest_id: 01_source_mainnet_funds.md
 fest_name: source mainnet funds
 fest_parent: 03_mainnet_deployment
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-16T21:39:47.508753-06:00
+fest_updated: 2026-03-17T00:14:37.981634-06:00
 fest_tracking: true
 ---
+
+
 
 # Task: Source USDC and ETH on Base Mainnet
 

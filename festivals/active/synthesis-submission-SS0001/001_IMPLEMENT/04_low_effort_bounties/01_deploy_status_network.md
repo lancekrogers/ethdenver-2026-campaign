@@ -4,11 +4,13 @@ fest_id: 01_deploy_status_network.md
 fest_name: deploy status network
 fest_parent: 04_low_effort_bounties
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-16T21:39:48.851095-06:00
+fest_updated: 2026-03-17T00:18:27.539463-06:00
 fest_tracking: true
 ---
+
 
 # Task: Deploy Contract to Status Network Sepolia
 

@@ -4,11 +4,13 @@ fest_id: 02_deploy_vault.md
 fest_name: deploy vault
 fest_parent: 03_mainnet_deployment
 fest_order: 2
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-16T21:39:47.509246-06:00
+fest_updated: 2026-03-17T00:16:17.376307-06:00
 fest_tracking: true
 ---
+
 
 # Task: Deploy ObeyVault Contract to Base Mainnet
 

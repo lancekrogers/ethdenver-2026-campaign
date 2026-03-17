@@ -1,8 +1,28 @@
+# Secrets and credentials
 .env
 .env.*
 !.env.docker.example
 !.env.demo.example
 !.env.live.example
+.env.local
+*.pem
+*.key
+credentials.json
+keystore/
+
+# Build artifacts
+out/
+cache/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tool artifacts
 .playwright-mcp/*
 .playwright-mcp/
 .screenshots/

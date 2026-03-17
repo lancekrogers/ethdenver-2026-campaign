@@ -4,11 +4,13 @@ fest_id: 01_record_video_demo.md
 fest_name: record video demo
 fest_parent: 06_submission_packaging
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-16T21:39:51.88066-06:00
+fest_updated: 2026-03-17T00:21:07.853922-06:00
 fest_tracking: true
 ---
+
 
 # Task: Record Video Demo
 
