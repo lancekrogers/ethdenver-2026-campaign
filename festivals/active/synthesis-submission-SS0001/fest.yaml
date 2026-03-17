@@ -1,0 +1,59 @@
+version: "1.0"
+metadata:
+  id: SS0001
+  uuid: 1356217e-ef66-44d1-ac16-06798634007c
+  name: synthesis-submission
+  festival_type: implementation
+  created_at: 2026-03-17T03:31:02.380928Z
+  initial_size_bytes: 21888
+  status_history:
+    - status: planning
+      timestamp: 2026-03-17T03:31:02.380928Z
+      path: festivals/planning/synthesis-submission-SS0001
+      notes: Festival created
+    - status: ready
+      timestamp: 2026-03-16T22:16:23.356523-06:00
+      path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/ready/synthesis-submission-SS0001
+    - status: active
+      timestamp: 2026-03-16T22:16:29.879416-06:00
+      path: /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/synthesis-submission-SS0001
+type_config:
+  auto_phases:
+    - IMPLEMENT
+  skip_ingestion: true
+quality_gates:
+  enabled: true
+  auto_append: true
+  implementation:
+    - id: testing
+      template: gates/implementation/QUALITY_GATE_TESTING
+      name: Testing and Verification
+      enabled: true
+    - id: review
+      template: gates/implementation/QUALITY_GATE_REVIEW
+      name: Code Review
+      enabled: true
+    - id: iterate
+      template: gates/implementation/QUALITY_GATE_ITERATE
+      name: Review Results and Iterate
+      enabled: true
+    - id: fest-commit
+      template: gates/implementation/QUALITY_GATE_FEST_COMMIT
+      name: Fest Commit Changes
+      enabled: true
+excluded_patterns:
+  - '*_planning'
+  - '*_research'
+  - '*_requirements'
+  - '*_docs'
+templates:
+  task_default: tasks/SIMPLE
+  prefer_simple: true
+tracking:
+  enabled: true
+  checksum_file: .festival-checksums.json
+auto_link:
+  enabled: true
+  require_on_phases:
+    - implementation
+  validate_path_exists: true

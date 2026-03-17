@@ -25,3 +25,8 @@
 {"ts":"2026-03-16T01:05:37.585366Z","event":"move","id":"OV0001","from":"planning","to":"ready"}
 {"ts":"2026-03-16T01:05:41.999884Z","event":"move","id":"OV0001","from":"ready","to":"active"}
 {"ts":"2026-03-16T02:15:42.554176Z","event":"move","id":"OV0001","from":"active","to":"completed"}
+{"ts":"2026-03-17T03:06:06.175127Z","event":"create","id":"RI-AM0001","name":"agent-market-research","status":"ritual"}
+{"ts":"2026-03-17T03:31:02.383937Z","event":"create","id":"SS0001","name":"synthesis-submission","status":"planning"}
+{"ts":"2026-03-17T04:08:11.760478Z","event":"create","id":"RI-TR0001","name":"test-ritual","status":"ritual"}
+{"ts":"2026-03-17T04:16:23.35529Z","event":"move","id":"SS0001","from":"planning","to":"ready"}
+{"ts":"2026-03-17T04:16:29.878795Z","event":"move","id":"SS0001","from":"ready","to":"active"}
