@@ -4,12 +4,13 @@ fest_id: 02_setup_markee.md
 fest_name: setup markee
 fest_parent: 04_low_effort_bounties
 fest_order: 2
-fest_status: completed
+fest_status: pending
 fest_autonomy: medium
 fest_created: 2026-03-16T21:39:48.851393-06:00
-fest_updated: 2026-03-17T00:18:38.142113-06:00
+fest_updated: 2026-03-17T00:24:58.517247-06:00
 fest_tracking: true
 ---
+
 
 
 # Task: Set Up Markee GitHub Integration

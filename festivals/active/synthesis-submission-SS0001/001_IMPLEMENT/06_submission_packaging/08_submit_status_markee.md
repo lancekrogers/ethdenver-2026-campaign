@@ -4,12 +4,13 @@ fest_id: 08_submit_status_markee.md
 fest_name: submit status markee
 fest_parent: 06_submission_packaging
 fest_order: 8
-fest_status: completed
+fest_status: pending
 fest_autonomy: medium
 fest_created: 2026-03-16T21:39:51.882389-06:00
-fest_updated: 2026-03-17T00:23:08.00952-06:00
+fest_updated: 2026-03-17T00:24:58.751285-06:00
 fest_tracking: true
 ---
+
 
 
 # Task: Submit to Status Network and Markee Tracks
