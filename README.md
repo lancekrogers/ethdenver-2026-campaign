@@ -277,12 +277,14 @@ A TypeScript Hiero CLI plugin (`hcli camp`) that extends the Hiero CLI with work
 
 | Project | Description | Repo |
 |---------|-------------|------|
-| agent-coordinator | Orchestrates agents via HCS, manages HTS payments | [GitHub](https://github.com/lancekrogers/agent-coordinator-ethden-2026) |
-| agent-inference | Routes inference to 0G Compute, maintains ERC-7857 iNFT | [GitHub](https://github.com/lancekrogers/agent-inference-ethden-2026) |
-| agent-defi | Executes DeFi strategies on Base, ERC-8004/x402/ERC-8021 | [GitHub](https://github.com/lancekrogers/agent-defi-ethden-2026) |
-| dashboard | Next.js observer UI for real-time agent monitoring | [GitHub](https://github.com/lancekrogers/dashboard-ethden-2026) |
-| contracts | Solidity contracts for settlement and reputation | [GitHub](https://github.com/lancekrogers/contracts-ethden-2026) |
-| hiero-plugin | Hiero CLI plugin for camp workspace management | [GitHub](https://github.com/lancekrogers/hiero-plugin-ethden-2026) |
+| agent-coordinator | Orchestrates agents via HCS, manages HTS payments | [GitHub](https://github.com/lancekrogers/agent-coordinator) |
+| agent-defi | Executes DeFi strategies on Base, ERC-8004/x402/ERC-8021 | [GitHub](https://github.com/lancekrogers/agent-defi) |
+| agent-inference | Routes inference to 0G Compute, maintains ERC-7857 iNFT | [GitHub](https://github.com/lancekrogers/agent-inference) |
+| agent-prediction | Prediction market agent — Drift BET, Polymarket, Limitless | [GitHub](https://github.com/lancekrogers/agent-prediction) |
+| contracts | Solidity contracts for settlement, reputation, and vaults | [GitHub](https://github.com/lancekrogers/contracts) |
+| cre-risk-router | Chainlink CRE on-chain risk decision layer (8-gate router) | [GitHub](https://github.com/lancekrogers/cre-risk-router) |
+| dashboard | Next.js observer UI for real-time agent monitoring | [GitHub](https://github.com/lancekrogers/dashboard) |
+| hiero-plugin | Hiero CLI plugin for camp workspace management | [GitHub](https://github.com/lancekrogers/hiero-plugin) |
 
 ## Tech Stack
 

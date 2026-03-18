@@ -19,10 +19,17 @@
 | Uniswap API client | Built | `internal/base/trading/uniswap_api.go` |
 | x402 payment module | Built | `internal/base/payment/x402.go` |
 | ERC-8004 identity | Deployed | `0x0C97820abBdD2562645DaE92D35eD581266CCe70` on Base Mainnet |
-| Mainnet vault | Not deployed | Need funds + deploy |
-| `agent.json` manifest | Not created | DevSpot format for Protocol Labs |
+| `agent.json` manifest | Done | `/agent.json` (needs vault addr update) |
+| Cook narrative | Done | `/workflow/explore/synthesis/narrative-cook.md` |
+| Receipts narrative | Done | `/workflow/explore/synthesis/narrative-receipts.md` |
+| Conversation log | Done | `/conversationLog.json` (10 entries) |
+| Moltbook post | Done | `/workflow/explore/synthesis/moltbook-post.md` |
+| Design spec | Done | `/workflow/design/synthesis/00-design-spec.md` |
+| README | Done | `/projects/agent-defi/README.md` (271 lines) |
+| Mainnet vault | Not deployed | Need funds + deploy (testnet accepted) |
 | Video demo | Not recorded | 3 min, 6 checkpoints |
-| Track submissions | Not submitted | 6 tracks via Synthesis API |
+| Draft project | Not created | Need to POST /projects via API |
+| Track submissions | Not submitted | 7 tracks via Synthesis API |
 
 ---
 
