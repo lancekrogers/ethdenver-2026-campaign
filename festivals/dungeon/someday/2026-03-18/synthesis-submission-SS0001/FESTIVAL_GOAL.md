@@ -2,11 +2,12 @@
 fest_type: festival
 fest_id: SS0001
 fest_name: synthesis-submission
-fest_status: active
+fest_status: dungeon/someday
 fest_created: 2026-03-16T21:31:02.379128-06:00
-fest_updated: 2026-03-16T22:16:29.878942-06:00
+fest_updated: 2026-03-18T08:08:03.986973-06:00
 fest_tracking: true
 ---
+
 
 
 
