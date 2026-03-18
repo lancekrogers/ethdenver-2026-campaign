@@ -39,8 +39,8 @@ The daemon aggregates gRPC events from all agents into a single WebSocket stream
 
 This campaign was created and managed using Obedience Corp's developer tooling:
 
-- **[camp](https://github.com/obedience-corp/camp)** - Campaign CLI for multi-project orchestration. Camp manages the workspace layout, git submodules, navigation shortcuts, and project lifecycle across all six repositories in this submission.
-- **[fest](https://github.com/obedience-corp/fest)** - Festival methodology CLI for human-AI collaborative project execution. Every phase of this build - from architecture design to agent wiring to integration testing - was planned, decomposed, and tracked as festivals. See [`festivals/`](festivals/) for the planning artifacts.
+- **[camp](https://github.com/obedience-corp/camp)** - Campaign CLI for multi-project orchestration. Camp manages the workspace layout, git submodules, navigation shortcuts, and project lifecycle across all repositories in this submission.
+- **[festival](https://github.com/obedience-corp/festival)** ([fest.build](https://fest.build)) - The Festival Methodology for human-AI collaborative project execution. Packages both the [`fest`](https://github.com/obedience-corp/fest) and [`camp`](https://github.com/obedience-corp/camp) CLIs with full documentation on the why and how — not just the tools. Every phase of this build was planned, decomposed, and tracked as festivals. See [`festivals/`](festivals/) for the planning artifacts.
 - **[obey](https://github.com/obedience-corp/obey)** - Daemon that orchestrates agent sessions within the campaign sandbox, providing sandboxed command execution, event routing, and session lifecycle management.
 
 This repository - its git history, submodule structure, `festivals/` planning directory, and `workflow/` design documents - is a live example of what these products can do.
@@ -97,7 +97,7 @@ just live down
 
 ### Fest Runtime Integration
 
-The coordinator now uses `fest` CLI JSON at runtime to:
+The coordinator now uses [`fest`](https://github.com/obedience-corp/fest) CLI JSON at runtime to:
 
 - derive task planning input
 - publish canonical `festival_progress` HCS events
@@ -297,8 +297,8 @@ A TypeScript Hiero CLI plugin (`hcli camp`) that extends the Hiero CLI with work
 | Dashboard | Next.js + React | TypeScript |
 | Hiero plugin | Node.js (wraps camp binary) | TypeScript |
 | Contracts | Solidity + Foundry | Solidity |
-| Planning | fest CLI (Festival Methodology) | Go |
-| Workspace | camp CLI | Go |
+| Planning | [`fest`](https://github.com/obedience-corp/fest) CLI ([Festival Methodology](https://fest.build)) | Go |
+| Workspace | [`camp`](https://github.com/obedience-corp/camp) CLI | Go |
 | Build system | just (modular justfiles) | - |
 
 ## Directory Structure
