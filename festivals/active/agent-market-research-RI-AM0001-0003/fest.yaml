@@ -1,0 +1,54 @@
+version: "1.0"
+metadata:
+  id: RI-AM0001
+  uuid: bbf4fe93-5620-4032-8384-4951c046cde0
+  name: agent-market-research
+  festival_type: ritual
+  created_at: 2026-03-17T03:06:06.17456Z
+  initial_size_bytes: 20266
+  status_history:
+    - status: ritual
+      timestamp: 2026-03-17T03:06:06.17456Z
+      path: festivals/ritual/agent-market-research-RI-AM0001
+      notes: Festival created
+type_config: {}
+quality_gates:
+  enabled: true
+  auto_append: false
+  implementation:
+    - id: decision-validation
+      template: gates/implementation/QUALITY_GATE_TESTING
+      name: Decision Completeness & Consistency
+      enabled: true
+    - id: rationale-review
+      template: gates/implementation/QUALITY_GATE_REVIEW
+      name: Rationale Quality Review
+      enabled: true
+    - id: iterate
+      template: gates/implementation/QUALITY_GATE_ITERATE
+      name: Iterate If Needed
+      enabled: true
+    - id: fest-commit
+      template: gates/implementation/QUALITY_GATE_FEST_COMMIT
+      name: Fest Commit Changes
+      enabled: true
+excluded_patterns:
+  - '*_planning'
+  - '*_research'
+  - '*_requirements'
+  - '*_docs'
+templates:
+  task_default: tasks/SIMPLE
+  prefer_simple: true
+tracking:
+  enabled: true
+  checksum_file: .festival-checksums.json
+auto_link:
+  enabled: true
+  require_on_phases:
+    - implementation
+  validate_path_exists: true
+ritual_config:
+  schedule: manual
+  last_run: "2026-03-19"
+  run_count: 6
