@@ -28,8 +28,8 @@ status:
     echo "  just demo up|run|down|status|logs"; \
     echo "  just live up|run|down|status|logs"; \
     echo "  just mode doctor"; \
-    echo "  just fest status"; \
-    echo "  just fest doctor";
+    echo "  fest show all"; \
+    echo "  fest version";
 
 # Run live preflight checks and write a machine-readable report
 doctor:
