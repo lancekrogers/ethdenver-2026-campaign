@@ -4,11 +4,13 @@ fest_id: 04_stabilize_final_blockers.md
 fest_name: stabilize final blockers
 fest_parent: 06_end_to_end_verification
 fest_order: 4
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-18T07:27:43.537354-06:00
+fest_updated: 2026-03-19T03:26:37.586463-06:00
 fest_tracking: true
 ---
+
 
 # Task: Stabilize final blockers
 
@@ -25,14 +27,28 @@ Resolve or explicitly document the last issues uncovered during live verificatio
 
 ## Evidence To Capture
 
-- [ ] At least three real run IDs and corresponding obey session IDs are recorded in the sequence notes.
-- [ ] At least one `GO` and one `NO_GO` example include artifact paths for `decision.json` and `agent_log_entry.json`.
-- [ ] The demo checklist cites exact commands and file paths rather than ad-lib instructions.
+- [x] At least three real run IDs and corresponding obey session IDs are recorded in the sequence notes.
+- [x] At least one `GO` and one `NO_GO` example include artifact paths for `decision.json` and `agent_log_entry.json`.
+- [x] The demo checklist cites exact commands and file paths rather than ad-lib instructions.
 
 ## Requirements
 
-- [ ] Fix any blocker that would make the runtime claim or demo unreliable.
-- [ ] Document any remaining non-blocking issues so they do not surprise the submission review.
+- [x] Fix any blocker that would make the runtime claim or demo unreliable.
+- [x] Document any remaining non-blocking issues so they do not surprise the submission review.
+
+## Blocker Status
+
+Fixed in this sequence:
+
+- `projects/agent-defi/internal/festruntime/runtime.go` now tells the daemon-backed session to use `cd <workdir> && fest ...` on every shell invocation instead of relying on a standalone `cd`.
+- `projects/agent-defi/internal/festruntime/runtime_test.go` now locks that prompt contract in place.
+- Live verification now has explicit `GO` and `NO_GO` artifact pairs with recorded run IDs and session IDs.
+- `projects/agent-defi/agent_log.json` was rebuilt after the new runs and now carries the updated evidence trail.
+
+Documented residual risk:
+
+- Live `obey session send` probes for `0009` and `000A` still stalled before unattended artifact completion during this sequence. Session creation, workdir binding, permission mode, and artifact contracts are all real, but the judge-facing demo should inspect the completed artifact set rather than promising that a fresh unattended cycle will always finish on demand.
+- Direct ERC-4626 `deposit()` into the live vault still reverts because the same arithmetic issue that breaks `totalAssets()` also breaks the share-minting path. The verification run used a truthful direct USDC transfer into the vault so the fallback NAV could clear the `$10` minimum.
 
 ## Implementation
 
@@ -54,5 +70,5 @@ jq '.entries | length' projects/agent-defi/agent_log.json
 
 ## Done When
 
-- [ ] All requirements met
-- [ ] All demo-blocking issues are either fixed or explicitly documented with a clear status.
+- [x] All requirements met
+- [x] All demo-blocking issues are either fixed or explicitly documented with a clear status.

@@ -29,11 +29,14 @@ The sequence goal is achieved when:
 - [ ] **Live ritual cycles**: At least three runtime-driven ritual runs with observable session metadata and artifact generation.
 - [ ] **Outcome coverage**: Evidence of at least one `GO` and one `NO_GO` decision path.
 - [ ] **Demo rehearsal pack**: A reliable checklist for showing active runs, archived runs, artifacts, and aggregate logs during judging.
+- [x] **Live ritual cycles**: At least three runtime-driven ritual runs with observable session metadata and artifact generation.
+- [x] **Outcome coverage**: Evidence of at least one `GO` and one `NO_GO` decision path.
+- [x] **Demo rehearsal pack**: A reliable checklist for showing active runs, archived runs, artifacts, and aggregate logs during judging.
 
 ### Quality Standards
 
-- [ ] **Submission honesty**: Every demoed claim can be backed by a file, command, or runtime log.
-- [ ] **Operational stability**: Known blockers are resolved or explicitly documented before submission.
+- [x] **Submission honesty**: Every demoed claim can be backed by a file, command, or runtime log.
+- [x] **Operational stability**: Known blockers are resolved or explicitly documented before submission.
 
 ### Completion Criteria
 
@@ -71,9 +74,9 @@ The sequence goal is achieved when:
 
 ### Milestones
 
-- [ ] **Milestone 1**: Three live cycles executed
-- [ ] **Milestone 2**: GO and NO_GO both verified
-- [ ] **Milestone 3**: Demo evidence rehearsal complete
+- [x] **Milestone 1**: Three live cycles executed
+- [x] **Milestone 2**: GO and NO_GO both verified
+- [x] **Milestone 3**: Demo evidence rehearsal complete
 
 ## Quality Gates
 

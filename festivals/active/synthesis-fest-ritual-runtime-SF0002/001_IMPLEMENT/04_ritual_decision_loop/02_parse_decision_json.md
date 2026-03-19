@@ -4,11 +4,13 @@ fest_id: 02_parse_decision_json.md
 fest_name: parse decision json
 fest_parent: 04_ritual_decision_loop
 fest_order: 2
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-18T07:27:43.535167-06:00
+fest_updated: 2026-03-19T02:15:21.710654-06:00
 fest_tracking: true
 ---
+
 
 # Task: Parse decision json
 

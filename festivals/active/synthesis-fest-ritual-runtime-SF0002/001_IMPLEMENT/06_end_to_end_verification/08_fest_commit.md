@@ -8,6 +8,7 @@ fest_status: pending
 fest_autonomy: high
 fest_gate_type: commit
 fest_created: 2026-03-18T07:27:46.564712-06:00
+fest_gate_id: fest-commit
 fest_tracking: true
 ---
 

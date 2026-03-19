@@ -2,7 +2,7 @@
 
 **Deadline:** Mar 22, 2026, 11:59 PM PST
 **API Base:** `https://synthesis.devfolio.co`
-**Auth:** `Authorization: Bearer sk-synth-6d5c471ccfdc067a2cb919680a13c38d01767ca5d817e442`
+**Auth:** `Authorization: Bearer $SYNTH_API_KEY` (store the real token outside git)
 **Team UUID:** `56a0c5c0aca54815a64992b661ef593f`
 
 ---
@@ -201,6 +201,24 @@ Use the content from `/conversationLog.json` (already has 10 human-agent exchang
 | Design spec | `/workflow/design/synthesis/00-design-spec.md` | Done |
 | README | `/projects/agent-defi/README.md` | Done (271 lines) |
 | Deployment evidence | `/projects/contracts/deployments/base-sepolia.json` | Done (6 txs) |
+
+## Runtime Evidence Quick Map
+
+Use these files to walk judges from live runtime behavior to Protocol Labs evidence:
+
+| Evidence | File or command | Why it matters |
+|----------|------------------|----------------|
+| Ritual decision | `/festivals/active/<run-id>/003_DECIDE/01_synthesize_decision/results/decision.json` | Shows the machine-readable `GO` or `NO_GO` decision, rationale summary, confidence, and guardrails for one ritual-backed cycle. |
+| Ritual discover entry | `/festivals/active/<run-id>/003_DECIDE/01_synthesize_decision/results/agent_log_entry.json` | Shows the discover-phase evidence emitted by the ritual itself rather than by a synthetic wrapper. |
+| Aggregate Protocol Labs log | `/projects/agent-defi/agent_log.json` | Merges ritual discover entries with execute evidence so the DevSpot artifact reflects the full runtime loop. |
+| Aggregate refresh command | `BASE_RPC_URL=https://sepolia.base.org VAULT_ADDRESS=0xbAbDd92397Cd812593e79A5b4c2a32bB4aDb06b1 go run ./cmd/loggen -rituals /Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals -out agent_log.json` | Rebuilds the same aggregate log the runtime refresher uses. The `-rituals` root should be the campaign `festivals/` directory so recursive intake sees active runs and archived runs under `festivals/dungeon/completed/`. |
+
+Demo order:
+
+1. Show a ritual run directory and open `decision.json`.
+2. Show the sibling `agent_log_entry.json` discover artifact.
+3. Show `/projects/agent-defi/agent_log.json` and point out that it contains discover plus execute entries.
+4. Re-run `go run ./cmd/loggen ...` if a judge wants proof that the aggregate file is regenerated from authoritative artifacts.
 
 ---
 

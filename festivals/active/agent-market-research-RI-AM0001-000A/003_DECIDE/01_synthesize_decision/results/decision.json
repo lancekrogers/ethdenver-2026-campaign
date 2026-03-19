@@ -1,0 +1,50 @@
+{
+  "ritual_id": "RI-AM0001",
+  "ritual_run_id": "agent-market-research-RI-AM0001-000A",
+  "timestamp": "2026-03-19T09:21:52.630Z",
+  "decision": "GO",
+  "confidence": 0.75,
+  "blocking_factors": [],
+  "rationale": {
+    "price_deviation_pct": 39.912149268818794,
+    "deviation_direction": "above_ma",
+    "ma_period": 30,
+    "cre_gates_passed": 6,
+    "cre_gates_total": 8,
+    "failed_gates": [
+      "risk_score",
+      "price_deviation_vs_oracle"
+    ],
+    "estimated_net_profit_usd": 197.5606558497481,
+    "risk_score": 220.2590386380243,
+    "summary": "SELL candidate: price deviated 39.9121% from the 30-period SMA of $513.3286; 6/8 CRE gates passed, confidence is 0.75, and estimated net profit is $197.5607."
+  },
+  "recommendation": {
+    "direction": "SELL",
+    "token_in": "WETH",
+    "token_out": "USDC",
+    "suggested_size_usd": 500,
+    "max_slippage_bps": 100,
+    "urgency": "high"
+  },
+  "change_conditions": [],
+  "vault_constraints_checked": {
+    "within_max_swap": true,
+    "within_daily_volume": true,
+    "token_whitelisted": true
+  },
+  "guardrails": {
+    "trade_allowed": true,
+    "min_confidence_required": 0.5,
+    "min_net_profit_usd": 1,
+    "min_cre_gates_passed": 6,
+    "max_slippage_bps": 100
+  },
+  "artifact_paths": {
+    "market_snapshot": "001_INGEST/output_specs/market_snapshot.json",
+    "research_output": "002_RESEARCH/findings/research_output.json",
+    "aggregated_findings": "003_DECIDE/01_synthesize_decision/results/aggregated_findings.json",
+    "decision": "003_DECIDE/01_synthesize_decision/results/decision.json",
+    "agent_log_entry": "003_DECIDE/01_synthesize_decision/results/agent_log_entry.json"
+  }
+}

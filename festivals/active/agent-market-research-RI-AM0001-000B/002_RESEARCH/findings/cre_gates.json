@@ -1,0 +1,74 @@
+{
+  "gates_passed": 6,
+  "gates_total": 8,
+  "overall": "FAIL",
+  "results": [
+    {
+      "gate": 7,
+      "name": "hold_signal",
+      "result": "PASS",
+      "value": "no hold active"
+    },
+    {
+      "gate": 1,
+      "name": "signal_confidence",
+      "result": "PASS",
+      "value": 1,
+      "threshold": 0.6
+    },
+    {
+      "gate": 2,
+      "name": "risk_score",
+      "result": "FAIL",
+      "value": 218.38262609935208,
+      "threshold": 75,
+      "note": "218.3826 exceeded 75"
+    },
+    {
+      "gate": 3,
+      "name": "signal_staleness",
+      "result": "PASS",
+      "value": 0,
+      "threshold": 300
+    },
+    {
+      "gate": 4,
+      "name": "oracle_health",
+      "result": "PASS",
+      "value": "historical slot0 responsive"
+    },
+    {
+      "gate": 5,
+      "name": "price_deviation_vs_oracle",
+      "result": "FAIL",
+      "value": 3991.3030747437324,
+      "threshold": 500,
+      "note": "3991.3 exceeded 500"
+    },
+    {
+      "gate": 6,
+      "name": "position_sizing",
+      "result": "PASS",
+      "value": 500,
+      "threshold": "> 1"
+    },
+    {
+      "gate": 8,
+      "name": "heartbeat_breaker",
+      "result": "PASS",
+      "value": "ritual run active"
+    }
+  ],
+  "failed_gates": [
+    {
+      "gate": 2,
+      "name": "risk_score",
+      "reason": "218.3826 exceeded 75"
+    },
+    {
+      "gate": 5,
+      "name": "price_deviation_vs_oracle",
+      "reason": "3991.3 exceeded 500"
+    }
+  ]
+}

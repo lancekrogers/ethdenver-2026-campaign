@@ -4,11 +4,13 @@ fest_id: 03_bind_session_to_ritual_workdir.md
 fest_name: bind session to ritual workdir
 fest_parent: 03_obey_daemon_runtime
 fest_order: 3
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-18T07:27:43.384301-06:00
+fest_updated: 2026-03-19T02:10:48.216464-06:00
 fest_tracking: true
 ---
+
 
 # Task: Bind session to ritual workdir
 

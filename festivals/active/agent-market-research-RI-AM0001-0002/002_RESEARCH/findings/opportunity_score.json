@@ -1,0 +1,19 @@
+{
+  "final_confidence": 0,
+  "breakdown": {
+    "base_confidence": 0,
+    "data_modifier": 1,
+    "gate_modifier": 0.75,
+    "volume_modifier": 1
+  },
+  "cost_benefit": {
+    "position_usd": 0,
+    "expected_reversion_usd": 0,
+    "uniswap_fee_usd": 0,
+    "gas_cost_usd": 0.00006288204731056994,
+    "estimated_slippage_usd": 0,
+    "net_profit_estimate": -0.00006288204731056994
+  },
+  "profitable": false,
+  "reason": "Price deviation is inside the ±2% trading threshold, so no mean-reversion signal exists."
+}

@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-03-19T09:21:52.624Z",
+  "summary": "Current price 718.21 USDC/WETH is 39.91% away from the 513.33 SMA, producing a tradable SELL signal.",
+  "market_snapshot_path": "001_INGEST/output_specs/market_snapshot.json",
+  "price_history_path": "001_INGEST/output_specs/price_history.json",
+  "finding_paths": {
+    "moving_average": "002_RESEARCH/findings/moving_average.json",
+    "price_deviation": "002_RESEARCH/findings/price_deviation.json",
+    "cre_gates": "002_RESEARCH/findings/cre_gates.json",
+    "opportunity_score": "002_RESEARCH/findings/opportunity_score.json"
+  },
+  "recommended_outcome": "GO"
+}

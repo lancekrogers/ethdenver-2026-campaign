@@ -1,0 +1,87 @@
+{
+  "run_id": "agent-market-research-RI-AM0001-000A",
+  "ritual_id": "RI-AM0001",
+  "generated_at": "2026-03-19T09:22:15Z",
+  "market_snapshot_path": "001_INGEST/output_specs/market_snapshot.json",
+  "price_history_path": "001_INGEST/output_specs/price_history.json",
+  "finding_paths": {
+    "moving_average": "002_RESEARCH/findings/moving_average.json",
+    "price_deviation": "002_RESEARCH/findings/price_deviation.json",
+    "cre_gates": "002_RESEARCH/findings/cre_gates.json",
+    "opportunity_score": "002_RESEARCH/findings/opportunity_score.json"
+  },
+  "ingest_summary": {
+    "block_number": 39071912,
+    "price_usdc_per_eth": 718.2090942713118,
+    "pool_tick": 210553,
+    "gas_gwei": 0.006,
+    "volume_24h_available": false,
+    "vault_nav_usdc": 11.0,
+    "vault_nav_is_lower_bound": true,
+    "vault_nav_source": "asset_balance_fallback",
+    "vault_paused": false
+  },
+  "moving_average": {
+    "sma_30": 513.3286122932669,
+    "data_points_used": 30,
+    "confidence_modifier": 1.0
+  },
+  "price_deviation": {
+    "current_price": 718.2090942713118,
+    "sma_30": 513.3286122932669,
+    "deviation_pct": 39.912149268818794,
+    "deviation_direction": "above_ma",
+    "signal": "SELL",
+    "signal_strength": "strong",
+    "base_confidence": 1.0
+  },
+  "cre_gates": {
+    "gates_passed": 6,
+    "gates_total": 8,
+    "overall": "FAIL",
+    "failed_gates": [
+      {
+        "gate": 2,
+        "name": "risk_score",
+        "value": 220.259,
+        "threshold": 75,
+        "reason": "risk_score 220.26 >> 75; high volatility 10.76% and unknown-volume penalty"
+      },
+      {
+        "gate": 5,
+        "name": "price_deviation_vs_oracle",
+        "value": 3991.21,
+        "threshold": 500,
+        "reason": "spot $718.21 vs TWAP-implied $499.09 = 3991 BPS >> 500 BPS; indicates potential price manipulation or non-mean-reversion structural move"
+      }
+    ]
+  },
+  "opportunity_score": {
+    "final_confidence": 0.75,
+    "position_usd": 500.0,
+    "net_profit_estimate": 197.5607,
+    "profitable": true,
+    "execution_blocked": true,
+    "execution_blocked_reason": "CRE gates overall FAIL (2 gates failed). Gate 5 oracle health failure invalidates the trade thesis regardless of profit estimate."
+  },
+  "no_go_factors": [
+    {
+      "factor": "cre_gate_2_fail",
+      "description": "Risk score 220.26 far exceeds 75-point threshold. Driven by volatility 10.76% and low-volume penalty. Market conditions are too risky for execution.",
+      "blocking": true
+    },
+    {
+      "factor": "cre_gate_5_fail",
+      "description": "Spot price $718.21 vs TWAP-implied $499.09 = 3991 BPS divergence, 8x over the 500 BPS limit. Extreme spot/oracle divergence prevents safe trade execution.",
+      "blocking": true
+    },
+    {
+      "factor": "extreme_deviation_caution",
+      "description": "39.91% deviation exceeds the 10% structural-move caution threshold. Mean-reversion strategy is not designed for moves of this magnitude.",
+      "blocking": false,
+      "advisory": true
+    }
+  ],
+  "recommended_outcome": "NO_GO",
+  "correction_note": "Initial research_output drafted GO incorrectly. Corrected per bounded correction pass: CRE gate evaluation shows overall=FAIL (gates 2 and 5 failed). GO is not supported when CRE gate check fails."
+}

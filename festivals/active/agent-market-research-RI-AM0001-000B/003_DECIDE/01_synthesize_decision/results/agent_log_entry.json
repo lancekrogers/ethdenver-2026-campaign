@@ -1,0 +1,33 @@
+{
+  "action": "market_research_ritual",
+  "timestamp": "2026-03-19T09:24:00.500Z",
+  "phase": "discover",
+  "festival_id": "RI-AM0001",
+  "run_id": "agent-market-research-RI-AM0001-000B",
+  "session_id": "4bfcee1f-bbd3-4f51-9443-d3bca0b17b70",
+  "tools_used": [
+    "uniswap_v3_pool_query",
+    "historical_slot0_sampling",
+    "cre_risk_router_8gate",
+    "obey_vault_state_query"
+  ],
+  "reasoning": {
+    "signal": "SELL",
+    "deviation_pct": 39.913030747437325,
+    "confidence": 0.75,
+    "gates_passed": "6/8",
+    "net_profit_estimate_usd": 197.56506324284075
+  },
+  "decision": "NO_GO",
+  "outcome": "NO_GO at confidence 0.7500 because blockers are vault_paused.",
+  "retries": 0,
+  "duration_ms": 189913,
+  "errors": [],
+  "artifact_paths": {
+    "market_snapshot": "001_INGEST/output_specs/market_snapshot.json",
+    "research_output": "002_RESEARCH/findings/research_output.json",
+    "aggregated_findings": "003_DECIDE/01_synthesize_decision/results/aggregated_findings.json",
+    "decision": "003_DECIDE/01_synthesize_decision/results/decision.json",
+    "agent_log_entry": "003_DECIDE/01_synthesize_decision/results/agent_log_entry.json"
+  }
+}

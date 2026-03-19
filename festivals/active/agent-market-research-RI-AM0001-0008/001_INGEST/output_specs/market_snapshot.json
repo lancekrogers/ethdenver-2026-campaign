@@ -1,0 +1,306 @@
+{
+  "timestamp": "2026-03-19T09:21:52.624Z",
+  "block_number": 39071912,
+  "pair": {
+    "base_token": {
+      "symbol": "WETH",
+      "address": "0x4200000000000000000000000000000000000006",
+      "decimals": 18
+    },
+    "quote_token": {
+      "symbol": "USDC",
+      "address": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+      "decimals": 6
+    },
+    "fee_tier_bps": 3000,
+    "pool_address": "0x46880b404CD35c165EDdefF7421019F8dD25F4Ad"
+  },
+  "pool": {
+    "price": 718.2090942713118,
+    "tick": 210553,
+    "liquidity": "12771768749653",
+    "sqrt_price_x96": "2956338326699786836899634435733673",
+    "unlocked": true
+  },
+  "price_history": [
+    {
+      "timestamp": "2026-03-19T06:56:52.000Z",
+      "price": 495.58215654099837,
+      "volume": null,
+      "block_number": 39067562,
+      "tick": 214263,
+      "sqrt_price_x96": "3558948906329040995734394570327099"
+    },
+    {
+      "timestamp": "2026-03-19T07:01:52.000Z",
+      "price": 495.58215654099837,
+      "volume": null,
+      "block_number": 39067712,
+      "tick": 214263,
+      "sqrt_price_x96": "3558948906329040995734394570327099"
+    },
+    {
+      "timestamp": "2026-03-19T07:06:52.000Z",
+      "price": 495.58215654099837,
+      "volume": null,
+      "block_number": 39067862,
+      "tick": 214263,
+      "sqrt_price_x96": "3558948906329040995734394570327099"
+    },
+    {
+      "timestamp": "2026-03-19T07:11:52.000Z",
+      "price": 495.58215654099837,
+      "volume": null,
+      "block_number": 39068012,
+      "tick": 214263,
+      "sqrt_price_x96": "3558948906329040995734394570327099"
+    },
+    {
+      "timestamp": "2026-03-19T07:16:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39068162,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T07:21:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39068312,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T07:26:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39068462,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T07:31:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39068612,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T07:36:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39068762,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T07:41:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39068912,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T07:46:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39069062,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T07:51:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39069212,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T07:56:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39069362,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:01:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39069512,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:06:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39069662,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:11:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39069812,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:16:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39069962,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:21:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39070112,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:26:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39070262,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:31:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39070412,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:36:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39070562,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:41:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39070712,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:46:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39070862,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:51:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39071012,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T08:56:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39071162,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T09:01:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39071312,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T09:06:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39071462,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T09:11:52.000Z",
+      "price": 499.0638675442059,
+      "volume": null,
+      "block_number": 39071612,
+      "tick": 214193,
+      "sqrt_price_x96": "3546512703371383818423461948537189"
+    },
+    {
+      "timestamp": "2026-03-19T09:16:52.000Z",
+      "price": 721.7878273017575,
+      "volume": null,
+      "block_number": 39071762,
+      "tick": 210503,
+      "sqrt_price_x96": "2949000233653255624289834570623769"
+    },
+    {
+      "timestamp": "2026-03-19T09:21:52.000Z",
+      "price": 718.2090942713118,
+      "volume": null,
+      "block_number": 39071912,
+      "tick": 210553,
+      "sqrt_price_x96": "2956338326699786836899634435733673"
+    }
+  ],
+  "volume_24h": null,
+  "volatility_pct": 10.762951931901215,
+  "gas_gwei": 0.006,
+  "vault": {
+    "nav": 11,
+    "nav_source": "asset_balance_fallback",
+    "nav_is_lower_bound": true,
+    "nav_fallback_reason": "Command failed: cast call 0xbAbDd92397Cd812593e79A5b4c2a32bB4aDb06b1 totalAssets()(uint256) --rpc-url https://sepolia.base.org",
+    "total_assets_raw": null,
+    "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    "asset_balance_raw": "11000000",
+    "max_swap_size": 1000,
+    "max_swap_size_raw": "1000000000",
+    "max_daily_volume": 10000,
+    "max_daily_volume_raw": "10000000000",
+    "daily_volume_used": 1,
+    "daily_volume_used_raw": "1000000",
+    "remaining_daily_capacity": 9999,
+    "remaining_daily_capacity_raw": "9999000000",
+    "max_slippage_bps": 100,
+    "paused": false,
+    "approved_tokens": {
+      "WETH": true
+    },
+    "held_token_count": 1,
+    "held_tokens": [
+      {
+        "address": "0x4200000000000000000000000000000000000006",
+        "balance_raw": "1524879273434747",
+        "symbol": "WETH"
+      }
+    ]
+  },
+  "data_sources": {
+    "pool_state": "Base Sepolia RPC via cast slot0()/liquidity()",
+    "price_history": "Base Sepolia historical slot0() samples every 150 blocks",
+    "volume_24h": null,
+    "vault_state": "Base Sepolia RPC via cast ObeyVault calls"
+  }
+}

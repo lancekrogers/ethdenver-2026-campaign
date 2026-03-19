@@ -1,0 +1,19 @@
+{
+  "final_confidence": 0.75,
+  "breakdown": {
+    "base_confidence": 1,
+    "data_modifier": 1,
+    "gate_modifier": 0.75,
+    "volume_modifier": 1
+  },
+  "cost_benefit": {
+    "position_usd": 500,
+    "expected_reversion_usd": 199.56515373718662,
+    "uniswap_fee_usd": 1.5,
+    "gas_cost_usd": 0.00009049434587818528,
+    "estimated_slippage_usd": 0.5,
+    "net_profit_estimate": 197.56506324284075
+  },
+  "profitable": true,
+  "reason": "Expected reversion exceeds costs and clears the $1.00 minimum profit threshold."
+}

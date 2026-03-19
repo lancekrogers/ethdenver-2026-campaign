@@ -1,0 +1,9 @@
+{
+  "current_price": 718.2090942713118,
+  "sma_30": 513.3253782256922,
+  "deviation_pct": 39.913030747437325,
+  "deviation_direction": "above_ma",
+  "signal": "SELL",
+  "signal_strength": "strong",
+  "base_confidence": 1
+}

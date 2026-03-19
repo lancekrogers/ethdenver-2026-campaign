@@ -1,0 +1,39 @@
+{
+  "ritual_id": "RI-AM0001",
+  "ritual_run_id": "agent-market-research-RI-AM0001-0002",
+  "timestamp": "2026-03-19T07:28:51.442Z",
+  "market": {
+    "current_price": 499.0638675442059,
+    "sma_30": 493.2703596994469,
+    "deviation_pct": 1.1745096235437764,
+    "signal": "NO_SIGNAL"
+  },
+  "risk": {
+    "gates_passed": 6,
+    "gates_total": 8,
+    "failed_gates": [
+      "signal_confidence",
+      "position_sizing"
+    ],
+    "risk_score": 19.14020789367064
+  },
+  "opportunity": {
+    "final_confidence": 0,
+    "net_profit_estimate": -0.00006288204731056994,
+    "profitable": false
+  },
+  "vault": {
+    "nav": 0,
+    "remaining_capacity": 10000,
+    "max_swap_size": 1000,
+    "paused": false,
+    "token_whitelisted": true
+  },
+  "artifact_paths": {
+    "market_snapshot": "001_INGEST/output_specs/market_snapshot.json",
+    "moving_average": "002_RESEARCH/findings/moving_average.json",
+    "price_deviation": "002_RESEARCH/findings/price_deviation.json",
+    "cre_gates": "002_RESEARCH/findings/cre_gates.json",
+    "opportunity_score": "002_RESEARCH/findings/opportunity_score.json"
+  }
+}
