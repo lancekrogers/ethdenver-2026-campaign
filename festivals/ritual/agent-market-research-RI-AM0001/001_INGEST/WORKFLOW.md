@@ -8,6 +8,8 @@ fest_parent: 001_INGEST
 
 This workflow runs on each trading cycle. It collects real-time market data from on-chain sources and APIs, validates freshness, and produces structured snapshots for the research phase.
 
+All paths below are relative to the active ritual run directory created by `fest ritual run`.
+
 ---
 
 ## Step 1: QUERY POOL STATE
@@ -15,7 +17,7 @@ This workflow runs on each trading cycle. It collects real-time market data from
 **Goal:** Get current Uniswap V3 pool state for the trading pair.
 
 **Actions:**
-1. Query Uniswap V3 USDC/WETH pool (3000 BPS fee tier) on Base
+1. Query the Uniswap V3 USDC/WETH pool (3000 BPS fee tier) on Base Sepolia
    - Current price (sqrtPriceX96 → human-readable)
    - Current tick
    - Liquidity at current tick
@@ -24,11 +26,12 @@ This workflow runs on each trading cycle. It collects real-time market data from
 3. Record the block number this data came from
 
 **Data sources:**
-- Uniswap V3 pool contract on Base: SwapRouter02 (`0x2626664c2603336E57B271c5C0b26F421741e481`)
+- Uniswap V3 USDC/WETH 3000 BPS pool on Base Sepolia: `0x46880b404CD35c165EDdefF7421019F8dD25F4Ad`
+- Uniswap SwapRouter02 on Base Sepolia: `0x94cC0AaC535CCDB3C01d6787D6413C739ae12bc4` for routing context only, not for spot/twap reads
 - Uniswap Subgraph (backup): `https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3`
 - Uniswap Developer Platform API: `trade-api.gateway.uniswap.org/v1/`
 
-**Output:** Pool state object with price, tick, liquidity, block number, timestamp
+**Output:** Pool state object with price, tick, liquidity, block number, timestamp. This data is later written into `001_INGEST/output_specs/market_snapshot.json`.
 
 **Checkpoint:** Verify price is non-zero and within reasonable range (ETH $500-$50,000)
 
@@ -48,7 +51,7 @@ This workflow runs on each trading cycle. It collects real-time market data from
 - If TWAP oracle has insufficient cardinality, fall back to API candle data
 - Each price point needs: timestamp, price, volume (if available)
 
-**Output:** Array of `{timestamp, price, volume}` objects in `price_history.json`
+**Output:** Array of `{timestamp, price, volume}` objects in `001_INGEST/output_specs/price_history.json`
 
 **Checkpoint:** Verify ≥ 30 data points, chronologically ordered, no gaps > 2× interval
 
@@ -68,7 +71,7 @@ This workflow runs on each trading cycle. It collects real-time market data from
 - High volatility (> 5% daily) = wider price swings = both opportunity and risk → flag for research phase
 - Gas price affects minimum profitable trade size → pass to research phase for cost analysis
 
-**Output:** Volume, volatility, and gas metrics
+**Output:** Volume, volatility, and gas metrics written into `001_INGEST/output_specs/market_snapshot.json`
 
 **Checkpoint:** None — missing volume/volatility data is acceptable (flagged, not fatal)
 
@@ -79,22 +82,36 @@ This workflow runs on each trading cycle. It collects real-time market data from
 **Goal:** Understand current vault position and remaining capacity.
 
 **Actions:**
-1. Query ObeyVault contract on Base:
-   - `totalAssets()` — current NAV in USDC
+1. Query ObeyVault contract on Base Sepolia:
+   - `totalAssets()` — primary NAV source in USDC
    - `maxSwapSize()` — per-trade limit
    - `maxDailyVolume()` — daily cap
    - `dailyVolumeUsed()` — how much of daily cap is consumed
    - `maxSlippageBps()` — slippage tolerance
    - `approvedTokens` — which tokens agent can trade
    - `paused()` — is vault paused?
-2. Calculate remaining daily capacity: `maxDailyVolume - dailyVolumeUsed`
+2. If `totalAssets()` succeeds, record:
+   - `vault.nav`
+   - `vault.nav_source = "totalAssets"`
+   - `vault.nav_is_lower_bound = false`
+3. If `totalAssets()` reverts or returns unusable data, fall back to a conservative lower-bound NAV:
+   - Query `asset()` to confirm the base asset contract
+   - Query `ERC20(asset).balanceOf(vault)` to get the vault's liquid base-asset balance
+   - If available, query `heldTokenCount()` / `heldTokenAt()` so the artifact can disclose non-asset inventory that is not reflected in the lower bound
+   - Record `vault.nav` as the liquid asset balance only
+   - Record `vault.nav_source = "asset_balance_fallback"`
+   - Record `vault.nav_is_lower_bound = true`
+   - Record `vault.nav_fallback_reason` with the exact failure or missing-call reason
+4. Calculate remaining daily capacity: `maxDailyVolume - dailyVolumeUsed`
+5. If any required vault safety call other than NAV lookup (`paused`, `maxSwapSize`, `maxDailyVolume`, `dailyVolumeUsed`, `approvedTokens`) fails, stop pretending the state is known and emit `NO_GO` with a machine-readable blocker such as `vault_state_unreadable`.
 
 **Heuristics:**
 - If `paused() == true` → short-circuit the entire ritual, output NO_GO immediately
 - If remaining daily capacity < minimum profitable trade size → NO_GO (not enough room)
 - If NAV < $10 → NO_GO (insufficient assets to trade meaningfully)
+- If NAV came from `asset_balance_fallback`, treat it as a lower bound. It may justify a conservative `NO_GO`, but it must never be presented as an exact NAV.
 
-**Output:** Vault state object with all parameters + remaining capacity
+**Output:** Vault state object with all parameters, NAV provenance, and remaining capacity written into `001_INGEST/output_specs/market_snapshot.json`
 
 **Checkpoint:** Verify vault is not paused and has capacity
 
@@ -115,13 +132,22 @@ This workflow runs on each trading cycle. It collects real-time market data from
      "volume_24h": 1250000,
      "volatility_pct": 2.1,
      "gas_gwei": 0.01,
-     "vault": { "nav": 100.00, "remaining_daily_capacity": 80.00, "paused": false }
+     "vault": {
+       "nav": 100.00,
+       "nav_source": "totalAssets",
+       "nav_is_lower_bound": false,
+       "nav_fallback_reason": "",
+       "remaining_daily_capacity": 80.00,
+       "paused": false
+     }
    }
    ```
 2. Write `data_quality.md`:
    - All sources responded? (list any failures)
    - Data freshness: oldest data point age
    - Any flags raised (low volume, high volatility, low capacity)
+   - Whether `totalAssets()` succeeded or a fallback was used
+   - If fallback was used, the exact fallback source, why it was needed, and whether the resulting NAV is only a lower bound
 
 **Freshness rules:**
 - Pool state must be < 1 minute old
@@ -129,7 +155,7 @@ This workflow runs on each trading cycle. It collects real-time market data from
 - Gas price must be < 5 minutes old
 - Vault state must be < 1 minute old
 
-**Output:** `output_specs/market_snapshot.json` + `output_specs/data_quality.md`
+**Output:** `001_INGEST/output_specs/market_snapshot.json` + `001_INGEST/output_specs/price_history.json` + `001_INGEST/output_specs/data_quality.md`
 
 **Checkpoint:** All data passes freshness check. If not, flag stale sources but continue.
 

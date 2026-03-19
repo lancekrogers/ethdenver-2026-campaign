@@ -42,10 +42,11 @@ Review gate results from validation and rationale review. Fix identified issues 
 
 ### If Both Gates Passed → Finalize
 
-1. Copy final `decision.json` to ritual output
-2. Copy final `agent_log_entry.json` to ritual output
-3. Write `results/ritual_complete.md`
-4. Mark sequence complete
+1. Treat `003_DECIDE/01_synthesize_decision/results/` as the ritual output directory
+2. Leave final `decision.json` at `003_DECIDE/01_synthesize_decision/results/decision.json`
+3. Leave final `agent_log_entry.json` at `003_DECIDE/01_synthesize_decision/results/agent_log_entry.json`
+4. Write `003_DECIDE/01_synthesize_decision/results/ritual_complete.md`
+5. Mark sequence complete
 
 ### If Either Gate Failed → Fix (1 iteration max)
 
@@ -66,6 +67,6 @@ Review gate results from validation and rationale review. Fix identified issues 
 
 - [ ] Both gates passed (initially or after 1 fix)
 - [ ] OR: 1 iteration attempted, still failing → NO_GO with explanation
-- [ ] Final artifacts in output directory
-- [ ] `results/ritual_complete.md` documents outcome
+- [ ] Final artifacts remain in `003_DECIDE/01_synthesize_decision/results/`
+- [ ] `003_DECIDE/01_synthesize_decision/results/ritual_complete.md` documents outcome
 - [ ] Sequence marked complete

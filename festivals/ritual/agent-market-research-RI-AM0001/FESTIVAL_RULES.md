@@ -12,6 +12,8 @@ This is a **ritual festival** — a repeatable process designed to run on every 
 - Every data point must be timestamped
 - If a data source fails, flag it in data_quality.md — do NOT substitute fake data
 - Stale data (> 5 minutes old) must be flagged, not silently used
+- If a lower-fidelity fallback is required, record the exact fallback source and reason in both `data_quality.md` and the machine-readable artifact that consumed it
+- Conservative lower-bound values are acceptable when the primary source fails; silently inflating a fallback into an exact value is not
 
 ### Decision Quality
 
@@ -23,7 +25,7 @@ This is a **ritual festival** — a repeatable process designed to run on every 
 ### Audit Trail
 
 - Every ritual execution produces dated artifacts in `results/`
-- Artifacts are immutable once written — do not overwrite previous results
+- Artifacts become immutable after `results/ritual_complete.md` is written for the run
 - Output format is JSON for machine readability
 - Each execution generates an `agent_log_entry.json` for Protocol Labs submission
 
@@ -40,9 +42,10 @@ This is a **ritual festival** — a repeatable process designed to run on every 
 Quality gates for rituals are lighter than implementation festivals:
 
 - Quality gates focus on decision validity and rationale auditability
-- **No iterate step** — if the ritual produces bad output, fix the ritual itself (in a separate implementation festival), don't iterate within the ritual
+- **At most one bounded correction pass** — if validation or rationale review fails, the agent may fix the run once inside `results/` before finalization
 - **Data validity gate** — all data sources responded, data is fresh, no nulls
 - **Decision completeness gate** — all required fields present in decision.json
+- If the run remains ambiguous after one correction pass, default to `NO_GO` with a machine-readable blocking factor instead of waiting for a human
 
 ## What This Ritual Does NOT Do
 

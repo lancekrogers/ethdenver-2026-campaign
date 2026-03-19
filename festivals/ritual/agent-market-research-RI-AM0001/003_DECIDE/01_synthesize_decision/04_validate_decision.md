@@ -14,7 +14,7 @@ Validate the decision artifact for completeness and internal consistency.
 
 ### Completeness (all must pass)
 
-- [ ] `decision.json` exists and is valid JSON
+- [ ] `003_DECIDE/01_synthesize_decision/results/decision.json` exists and is valid JSON
 - [ ] `decision` field is exactly "GO" or "NO_GO" (no other values)
 - [ ] `confidence` is a number between 0.0 and 1.0
 - [ ] `timestamp` is present and recent (within last 5 minutes)
@@ -22,7 +22,9 @@ Validate the decision artifact for completeness and internal consistency.
 - [ ] If GO: `recommendation` object is present with direction, token_in, token_out, suggested_size_usd, max_slippage_bps
 - [ ] If NO_GO: `blocking_factors` array is present and non-empty
 - [ ] `vault_constraints_checked` object is present with all three boolean fields
-- [ ] `agent_log_entry.json` exists and is valid JSON
+- [ ] `guardrails` object is present with the documented minimum fields
+- [ ] `artifact_paths.decision` and `artifact_paths.agent_log_entry` point to the canonical results paths
+- [ ] `003_DECIDE/01_synthesize_decision/results/agent_log_entry.json` exists and is valid JSON
 
 ### Consistency (all must pass)
 

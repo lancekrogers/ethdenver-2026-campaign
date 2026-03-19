@@ -26,7 +26,7 @@ Validate that the trading decision artifact is complete (all fields present, cor
 
 ## Completeness Checks
 
-- [ ] `decision.json` exists and is valid JSON
+- [ ] `003_DECIDE/01_synthesize_decision/results/decision.json` exists and is valid JSON
 - [ ] `decision` field is exactly "GO" or "NO_GO"
 - [ ] `confidence` is a number between 0.0 and 1.0
 - [ ] `timestamp` is present and within last 5 minutes
@@ -34,7 +34,8 @@ Validate that the trading decision artifact is complete (all fields present, cor
 - [ ] If GO: `recommendation` includes direction, token_in, token_out, suggested_size_usd, max_slippage_bps
 - [ ] If NO_GO: `blocking_factors` array is present and non-empty
 - [ ] `vault_constraints_checked` has all three boolean fields
-- [ ] `agent_log_entry.json` exists and is valid JSON
+- [ ] `guardrails` has the documented minimum fields
+- [ ] `003_DECIDE/01_synthesize_decision/results/agent_log_entry.json` exists and is valid JSON
 
 ## Consistency Checks
 

@@ -38,6 +38,8 @@ Could someone who has NEVER seen this system:
 
 If any answer is "no", the rationale needs improvement.
 
+This is a self-review step for the executing agent. Do not wait for an external reviewer before writing `results/rationale_review.md`.
+
 ## If Review Fails
 
 - Document specific deficiencies in `results/rationale_review.md`

@@ -38,9 +38,62 @@ Analyze ingested data. Calculate price deviation from moving average. Run CRE Ri
 ### 003_DECIDE (type: non_coding_action)
 Produce a structured go/no-go trading decision with full rationale. Output as JSON artifact consumable by the trading agent's planning phase.
 
+## Runtime Artifact Contract
+
+All runtime-facing artifacts are relative to the active ritual run directory created by:
+
+```bash
+fest ritual run agent-market-research-RI-AM0001 --json
+```
+
+Canonical paths:
+
+- `001_INGEST/output_specs/market_snapshot.json`
+- `001_INGEST/output_specs/price_history.json`
+- `001_INGEST/output_specs/data_quality.md`
+- `002_RESEARCH/findings/research_output.json`
+- `003_DECIDE/01_synthesize_decision/results/aggregated_findings.json`
+- `003_DECIDE/01_synthesize_decision/results/decision.json`
+- `003_DECIDE/01_synthesize_decision/results/agent_log_entry.json`
+- `003_DECIDE/01_synthesize_decision/results/validation_result.md`
+- `003_DECIDE/01_synthesize_decision/results/rationale_review.md`
+- `003_DECIDE/01_synthesize_decision/results/ritual_complete.md`
+
+The Go runtime should treat `decision.json` and `agent_log_entry.json` as the minimum completion contract for each run.
+
+## Successful Completion Semantics
+
+The ritual succeeds when it reaches `003_DECIDE/01_synthesize_decision/results/ritual_complete.md` with valid machine-readable artifacts, regardless of whether the final decision is `GO` or `NO_GO`.
+
+`GO` success means:
+
+- `decision.json` is present with `decision: "GO"`
+- `agent_log_entry.json` is present
+- `guardrails.trade_allowed` is `true`
+- The downstream runtime may proceed to trade planning and execution
+
+`NO_GO` success means:
+
+- `decision.json` is present with `decision: "NO_GO"`
+- `blocking_factors` is present and non-empty
+- `agent_log_entry.json` is present
+- `guardrails.trade_allowed` is `false`
+- The downstream runtime skips trading, records the research outcome, and starts the next cycle later
+
+Only runtime/tooling failures such as missing artifacts, invalid JSON, unreadable critical contract state with no documented fallback, or an incomplete quality-gate flow should count as ritual failures.
+
+## Follow-Up Validation Scenarios
+
+- No signal because deviation stays within ±2%
+- Vault paused or daily capacity exhausted
+- Data source fallback used, clearly disclosed in `market_snapshot.json` and `data_quality.md`, and the final artifact contract still satisfied
+- Decision quality remains ambiguous after one bounded correction pass
+- Strong `GO` signal where all required artifacts still match the same file contract as `NO_GO`
+
 ## Notes
 
 - This ritual is designed to run on every trading cycle (default: 5-minute intervals)
 - Each execution produces a new dated artifact — the history of artifacts IS the agent's research trail
 - The ritual's output maps to Protocol Labs' "discover" step in the autonomous loop
 - Quality gates are lightweight for a ritual — focus on data validity and rationale completeness
+- Runtime hardening gaps for daemon-backed execution are tracked in `RUNTIME_GAP_ANALYSIS.md`

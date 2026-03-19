@@ -37,16 +37,45 @@ Generate the final trading decision with structured rationale based on aggregate
 
 ## Steps
 
-1. Load `results/aggregated_findings.json`
+1. Load `003_DECIDE/01_synthesize_decision/results/aggregated_findings.json`
 2. Run through automatic NO_GO checks first (fast path)
 3. If no auto-NO_GO, evaluate GO criteria
-4. Generate `decision.json` with full rationale
+4. Generate `003_DECIDE/01_synthesize_decision/results/decision.json` with full rationale
 5. If GO: include recommendation (direction, token pair, size, slippage, urgency)
-6. If NO_GO: include blocking factors and conditions that would change the decision
+6. If NO_GO: include `blocking_factors`, set `guardrails.trade_allowed` to `false`, and describe conditions that would change the decision
+7. If evidence is incomplete, contradictory, or still ambiguous after one bounded correction pass, output `NO_GO` with a specific blocking factor such as `insufficient_data`, `inconsistent_inputs`, or `decision_quality_insufficient`
 
 ## Output
 
-Write `results/decision.json` following the schema defined in 003_DECIDE/PHASE_GOAL.md.
+Write `003_DECIDE/01_synthesize_decision/results/decision.json` following the schema defined in `003_DECIDE/PHASE_GOAL.md`.
+
+Minimum required machine-readable fields:
+
+- `ritual_id`
+- `ritual_run_id`
+- `timestamp`
+- `decision`
+- `confidence`
+- `blocking_factors` (required when `decision == "NO_GO"`)
+- `rationale`
+- `vault_constraints_checked`
+- `guardrails`
+- `artifact_paths`
+
+If `decision == "GO"`, also include:
+
+- `recommendation.direction`
+- `recommendation.token_in`
+- `recommendation.token_out`
+- `recommendation.suggested_size_usd`
+- `recommendation.max_slippage_bps`
+- `recommendation.urgency`
+
+Completion rule for both outcomes:
+
+- `GO` and `NO_GO` must both produce `decision.json` at the same canonical path.
+- `NO_GO` is a successful result when the file is valid and includes explicit `blocking_factors`.
+- Only missing/invalid artifacts or an unfinished quality-gate flow should be treated as ritual failure.
 
 ## Rationale Requirements
 
@@ -61,10 +90,15 @@ The rationale MUST NOT:
 - Omit numbers: "confidence is high"
 - Skip failed gates: only mentioning passed gates
 
+Unattended execution rule:
+
+- Do not wait for a human to decide between `GO` and `NO_GO`.
+- If the available evidence is not good enough for a safe `GO`, emit `NO_GO` with explicit blocking factors.
+
 ## Done When
 
 - [ ] Decision is binary: GO or NO_GO
 - [ ] Rationale cites specific numbers from aggregated findings
 - [ ] GO includes recommendation with direction, size, slippage
 - [ ] NO_GO includes blocking factors and change conditions
-- [ ] `results/decision.json` saved with all required fields
+- [ ] `003_DECIDE/01_synthesize_decision/results/decision.json` saved with all required fields

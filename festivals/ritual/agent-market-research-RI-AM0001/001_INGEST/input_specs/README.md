@@ -1,26 +1,22 @@
 # Input Specifications
 
-Place all raw input materials here for the agent to process.
+This directory is optional for runtime use. Place any static ritual inputs here that should be copied into each active run before ingest starts.
 
-## What to Include
+## Runtime Expectations
 
-- User requirements (any format)
-- Reference documents
-- Examples or prior art
-- Constraints and guidelines
-- Any context the agent needs
+- Inputs must be machine-readable by an unattended agent.
+- Inputs must not require human approval before the ritual can continue.
+- Runtime execution should succeed even when this directory is empty.
 
-## Guidelines
+## Appropriate Inputs
 
-- Files can be any format (markdown, text, images, PDFs)
-- Include everything relevant — the agent will sort through it
-- Don't pre-structure — that's what the ingest phase does
-- More context is better than less
+- Static symbol or pair metadata
+- Reference constraints that do not change per run
+- Notes about fallback data sources
+- Any fixed contract addresses or identifiers that are useful to the ritual
 
-## Processing
+## Not Appropriate Here
 
-The agent will:
-1. Read all files in this directory
-2. Extract key information
-3. Structure it into `output_specs/`
-4. Present for your approval
+- Human approval checklists
+- Planner-template prompts
+- Any instruction that requires waiting for a person before `fest workflow advance`

@@ -21,13 +21,17 @@ Review validation and rationale review results. If issues were found, fix them. 
 
 ### 2. If Both Passed → Finalize
 
-1. Copy `results/decision.json` to ritual output directory
-2. Copy `results/agent_log_entry.json` to ritual output directory
-3. Write `results/ritual_complete.md` with:
+1. Treat `003_DECIDE/01_synthesize_decision/results/` as the ritual output directory
+2. Leave the final artifacts at:
+   - `003_DECIDE/01_synthesize_decision/results/decision.json`
+   - `003_DECIDE/01_synthesize_decision/results/agent_log_entry.json`
+3. Write `003_DECIDE/01_synthesize_decision/results/ritual_complete.md` with:
    - Ritual ID + timestamp
    - Decision: GO/NO_GO
+   - Completion status: `success`
    - Confidence level
    - Duration (ingest start → decision finalized)
+   - Trade path: `continue_to_planning` for `GO`, `skip_trade_and_end_cycle` for `NO_GO`
 4. Mark sequence complete
 
 ### 3. If Either Failed → Iterate
@@ -53,6 +57,6 @@ Review validation and rationale review results. If issues were found, fix them. 
 
 - [ ] Both quality gates passed (either initially or after 1 iteration)
 - [ ] OR: 1 iteration attempted, still failing → NO_GO with quality explanation
-- [ ] Final `decision.json` and `agent_log_entry.json` in output directory
-- [ ] `results/ritual_complete.md` documents the outcome
+- [ ] Final `decision.json` and `agent_log_entry.json` remain in `003_DECIDE/01_synthesize_decision/results/`
+- [ ] `003_DECIDE/01_synthesize_decision/results/ritual_complete.md` documents the outcome
 - [ ] Sequence marked complete

@@ -8,6 +8,8 @@ fest_parent: 002_RESEARCH
 
 This workflow analyzes ingested market data to determine whether a trading opportunity exists and quantify its strength. All analysis uses concrete heuristics — no subjective "the market feels good."
 
+All paths below are relative to the active ritual run directory created by `fest ritual run`.
+
 ---
 
 ## Step 1: COMPUTE MOVING AVERAGE
@@ -24,7 +26,7 @@ This workflow analyzes ingested market data to determine whether a trading oppor
 SMA_30 = sum(prices[-30:]) / min(len(prices), 30)
 ```
 
-**Output:** `findings/moving_average.json`
+**Output:** `002_RESEARCH/findings/moving_average.json`
 ```json
 {
   "sma_30": 3240.50,
@@ -63,7 +65,7 @@ base_confidence = min(abs(deviation_pct) / 4.0, 1.0)
 # Below 2% → no signal
 ```
 
-**Output:** `findings/price_deviation.json`
+**Output:** `002_RESEARCH/findings/price_deviation.json`
 ```json
 {
   "current_price": 3172.34,
@@ -129,7 +131,7 @@ Run each CRE Risk Router gate in order. Document per-gate pass/fail with specifi
 - In ritual context, if you're running this, you're alive
 - **Pass criteria:** Agent responsive (always passes in ritual)
 
-**Output:** `findings/cre_gates.json`
+**Output:** `002_RESEARCH/findings/cre_gates.json`
 ```json
 {
   "gates_passed": 7,
@@ -180,7 +182,7 @@ net_profit_estimate = expected_reversion_usd - uniswap_fee_usd - gas_cost_usd - 
 - `net_profit_estimate > $1.00` → trade is worth executing
 - `net_profit_estimate < $1.00` → not worth the risk for sub-dollar profit
 
-**Output:** `findings/opportunity_score.json`
+**Output:** `002_RESEARCH/findings/opportunity_score.json`
 ```json
 {
   "final_confidence": 0.72,
@@ -213,8 +215,8 @@ net_profit_estimate = expected_reversion_usd - uniswap_fee_usd - gas_cost_usd - 
 
 **Actions:**
 1. Collect all findings from Steps 1-4
-2. Write `findings/SUMMARY.md` — human-readable summary of the research
-3. Write `findings/research_output.json` — machine-readable aggregate for DECIDE phase
+2. Write `002_RESEARCH/findings/SUMMARY.md` — human-readable summary of the research
+3. Write `002_RESEARCH/findings/research_output.json` — machine-readable aggregate for DECIDE phase
 
 **Summary template:**
 ```
@@ -230,7 +232,7 @@ Net Profit Est:   ${net_profit_estimate}
 Recommendation:   {GO/NO_GO with one-line reason}
 ```
 
-**Output:** `findings/SUMMARY.md` + `findings/research_output.json`
+**Output:** `002_RESEARCH/findings/SUMMARY.md` + `002_RESEARCH/findings/research_output.json`
 
 **Checkpoint:** None — phase complete, output feeds into 003_DECIDE
 
@@ -238,7 +240,7 @@ Recommendation:   {GO/NO_GO with one-line reason}
 
 ## Fast Paths
 
-These conditions skip directly to Step 5 with a NO_GO output:
+These conditions skip directly to Step 5 for research packaging and then continue into the normal `003_DECIDE` artifact-writing tasks with a `NO_GO` outcome. They do not require a human to interpret whether the ritual should continue.
 
 | Condition | Detected At | Reason |
 |-----------|-------------|--------|

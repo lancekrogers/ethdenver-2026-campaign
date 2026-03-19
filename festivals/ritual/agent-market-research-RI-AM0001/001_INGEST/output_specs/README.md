@@ -1,18 +1,19 @@
 # Output Specifications
 
-Structured output from the ingest phase will be created here.
+Structured output from the ingest phase is written here inside each active ritual run.
 
-## Expected Documents
+## Canonical Runtime Files
 
 | Document | Purpose |
 |----------|---------|
-| `purpose.md` | Festival purpose, success criteria, motivation |
-| `requirements.md` | Prioritized requirements (P0/P1/P2) with traceability |
-| `constraints.md` | Technical and process constraints |
-| `context.md` | Prior art, related systems, key references |
+| `market_snapshot.json` | Current pool, volume, volatility, gas, and vault state used by research and decide phases |
+| `price_history.json` | Chronological price history used to calculate the moving average |
+| `data_quality.md` | Source freshness, fallback use, and any warnings raised during ingest |
 
-## Quality Standards
+## Runtime Rules
 
-- Requirements should be traceable to input sources
-- Constraints should explain "why" not just "what"
-- All documents require user approval before phase completion
+- These files are produced automatically during a ritual run.
+- File names and paths are part of the runtime contract and must not drift without updating downstream consumers.
+- No user approval step is required before the ritual advances to research.
+- `market_snapshot.json` must disclose when vault NAV came from a fallback by including `vault.nav_source`, `vault.nav_is_lower_bound`, and `vault.nav_fallback_reason`.
+- `data_quality.md` must name every fallback used and whether it changes the confidence of the research result.

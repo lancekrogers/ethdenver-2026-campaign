@@ -57,6 +57,8 @@ Write `results/rationale_review.md`:
 - PASS: all checks pass
 - FAIL: cite the exact phrases that are vague, missing, or circular + suggest specific fixes
 
+This review is performed by the executing agent as part of the ritual run. It must not pause for an external human reviewer.
+
 ## Definition of Done
 
 - [ ] Specificity checks all pass
