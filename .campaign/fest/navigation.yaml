@@ -1,7 +1,11 @@
 version: 1
-updated_at: 2026-03-16T02:15:42.555346Z
+updated_at: 2026-03-19T06:55:03.691666Z
 links:
   obey-agent-platform-OA0001:
     path: projects/agent-prediction
     festival_path: festivals/planning/obey-agent-platform-OA0001
     linked_at: 2026-03-13T08:22:04.246805Z
+  synthesis-fest-ritual-runtime-SF0002:
+    path: projects/agent-defi
+    festival_path: festivals/active/synthesis-fest-ritual-runtime-SF0002
+    linked_at: 2026-03-19T06:55:03.691666Z

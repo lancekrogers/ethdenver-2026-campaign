@@ -1,0 +1,165 @@
+{
+  "generated_at": "2026-03-19T09:03:30Z",
+  "source": "uniswap_v3_twap_observations",
+  "pool": "0x46880b404CD35c165EDdefF7421019F8dD25F4Ad",
+  "pair": "USDC/WETH",
+  "interval": "variable (avg ~77.5 min between obs)",
+  "note": "22 observations available (< 30 required); flagged in data_quality.md",
+  "count": 22,
+  "prices": [
+    {
+      "timestamp": "2026-03-18T02:53:22Z",
+      "price": 507.8018,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214020.0
+    },
+    {
+      "timestamp": "2026-03-18T03:02:24Z",
+      "price": 507.8018,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214020.0
+    },
+    {
+      "timestamp": "2026-03-18T03:08:06Z",
+      "price": 507.8018,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214020.0
+    },
+    {
+      "timestamp": "2026-03-18T03:11:05Z",
+      "price": 507.8018,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214020.0
+    },
+    {
+      "timestamp": "2026-03-18T03:13:06Z",
+      "price": 507.8018,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214020.0
+    },
+    {
+      "timestamp": "2026-03-18T03:14:08Z",
+      "price": 507.8018,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214020.0
+    },
+    {
+      "timestamp": "2026-03-18T03:37:09Z",
+      "price": 507.8018,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214020.0
+    },
+    {
+      "timestamp": "2026-03-18T04:11:18Z",
+      "price": 514.9091,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 213881.0
+    },
+    {
+      "timestamp": "2026-03-18T04:25:24Z",
+      "price": 497.0011,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214235.0
+    },
+    {
+      "timestamp": "2026-03-18T06:39:12Z",
+      "price": 477.9921,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214625.0
+    },
+    {
+      "timestamp": "2026-03-18T09:44:07Z",
+      "price": 476.3698,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214659.0
+    },
+    {
+      "timestamp": "2026-03-18T11:00:46Z",
+      "price": 476.3221,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214660.0
+    },
+    {
+      "timestamp": "2026-03-18T13:21:25Z",
+      "price": 474.7055,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214694.0
+    },
+    {
+      "timestamp": "2026-03-18T15:29:37Z",
+      "price": 473.047,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214729.0
+    },
+    {
+      "timestamp": "2026-03-18T15:48:25Z",
+      "price": 486.8681,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214441.0
+    },
+    {
+      "timestamp": "2026-03-18T16:13:44Z",
+      "price": 493.8306,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214299.0
+    },
+    {
+      "timestamp": "2026-03-18T18:42:31Z",
+      "price": 493.8306,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214299.0
+    },
+    {
+      "timestamp": "2026-03-18T20:54:39Z",
+      "price": 493.8306,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214299.0
+    },
+    {
+      "timestamp": "2026-03-18T23:43:50Z",
+      "price": 493.8306,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214299.0
+    },
+    {
+      "timestamp": "2026-03-19T04:42:38Z",
+      "price": 492.1545,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214333.0
+    },
+    {
+      "timestamp": "2026-03-19T07:02:49Z",
+      "price": 495.6115,
+      "volume": null,
+      "source": "uniswap_v3_twap",
+      "avg_tick": 214263.0
+    },
+    {
+      "timestamp": "2026-03-19T09:03:30Z",
+      "price": 499.0928,
+      "volume": null,
+      "source": "uniswap_v3_slot0",
+      "avg_tick": 214193
+    }
+  ]
+}

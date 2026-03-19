@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-03-19T09:03:30Z",
+  "block_number": 39071361,
+  "run_id": "agent-market-research-RI-AM0001-0009",
+  "pool": {
+    "address": "0x46880b404CD35c165EDdefF7421019F8dD25F4Ad",
+    "fee_bps": 3000,
+    "token0": {
+      "symbol": "USDC",
+      "address": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+      "decimals": 6
+    },
+    "token1": {
+      "symbol": "WETH",
+      "address": "0x4200000000000000000000000000000000000006",
+      "decimals": 18
+    },
+    "price_usdc_per_eth": 499.0928,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189",
+    "liquidity": "12771768749653",
+    "observation_cardinality": 100,
+    "observation_count": 22
+  },
+  "volume_24h_usd": null,
+  "volume_24h_source": null,
+  "volume_24h_note": "unavailable: subgraph 301 redirect, Uniswap API key forbidden for pool queries; flagged in data_quality",
+  "volatility_pct": 2.6155,
+  "volatility_source": "uniswap_v3_twap_22_observations",
+  "gas_gwei": 0.006,
+  "gas_source": "eth_gasPrice",
+  "vault": {
+    "address": "0xa7412780435905728260d5eaA59786e4a3C07e7E",
+    "nav": 0.0,
+    "nav_usdc_raw": 0,
+    "nav_source": "totalAssets",
+    "nav_is_lower_bound": false,
+    "nav_fallback_reason": "",
+    "max_swap_size_usdc": 1000.0,
+    "max_daily_volume_usdc": 10000.0,
+    "daily_volume_used_usdc": 0.0,
+    "remaining_daily_capacity_usdc": 10000.0,
+    "max_slippage_bps": 100,
+    "paused": false,
+    "approved_tokens": {
+      "USDC": true,
+      "WETH": true
+    },
+    "held_token_count": 0,
+    "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e"
+  }
+}
