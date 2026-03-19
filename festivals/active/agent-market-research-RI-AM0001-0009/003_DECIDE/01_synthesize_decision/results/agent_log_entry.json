@@ -1,0 +1,33 @@
+{
+  "action": "market_research_ritual",
+  "timestamp": "2026-03-19T09:21:52.627Z",
+  "phase": "discover",
+  "festival_id": "RI-AM0001",
+  "run_id": "agent-market-research-RI-AM0001-0009",
+  "session_id": "231a800c-40fa-44e5-a476-c337413255fc",
+  "tools_used": [
+    "uniswap_v3_pool_query",
+    "historical_slot0_sampling",
+    "cre_risk_router_8gate",
+    "obey_vault_state_query"
+  ],
+  "reasoning": {
+    "signal": "SELL",
+    "deviation_pct": 39.912149268818794,
+    "confidence": 0.75,
+    "gates_passed": "6/8",
+    "net_profit_estimate_usd": 197.5606558497481
+  },
+  "decision": "GO",
+  "outcome": "GO at confidence 0.7500 with SELL recommendation and estimated net profit $197.5607.",
+  "retries": 0,
+  "duration_ms": 189912,
+  "errors": [],
+  "artifact_paths": {
+    "market_snapshot": "001_INGEST/output_specs/market_snapshot.json",
+    "research_output": "002_RESEARCH/findings/research_output.json",
+    "aggregated_findings": "003_DECIDE/01_synthesize_decision/results/aggregated_findings.json",
+    "decision": "003_DECIDE/01_synthesize_decision/results/decision.json",
+    "agent_log_entry": "003_DECIDE/01_synthesize_decision/results/agent_log_entry.json"
+  }
+}

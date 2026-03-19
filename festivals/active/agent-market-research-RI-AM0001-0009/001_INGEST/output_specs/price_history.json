@@ -1,165 +1,242 @@
-{
-  "generated_at": "2026-03-19T09:03:30Z",
-  "source": "uniswap_v3_twap_observations",
-  "pool": "0x46880b404CD35c165EDdefF7421019F8dD25F4Ad",
-  "pair": "USDC/WETH",
-  "interval": "variable (avg ~77.5 min between obs)",
-  "note": "22 observations available (< 30 required); flagged in data_quality.md",
-  "count": 22,
-  "prices": [
-    {
-      "timestamp": "2026-03-18T02:53:22Z",
-      "price": 507.8018,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214020.0
-    },
-    {
-      "timestamp": "2026-03-18T03:02:24Z",
-      "price": 507.8018,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214020.0
-    },
-    {
-      "timestamp": "2026-03-18T03:08:06Z",
-      "price": 507.8018,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214020.0
-    },
-    {
-      "timestamp": "2026-03-18T03:11:05Z",
-      "price": 507.8018,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214020.0
-    },
-    {
-      "timestamp": "2026-03-18T03:13:06Z",
-      "price": 507.8018,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214020.0
-    },
-    {
-      "timestamp": "2026-03-18T03:14:08Z",
-      "price": 507.8018,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214020.0
-    },
-    {
-      "timestamp": "2026-03-18T03:37:09Z",
-      "price": 507.8018,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214020.0
-    },
-    {
-      "timestamp": "2026-03-18T04:11:18Z",
-      "price": 514.9091,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 213881.0
-    },
-    {
-      "timestamp": "2026-03-18T04:25:24Z",
-      "price": 497.0011,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214235.0
-    },
-    {
-      "timestamp": "2026-03-18T06:39:12Z",
-      "price": 477.9921,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214625.0
-    },
-    {
-      "timestamp": "2026-03-18T09:44:07Z",
-      "price": 476.3698,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214659.0
-    },
-    {
-      "timestamp": "2026-03-18T11:00:46Z",
-      "price": 476.3221,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214660.0
-    },
-    {
-      "timestamp": "2026-03-18T13:21:25Z",
-      "price": 474.7055,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214694.0
-    },
-    {
-      "timestamp": "2026-03-18T15:29:37Z",
-      "price": 473.047,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214729.0
-    },
-    {
-      "timestamp": "2026-03-18T15:48:25Z",
-      "price": 486.8681,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214441.0
-    },
-    {
-      "timestamp": "2026-03-18T16:13:44Z",
-      "price": 493.8306,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214299.0
-    },
-    {
-      "timestamp": "2026-03-18T18:42:31Z",
-      "price": 493.8306,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214299.0
-    },
-    {
-      "timestamp": "2026-03-18T20:54:39Z",
-      "price": 493.8306,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214299.0
-    },
-    {
-      "timestamp": "2026-03-18T23:43:50Z",
-      "price": 493.8306,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214299.0
-    },
-    {
-      "timestamp": "2026-03-19T04:42:38Z",
-      "price": 492.1545,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214333.0
-    },
-    {
-      "timestamp": "2026-03-19T07:02:49Z",
-      "price": 495.6115,
-      "volume": null,
-      "source": "uniswap_v3_twap",
-      "avg_tick": 214263.0
-    },
-    {
-      "timestamp": "2026-03-19T09:03:30Z",
-      "price": 499.0928,
-      "volume": null,
-      "source": "uniswap_v3_slot0",
-      "avg_tick": 214193
-    }
-  ]
-}
+[
+  {
+    "timestamp": "2026-03-19T06:56:52.000Z",
+    "price": 495.58215654099837,
+    "volume": null,
+    "block_number": 39067562,
+    "tick": 214263,
+    "sqrt_price_x96": "3558948906329040995734394570327099"
+  },
+  {
+    "timestamp": "2026-03-19T07:01:52.000Z",
+    "price": 495.58215654099837,
+    "volume": null,
+    "block_number": 39067712,
+    "tick": 214263,
+    "sqrt_price_x96": "3558948906329040995734394570327099"
+  },
+  {
+    "timestamp": "2026-03-19T07:06:52.000Z",
+    "price": 495.58215654099837,
+    "volume": null,
+    "block_number": 39067862,
+    "tick": 214263,
+    "sqrt_price_x96": "3558948906329040995734394570327099"
+  },
+  {
+    "timestamp": "2026-03-19T07:11:52.000Z",
+    "price": 495.58215654099837,
+    "volume": null,
+    "block_number": 39068012,
+    "tick": 214263,
+    "sqrt_price_x96": "3558948906329040995734394570327099"
+  },
+  {
+    "timestamp": "2026-03-19T07:16:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39068162,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T07:21:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39068312,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T07:26:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39068462,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T07:31:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39068612,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T07:36:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39068762,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T07:41:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39068912,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T07:46:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39069062,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T07:51:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39069212,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T07:56:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39069362,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:01:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39069512,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:06:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39069662,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:11:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39069812,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:16:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39069962,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:21:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39070112,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:26:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39070262,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:31:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39070412,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:36:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39070562,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:41:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39070712,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:46:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39070862,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:51:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39071012,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T08:56:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39071162,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T09:01:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39071312,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T09:06:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39071462,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T09:11:52.000Z",
+    "price": 499.0638675442059,
+    "volume": null,
+    "block_number": 39071612,
+    "tick": 214193,
+    "sqrt_price_x96": "3546512703371383818423461948537189"
+  },
+  {
+    "timestamp": "2026-03-19T09:16:52.000Z",
+    "price": 721.7878273017575,
+    "volume": null,
+    "block_number": 39071762,
+    "tick": 210503,
+    "sqrt_price_x96": "2949000233653255624289834570623769"
+  },
+  {
+    "timestamp": "2026-03-19T09:21:52.000Z",
+    "price": 718.2090942713118,
+    "volume": null,
+    "block_number": 39071912,
+    "tick": 210553,
+    "sqrt_price_x96": "2956338326699786836899634435733673"
+  }
+]
