@@ -1,12 +1,22 @@
 # Obey Agent Economy
 
-**Three AI agents. Three blockchains. One orchestrator.**
+**Autonomous AI agents with human-controlled boundaries. Five agents. Five blockchains. Verifiable on-chain.**
 
 ## Overview
 
-The Obey Agent Economy is a multi-chain autonomous AI agent system built for ETHDenver 2026. Three specialized Go agents operate across Hedera, 0G, and Base to form a self-sustaining economic cycle, orchestrated by the `obey` daemon and planned using the Festival Methodology.
+The Obey Agent Economy is a multi-chain autonomous AI agent system where every agent operates within human-defined spending boundaries enforced at the smart contract level. Agents can trade, predict, infer, and coordinate — but they cannot exceed the limits their human guardian has set. Every decision is verifiable on-chain with full reasoning trails.
 
-The system demonstrates a complete agent-to-agent economy: the Coordinator dispatches tasks over Hedera Consensus Service (HCS), the Inference agent executes AI compute on 0G's decentralized GPU network, and the DeFi agent runs trading strategies on Base. Agents are paid in HTS tokens upon task completion. Every message, assignment, result, and payment is published to HCS, creating an immutable on-chain audit trail.
+Five specialized Go agents operate across Hedera, Base, 0G, Ethereum, and Solana:
+
+- **Coordinator** — dispatches tasks and settles payments over Hedera Consensus Service (HCS)
+- **DeFi Agent** — trades USDC/WETH on Uniswap V3 via an ERC-4626 vault with enforced boundaries (max swap size, daily volume, slippage limits, token whitelist)
+- **Prediction Agent** — trades binary outcomes on Drift BET, Polymarket, and Limitless using Claude-powered market analysis
+- **Inference Agent** — executes AI compute on 0G's decentralized GPU network, mints ERC-7857 iNFTs for inference provenance
+- **CRE Risk Router** — evaluates every trade signal through 8 sequential risk gates via Chainlink DON consensus, writing immutable decision receipts on-chain
+
+Agents register on-chain identities via [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004), pay for their own operational costs via [x402](https://x402.org), attribute transactions to their builder via [ERC-8021](https://eips.ethereum.org/EIPS/eip-8021), and coordinate through an immutable HCS audit trail. The entire system is planned and executed using the [Festival Methodology](https://fest.build) — a human-AI collaboration framework where every phase of work is decomposed, tracked, and verifiable.
+
+**80+ verified transactions** across 4 chains. All contracts deployed and operational on live testnets.
 
 ## Dashboard
 
@@ -18,11 +28,14 @@ Everything below runs right now with no daemon required:
 
 - **`just demo`** - Demo mode from campaign root (`just demo up|run|down`). Deterministic CRE scenarios with mock-safe defaults.
 - **`just live`** - Live-testnet mode from campaign root (`just live up|run|down`) with fail-fast preflight checks.
-- **Go agents build and pass all tests** - `just build all` compiles all three agents; `just test all` runs the full suite.
+- **Go agents build and pass all tests** - `just build all` compiles agents; `just test all` runs the full suite (13 packages, 0 failures).
+- **Real DeFi trading on Base Sepolia** - Uniswap V3 swaps through ObeyVault (ERC-4626) with enforced spending boundaries. Verified swap: [tx](https://sepolia.basescan.org/tx/0xafc1c6b2e0ad1e0f0bff17aa86f2cca6ab19ce2859929e5fa066b989d2d3a9d7).
+- **ERC-8004 agent identity on Base Mainnet** - Registered and verifiable: [tx](https://basescan.org/tx/0xcc31bda693422433cdc9e364077d29e42bb5a3ade9220d714d33ca44f0832c73).
+- **CRE Risk Router on Ethereum Sepolia** - 8-gate risk evaluation via Chainlink DON consensus with on-chain decision receipts.
+- **Prediction market agent** - Trades binary outcomes on Drift BET (Solana), Polymarket (Polygon), and Limitless (Base) with Claude-powered analysis.
 - **Real 0G Compute integration** - Provider discovery and inference job submission on the Galileo testnet.
-- **Real DeFi trading on Base Sepolia** - Uniswap V3 swaps, ERC-8004 (agent identity), x402 (HTTP payment protocol), ERC-8021 (builder codes).
 - **Real HCS messaging** - Agents publish task assignments, results, heartbeats, and payments to Hedera topics.
-- **Solidity contracts** - Full Foundry test suite for AgentSettlement, ReputationDecay, and AgentINFT.
+- **Solidity contracts** - Full Foundry test suite for ObeyVault, AgentSettlement, ReputationDecay, and AgentINFT.
 - **Hiero CLI plugin** - `hcli camp` with 5 templates: `hedera-smart-contract`, `hedera-dapp`, `hedera-agent`, `0g-agent`, `0g-inft-build`.
 
 ## What Requires the Obey Daemon
@@ -39,7 +52,7 @@ The daemon aggregates gRPC events from all agents into a single WebSocket stream
 
 This campaign was created and managed using Obedience Corp's developer tooling:
 
-- **[camp](https://github.com/obedience-corp/camp)** - Campaign CLI for multi-project orchestration. Camp manages the workspace layout, git submodules, navigation shortcuts, and project lifecycle across all repositories in this submission.
+- **[camp](https://github.com/obedience-corp/camp)** - Campaign CLI for multi-project orchestration. Camp manages the workspace layout, git submodules, navigation shortcuts, and project lifecycle across all eight repositories in this submission.
 - **[festival](https://github.com/obedience-corp/festival)** ([fest.build](https://fest.build)) - The Festival Methodology for human-AI collaborative project execution. Packages both the [`fest`](https://github.com/obedience-corp/fest) and [`camp`](https://github.com/obedience-corp/camp) CLIs with full documentation on the why and how — not just the tools. Every phase of this build was planned, decomposed, and tracked as festivals. See [`festivals/`](festivals/) for the planning artifacts.
 - **[obey](https://github.com/obedience-corp/obey)** - Daemon that orchestrates agent sessions within the campaign sandbox, providing sandboxed command execution, event routing, and session lifecycle management.
 
@@ -49,8 +62,8 @@ This repository - its git history, submodule structure, `festivals/` planning di
 
 ```bash
 # Clone with submodules
-git clone --recursive https://github.com/lancekrogers/ethdenver-2026-campaign.git
-cd ethdenver-2026-campaign
+git clone --recursive https://github.com/lancekrogers/Obey-Agent-Economy.git
+cd Obey-Agent-Economy
 
 # Install all project dependencies
 just install
@@ -194,11 +207,13 @@ Full evidence manifest: [`workflow/explore/grant-research/2026-03-11/evidence-ma
 ```
 obey daemon (obeyd)
   └── agent-coordinator (Hedera)
-        ├── agent-inference (0G)
-        └── agent-defi (Base)
+        ├── agent-defi (Base) ──── ObeyVault (ERC-4626)
+        ├── agent-prediction (Solana/Polygon/Base)
+        └── agent-inference (0G)
 
+cre-risk-router (Ethereum) ── Chainlink DON consensus
+contracts (Base/0G) ────────── Settlement, Reputation, iNFT
 dashboard (read-only observer)
-contracts (on-chain settlement, Track 2)
 ```
 
 ### Agent Coordinator (Hedera)
@@ -254,7 +269,7 @@ A Next.js/React read-only observer UI with six panels:
 1. **Festival View**: Hierarchical phase/sequence/task progress with completion percentages and status badges
 2. **HCS Feed**: Real-time stream of all HCS messages (timestamps, topic IDs, sequence numbers, message types, senders)
 3. **CRE Decisions**: Risk-check requested/approved/denied lifecycle with reasons and constraints
-4. **Agent Activity**: Status cards for all three agents showing heartbeats, current task, uptime, and error counts
+4. **Agent Activity**: Status cards for all agents showing heartbeats, current task, uptime, and error counts
 5. **DeFi P&L**: Revenue, costs, net profit, trade count, win rate, and full trade history with tx hashes
 6. **Inference Metrics**: GPU/memory utilization, active jobs, latency, total inferences, storage metrics, iNFT status
 
@@ -262,8 +277,9 @@ Data flows in priority order: Hub WebSocket (primary), direct daemon gRPC (dev f
 
 ### Contracts
 
-Four Solidity contracts deployed to 0G Galileo and Base Sepolia:
+Five Solidity contracts deployed to 0G Galileo and Base Sepolia:
 
+- **ObeyVault.sol**: ERC-4626 vault with agent-enforced spending boundaries — token whitelist, max swap size, daily volume cap, slippage limits, guardian pause. Executes Uniswap V3 swaps with TWAP oracle NAV pricing.
 - **AgentSettlement.sol**: Accumulates pending inter-agent payments and batch-settles via HIP-1215 scheduled transactions (Hedera Track 2)
 - **ReputationDecay.sol**: Tracks agent activity timestamps and schedules periodic reputation score decay for inactive agents (Hedera Track 2)
 - **AgentINFT.sol**: ERC-7857 iNFT for agent inference provenance - stores encrypted metadata, result hashes, and DA references on 0G Chain

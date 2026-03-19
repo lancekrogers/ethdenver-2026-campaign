@@ -30,3 +30,7 @@
 {"ts":"2026-03-17T04:08:11.760478Z","event":"create","id":"RI-TR0001","name":"test-ritual","status":"ritual"}
 {"ts":"2026-03-17T04:16:23.35529Z","event":"move","id":"SS0001","from":"planning","to":"ready"}
 {"ts":"2026-03-17T04:16:29.878795Z","event":"move","id":"SS0001","from":"ready","to":"active"}
+{"ts":"2026-03-18T13:25:34.806917Z","event":"create","id":"SF0001","name":"synthesis-fest-ritual-runtime","status":"planning"}
+{"ts":"2026-03-18T13:25:57.508264Z","event":"create","id":"SF0002","name":"synthesis-fest-ritual-runtime","status":"planning"}
+{"ts":"2026-03-19T05:20:04.44679Z","event":"move","id":"SF0002","from":"planning","to":"ready"}
+{"ts":"2026-03-19T05:20:06.701015Z","event":"move","id":"SF0002","from":"ready","to":"active"}

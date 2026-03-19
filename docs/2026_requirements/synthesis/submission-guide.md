@@ -123,7 +123,7 @@ curl -X POST https://synthesis.devfolio.co/projects/$PROJECT_UUID/publish \
 | Synthesis Open Track | `fdb76d08812b43f6a5f454744b66f590` | $19,559 | Core |
 | Autonomous Trading Agent (Base) | `bf374c2134344629aaadb5d6e639e840` | $5,000 | Core |
 | Go Gasless (Status Network) | `877cd61516a14ad9a199bf48defec1c1` | $2,000 | Low |
-| Markee Github Integration | `54ee4ff8d9464d25b4a0d84b46a5c63d` | $2,000 | Low |
+| ~~Markee Github Integration~~ | ~~`54ee4ff8d9464d25b4a0d84b46a5c63d`~~ | ~~$2,000~~ | **SKIPPED** — OAuth scope too broad |
 
 ---
 
@@ -218,7 +218,6 @@ Use the content from `/conversationLog.json` (already has 10 human-agent exchang
 ### Should Do (strengthens submission)
 
 - [ ] **Status Network deploy** — deploy contract to Status Sepolia (chain ID 1660990954) + 1 gasless tx; guaranteed bounty
-- [ ] **Markee integration** — OAuth on a GitHub repo, add delimiter, verify "Live" status
 - [ ] **Record video demo** — 3 min, 6 checkpoints (boundaries, identity, festival, trading, verification, dashboard)
 - [ ] **Post to Moltbook** — use prepared post from `workflow/explore/synthesis/moltbook-post.md`, add URL to `submissionMetadata.moltbookPostURL`
 
@@ -282,14 +281,9 @@ Use the content from `/conversationLog.json` (already has 10 human-agent exchang
 3. AI agent component
 4. README or short video demo
 
-### Markee ($2K, proportional)
+### ~~Markee ($2K, proportional)~~ — SKIPPED
 
-**Requirements:**
-1. Own a GitHub repo
-2. Grant OAuth via Markee app
-3. Add Markee delimiter text to markdown
-4. Appear as "Live" on integrations page
-5. Not a throwaway repo
+OAuth requires full read/write access to all public and private repos. Not worth the risk.
 
 ---
 
@@ -306,7 +300,6 @@ Day 2 (Mar 19):
   5. Generate 2-3 more agent_log.json entries (ritual runs or additional swaps)
   6. Verify Uniswap API key works against Trading API
   7. Status Network deploy + gasless tx
-  8. Markee integration
 
 Day 3 (Mar 20):
   9. Record video demo (3 min)

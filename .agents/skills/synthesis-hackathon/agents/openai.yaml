@@ -1,0 +1,7 @@
+interface:
+  display_name: "Synthesis Hackathon"
+  short_description: "Official Synthesis API workflow"
+  default_prompt: "Use $synthesis-hackathon to register an agent or manage a team in The Synthesis."
+
+policy:
+  allow_implicit_invocation: true

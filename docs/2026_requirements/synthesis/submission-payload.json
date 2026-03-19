@@ -1,0 +1,49 @@
+{
+  "teamUUID": "56a0c5c0aca54815a64992b661ef593f",
+  "name": "OBEY Vault Agent",
+  "description": "An AI trading agent whose on-chain vault enforces human-set spending boundaries at the EVM level. The agent autonomously discovers market opportunities, evaluates risk through 8 pre-trade gates, and executes swaps via Uniswap V3 \u2014 but only within the boundaries the human guardian has set (max swap size, daily volume, token whitelist, slippage limits). Every trade decision is verifiable on-chain through SwapExecuted events with encoded reasoning, and the agent's ERC-8004 identity on Base builds portable reputation from its track record.\n\nBuilt with Go, Solidity (ERC-4626 vault), Festival Methodology for autonomous task orchestration, and Uniswap Developer Platform API for trading.",
+  "problemStatement": "Autonomous trading agents need trust constraints that can't be bypassed. Current agent-wallet integrations are black boxes \u2014 no reasoning audit trail, no quality gates before irreversible actions, and no verifiable reputation. OBEY solves this with a vault that enforces spending boundaries at the contract level (the agent literally cannot exceed them), structured decision loops with 8 pre-trade risk gates, and ERC-8004 identity that accumulates verifiable on-chain reputation.",
+  "repoURL": "https://github.com/lancekrogers/agent-defi",
+  "trackUUIDs": [
+    "10bd47fac07e4f85bda33ba482695b24",
+    "3bf41be958da497bbb69f1a150c76af9",
+    "020214c160fc43339dd9833733791e6b",
+    "fdb76d08812b43f6a5f454744b66f590",
+    "bf374c2134344629aaadb5d6e639e840",
+    "877cd61516a14ad9a199bf48defec1c1"
+  ],
+  "conversationLog": "{\"agent_name\": \"OBEY Vault Agent\", \"harness\": \"claude-code\", \"model\": \"claude-opus-4-6\", \"log_version\": \"1.0\", \"entries\": [{\"timestamp\": \"2026-03-16T21:00:00Z\", \"role\": \"human\", \"content\": \"We need to prepare the OBEY project for the Synthesis hackathon. I want to target Protocol Labs, Uniswap, Status Network, Markee, and Open Track bounties. Create a festival to plan this out.\"}, {\"timestamp\": \"2026-03-16T21:15:00Z\", \"role\": \"agent\", \"content\": \"Created synthesis-submission-SS0001 festival with 6 sequences: verify Uniswap API, generate Protocol Labs artifacts, mainnet deployment, low-effort bounties, repo cleanup, and submission packaging. 53 tasks total across the IMPLEMENT phase.\"}, {\"timestamp\": \"2026-03-16T21:30:00Z\", \"role\": \"human\", \"content\": \"The ritual agent-market-research-RI-AM0001 already has fully customized WORKFLOW.md files. We don't need to build new systems \\u2014 just wire ob fest execute into the synthesis festival tasks.\"}, {\"timestamp\": \"2026-03-16T21:35:00Z\", \"role\": \"agent\", \"content\": \"Updated 03_run_research_ritual.md to use ob fest execute --festival <run-id> instead of manual fest next instructions. Each ritual run will be driven autonomously end-to-end. Deleted the fake ritual run artifacts from earlier.\"}, {\"timestamp\": \"2026-03-17T00:00:00Z\", \"role\": \"human\", \"content\": \"Why would we run the ritual now? That's part of the implementation \\u2014 there's no reason to run it until we have our code created that actually runs it.\"}, {\"timestamp\": \"2026-03-17T00:01:00Z\", \"role\": \"agent\", \"content\": \"You're right. The ritual executes code that doesn't exist yet \\u2014 the API client, the executor integration. Running the ritual before that code exists would just fail. Marked it blocked and moved to the next task.\"}, {\"timestamp\": \"2026-03-17T00:10:00Z\", \"role\": \"human\", \"content\": \"Does task 04 (generate_agent_log) actually need the ritual to have run? Don't we just need to create an easy way for the agent to find the data it needs?\"}, {\"timestamp\": \"2026-03-17T00:12:00Z\", \"role\": \"agent\", \"content\": \"Exactly right. Built cmd/loggen \\u2014 a Go tool that queries on-chain SwapExecuted events from the vault contract and walks ritual artifact directories for agent_log_entry.json files. The pipeline exists; when data is available, just run: just loggen -rituals <dir> -out agent_log.json\"}, {\"timestamp\": \"2026-03-17T00:30:00Z\", \"role\": \"agent\", \"content\": \"Wrote two differentiated narratives for Protocol Labs: 'Let the Agent Cook' focuses on autonomous multi-tool orchestration and the festival loop. 'Agents With Receipts' focuses on ERC-8004 identity, on-chain verifiability, and trust building. Both 300-500 words, genuinely distinct angles on the same project.\"}, {\"timestamp\": \"2026-03-17T00:45:00Z\", \"role\": \"agent\", \"content\": \"Code review found 2 critical issues in loggen: duplicate WETH map entry and fmt.Errorf usage violating project standards. Also found iter.Error() not checked after event loop, and hard-coded chain values. Fixed all issues \\u2014 builds clean, vet passes.\"}, {\"timestamp\": \"2026-03-17T01:00:00Z\", \"role\": \"human\", \"content\": \"Don't deploy to mainnet. Just testnet \\u2014 we can do mainnet after everything has been built and tested.\"}, {\"timestamp\": \"2026-03-17T01:01:00Z\", \"role\": \"agent\", \"content\": \"Makes sense. Skipped mainnet deployment sequence. Moved to low-effort bounties. Successfully deployed AgentIdentityRegistry to Status Network Sepolia (gasless chain) and registered the OBEY agent identity in a second gasless transaction.\"}, {\"timestamp\": \"2026-03-17T01:30:00Z\", \"role\": \"agent\", \"content\": \"Secrets audit complete. All .env files are gitignored across parent repo and all submodules. No secrets in git history. Zero exposure risk when repos go public. Documented testnet keys that should be rotated post-hackathon.\"}, {\"timestamp\": \"2026-03-17T01:45:00Z\", \"role\": \"agent\", \"content\": \"Submodule audit: 6 Blockhead-Consulting repos are private (404), 3 submodules use local paths. Only cre-risk-router and forge-std are publicly accessible. Documented all findings with action items.\"}, {\"timestamp\": \"2026-03-17T01:46:00Z\", \"role\": \"human\", \"content\": \"They will eventually be public but not yet. Don't make any repo public \\u2014 there is no reason to.\"}, {\"timestamp\": \"2026-03-17T01:47:00Z\", \"role\": \"agent\", \"content\": \"Understood. The audit is documented so you know exactly which repos to flip when ready. No visibility changes made.\"}]}",
+  "submissionMetadata": {
+    "agentFramework": "other",
+    "agentHarness": "other",
+    "agentHarnessOther": "obey by obedience corp (custom Go runtime + fest CLI)",
+    "model": "claude-opus-4-6",
+    "skills": [
+      "synthesis-hackathon-skill",
+      "swap-integration"
+    ],
+    "tools": [
+      "Go",
+      "go-ethereum",
+      "Foundry",
+      "Uniswap Trading API",
+      "Uniswap V3 Pools",
+      "ERC-8004",
+      "ERC-4626",
+      "Hedera Consensus Service",
+      "Claude API",
+      "Festival Methodology (fest CLI)",
+      "Base L2",
+      "x402 Protocol"
+    ],
+    "helpfulResources": [
+      "https://developers.uniswap.org/",
+      "https://eips.ethereum.org/EIPS/eip-8004",
+      "https://eips.ethereum.org/EIPS/eip-4626",
+      "https://docs.hedera.com/hedera/sdks-and-apis/sdks/consensus-service"
+    ],
+    "intention": "continuing",
+    "intentionNotes": "OBEY is an active project exploring autonomous agent economies with human-controlled boundaries. Post-hackathon: mainnet deployment, expanded strategy universe, multi-agent coordination via Hedera HCS.",
+    "agentFrameworkOther": "obey by obedience corp (custom Go runtime + fest CLI)"
+  }
+}

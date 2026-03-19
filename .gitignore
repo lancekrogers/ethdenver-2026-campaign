@@ -5,6 +5,8 @@
 !.env.demo.example
 !.env.live.example
 .env.local
+.direnv/*
+.envrc
 *.pem
 *.key
 credentials.json

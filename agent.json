@@ -27,7 +27,7 @@
       "Hedera Testnet"
     ],
     "contracts": [
-      "ObeyVault (ERC-4626) — 0xa7412780435905728260d5eaA59786e4a3C07e7E",
+      "ObeyVault (ERC-4626) — 0xbAbDd92397Cd812593e79A5b4c2a32bB4aDb06b1",
       "AgentIdentityRegistry (ERC-8004) — 0x0C97820abBdD2562645DaE92D35eD581266CCe70",
       "AgentSettlement — 0xa5378FbDCD2799C549A559C1C7c1F91D7C983A44",
       "ReputationDecay — 0x54734cC3AF4Db984cD827f967BaF6C64DEAEd0B1",
