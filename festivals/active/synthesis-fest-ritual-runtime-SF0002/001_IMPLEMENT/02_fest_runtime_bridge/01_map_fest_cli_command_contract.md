@@ -4,11 +4,13 @@ fest_id: 01_map_fest_cli_command_contract.md
 fest_name: map fest cli command contract
 fest_parent: 02_fest_runtime_bridge
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
 fest_created: 2026-03-18T07:27:43.383387-06:00
+fest_updated: 2026-03-19T01:59:03.781874-06:00
 fest_tracking: true
 ---
+
 
 # Task: Map fest CLI command contract
 
