@@ -1,15 +1,70 @@
 {
   "version": 1,
+  "updatedAt": "2026-03-21T04:56:53.586Z",
   "paneTree": {
-    "id": "pane-3",
-    "type": "pane",
     "content": {
-      "type": "chat",
-      "data": {
-        "questName": "quest-9bsmmd"
-      }
-    }
+      "browserTabId": null,
+      "filePath": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/agent-market-research-RI-AM0001-0008/002_RESEARCH/WORKFLOW.md",
+      "type": "file"
+    },
+    "id": "pane-10",
+    "type": "pane"
   },
-  "openFiles": [],
-  "updatedAt": "2026-03-16T21:53:04.688Z"
+  "openFiles": [
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/conversationLog.json",
+      "name": "conversationLog.json"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/CLAUDE.md",
+      "name": "CLAUDE.md"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/AGENTS.md",
+      "name": "AGENTS.md"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/agent.json",
+      "name": "agent.json"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/docs/architecture/01-system-overview.md",
+      "name": "01-system-overview.md"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/docker-compose.yml",
+      "name": "docker-compose.yml"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/LICENSE",
+      "name": "LICENSE"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/main.py",
+      "name": "main.py"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/agent_log.json",
+      "name": "agent_log.json"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/internal/agent/agent.go",
+      "name": "agent.go"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/agent-market-research-RI-AM0001-0008/001_INGEST/WORKFLOW.md",
+      "name": "WORKFLOW.md"
+    },
+    {
+      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/agent-market-research-RI-AM0001-0008/002_RESEARCH/WORKFLOW.md",
+      "name": "WORKFLOW.md"
+    }
+  ],
+  "currentPath": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/agent-market-research-RI-AM0001-0008/002_RESEARCH/WORKFLOW.md",
+  "activePaneId": "pane-10",
+  "chainConfig": {
+    "enabled": false,
+    "leftSessionId": null,
+    "rightSessionId": null
+  }
 }
