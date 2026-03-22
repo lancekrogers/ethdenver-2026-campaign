@@ -3,7 +3,7 @@
   "name": "OBEY Vault Agent",
   "description": "An AI trading agent whose on-chain vault enforces human-set spending boundaries at the EVM level. The agent autonomously discovers market opportunities, evaluates risk through 8 pre-trade gates, and executes swaps via Uniswap V3 \u2014 but only within the boundaries the human guardian has set (max swap size, daily volume, token whitelist, slippage limits). Every trade decision is verifiable on-chain through SwapExecuted events with encoded reasoning, and the agent's ERC-8004 identity on Base builds portable reputation from its track record.\n\nBuilt with Go, Solidity (ERC-4626 vault), Festival Methodology for autonomous task orchestration, and Uniswap Developer Platform API for trading.",
   "problemStatement": "Autonomous trading agents need trust constraints that can't be bypassed. Current agent-wallet integrations are black boxes \u2014 no reasoning audit trail, no quality gates before irreversible actions, and no verifiable reputation. OBEY solves this with a vault that enforces spending boundaries at the contract level (the agent literally cannot exceed them), structured decision loops with 8 pre-trade risk gates, and ERC-8004 identity that accumulates verifiable on-chain reputation.",
-  "repoURL": "https://github.com/lancekrogers/agent-defi",
+  "repoURL": "https://github.com/lancekrogers/Obey-Agent-Economy",
   "trackUUIDs": [
     "10bd47fac07e4f85bda33ba482695b24",
     "3bf41be958da497bbb69f1a150c76af9",
