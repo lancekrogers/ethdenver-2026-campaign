@@ -6,13 +6,21 @@ bridge_port := env_var_or_default("CRE_BRIDGE_PORT", "8080")
 @default:
     just demo run
 
-# Start demo stack (dashboard + CRE bridge) with mock-safe defaults
+# Build all demo images
+build:
+    @env_file="$(just mode env demo)"; \
+    {{compose}} --env-file "$env_file" --profile agents --profile chainlink build
+
+# Start demo stack (dashboard + coordinator + agents + CRE bridge) with mock-safe defaults
 up:
     @env_file="$(just mode env demo)"; \
     echo "MODE=demo ENV_FILE=$env_file"; \
-    MODE=demo ENV_FILE="$env_file" just docker up; \
-    MODE=demo ENV_FILE="$env_file" {{compose}} --env-file "$env_file" --profile chainlink up -d cre-bridge; \
-    until curl -fsS http://localhost:{{bridge_port}}/health >/dev/null 2>&1; do sleep 1; done
+    MODE=demo ENV_FILE="$env_file" {{compose}} --env-file "$env_file" --profile agents --profile chainlink up -d --build; \
+    echo "Waiting for coordinator health..."; \
+    until curl -fsS http://localhost:8080/health >/dev/null 2>&1; do sleep 1; done; \
+    echo "Waiting for CRE bridge health..."; \
+    until curl -fsS http://localhost:{{bridge_port}}/health >/dev/null 2>&1; do sleep 1; done; \
+    echo "Demo stack ready — dashboard at http://localhost:3000"
 
 # Execute deterministic demo scenarios against local CRE bridge
 run:
@@ -29,14 +37,14 @@ run:
 # Stop demo stack
 down:
     @env_file="$(just mode env demo)"; \
-    MODE=demo ENV_FILE="$env_file" just chainlink down
+    MODE=demo ENV_FILE="$env_file" {{compose}} --env-file "$env_file" --profile agents --profile chainlink down
 
 # Show service status for demo mode
 status:
     @env_file="$(just mode env demo)"; \
-    MODE=demo ENV_FILE="$env_file" just chainlink status
+    MODE=demo ENV_FILE="$env_file" {{compose}} --env-file "$env_file" --profile agents --profile chainlink ps
 
 # Follow logs for demo services
 logs *ARGS:
     @env_file="$(just mode env demo)"; \
-    MODE=demo ENV_FILE="$env_file" just chainlink logs {{ARGS}}
+    MODE=demo ENV_FILE="$env_file" {{compose}} --env-file "$env_file" --profile agents --profile chainlink logs -f {{ARGS}}

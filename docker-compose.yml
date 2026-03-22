@@ -20,6 +20,8 @@ services:
   coordinator:
     build:
       context: ./projects/agent-coordinator
+    ports:
+      - "${WS_PORT:-8080}:8080"
     environment:
       HEDERA_COORDINATOR_ACCOUNT_ID: "${HEDERA_COORDINATOR_ACCOUNT_ID:-}"
       HEDERA_COORDINATOR_PRIVATE_KEY: "${HEDERA_COORDINATOR_PRIVATE_KEY:-}"
@@ -38,7 +40,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     healthcheck:
-      test: ["CMD", "pgrep", "-x", "coordinator"]
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8080/health"]
       interval: 10s
       timeout: 5s
       retries: 3
