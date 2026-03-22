@@ -5,13 +5,15 @@ import { colors, fonts } from "../data/theme";
 interface TitleCardProps {
   title: string;
   subtitle?: string;
+  builtWith?: string;
 }
 
-export const TitleCard: React.FC<TitleCardProps> = ({ title, subtitle }) => {
+export const TitleCard: React.FC<TitleCardProps> = ({ title, subtitle, builtWith }) => {
   const frame = useCurrentFrame();
   const titleOpacity = interpolate(frame, [0, 20], [0, 1], { extrapolateRight: "clamp" });
   const titleY = spring({ frame, fps: 30, config: { damping: 15, stiffness: 80 } });
   const subtitleOpacity = interpolate(frame, [15, 35], [0, 1], { extrapolateRight: "clamp" });
+  const builtWithOpacity = interpolate(frame, [30, 50], [0, 1], { extrapolateRight: "clamp" });
 
   return (
     <div
@@ -50,6 +52,21 @@ export const TitleCard: React.FC<TitleCardProps> = ({ title, subtitle }) => {
           }}
         >
           {subtitle}
+        </div>
+      )}
+      {builtWith && (
+        <div
+          style={{
+            opacity: builtWithOpacity,
+            fontSize: 18,
+            color: colors.blue,
+            marginTop: 24,
+            textAlign: "center",
+            fontFamily: fonts.mono,
+            maxWidth: 900,
+          }}
+        >
+          {builtWith}
         </div>
       )}
     </div>

@@ -16,18 +16,20 @@ export const S6_Closing: React.FC = () => {
     "Uniswap V3",
     "Hedera HCS",
     "Chainlink CRE",
-    "Festival Methodology",
+    "Obey Agent Runtime",
+    "fest CLI (fest.build)",
+    "camp CLI",
     "Claude Opus 4.6",
     "Base L2",
   ];
 
   const tracks = [
-    { name: "Let the Agent Cook", prize: "$8,000" },
-    { name: "Agents With Receipts", prize: "$8,004" },
-    { name: "Agentic Finance", prize: "$5,000" },
-    { name: "Synthesis Open Track", prize: "$19,559" },
-    { name: "Autonomous Trading Agent", prize: "$5,000" },
-    { name: "Go Gasless", prize: "$2,000" },
+    "Let the Agent Cook",
+    "Agents With Receipts",
+    "Agentic Finance",
+    "Synthesis Open Track",
+    "Autonomous Trading Agent",
+    "Go Gasless",
   ];
 
   return (
@@ -56,10 +58,10 @@ export const S6_Closing: React.FC = () => {
           marginBottom: 48,
         }}
       >
-        The agent cooks.{" "}
-        <span style={{ color: colors.blue }}>The vault keeps it honest.</span>
+        The agents obey.{" "}
+        <span style={{ color: colors.blue }}>The vault enforces.</span>
         <br />
-        <span style={{ color: colors.green }}>Every receipt is on-chain.</span>
+        <span style={{ color: colors.green }}>Every decision has a receipt.</span>
       </div>
 
       <div
@@ -111,21 +113,17 @@ export const S6_Closing: React.FC = () => {
       >
         {tracks.map((track, i) => (
           <div
-            key={track.name}
+            key={track}
             style={{
               padding: "12px 20px",
               backgroundColor: colors.bgCard,
               border: `1px solid ${colors.blue}30`,
               borderRadius: 10,
               display: "flex",
-              gap: 12,
               alignItems: "center",
             }}
           >
-            <span style={{ color: colors.text, fontSize: 14 }}>{track.name}</span>
-            <span style={{ color: colors.green, fontSize: 14, fontWeight: 700, fontFamily: fonts.mono }}>
-              {track.prize}
-            </span>
+            <span style={{ color: colors.text, fontSize: 14 }}>{track}</span>
           </div>
         ))}
       </div>
@@ -142,7 +140,7 @@ export const S6_Closing: React.FC = () => {
           }),
         }}
       >
-        github.com/lancekrogers/agent-defi · Built by Obedience Corp
+        obediencecorp.com · fest.build · github.com/lancekrogers/Obey-Agent-Economy
       </div>
     </div>
   );

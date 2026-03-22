@@ -1,18 +1,187 @@
 import React from "react";
-import { useCurrentFrame, interpolate, Sequence, spring } from "remotion";
+import { useCurrentFrame, interpolate, Sequence, spring, AbsoluteFill } from "remotion";
 import { TerminalWindow } from "../components/TerminalWindow";
 import { DecisionCard } from "../components/DecisionCard";
 import { colors, fonts } from "../data/theme";
 
 export const S3_RitualCycle: React.FC = () => {
+  return (
+    <AbsoluteFill style={{ backgroundColor: colors.bg }}>
+      {/* Phase 1: Festival Methodology Loop */}
+      <Sequence from={0} durationInFrames={250}>
+        <AbsoluteFill>
+          <LoopDiagram />
+        </AbsoluteFill>
+      </Sequence>
+
+      {/* Phase 2: Real fest show hierarchy */}
+      <Sequence from={250} durationInFrames={400}>
+        <AbsoluteFill>
+          <FestivalHierarchy />
+        </AbsoluteFill>
+      </Sequence>
+
+      {/* Phase 3: Real ritual run hierarchy */}
+      <Sequence from={650} durationInFrames={400}>
+        <AbsoluteFill>
+          <RitualRunHierarchy />
+        </AbsoluteFill>
+      </Sequence>
+
+      {/* Phase 4: Real decision.json */}
+      <Sequence from={1050} durationInFrames={400}>
+        <AbsoluteFill>
+          <DecisionJsonScene />
+        </AbsoluteFill>
+      </Sequence>
+
+      {/* Phase 5: NO_GO Decision Card */}
+      <Sequence from={1450} durationInFrames={200}>
+        <AbsoluteFill>
+          <NoGoScene />
+        </AbsoluteFill>
+      </Sequence>
+
+      {/* Phase 6: GO Decision Card */}
+      <Sequence from={1650} durationInFrames={150}>
+        <AbsoluteFill>
+          <GoScene />
+        </AbsoluteFill>
+      </Sequence>
+    </AbsoluteFill>
+  );
+};
+
+const FestivalHierarchy: React.FC = () => {
+  // Real output from: fest show all
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 80,
+      }}
+    >
+      <div
+        style={{
+          color: colors.blue,
+          fontSize: 20,
+          textTransform: "uppercase",
+          letterSpacing: 3,
+          marginBottom: 24,
+          fontFamily: fonts.sans,
+          textAlign: "center",
+        }}
+      >
+        fest show all — Live Campaign State
+      </div>
+      <TerminalWindow
+        title="fest show all"
+        typingSpeed={4}
+        lines={[
+          { text: "$ fest show all", delay: 0 },
+          { text: "", delay: 15 },
+          { text: "ALL FESTIVALS ── Total 20", delay: 20, color: colors.textBright },
+          { text: "", delay: 25 },
+          { text: "ACTIVE Festivals (5)", delay: 30, color: colors.green },
+          { text: "  agent-market-research-RI-AM0001-0008 [100%]", delay: 40, color: colors.text },
+          { text: "  agent-market-research-RI-AM0001-0009 [100%]", delay: 48, color: colors.text },
+          { text: "  agent-market-research-RI-AM0001-000A [100%]", delay: 56, color: colors.text },
+          { text: "  agent-market-research-RI-AM0001-000B [100%]", delay: 64, color: colors.text },
+          { text: "  synthesis-fest-ritual-runtime-SF0002 [100%]", delay: 72, color: colors.text },
+          { text: "", delay: 78 },
+          { text: "RITUAL Festivals (1)", delay: 82, color: colors.purple },
+          { text: "  agent-market-research-RI-AM0001 [template]", delay: 90, color: colors.text },
+          { text: "", delay: 96 },
+          { text: "DUNGEON/COMPLETED Festivals (10)", delay: 100, color: colors.textMuted },
+          { text: "  obey-vault-synthesis-OV0001 [100%]", delay: 108, color: colors.textMuted },
+          { text: "  cre-risk-router-planning-CR0001 [100%]", delay: 116, color: colors.textMuted },
+          { text: "  dashboard-DA0001 [100%]  ...+7 more", delay: 124, color: colors.textMuted },
+        ]}
+      />
+      <div
+        style={{
+          color: colors.blue,
+          fontSize: 15,
+          fontFamily: fonts.mono,
+          marginTop: 16,
+          textAlign: "center",
+        }}
+      >
+        This monorepo was scaffolded by camp CLI · Every festival planned with fest CLI
+      </div>
+    </div>
+  );
+};
+
+const RitualRunHierarchy: React.FC = () => {
+  // Real output from: fest show --festival agent-market-research-RI-AM0001-0009
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 80,
+      }}
+    >
+      <div
+        style={{
+          color: colors.purple,
+          fontSize: 20,
+          textTransform: "uppercase",
+          letterSpacing: 3,
+          marginBottom: 24,
+          fontFamily: fonts.sans,
+          textAlign: "center",
+        }}
+      >
+        Ritual Run — Real Agent Decision Pipeline
+      </div>
+      <TerminalWindow
+        title="fest show --festival RI-AM0001-0009"
+        typingSpeed={4}
+        lines={[
+          { text: "$ fest show --festival agent-market-research-RI-AM0001-0009", delay: 0 },
+          { text: "", delay: 20 },
+          { text: "agent-market-research-RI-AM0001-0009  100%", delay: 25, color: colors.green },
+          { text: "├── 001_INGEST  ✓ completed", delay: 35, color: colors.green },
+          { text: "│   ├── ✓ Step 1: QUERY POOL STATE", delay: 42, color: colors.text },
+          { text: "│   ├── ✓ Step 2: COLLECT PRICE HISTORY", delay: 49, color: colors.text },
+          { text: "│   ├── ✓ Step 3: GET VOLUME AND VOLATILITY", delay: 56, color: colors.text },
+          { text: "│   ├── ✓ Step 4: QUERY VAULT STATE", delay: 63, color: colors.text },
+          { text: "│   └── ✓ Step 5: VALIDATE AND PACKAGE", delay: 70, color: colors.text },
+          { text: "├── 002_RESEARCH  ✓ completed", delay: 80, color: colors.green },
+          { text: "│   ├── ✓ Step 1: COMPUTE MOVING AVERAGE", delay: 87, color: colors.text },
+          { text: "│   ├── ✓ Step 2: CALCULATE PRICE DEVIATION", delay: 94, color: colors.text },
+          { text: "│   ├── ✓ Step 3: RUN CRE RISK GATES", delay: 101, color: colors.text },
+          { text: "│   ├── ✓ Step 4: SCORE OPPORTUNITY", delay: 108, color: colors.text },
+          { text: "│   └── ✓ Step 5: SYNTHESIZE FINDINGS", delay: 115, color: colors.text },
+          { text: "└── 003_DECIDE  ✓ completed", delay: 125, color: colors.green },
+          { text: "    └── 01_synthesize_decision  ✓ 6/6 tasks", delay: 132, color: colors.text },
+        ]}
+      />
+    </div>
+  );
+};
+
+const DecisionJsonScene: React.FC = () => {
+  // Real decision.json from RI-AM0001-0009
   const frame = useCurrentFrame();
+  const scale = spring({ frame, fps: 30, config: { damping: 12 } });
 
   return (
     <div
       style={{
         width: "100%",
         height: "100%",
-        backgroundColor: colors.bg,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -20,85 +189,112 @@ export const S3_RitualCycle: React.FC = () => {
         padding: 60,
       }}
     >
-      {/* Phase 1: Loop Diagram */}
-      <Sequence from={0} durationInFrames={300}>
-        <LoopDiagram />
-      </Sequence>
-
-      {/* Phase 2: Terminal - Ritual Execution */}
-      <Sequence from={300} durationInFrames={600}>
-        <div style={{ width: "100%", maxWidth: 1000 }}>
-          <div
-            style={{
-              color: colors.blue,
-              fontSize: 16,
-              textTransform: "uppercase",
-              letterSpacing: 3,
-              marginBottom: 16,
-              fontFamily: fonts.sans,
-            }}
-          >
-            Live Ritual Execution
-          </div>
-          <TerminalWindow
-            title="vault-agent — ritual cycle"
-            lines={[
-              { text: "$ fest ritual run agent-market-research-RI-AM0001 --json", delay: 0 },
-              { text: '{"run_id": "RI-AM0001-0012", "dest_path": ".campaign/quests/..."}', delay: 40, color: colors.cyan },
-              { text: "", delay: 60 },
-              { text: "$ obey session create --festival RI-AM0001-0012 --workdir <run-path>", delay: 70 },
-              { text: 'Session e7f2a1c3 bound to ritual workdir', delay: 110, color: colors.green },
-              { text: "", delay: 120 },
-              { text: "[discover] querying Uniswap V3 WETH/USDC pool...", delay: 130, color: colors.textMuted },
-              { text: "[discover] sampling historical slot0 (30 periods)...", delay: 160, color: colors.textMuted },
-              { text: "[evaluate] running CRE 8-gate risk evaluation...", delay: 190, color: colors.textMuted },
-              { text: "[evaluate] gates passed: 6/8", delay: 220, color: colors.yellow },
-              { text: "[decide]   deviation: +39.91% from SMA", delay: 240, color: colors.orange },
-              { text: "[decide]   confidence: 0.75", delay: 255, color: colors.orange },
-              { text: "[decide]   writing decision.json...", delay: 270, color: colors.textMuted },
-              { text: "[result]   DECISION: GO — SELL signal", delay: 290, color: colors.green },
-            ]}
-            typingSpeed={3}
-          />
-        </div>
-      </Sequence>
-
-      {/* Phase 3: NO_GO Decision */}
-      <Sequence from={900} durationInFrames={350}>
-        <NoGoScene />
-      </Sequence>
-
-      {/* Phase 4: GO Decision */}
-      <Sequence from={1250} durationInFrames={550}>
-        <GoScene />
-      </Sequence>
+      <div
+        style={{
+          color: colors.orange,
+          fontSize: 20,
+          textTransform: "uppercase",
+          letterSpacing: 3,
+          marginBottom: 24,
+          fontFamily: fonts.sans,
+          textAlign: "center",
+          opacity: interpolate(frame, [0, 15], [0, 1], { extrapolateRight: "clamp" }),
+        }}
+      >
+        decision.json — Real Ritual Output
+      </div>
+      <div
+        style={{
+          transform: `scale(${scale})`,
+          backgroundColor: colors.bgTerminal,
+          border: `1px solid ${colors.border}`,
+          borderRadius: 12,
+          padding: 28,
+          fontFamily: fonts.mono,
+          fontSize: 15,
+          lineHeight: 1.9,
+          width: "100%",
+          maxWidth: 1000,
+        }}
+      >
+        <JsonLine frame={frame} delay={5} k="ritual_run_id" v='"agent-market-research-RI-AM0001-0009"' />
+        <JsonLine frame={frame} delay={10} k="decision" v='"GO"' color={colors.green} />
+        <JsonLine frame={frame} delay={15} k="confidence" v="0.75" color={colors.orange} />
+        <JsonLine frame={frame} delay={20} k="rationale.price_deviation_pct" v="39.912%" color={colors.text} />
+        <JsonLine frame={frame} delay={25} k="rationale.deviation_direction" v='"above_ma"' />
+        <JsonLine frame={frame} delay={30} k="rationale.cre_gates_passed" v="6 / 8" />
+        <JsonLine frame={frame} delay={35} k="rationale.failed_gates" v='["risk_score", "price_deviation_vs_oracle"]' color={colors.red} />
+        <JsonLine frame={frame} delay={40} k="rationale.estimated_net_profit_usd" v="$197.56" color={colors.green} />
+        <JsonLine frame={frame} delay={48} k="recommendation.direction" v='"SELL"' color={colors.orange} />
+        <JsonLine frame={frame} delay={53} k="recommendation.suggested_size_usd" v="500" />
+        <JsonLine frame={frame} delay={58} k="recommendation.urgency" v='"high"' color={colors.red} />
+        <JsonLine frame={frame} delay={65} k="vault_constraints_checked" v="within_max_swap ✓  within_daily_volume ✓  token_whitelisted ✓" color={colors.green} />
+        <JsonLine frame={frame} delay={72} k="guardrails.trade_allowed" v="true" color={colors.green} />
+      </div>
+      <div
+        style={{
+          color: colors.textMuted,
+          fontSize: 14,
+          fontFamily: fonts.mono,
+          marginTop: 16,
+          textAlign: "center",
+          opacity: interpolate(frame - 80, [0, 15], [0, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          }),
+        }}
+      >
+        festivals/active/agent-market-research-RI-AM0001-0009/003_DECIDE/.../decision.json
+      </div>
     </div>
   );
 };
+
+const JsonLine: React.FC<{ frame: number; delay: number; k: string; v: string; color?: string }> = ({
+  frame,
+  delay,
+  k,
+  v,
+  color = colors.text,
+}) => (
+  <div
+    style={{
+      opacity: interpolate(frame - delay, [0, 8], [0, 1], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      }),
+    }}
+  >
+    <span style={{ color: colors.cyan }}>{`"${k}"`}</span>
+    <span style={{ color: colors.textMuted }}>: </span>
+    <span style={{ color }}>{v}</span>
+  </div>
+);
 
 const NoGoScene: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <div
       style={{
+        width: "100%",
+        height: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "100%",
-        gap: 24,
+        gap: 32,
       }}
     >
       <div
         style={{
           color: colors.textMuted,
-          fontSize: 18,
+          fontSize: 28,
           fontFamily: fonts.sans,
           textAlign: "center",
           opacity: interpolate(frame, [0, 20], [0, 1], { extrapolateRight: "clamp" }),
         }}
       >
-        The agent decided NOT to trade. That's the point.
+        A NO_GO is just as valuable as a profitable trade.
       </div>
       <DecisionCard
         decision="NO_GO"
@@ -118,24 +314,25 @@ const GoScene: React.FC = () => {
   return (
     <div
       style={{
+        width: "100%",
+        height: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "100%",
-        gap: 24,
+        gap: 32,
       }}
     >
       <div
         style={{
           color: colors.green,
-          fontSize: 18,
+          fontSize: 28,
           fontFamily: fonts.sans,
           textAlign: "center",
           opacity: interpolate(frame, [0, 20], [0, 1], { extrapolateRight: "clamp" }),
         }}
       >
-        Strong signal detected — executing within vault boundaries
+        GO — executing within vault boundaries
       </div>
       <DecisionCard
         decision="GO"
@@ -157,27 +354,28 @@ const LoopDiagram: React.FC = () => {
   return (
     <div
       style={{
+        width: "100%",
+        height: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "100%",
         fontFamily: fonts.sans,
       }}
     >
       <div
         style={{
           color: colors.textMuted,
-          fontSize: 16,
+          fontSize: 20,
           textTransform: "uppercase",
           letterSpacing: 3,
-          marginBottom: 32,
+          marginBottom: 48,
           opacity: interpolate(frame, [0, 15], [0, 1], { extrapolateRight: "clamp" }),
         }}
       >
-        Festival Methodology — Autonomous Decision Loop
+        Festival Methodology — fest.build
       </div>
-      <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+      <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
         {steps.map((step, i) => {
           const stepDelay = i * 15;
           const stepScale = spring({
@@ -198,22 +396,21 @@ const LoopDiagram: React.FC = () => {
                   backgroundColor: colors.bgCard,
                   border: `2px solid ${stepColors[i]}`,
                   borderRadius: 16,
-                  padding: "24px 36px",
+                  padding: "32px 48px",
                   textAlign: "center",
                   boxShadow: activeGlow,
-                  transition: "box-shadow 0.3s",
                 }}
               >
-                <div style={{ color: stepColors[i], fontSize: 14, letterSpacing: 2, marginBottom: 4 }}>
+                <div style={{ color: stepColors[i], fontSize: 16, letterSpacing: 2, marginBottom: 6 }}>
                   0{i + 1}
                 </div>
-                <div style={{ color: colors.textBright, fontSize: 22, fontWeight: 700 }}>{step}</div>
+                <div style={{ color: colors.textBright, fontSize: 28, fontWeight: 700 }}>{step}</div>
               </div>
               {i < steps.length - 1 && (
                 <div
                   style={{
                     color: colors.textMuted,
-                    fontSize: 28,
+                    fontSize: 36,
                     opacity: interpolate(frame - (stepDelay + 10), [0, 10], [0, 1], {
                       extrapolateLeft: "clamp",
                       extrapolateRight: "clamp",
@@ -230,12 +427,12 @@ const LoopDiagram: React.FC = () => {
       <div
         style={{
           color: colors.textMuted,
-          fontSize: 16,
-          marginTop: 32,
+          fontSize: 20,
+          marginTop: 48,
           opacity: interpolate(frame, [80, 100], [0, 1], { extrapolateRight: "clamp" }),
         }}
       >
-        Every cycle creates a real ritual run with auditable artifacts
+        fest CLI and camp CLI orchestrate every cycle — from project scaffolding to agent decisions
       </div>
     </div>
   );
