@@ -1,0 +1,61 @@
+{
+  "name": "OBEY Vault Agent",
+  "description": "Autonomous trading agent with human-controlled spending boundaries (ERC-4626 vault) and verifiable decision orchestration via Festival Methodology. Every decision follows a structured discover-plan-execute-verify loop with 8 pre-trade risk gates.",
+  "operator_wallet": "0xC71d8A19422C649fe9bdCbF3ffA536326c82b58b",
+  "erc8004_identity": "0x0C97820abBdD2562645DaE92D35eD581266CCe70",
+  "erc8004_registration_tx": "0x9b31bd785dd7b12649d9d12379546c268aea1da6e0060777bed6276cf8e4002a",
+  "supported_tools": [
+    "uniswap_v3_trading_api",
+    "uniswap_v3_pool_query",
+    "uniswap_v3_twap_oracle",
+    "cre_risk_router_8gate",
+    "obey_vault_execute_swap",
+    "obey_vault_state_query",
+    "erc8004_identity_registry",
+    "hedera_hcs_messaging"
+  ],
+  "tech_stack": {
+    "language": "Go",
+    "runtime": "go1.22+",
+    "frameworks": [
+      "go-ethereum",
+      "hiero-sdk-go"
+    ],
+    "chains": [
+      "Base (8453)",
+      "Base Sepolia (84532)",
+      "Hedera Testnet"
+    ],
+    "contracts": [
+      "ObeyVault (ERC-4626) — 0xbAbDd92397Cd812593e79A5b4c2a32bB4aDb06b1",
+      "AgentIdentityRegistry (ERC-8004) — 0x0C97820abBdD2562645DaE92D35eD581266CCe70",
+      "AgentSettlement — 0xa5378FbDCD2799C549A559C1C7c1F91D7C983A44",
+      "ReputationDecay — 0x54734cC3AF4Db984cD827f967BaF6C64DEAEd0B1",
+      "RiskDecisionReceipt — 0x9C7Aa5502ad229c80894E272Be6d697Fd02001d7"
+    ],
+    "agent_harness": "obey by obedience corp",
+    "model": "claude-opus-4-6",
+    "planning_framework": "Festival Methodology (fest CLI)"
+  },
+  "compute_constraints": {
+    "max_trading_interval_seconds": 300,
+    "max_daily_volume_usd": 10000,
+    "max_swap_size_usd": 1000,
+    "max_slippage_bps": 100,
+    "risk_gate_count": 8,
+    "ritual_execution_target_seconds": 15
+  },
+  "task_categories": [
+    "market_research",
+    "risk_evaluation",
+    "trade_execution",
+    "portfolio_monitoring",
+    "reputation_building"
+  ],
+  "safety_guardrails": {
+    "vault_boundary_enforcement": "Contract-level: token whitelist, max swap size, daily volume cap, slippage limit, pause",
+    "cre_risk_gates": "8-gate pre-trade evaluation: hold signal, confidence threshold, risk score ceiling, signal staleness, oracle health, price deviation, position sizing, heartbeat breaker",
+    "human_override": "Guardian can pause vault, change agent address, update all limits at any time",
+    "no_go_defaults": "Agent defaults to NO_GO when quality gates fail or signals are ambiguous"
+  }
+}

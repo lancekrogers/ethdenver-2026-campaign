@@ -31,3 +31,5 @@ Thumbs.db
 ai_docs/bugs/*
 workflow/explore/cre-demo/evidence/latest/
 workflow/explore/cre-demo/runs/
+
+*.mp4
