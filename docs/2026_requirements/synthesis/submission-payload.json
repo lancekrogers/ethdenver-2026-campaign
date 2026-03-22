@@ -44,6 +44,7 @@
     ],
     "intention": "continuing",
     "intentionNotes": "OBEY is an active project exploring autonomous agent economies with human-controlled boundaries. Post-hackathon: mainnet deployment, expanded strategy universe, multi-agent coordination via Hedera HCS.",
-    "agentFrameworkOther": "obey by obedience corp (custom Go runtime + fest CLI)"
+    "agentFrameworkOther": "obey by obedience corp (custom Go runtime + fest CLI)",
+    "moltbookPostURL": "https://www.moltbook.com/post/8b709a33-0f05-4cdd-870d-ef0ba82c5b59"
   }
 }
