@@ -67,7 +67,7 @@ export const S5_MultiChain: React.FC = () => {
         }}
       >
         <StatBlock label="Contracts Deployed" value="8" />
-        <StatBlock label="ERC Standards" value="4626 · 8004 · 7857" />
+        <StatBlock label="ERC Standards" value="4626 · 8004 · 8021 · x402" />
         <StatBlock label="Agent Accounts" value="3" />
         <StatBlock label="HCS Topics" value="2" />
       </div>

@@ -2,11 +2,12 @@
 fest_type: festival
 fest_id: SF0002
 fest_name: synthesis-fest-ritual-runtime
-fest_status: active
+fest_status: completed
 fest_created: 2026-03-18T07:25:57.504332-06:00
-fest_updated: 2026-03-18T23:20:06.70116-06:00
+fest_updated: 2026-03-22T15:58:43.091698-06:00
 fest_tracking: true
 ---
+
 
 
 

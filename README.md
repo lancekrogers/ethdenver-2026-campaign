@@ -4,17 +4,29 @@
 
 ### Verified Working Integrations
 
-| Chain / Platform | What's Live | Network |
-|-----------------|-------------|---------|
-| **Base** | ERC-4626 vault, Uniswap V3 swaps, ERC-8004 identity, ERC-8021 attribution, x402 payments | Sepolia + Mainnet |
-| **Hedera / Hiero** | HCS messaging (70+ msgs), HTS token settlement, Schedule Service (HIP-1215) | Testnet |
-| **0G** | Compute (GPU inference), Storage, Data Availability, ERC-7857 iNFT | Galileo Testnet |
-| **Chainlink** | CRE Risk Router — 8-gate DON consensus, on-chain decision receipts | Ethereum Sepolia |
-| **Ethereum** | CRE risk evaluation transactions, L1 bridge funding | Sepolia |
-| **Status Network** | ERC-8004 agent identity — gasless deploy + registration (gas=0) | Sepolia |
-| **Uniswap** | V3 SwapRouter swaps, Developer Platform Trading API | Base Sepolia |
+| Chain / Protocol | What's Deployed & Proven On-Chain | Network |
+|-----------------|----------------------------------|---------|
+| **Base** | ERC-4626 vault, Uniswap V3 E2E swap, ERC-8004 identity registry, ERC-8021 attribution, x402 payments | Sepolia + Mainnet |
+| **Hedera / Hiero** | HCS inter-agent messaging (70+ msgs), HTS token settlement (AGNT), Schedule Service (HIP-1215) | Testnet |
+| **0G** | 3 contracts deployed (Settlement, Reputation, iNFT), Compute provider discovery, Storage anchoring, DA audit trail | Galileo Testnet |
+| **Chainlink** | CRE Risk Router — 8-gate sequential evaluation, DON consensus broadcast, RiskDecisionReceipt contract | Ethereum Sepolia |
+| **Ethereum** | CRE risk evaluation txs, L1→L2 bridge funding | Sepolia |
+| **Status Network** | ERC-8004 AgentIdentityRegistry — gasless contract deploy + agent registration (gas=0) | Sepolia |
+| **Uniswap** | V3 SwapRouter `exactInputSingle` (verified swap tx), Developer Platform Trading API client | Base Sepolia |
+| **Solana** | Prediction market adapters (Drift BET), Bags.fm token integration, Anchor vault programs | Planned / Scaffolded |
 
-**90+ verified transactions** across 5 chains. All contracts deployed and operational on live testnets.
+**90+ verified transactions** across 6 chains. All contracts deployed and operational on live testnets.
+
+## Key Artifacts
+
+| Artifact | Path | Description |
+|----------|------|-------------|
+| Agent manifest | [`agent.json`](agent.json) | Machine-readable capability manifest (DevSpot format) |
+| Execution log | [`projects/agent-defi/agent_log.json`](projects/agent-defi/agent_log.json) | Structured log with GO/NO_GO decisions, tool calls, on-chain execution |
+| Conversation log | [`conversationLog.json`](conversationLog.json) | Human-agent collaboration transcript |
+| Ritual decisions | [`festivals/active/agent-market-research-RI-AM0001-*/003_DECIDE/.../decision.json`](festivals/active/) | Real ritual output with confidence, CRE gates, guardrails |
+| Deployment evidence | [`projects/contracts/deployments/base-sepolia.json`](projects/contracts/deployments/base-sepolia.json) | Contract addresses and deployment tx hashes |
+| Festival planning | [`festivals/`](festivals/) | Full festival methodology artifacts — active, completed, rituals |
 
 ## Overview
 
@@ -30,7 +42,7 @@ Five specialized Go agents operate across Hedera, Base, 0G, Ethereum, and Solana
 
 Agents register on-chain identities via [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004), pay for their own operational costs via [x402](https://x402.org), attribute transactions to their builder via [ERC-8021](https://eips.ethereum.org/EIPS/eip-8021), and coordinate through an immutable HCS audit trail. The entire system is planned and executed using the [Festival Methodology](https://fest.build) — a human-AI collaboration framework where every phase of work is decomposed, tracked, and verifiable.
 
-**90+ verified transactions** across 5 chains. All contracts deployed and operational on live testnets.
+**90+ verified transactions** across 6 chains. All contracts deployed and operational on live testnets.
 
 ## Dashboard
 
@@ -171,7 +183,7 @@ If ports are in use, set `DASHBOARD_PORT` and/or `CRE_BRIDGE_PORT` in `.env.dock
 
 ## On-Chain Evidence
 
-All contracts and agent operations have been deployed and executed on live testnets across 5 chains. **90+ verified transactions** demonstrate the system working end-to-end.
+All contracts and agent operations have been deployed and executed on live testnets across 6 chains. **90+ verified transactions** demonstrate the system working end-to-end.
 
 ### Base Mainnet (Chain ID 8453)
 
@@ -239,11 +251,15 @@ Wallet: `0x38CB2E2eeb45E6F70D267053DcE3815869a8C44d`
 ### Ethereum Sepolia (Chain ID 11155111)
 
 **CRE Risk Router contract:** `0x9C7Aa5502ad229c80894E272Be6d697Fd02001d7`
+**CRE Forwarder (DON relay):** `0x15fC6ae953E024d975e77382eEeC56A9101f9F88`
 
 | Operation | Tx |
 |-----------|-----|
-| CRE risk evaluation (Chainlink DON consensus) | [`0xea6784...`](https://sepolia.etherscan.io/tx/0xea6784a79fd108cfb4fc07127ab19b2c9f2a90867fcccc47b339e685fe3169c4) |
-| CRE risk evaluation (Chainlink DON consensus) | [`0x0c7292...`](https://sepolia.etherscan.io/tx/0x0c72922fd8e31f859dc5ce30364d87e86c939f7c2a2282899db11b65242dabd1) |
+| Deploy RiskDecisionReceipt | [`0x36c066...`](https://sepolia.etherscan.io/tx/0x36c066ba6a3d29abf6888382d5c44c014c7bff4443895cf6a7c84092c4314b46) |
+| CRE DON consensus broadcast | [`0xd8505f...`](https://sepolia.etherscan.io/tx/0xd8505ff76caa1e2d17b2ee49b625048f353359fabf68f02abedc9fda87360458) |
+| CRE DON consensus broadcast | [`0x4cd1d6...`](https://sepolia.etherscan.io/tx/0x4cd1d6664747b5e2c53f1e10b819b50d437827d632212d204d941b1130c068f2) |
+| CRE risk evaluation | [`0xea6784...`](https://sepolia.etherscan.io/tx/0xea6784a79fd108cfb4fc07127ab19b2c9f2a90867fcccc47b339e685fe3169c4) |
+| CRE risk evaluation | [`0x0c7292...`](https://sepolia.etherscan.io/tx/0x0c72922fd8e31f859dc5ce30364d87e86c939f7c2a2282899db11b65242dabd1) |
 
 ### Status Network Sepolia (Chain ID 1660990954)
 
@@ -259,12 +275,12 @@ Gasless chain — all transactions execute with gas price = 0.
 | Chain | Transactions | Contracts | Key Proof |
 |-------|-------------|-----------|-----------|
 | Base Mainnet | 1 | — | ERC-8004 identity registration |
-| Base Sepolia | 11+ | 5 | ObeyVault + Uniswap V3 E2E swap |
-| Hedera Testnet | 70+ | — (native services) | HCS messaging, HTS token settlement |
-| 0G Galileo | 3 | 3 + 3 system contracts | Settlement, Reputation, iNFT |
-| Ethereum Sepolia | 2+ | 1 (RiskDecisionReceipt) | CRE risk evaluation via Chainlink DON |
+| Base Sepolia | 11+ | 5 (Vault, Identity, Settlement, Reputation, iNFT) | ObeyVault E2E swap via Uniswap V3 |
+| Hedera Testnet | 70+ | — (native HCS/HTS/Schedule) | Inter-agent messaging, AGNT token settlement |
+| 0G Galileo | 3 | 3 deployed + 3 system contracts | Settlement, Reputation, ERC-7857 iNFT |
+| Ethereum Sepolia | 5+ | 1 (RiskDecisionReceipt) + 1 (CRE Forwarder) | Chainlink DON consensus broadcasts |
 | Status Network Sepolia | 2 | 1 (AgentIdentityRegistry) | Gasless deploy + registration |
-| **Total** | **90+** | **10 deployed** | |
+| **Total** | **90+** | **10 deployed + 4 system** | **6 chains** |
 
 Full evidence manifest: [`workflow/explore/grant-research/2026-03-11/evidence-manifest.md`](workflow/explore/grant-research/2026-03-11/evidence-manifest.md)
 
@@ -357,16 +373,19 @@ A TypeScript Hiero CLI plugin (`hcli camp`) that extends the Hiero CLI with work
 
 ## Projects
 
-| Project | Description | Repo |
-|---------|-------------|------|
-| agent-coordinator | Orchestrates agents via HCS, manages HTS payments | [GitHub](https://github.com/lancekrogers/agent-coordinator) |
-| agent-defi | Executes DeFi strategies on Base, ERC-8004/x402/ERC-8021 | [GitHub](https://github.com/lancekrogers/agent-defi) |
-| agent-inference | Routes inference to 0G Compute, maintains ERC-7857 iNFT | [GitHub](https://github.com/lancekrogers/agent-inference) |
-| agent-prediction | Prediction market agent — Drift BET, Polymarket, Limitless | [GitHub](https://github.com/lancekrogers/agent-prediction) |
-| contracts | Solidity contracts for settlement, reputation, and vaults | [GitHub](https://github.com/lancekrogers/contracts) |
-| cre-risk-router | Chainlink CRE on-chain risk decision layer (8-gate router) | [GitHub](https://github.com/lancekrogers/cre-risk-router) |
-| dashboard | Next.js observer UI for real-time agent monitoring | [GitHub](https://github.com/lancekrogers/dashboard) |
-| hiero-plugin | Hiero CLI plugin for camp workspace management | [GitHub](https://github.com/lancekrogers/hiero-plugin) |
+| Project | Description | Status | Repo |
+|---------|-------------|--------|------|
+| agent-coordinator | Orchestrates agents via HCS, manages HTS payments | Working | [GitHub](https://github.com/lancekrogers/agent-coordinator) |
+| agent-defi | Executes DeFi strategies on Base, ERC-8004/x402/ERC-8021 | Working | [GitHub](https://github.com/lancekrogers/agent-defi) |
+| agent-inference | Routes inference to 0G Compute, maintains ERC-7857 iNFT | Code complete | [GitHub](https://github.com/lancekrogers/agent-inference) |
+| agent-prediction | Prediction market agent — Drift BET, Polymarket, Limitless | Scaffolded | [GitHub](https://github.com/lancekrogers/agent-prediction) |
+| agent-bags | Bags.fm OBEY token lifecycle, fee claiming, Solana/Meteora | Scaffolded | [GitHub](https://github.com/lancekrogers/agent-bags) |
+| contracts | Solidity contracts for settlement, reputation, and vaults | Deployed | [GitHub](https://github.com/lancekrogers/contracts) |
+| cre-risk-router | Chainlink CRE on-chain risk decision layer (8-gate router) | Deployed | [GitHub](https://github.com/lancekrogers/cre-risk-router) |
+| obey-platform | Solana/Anchor vault programs (registry, vault, NAV, fees) | Spec'd | [GitHub](https://github.com/lancekrogers/obey-platform) |
+| dashboard | Next.js observer UI for real-time agent monitoring | Working | [GitHub](https://github.com/lancekrogers/dashboard) |
+| hiero-plugin | Hiero CLI plugin for camp workspace management (5 templates) | Working | [GitHub](https://github.com/lancekrogers/hiero-plugin) |
+| obey-demo-video | Remotion procedural video renderer for hackathon demo | Ready | [GitHub](https://github.com/lancekrogers/obey-demo-video) |
 
 ## Tech Stack
 
