@@ -9,9 +9,9 @@
 | **Base** | ERC-4626 vault, Uniswap V3 E2E swap, ERC-8004 identity registry, ERC-8021 attribution, x402 payments | Sepolia + Mainnet |
 | **Hedera / Hiero** | HCS inter-agent messaging (70+ msgs), HTS token settlement (AGNT), Schedule Service (HIP-1215) | Testnet |
 | **0G** | 3 contracts deployed (Settlement, Reputation, iNFT), Compute provider discovery, Storage anchoring, DA audit trail | Galileo Testnet |
-| **Chainlink** | CRE Risk Router — 8-gate sequential evaluation, DON consensus broadcast, RiskDecisionReceipt contract | Ethereum Sepolia |
+| **Chainlink** | CRE Risk Router: 8-gate sequential evaluation, DON consensus broadcast, RiskDecisionReceipt contract | Ethereum Sepolia |
 | **Ethereum** | CRE risk evaluation txs, L1→L2 bridge funding | Sepolia |
-| **Status Network** | ERC-8004 AgentIdentityRegistry — gasless contract deploy + agent registration (gas=0) | Sepolia |
+| **Status Network** | ERC-8004 AgentIdentityRegistry, gasless contract deploy + agent registration (gas=0) | Sepolia |
 | **Uniswap** | V3 SwapRouter `exactInputSingle` (verified swap tx), Developer Platform Trading API client | Base Sepolia |
 | **Solana** | Prediction market adapters (Drift BET), Bags.fm token integration, Anchor vault programs | Planned / Scaffolded |
 
@@ -44,21 +44,21 @@ Each project lives in its own repository and is included here as a git submodule
 | Conversation log | [`conversationLog.json`](conversationLog.json) | Human-agent collaboration transcript |
 | Ritual decisions | [`festivals/active/agent-market-research-RI-AM0001-*/003_DECIDE/.../decision.json`](festivals/active/) | Real ritual output with confidence, CRE gates, guardrails |
 | Deployment evidence | [`projects/contracts/deployments/base-sepolia.json`](projects/contracts/deployments/base-sepolia.json) | Contract addresses and deployment tx hashes |
-| Festival planning | [`festivals/`](festivals/) | Full festival methodology artifacts — active, completed, rituals |
+| Festival planning | [`festivals/`](festivals/) | Full festival methodology artifacts (active, completed, rituals) |
 
 ## Overview
 
-The Obey Agent Economy is a multi-chain autonomous AI agent system where every agent operates within human-defined spending boundaries enforced at the smart contract level. Agents can trade, predict, infer, and coordinate — but they cannot exceed the limits their human guardian has set. Every decision is verifiable on-chain with full reasoning trails.
+The Obey Agent Economy is a multi-chain autonomous AI agent system where every agent operates within human-defined spending boundaries enforced at the smart contract level. Agents can trade, predict, infer, and coordinate, but they cannot exceed the limits their human guardian has set. Every decision is verifiable on-chain with full reasoning trails.
 
 Five specialized Go agents operate across Hedera, Base, 0G, Ethereum, and Solana:
 
-- **Coordinator** — dispatches tasks and settles payments over Hedera Consensus Service (HCS)
-- **DeFi Agent** — trades USDC/WETH on Uniswap V3 via an ERC-4626 vault with enforced boundaries (max swap size, daily volume, slippage limits, token whitelist)
-- **Prediction Agent** — trades binary outcomes on Drift BET, Polymarket, and Limitless using Claude-powered market analysis
-- **Inference Agent** — executes AI compute on 0G's decentralized GPU network, mints ERC-7857 iNFTs for inference provenance
-- **CRE Risk Router** — evaluates every trade signal through 8 sequential risk gates via Chainlink DON consensus, writing immutable decision receipts on-chain
+- **Coordinator**: dispatches tasks and settles payments over Hedera Consensus Service (HCS)
+- **DeFi Agent**: trades USDC/WETH on Uniswap V3 via an ERC-4626 vault with enforced boundaries (max swap size, daily volume, slippage limits, token whitelist)
+- **Prediction Agent**: trades binary outcomes on Drift BET, Polymarket, and Limitless using Claude-powered market analysis
+- **Inference Agent**: executes AI compute on 0G's decentralized GPU network, mints ERC-7857 iNFTs for inference provenance
+- **CRE Risk Router**: evaluates every trade signal through 8 sequential risk gates via Chainlink DON consensus, writing immutable decision receipts on-chain
 
-Agents register on-chain identities via [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004), pay for their own operational costs via [x402](https://x402.org), attribute transactions to their builder via [ERC-8021](https://eips.ethereum.org/EIPS/eip-8021), and coordinate through an immutable HCS audit trail. The entire system is planned and executed using the [Festival Methodology](https://fest.build) — a human-AI collaboration framework where every phase of work is decomposed, tracked, and verifiable.
+Agents register on-chain identities via [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004), pay for their own operational costs via [x402](https://x402.org), attribute transactions to their builder via [ERC-8021](https://eips.ethereum.org/EIPS/eip-8021), and coordinate through an immutable HCS audit trail. The entire system is planned and executed using the [Festival Methodology](https://fest.build), a human-AI collaboration framework where every phase of work is decomposed, tracked, and verifiable.
 
 **90+ verified transactions** across 6 chains. All contracts deployed and operational on live testnets.
 
@@ -97,7 +97,7 @@ The daemon aggregates gRPC events from all agents into a single WebSocket stream
 This campaign was created and managed using Obedience Corp's developer tooling:
 
 - **[camp](https://github.com/obedience-corp/camp)** - Campaign CLI for multi-project orchestration. Camp manages the workspace layout, git submodules, navigation shortcuts, and project lifecycle across all eight repositories in this submission.
-- **[festival](https://github.com/obedience-corp/festival)** ([fest.build](https://fest.build)) - The Festival Methodology for human-AI collaborative project execution. Packages both the [`fest`](https://github.com/obedience-corp/fest) and [`camp`](https://github.com/obedience-corp/camp) CLIs with full documentation on the why and how — not just the tools. Every phase of this build was planned, decomposed, and tracked as festivals. See [`festivals/`](festivals/) for the planning artifacts.
+- **[festival](https://github.com/obedience-corp/festival)** ([fest.build](https://fest.build)) - The Festival Methodology for human-AI collaborative project execution. Packages both the [`fest`](https://github.com/obedience-corp/fest) and [`camp`](https://github.com/obedience-corp/camp) CLIs with full documentation on the why and how, not just the tools. Every phase of this build was planned, decomposed, and tracked as festivals. See [`festivals/`](festivals/) for the planning artifacts.
 - **[obey](https://github.com/obedience-corp/obey)** - Daemon that orchestrates agent sessions within the campaign sandbox, providing sandboxed command execution, event routing, and session lifecycle management.
 
 This repository - its git history, submodule structure, `festivals/` planning directory, and `workflow/` design documents - is a live example of what these products can do.
@@ -281,20 +281,20 @@ Wallet: `0x38CB2E2eeb45E6F70D267053DcE3815869a8C44d`
 
 ### Status Network Sepolia (Chain ID 1660990954)
 
-Gasless chain — all transactions execute with gas price = 0.
+Gasless chain. All transactions execute with gas price = 0.
 
 | Operation | Address / Tx |
 |-----------|-------------|
-| Deploy AgentIdentityRegistry (ERC-8004) | Contract: `0xa5378FbDCD2799C549A559C1C7c1F91D7C983A44` — [`0xe1a15d...`](https://sepoliascan.status.network/tx/0xe1a15d56b07572f4e33573aea81620e20e6f52efbd00b59d748c613dfc1083fa) |
+| Deploy AgentIdentityRegistry (ERC-8004) | `0xa5378FbDCD2799C549A559C1C7c1F91D7C983A44` [`0xe1a15d...`](https://sepoliascan.status.network/tx/0xe1a15d56b07572f4e33573aea81620e20e6f52efbd00b59d748c613dfc1083fa) |
 | Register OBEY agent identity (gasless) | [`0x9a3719...`](https://sepoliascan.status.network/tx/0x9a371934e636586c234795ca5bcf0eeb6bc235634fb995ef3d4cee7f5998013c) |
 
 ### Evidence Summary
 
 | Chain | Transactions | Contracts | Key Proof |
 |-------|-------------|-----------|-----------|
-| Base Mainnet | 1 | — | ERC-8004 identity registration |
+| Base Mainnet | 1 | - | ERC-8004 identity registration |
 | Base Sepolia | 11+ | 5 (Vault, Identity, Settlement, Reputation, iNFT) | ObeyVault E2E swap via Uniswap V3 |
-| Hedera Testnet | 70+ | — (native HCS/HTS/Schedule) | Inter-agent messaging, AGNT token settlement |
+| Hedera Testnet | 70+ | native HCS/HTS/Schedule | Inter-agent messaging, AGNT token settlement |
 | 0G Galileo | 3 | 3 deployed + 3 system contracts | Settlement, Reputation, ERC-7857 iNFT |
 | Ethereum Sepolia | 5+ | 1 (RiskDecisionReceipt) + 1 (CRE Forwarder) | Chainlink DON consensus broadcasts |
 | Status Network Sepolia | 2 | 1 (AgentIdentityRegistry) | Gasless deploy + registration |
@@ -379,7 +379,7 @@ Data flows in priority order: Hub WebSocket (primary), direct daemon gRPC (dev f
 
 Five Solidity contracts deployed to 0G Galileo and Base Sepolia:
 
-- **ObeyVault.sol**: ERC-4626 vault with agent-enforced spending boundaries — token whitelist, max swap size, daily volume cap, slippage limits, guardian pause. Executes Uniswap V3 swaps with TWAP oracle NAV pricing.
+- **ObeyVault.sol**: ERC-4626 vault with agent-enforced spending boundaries: token whitelist, max swap size, daily volume cap, slippage limits, guardian pause. Executes Uniswap V3 swaps with TWAP oracle NAV pricing.
 - **AgentSettlement.sol**: Accumulates pending inter-agent payments and batch-settles via HIP-1215 scheduled transactions (Hedera Track 2)
 - **ReputationDecay.sol**: Tracks agent activity timestamps and schedules periodic reputation score decay for inactive agents (Hedera Track 2)
 - **AgentINFT.sol**: ERC-7857 iNFT for agent inference provenance - stores encrypted metadata, result hashes, and DA references on 0G Chain

@@ -4,10 +4,13 @@ fest_id: 01_capture_demo_gif_for_submission.md
 fest_name: capture demo gif for submission
 fest_parent: 06_end_to_end_verification
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
+fest_created: 0001-01-01T00:00:00Z
+fest_updated: 2026-03-22T17:06:40.185075-06:00
 fest_tracking: true
 ---
+
 
 # Task: Capture Demo GIF for Submission
 
