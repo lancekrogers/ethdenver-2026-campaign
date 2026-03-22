@@ -30,6 +30,7 @@ services:
       HTS_PAYMENT_TOKEN_ID: "${HTS_PAYMENT_TOKEN_ID:-}"
       CRE_ENDPOINT: "${CRE_ENDPOINT:-http://cre-bridge:8080}"
       FEST_POLL_INTERVAL_SECONDS: "60"
+      MOCK_HCS: "${MOCK_HCS:-true}"
       FEST_FALLBACK_ALLOW_SYNTHETIC: "true"
       DAEMON_ADDRESS: "host.docker.internal:50051"
     profiles: [agents]
