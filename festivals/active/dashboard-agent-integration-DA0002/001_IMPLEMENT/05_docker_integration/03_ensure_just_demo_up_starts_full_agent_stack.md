@@ -4,10 +4,13 @@ fest_id: 01_ensure_just_demo_up_starts_full_agent_stack.md
 fest_name: ensure just demo up starts full agent stack
 fest_parent: 05_docker_integration
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
+fest_created: 0001-01-01T00:00:00Z
+fest_updated: 2026-03-22T16:28:54.862347-06:00
 fest_tracking: true
 ---
+
 
 # Task: Ensure just demo up Starts Full Agent Stack
 

@@ -17,7 +17,7 @@ up:
     echo "MODE=demo ENV_FILE=$env_file"; \
     MODE=demo ENV_FILE="$env_file" {{compose}} --env-file "$env_file" --profile agents --profile chainlink up -d --build; \
     echo "Waiting for coordinator health..."; \
-    until curl -fsS http://localhost:8080/health >/dev/null 2>&1; do sleep 1; done; \
+    until curl -fsS http://localhost:8081/health >/dev/null 2>&1; do sleep 1; done; \
     echo "Waiting for CRE bridge health..."; \
     until curl -fsS http://localhost:{{bridge_port}}/health >/dev/null 2>&1; do sleep 1; done; \
     echo "Demo stack ready — dashboard at http://localhost:3000"

@@ -4,10 +4,13 @@ fest_id: 01_wire_agent_inference_events_to_coordinator.md
 fest_name: wire agent inference events to coordinator
 fest_parent: 04_agent_event_routing
 fest_order: 2
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
+fest_created: 0001-01-01T00:00:00Z
+fest_updated: 2026-03-22T16:27:27.030491-06:00
 fest_tracking: true
 ---
+
 
 # Task: Wire Agent Inference Events to Coordinator
 

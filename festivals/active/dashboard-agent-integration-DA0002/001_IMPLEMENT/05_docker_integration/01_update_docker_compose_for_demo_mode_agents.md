@@ -4,10 +4,13 @@ fest_id: 01_update_docker_compose_for_demo_mode_agents.md
 fest_name: update docker compose for demo mode agents
 fest_parent: 05_docker_integration
 fest_order: 3
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
+fest_created: 0001-01-01T00:00:00Z
+fest_updated: 2026-03-22T16:28:54.771693-06:00
 fest_tracking: true
 ---
+
 
 # Task: Update Docker Compose for Demo Mode Agents
 

@@ -4,10 +4,13 @@ fest_id: 01_wire_cre_risk_router_events_to_coordinator.md
 fest_name: wire cre risk router events to coordinator
 fest_parent: 04_agent_event_routing
 fest_order: 3
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
+fest_created: 0001-01-01T00:00:00Z
+fest_updated: 2026-03-22T16:27:26.986622-06:00
 fest_tracking: true
 ---
+
 
 # Task: Wire CRE Risk Router Events to Coordinator
 

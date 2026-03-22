@@ -4,10 +4,13 @@ fest_id: 01_add_vault_decision_events_from_ritual_pipeline.md
 fest_name: add vault decision events from ritual pipeline
 fest_parent: 04_agent_event_routing
 fest_order: 1
-fest_status: pending
+fest_status: completed
 fest_autonomy: medium
+fest_created: 0001-01-01T00:00:00Z
+fest_updated: 2026-03-22T16:27:27.075737-06:00
 fest_tracking: true
 ---
+
 
 # Task: Add Vault Decision Events from Ritual Pipeline
 

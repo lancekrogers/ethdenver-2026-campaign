@@ -17,6 +17,24 @@
 
 **90+ verified transactions** across 6 chains. All contracts deployed and operational on live testnets.
 
+## Projects (git submodules)
+
+Each project lives in its own repository and is included here as a git submodule under `projects/`. Clone with `--recursive` to pull everything.
+
+| Project | Description | Status | Repo |
+|---------|-------------|--------|------|
+| agent-coordinator | Orchestrates agents via HCS, manages HTS payments | Working | [GitHub](https://github.com/lancekrogers/agent-coordinator) |
+| agent-defi | Executes DeFi strategies on Base, ERC-8004/x402/ERC-8021 | Working | [GitHub](https://github.com/lancekrogers/agent-defi) |
+| agent-inference | Routes inference to 0G Compute, maintains ERC-7857 iNFT | Code complete | [GitHub](https://github.com/lancekrogers/agent-inference) |
+| agent-prediction | Prediction market agent: Drift BET, Polymarket, Limitless | Scaffolded | [GitHub](https://github.com/lancekrogers/agent-prediction) |
+| agent-bags | Bags.fm OBEY token lifecycle, fee claiming, Solana/Meteora | Scaffolded | [GitHub](https://github.com/lancekrogers/agent-bags) |
+| contracts | Solidity contracts for settlement, reputation, and vaults | Deployed | [GitHub](https://github.com/lancekrogers/contracts) |
+| cre-risk-router | Chainlink CRE on-chain risk decision layer (8-gate router) | Deployed | [GitHub](https://github.com/lancekrogers/cre-risk-router) |
+| obey-platform | Solana/Anchor vault programs (registry, vault, NAV, fees) | Spec'd | [GitHub](https://github.com/lancekrogers/obey-platform) |
+| dashboard | Next.js observer UI for real-time agent monitoring | Working | [GitHub](https://github.com/lancekrogers/dashboard) |
+| hiero-plugin | Hiero CLI plugin for camp workspace management (5 templates) | Working | [GitHub](https://github.com/lancekrogers/hiero-plugin) |
+| obey-demo-video | Remotion procedural video renderer for hackathon demo | Ready | [GitHub](https://github.com/lancekrogers/obey-demo-video) |
+
 ## Key Artifacts
 
 | Artifact | Path | Description |
@@ -370,22 +388,6 @@ Five Solidity contracts deployed to 0G Galileo and Base Sepolia:
 ### Hiero Plugin
 
 A TypeScript Hiero CLI plugin (`hcli camp`) that extends the Hiero CLI with workspace management. Ships five templates: `hedera-smart-contract` (Hardhat + Hedera testnet), `hedera-dapp` (Vite + React + HashConnect), `hedera-agent` (Go agent with HCS/HTS), `0g-agent` (0G Compute inference), and `0g-inft-build` (ERC-7857 iNFT minting).
-
-## Projects
-
-| Project | Description | Status | Repo |
-|---------|-------------|--------|------|
-| agent-coordinator | Orchestrates agents via HCS, manages HTS payments | Working | [GitHub](https://github.com/lancekrogers/agent-coordinator) |
-| agent-defi | Executes DeFi strategies on Base, ERC-8004/x402/ERC-8021 | Working | [GitHub](https://github.com/lancekrogers/agent-defi) |
-| agent-inference | Routes inference to 0G Compute, maintains ERC-7857 iNFT | Code complete | [GitHub](https://github.com/lancekrogers/agent-inference) |
-| agent-prediction | Prediction market agent — Drift BET, Polymarket, Limitless | Scaffolded | [GitHub](https://github.com/lancekrogers/agent-prediction) |
-| agent-bags | Bags.fm OBEY token lifecycle, fee claiming, Solana/Meteora | Scaffolded | [GitHub](https://github.com/lancekrogers/agent-bags) |
-| contracts | Solidity contracts for settlement, reputation, and vaults | Deployed | [GitHub](https://github.com/lancekrogers/contracts) |
-| cre-risk-router | Chainlink CRE on-chain risk decision layer (8-gate router) | Deployed | [GitHub](https://github.com/lancekrogers/cre-risk-router) |
-| obey-platform | Solana/Anchor vault programs (registry, vault, NAV, fees) | Spec'd | [GitHub](https://github.com/lancekrogers/obey-platform) |
-| dashboard | Next.js observer UI for real-time agent monitoring | Working | [GitHub](https://github.com/lancekrogers/dashboard) |
-| hiero-plugin | Hiero CLI plugin for camp workspace management (5 templates) | Working | [GitHub](https://github.com/lancekrogers/hiero-plugin) |
-| obey-demo-video | Remotion procedural video renderer for hackathon demo | Ready | [GitHub](https://github.com/lancekrogers/obey-demo-video) |
 
 ## Tech Stack
 
