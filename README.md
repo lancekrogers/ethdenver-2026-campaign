@@ -13,7 +13,6 @@
 | **Ethereum** | CRE risk evaluation txs, L1→L2 bridge funding | Sepolia |
 | **Status Network** | ERC-8004 AgentIdentityRegistry, gasless contract deploy + agent registration (gas=0) | Sepolia |
 | **Uniswap** | V3 SwapRouter `exactInputSingle` (verified swap tx), Developer Platform Trading API client | Base Sepolia |
-| **Solana** | Prediction market adapters (Drift BET), Bags.fm token integration, Anchor vault programs | Planned / Scaffolded |
 
 **90+ verified transactions** across 6 chains. All contracts deployed and operational on live testnets.
 
