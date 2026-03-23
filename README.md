@@ -2,7 +2,7 @@
 
 **Autonomous AI agents with human-controlled boundaries. Five agents. Five blockchains. Verifiable on-chain.**
 
-![Agent Economy Observer Dashboard](docs/images/dashboard-demo.png)
+![Agent Economy Observer Dashboard](docs/images/dashboard-demo.gif)
 
 ## Overview
 
