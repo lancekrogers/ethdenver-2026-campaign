@@ -1,74 +1,123 @@
 {
-  "version": 1,
-  "updatedAt": "2026-03-22T18:41:09.294Z",
-  "paneTree": {
-    "content": {
-      "browserTabId": null,
-      "filePath": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/planning/grant-submissions-GS0003/004_PUBLISH/PHASE_GOAL.md",
-      "type": "file"
-    },
-    "id": "pane-10",
-    "type": "pane"
-  },
-  "openFiles": [
+  "version": 2,
+  "updatedAt": "2026-03-23T00:49:22.014Z",
+  "activeWorkspaceTabId": "workspace-tab-2",
+  "workspaceTabs": [
     {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/conversationLog.json",
-      "name": "conversationLog.json"
+      "id": "workspace-tab-1",
+      "title": "Tab 1",
+      "paneTree": {
+        "content": {
+          "browserTabId": null,
+          "filePath": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/planning/grant-submissions-GS0003/004_PUBLISH/PHASE_GOAL.md",
+          "type": "file"
+        },
+        "id": "pane-10",
+        "type": "pane"
+      },
+      "openFiles": [
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/conversationLog.json",
+          "name": "conversationLog.json"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/CLAUDE.md",
+          "name": "CLAUDE.md"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/AGENTS.md",
+          "name": "AGENTS.md"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/agent.json",
+          "name": "agent.json"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/docs/architecture/01-system-overview.md",
+          "name": "01-system-overview.md"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/docker-compose.yml",
+          "name": "docker-compose.yml"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/LICENSE",
+          "name": "LICENSE"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/main.py",
+          "name": "main.py"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/agent_log.json",
+          "name": "agent_log.json"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/internal/agent/agent.go",
+          "name": "agent.go"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/agent-market-research-RI-AM0001-0008/001_INGEST/WORKFLOW.md",
+          "name": "WORKFLOW.md"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/agent-market-research-RI-AM0001-0008/002_RESEARCH/WORKFLOW.md",
+          "name": "WORKFLOW.md"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/planning/grant-submissions-GS0003/004_PUBLISH/PHASE_GOAL.md",
+          "name": "PHASE_GOAL.md"
+        }
+      ],
+      "currentPath": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/planning/grant-submissions-GS0003/004_PUBLISH/PHASE_GOAL.md",
+      "activePaneId": "pane-10",
+      "chainConfig": {
+        "enabled": false,
+        "leftSessionId": null,
+        "rightSessionId": null
+      }
     },
     {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/CLAUDE.md",
-      "name": "CLAUDE.md"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/AGENTS.md",
-      "name": "AGENTS.md"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/agent.json",
-      "name": "agent.json"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/docs/architecture/01-system-overview.md",
-      "name": "01-system-overview.md"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/docker-compose.yml",
-      "name": "docker-compose.yml"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/LICENSE",
-      "name": "LICENSE"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/main.py",
-      "name": "main.py"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/agent_log.json",
-      "name": "agent_log.json"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/projects/agent-defi/internal/agent/agent.go",
-      "name": "agent.go"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/agent-market-research-RI-AM0001-0008/001_INGEST/WORKFLOW.md",
-      "name": "WORKFLOW.md"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/active/agent-market-research-RI-AM0001-0008/002_RESEARCH/WORKFLOW.md",
-      "name": "WORKFLOW.md"
-    },
-    {
-      "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/planning/grant-submissions-GS0003/004_PUBLISH/PHASE_GOAL.md",
-      "name": "PHASE_GOAL.md"
+      "id": "workspace-tab-2",
+      "title": "Tab 2",
+      "paneTree": {
+        "content": {
+          "browserTabId": null,
+          "filePath": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/agent.json",
+          "type": "file"
+        },
+        "id": "pane-20",
+        "type": "pane"
+      },
+      "openFiles": [
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/conversationLog.json",
+          "name": "conversationLog.json"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/docker-compose.yml",
+          "name": "docker-compose.yml"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/justfile",
+          "name": "justfile"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/agent.json",
+          "name": "agent.json"
+        },
+        {
+          "path": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/.gitmodules",
+          "name": ".gitmodules"
+        }
+      ],
+      "currentPath": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/agent.json",
+      "activePaneId": "pane-20",
+      "chainConfig": {
+        "enabled": false,
+        "leftSessionId": null,
+        "rightSessionId": null
+      }
     }
-  ],
-  "currentPath": "/Users/lancerogers/Dev/Crypto/ETHDENVER/Obey-Agent-Economy/festivals/planning/grant-submissions-GS0003/004_PUBLISH/PHASE_GOAL.md",
-  "activePaneId": "pane-10",
-  "chainConfig": {
-    "enabled": false,
-    "leftSessionId": null,
-    "rightSessionId": null
-  }
+  ]
 }
