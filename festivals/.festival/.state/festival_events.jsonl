@@ -38,3 +38,4 @@
 {"ts":"2026-03-22T21:58:43.090951Z","event":"move","id":"SF0002","from":"active","to":"completed"}
 {"ts":"2026-03-22T21:58:51.754889Z","event":"move","id":"DA0002","from":"planning","to":"ready"}
 {"ts":"2026-03-22T21:58:51.7799Z","event":"move","id":"DA0002","from":"ready","to":"active"}
+{"ts":"2026-03-23T00:14:00.296846Z","event":"move","id":"DA0002","from":"active","to":"completed"}
