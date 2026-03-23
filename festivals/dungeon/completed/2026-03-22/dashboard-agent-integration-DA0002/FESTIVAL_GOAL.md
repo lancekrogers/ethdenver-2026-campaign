@@ -2,11 +2,12 @@
 fest_type: festival
 fest_id: DA0002
 fest_name: dashboard-agent-integration
-fest_status: active
+fest_status: completed
 fest_created: 2026-03-22T15:56:45.679946-06:00
-fest_updated: 2026-03-22T15:58:51.779982-06:00
+fest_updated: 2026-03-22T18:14:00.297084-06:00
 fest_tracking: true
 ---
+
 
 # dashboard-agent-integration
 

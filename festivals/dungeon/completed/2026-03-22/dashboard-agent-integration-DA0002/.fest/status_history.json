@@ -8,5 +8,10 @@
     "timestamp": "2026-03-22T15:58:51.779597-06:00",
     "from_status": "ready",
     "to_status": "active"
+  },
+  {
+    "timestamp": "2026-03-22T18:14:00.29576-06:00",
+    "from_status": "active",
+    "to_status": "completed"
   }
 ]
