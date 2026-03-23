@@ -33,3 +33,4 @@ workflow/explore/cre-demo/evidence/latest/
 workflow/explore/cre-demo/runs/
 
 *.mp4
+.campaign/quests/
