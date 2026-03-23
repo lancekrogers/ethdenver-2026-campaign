@@ -64,7 +64,7 @@ Agents register on-chain identities via [ERC-8004](https://eips.ethereum.org/EIP
 
 ## Dashboard
 
-![Agent Economy Observer Dashboard](docs/images/dashboard-demo.gif)
+![Agent Economy Observer Dashboard](docs/images/dashboard-demo.png)
 
 ## What Works Today
 
